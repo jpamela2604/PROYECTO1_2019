@@ -9,14 +9,10 @@ package proyecto1;
  *
  * @author Pamela Palacios
  */
-public class Proyecto1 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        new ExtremeEditor().show();
-    }
-    
+public class var {
+    public static String archivo;
+    public static int filaGlobal=0;
+    public static int columnaGlobal=0;
+    public static String ext_fs=".fs";
+    public static String ext_gxml=".gxml";
 }

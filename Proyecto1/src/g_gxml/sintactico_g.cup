@@ -1,0 +1,35 @@
+package g_gxml;
+import java.io.*;
+import java_cup.runtime.*;
+import java.util.LinkedList;
+import errors.mng_error;
+import proyecto1.var;
+parser code
+{:
+public mng_error e = new mng_error();
+public void syntax_error(Symbol s){
+        e.AddError("No se esperaba "+s.value,(s.left+1),(s.right+1),var.archivo,"SINTACTICO"); 
+}
+             
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+       e.AddError("No se esperaba "+s.value,(s.left+1),(s.right+1),var.archivo,"SINTACTICO"); ;
+}
+:}
+action code
+{:
+      
+:}
+terminal   String id
+            ;
+terminal   String er_id,er_entero
+            ;
+nonterminal String S
+            ;
+
+start with S;
+S ::=       er_id
+            {:
+                System.out.println("aceptada");
+                //raiz=n1;
+            :}
+            ;
