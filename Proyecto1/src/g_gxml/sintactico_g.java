@@ -10,6 +10,7 @@ import java_cup.runtime.*;
 import java.util.LinkedList;
 import errors.mng_error;
 import proyecto1.var;
+import codigo_gxml.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -35,7 +36,26 @@ public class sintactico_g extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\002\000\002\002\004\000\002\002\003" });
+    "\000\076\000\002\002\004\000\002\002\003\000\002\002" +
+    "\004\000\002\002\003\000\002\026\004\000\002\026\003" +
+    "\000\002\003\004\000\002\003\003\000\002\014\007\000" +
+    "\002\005\010\000\002\025\004\000\002\025\003\000\002" +
+    "\004\003\000\002\004\003\000\002\004\003\000\002\004" +
+    "\003\000\002\010\007\000\002\011\010\000\002\011\007" +
+    "\000\002\012\010\000\002\012\007\000\002\007\010\000" +
+    "\002\007\007\000\002\007\007\000\002\007\006\000\002" +
+    "\020\005\000\002\027\004\000\002\027\003\000\002\013" +
+    "\010\000\002\013\007\000\002\017\005\000\002\006\010" +
+    "\000\002\023\004\000\002\023\003\000\002\024\003\000" +
+    "\002\024\003\000\002\021\007\000\002\021\006\000\002" +
+    "\022\004\000\002\022\003\000\002\016\005\000\002\016" +
+    "\005\000\002\016\005\000\002\016\005\000\002\016\005" +
+    "\000\002\016\003\000\002\016\005\000\002\016\005\000" +
+    "\002\016\005\000\002\016\005\000\002\016\005\000\002" +
+    "\016\005\000\002\016\005\000\002\016\005\000\002\016" +
+    "\005\000\002\016\005\000\002\016\005\000\002\016\003" +
+    "\000\002\016\005\000\002\016\005\000\002\015\003\000" +
+    "\002\015\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,9 +63,206 @@ public class sintactico_g extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\004\000\004\005\005\001\002\000\004\002\006\001" +
-    "\002\000\004\002\000\001\002\000\004\002\001\001\002" +
-    "" });
+    "\000\235\000\006\004\012\007\010\001\002\000\010\002" +
+    "\ufffa\004\ufffa\007\ufffa\001\002\000\006\002\ufffc\007\ufffc" +
+    "\001\002\000\004\002\237\001\002\000\010\002\000\004" +
+    "\012\007\010\001\002\000\052\011\022\012\041\013\034" +
+    "\014\037\026\043\027\024\030\021\031\032\032\031\033" +
+    "\026\034\020\035\046\036\045\037\044\040\023\041\047" +
+    "\042\030\043\033\044\035\053\036\001\002\000\006\002" +
+    "\ufffe\007\010\001\002\000\004\006\013\001\002\000\004" +
+    "\060\014\001\002\000\004\005\015\001\002\000\004\006" +
+    "\016\001\002\000\010\002\ufff9\004\ufff9\007\ufff9\001\002" +
+    "\000\006\002\ufffd\007\ufffd\001\002\000\004\015\233\001" +
+    "\002\000\004\015\231\001\002\000\004\015\227\001\002" +
+    "\000\004\015\225\001\002\000\004\015\223\001\002\000" +
+    "\054\006\111\011\022\012\041\013\034\014\037\026\043" +
+    "\027\024\030\021\031\032\032\031\033\026\034\020\035" +
+    "\046\036\045\037\044\040\023\041\047\042\030\043\033" +
+    "\044\035\053\036\001\002\000\004\015\106\001\002\000" +
+    "\054\006\uffd4\011\uffd4\012\uffd4\013\uffd4\014\uffd4\026\uffd4" +
+    "\027\uffd4\030\uffd4\031\uffd4\032\uffd4\033\uffd4\034\uffd4\035" +
+    "\uffd4\036\uffd4\037\uffd4\040\uffd4\041\uffd4\042\uffd4\043\uffd4" +
+    "\044\uffd4\053\uffd4\001\002\000\004\015\104\001\002\000" +
+    "\004\015\102\001\002\000\004\015\100\001\002\000\004" +
+    "\015\076\001\002\000\004\015\074\001\002\000\004\015" +
+    "\072\001\002\000\004\015\070\001\002\000\004\015\066" +
+    "\001\002\000\054\006\uffda\011\uffda\012\uffda\013\uffda\014" +
+    "\uffda\026\uffda\027\uffda\030\uffda\031\uffda\032\uffda\033\uffda" +
+    "\034\uffda\035\uffda\036\uffda\037\uffda\040\uffda\041\uffda\042" +
+    "\uffda\043\uffda\044\uffda\053\uffda\001\002\000\004\015\064" +
+    "\001\002\000\054\006\uffc8\011\uffc8\012\uffc8\013\uffc8\014" +
+    "\uffc8\026\uffc8\027\uffc8\030\uffc8\031\uffc8\032\uffc8\033\uffc8" +
+    "\034\uffc8\035\uffc8\036\uffc8\037\uffc8\040\uffc8\041\uffc8\042" +
+    "\uffc8\043\uffc8\044\uffc8\053\uffc8\001\002\000\004\015\062" +
+    "\001\002\000\004\015\056\001\002\000\004\015\054\001" +
+    "\002\000\004\015\052\001\002\000\004\015\050\001\002" +
+    "\000\004\057\051\001\002\000\054\006\uffca\011\uffca\012" +
+    "\uffca\013\uffca\014\uffca\026\uffca\027\uffca\030\uffca\031\uffca" +
+    "\032\uffca\033\uffca\034\uffca\035\uffca\036\uffca\037\uffca\040" +
+    "\uffca\041\uffca\042\uffca\043\uffca\044\uffca\053\uffca\001\002" +
+    "\000\004\060\053\001\002\000\054\006\uffce\011\uffce\012" +
+    "\uffce\013\uffce\014\uffce\026\uffce\027\uffce\030\uffce\031\uffce" +
+    "\032\uffce\033\uffce\034\uffce\035\uffce\036\uffce\037\uffce\040" +
+    "\uffce\041\uffce\042\uffce\043\uffce\044\uffce\053\uffce\001\002" +
+    "\000\004\057\055\001\002\000\054\006\uffcd\011\uffcd\012" +
+    "\uffcd\013\uffcd\014\uffcd\026\uffcd\027\uffcd\030\uffcd\031\uffcd" +
+    "\032\uffcd\033\uffcd\034\uffcd\035\uffcd\036\uffcd\037\uffcd\040" +
+    "\uffcd\041\uffcd\042\uffcd\043\uffcd\044\uffcd\053\uffcd\001\002" +
+    "\000\006\061\057\062\061\001\002\000\054\006\uffc5\011" +
+    "\uffc5\012\uffc5\013\uffc5\014\uffc5\026\uffc5\027\uffc5\030\uffc5" +
+    "\031\uffc5\032\uffc5\033\uffc5\034\uffc5\035\uffc5\036\uffc5\037" +
+    "\uffc5\040\uffc5\041\uffc5\042\uffc5\043\uffc5\044\uffc5\053\uffc5" +
+    "\001\002\000\054\006\uffcc\011\uffcc\012\uffcc\013\uffcc\014" +
+    "\uffcc\026\uffcc\027\uffcc\030\uffcc\031\uffcc\032\uffcc\033\uffcc" +
+    "\034\uffcc\035\uffcc\036\uffcc\037\uffcc\040\uffcc\041\uffcc\042" +
+    "\uffcc\043\uffcc\044\uffcc\053\uffcc\001\002\000\054\006\uffc4" +
+    "\011\uffc4\012\uffc4\013\uffc4\014\uffc4\026\uffc4\027\uffc4\030" +
+    "\uffc4\031\uffc4\032\uffc4\033\uffc4\034\uffc4\035\uffc4\036\uffc4" +
+    "\037\uffc4\040\uffc4\041\uffc4\042\uffc4\043\uffc4\044\uffc4\053" +
+    "\uffc4\001\002\000\004\056\063\001\002\000\054\006\uffe3" +
+    "\011\uffe3\012\uffe3\013\uffe3\014\uffe3\026\uffe3\027\uffe3\030" +
+    "\uffe3\031\uffe3\032\uffe3\033\uffe3\034\uffe3\035\uffe3\036\uffe3" +
+    "\037\uffe3\040\uffe3\041\uffe3\042\uffe3\043\uffe3\044\uffe3\053" +
+    "\uffe3\001\002\000\004\060\065\001\002\000\054\006\uffd7" +
+    "\011\uffd7\012\uffd7\013\uffd7\014\uffd7\026\uffd7\027\uffd7\030" +
+    "\uffd7\031\uffd7\032\uffd7\033\uffd7\034\uffd7\035\uffd7\036\uffd7" +
+    "\037\uffd7\040\uffd7\041\uffd7\042\uffd7\043\uffd7\044\uffd7\053" +
+    "\uffd7\001\002\000\004\055\067\001\002\000\054\006\uffd5" +
+    "\011\uffd5\012\uffd5\013\uffd5\014\uffd5\026\uffd5\027\uffd5\030" +
+    "\uffd5\031\uffd5\032\uffd5\033\uffd5\034\uffd5\035\uffd5\036\uffd5" +
+    "\037\uffd5\040\uffd5\041\uffd5\042\uffd5\043\uffd5\044\uffd5\053" +
+    "\uffd5\001\002\000\004\056\071\001\002\000\054\006\uffd9" +
+    "\011\uffd9\012\uffd9\013\uffd9\014\uffd9\026\uffd9\027\uffd9\030" +
+    "\uffd9\031\uffd9\032\uffd9\033\uffd9\034\uffd9\035\uffd9\036\uffd9" +
+    "\037\uffd9\040\uffd9\041\uffd9\042\uffd9\043\uffd9\044\uffd9\053" +
+    "\uffd9\001\002\000\004\060\073\001\002\000\054\006\uffc6" +
+    "\011\uffc6\012\uffc6\013\uffc6\014\uffc6\026\uffc6\027\uffc6\030" +
+    "\uffc6\031\uffc6\032\uffc6\033\uffc6\034\uffc6\035\uffc6\036\uffc6" +
+    "\037\uffc6\040\uffc6\041\uffc6\042\uffc6\043\uffc6\044\uffc6\053" +
+    "\uffc6\001\002\000\004\055\075\001\002\000\054\006\uffd6" +
+    "\011\uffd6\012\uffd6\013\uffd6\014\uffd6\026\uffd6\027\uffd6\030" +
+    "\uffd6\031\uffd6\032\uffd6\033\uffd6\034\uffd6\035\uffd6\036\uffd6" +
+    "\037\uffd6\040\uffd6\041\uffd6\042\uffd6\043\uffd6\044\uffd6\053" +
+    "\uffd6\001\002\000\006\061\057\062\061\001\002\000\054" +
+    "\006\uffc7\011\uffc7\012\uffc7\013\uffc7\014\uffc7\026\uffc7\027" +
+    "\uffc7\030\uffc7\031\uffc7\032\uffc7\033\uffc7\034\uffc7\035\uffc7" +
+    "\036\uffc7\037\uffc7\040\uffc7\041\uffc7\042\uffc7\043\uffc7\044" +
+    "\uffc7\053\uffc7\001\002\000\004\057\101\001\002\000\054" +
+    "\006\uffd3\011\uffd3\012\uffd3\013\uffd3\014\uffd3\026\uffd3\027" +
+    "\uffd3\030\uffd3\031\uffd3\032\uffd3\033\uffd3\034\uffd3\035\uffd3" +
+    "\036\uffd3\037\uffd3\040\uffd3\041\uffd3\042\uffd3\043\uffd3\044" +
+    "\uffd3\053\uffd3\001\002\000\004\057\103\001\002\000\054" +
+    "\006\uffd2\011\uffd2\012\uffd2\013\uffd2\014\uffd2\026\uffd2\027" +
+    "\uffd2\030\uffd2\031\uffd2\032\uffd2\033\uffd2\034\uffd2\035\uffd2" +
+    "\036\uffd2\037\uffd2\040\uffd2\041\uffd2\042\uffd2\043\uffd2\044" +
+    "\uffd2\053\uffd2\001\002\000\004\057\105\001\002\000\054" +
+    "\006\uffc9\011\uffc9\012\uffc9\013\uffc9\014\uffc9\026\uffc9\027" +
+    "\uffc9\030\uffc9\031\uffc9\032\uffc9\033\uffc9\034\uffc9\035\uffc9" +
+    "\036\uffc9\037\uffc9\040\uffc9\041\uffc9\042\uffc9\043\uffc9\044" +
+    "\uffc9\053\uffc9\001\002\000\004\057\107\001\002\000\054" +
+    "\006\uffd0\011\uffd0\012\uffd0\013\uffd0\014\uffd0\026\uffd0\027" +
+    "\uffd0\030\uffd0\031\uffd0\032\uffd0\033\uffd0\034\uffd0\035\uffd0" +
+    "\036\uffd0\037\uffd0\040\uffd0\041\uffd0\042\uffd0\043\uffd0\044" +
+    "\uffd0\053\uffd0\001\002\000\054\006\uffdb\011\uffdb\012\uffdb" +
+    "\013\uffdb\014\uffdb\026\uffdb\027\uffdb\030\uffdb\031\uffdb\032" +
+    "\uffdb\033\uffdb\034\uffdb\035\uffdb\036\uffdb\037\uffdb\040\uffdb" +
+    "\041\uffdb\042\uffdb\043\uffdb\044\uffdb\053\uffdb\001\002\000" +
+    "\012\016\123\045\120\047\115\050\114\001\002\000\014" +
+    "\010\ufff3\016\ufff3\045\ufff3\047\ufff3\050\ufff3\001\002\000" +
+    "\014\010\ufff6\016\ufff6\045\ufff6\047\ufff6\050\ufff6\001\002" +
+    "\000\052\011\022\012\041\013\034\014\037\026\043\027" +
+    "\024\030\021\031\032\032\031\033\026\034\020\035\046" +
+    "\036\045\037\044\040\023\041\047\042\030\043\033\044" +
+    "\035\053\036\001\002\000\052\011\022\012\041\013\034" +
+    "\014\037\026\043\027\024\030\021\031\032\032\031\033" +
+    "\026\034\020\035\046\036\045\037\044\040\023\041\047" +
+    "\042\030\043\033\044\035\053\036\001\002\000\014\010" +
+    "\ufff2\016\ufff2\045\ufff2\047\ufff2\050\ufff2\001\002\000\014" +
+    "\010\ufff4\016\ufff4\045\ufff4\047\ufff4\050\ufff4\001\002\000" +
+    "\052\011\022\012\041\013\034\014\037\026\043\027\024" +
+    "\030\021\031\032\032\031\033\026\034\020\035\046\036" +
+    "\045\037\044\040\023\041\047\042\030\043\033\044\035" +
+    "\053\036\001\002\000\014\010\ufff5\016\ufff5\045\ufff5\047" +
+    "\ufff5\050\ufff5\001\002\000\014\010\176\016\123\045\120" +
+    "\047\115\050\114\001\002\000\052\011\022\012\041\013" +
+    "\034\014\037\026\043\027\024\030\021\031\032\032\031" +
+    "\033\026\034\020\035\046\036\045\037\044\040\023\041" +
+    "\047\042\030\043\033\044\035\053\036\001\002\000\054" +
+    "\006\125\011\022\012\041\013\034\014\037\026\043\027" +
+    "\024\030\021\031\032\032\031\033\026\034\020\035\046" +
+    "\036\045\037\044\040\023\041\047\042\030\043\033\044" +
+    "\035\053\036\001\002\000\006\020\133\022\126\001\002" +
+    "\000\006\006\146\027\024\001\002\000\010\017\142\020" +
+    "\133\022\126\001\002\000\010\017\uffdf\020\uffdf\022\uffdf" +
+    "\001\002\000\010\017\uffde\020\uffde\022\uffde\001\002\000" +
+    "\010\017\uffe0\020\uffe0\022\uffe0\001\002\000\004\006\134" +
+    "\001\002\000\006\021\135\054\136\001\002\000\004\006" +
+    "\141\001\002\000\004\021\137\001\002\000\004\006\140" +
+    "\001\002\000\010\017\uffdd\020\uffdd\022\uffdd\001\002\000" +
+    "\010\017\uffdc\020\uffdc\022\uffdc\001\002\000\004\006\144" +
+    "\001\002\000\010\017\uffe1\020\uffe1\022\uffe1\001\002\000" +
+    "\014\010\uffe2\016\uffe2\045\uffe2\047\uffe2\050\uffe2\001\002" +
+    "\000\004\006\170\001\002\000\006\023\147\024\151\001" +
+    "\002\000\004\006\167\001\002\000\006\023\164\024\151" +
+    "\001\002\000\006\006\153\026\043\001\002\000\006\023" +
+    "\uffe6\024\uffe6\001\002\000\004\054\161\001\002\000\004" +
+    "\006\155\001\002\000\004\054\156\001\002\000\004\025" +
+    "\157\001\002\000\004\006\160\001\002\000\006\023\uffe5" +
+    "\024\uffe5\001\002\000\004\025\162\001\002\000\004\006" +
+    "\163\001\002\000\006\023\uffe4\024\uffe4\001\002\000\004" +
+    "\006\166\001\002\000\006\023\uffe7\024\uffe7\001\002\000" +
+    "\010\017\uffeb\020\uffeb\022\uffeb\001\002\000\010\017\uffe9" +
+    "\020\uffe9\022\uffe9\001\002\000\006\023\171\024\151\001" +
+    "\002\000\004\006\175\001\002\000\006\023\173\024\151" +
+    "\001\002\000\004\006\174\001\002\000\010\017\uffec\020" +
+    "\uffec\022\uffec\001\002\000\010\017\uffea\020\uffea\022\uffea" +
+    "\001\002\000\004\006\200\001\002\000\014\010\ufff7\016" +
+    "\ufff7\045\ufff7\047\ufff7\050\ufff7\001\002\000\006\002\ufff8" +
+    "\007\ufff8\001\002\000\054\006\202\011\022\012\041\013" +
+    "\034\014\037\026\043\027\024\030\021\031\032\032\031" +
+    "\033\026\034\020\035\046\036\045\037\044\040\023\041" +
+    "\047\042\030\043\033\044\035\053\036\001\002\000\004" +
+    "\046\203\001\002\000\004\006\204\001\002\000\014\010" +
+    "\ufff1\016\ufff1\045\ufff1\047\ufff1\050\ufff1\001\002\000\054" +
+    "\006\206\011\022\012\041\013\034\014\037\026\043\027" +
+    "\024\030\021\031\032\032\031\033\026\034\020\035\046" +
+    "\036\045\037\044\040\023\041\047\042\030\043\033\044" +
+    "\035\053\036\001\002\000\006\051\210\054\207\001\002" +
+    "\000\004\051\212\001\002\000\004\006\211\001\002\000" +
+    "\014\010\uffef\016\uffef\045\uffef\047\uffef\050\uffef\001\002" +
+    "\000\004\006\213\001\002\000\014\010\ufff0\016\ufff0\045" +
+    "\ufff0\047\ufff0\050\ufff0\001\002\000\054\006\215\011\022" +
+    "\012\041\013\034\014\037\026\043\027\024\030\021\031" +
+    "\032\032\031\033\026\034\020\035\046\036\045\037\044" +
+    "\040\023\041\047\042\030\043\033\044\035\053\036\001" +
+    "\002\000\006\052\217\054\216\001\002\000\004\052\221" +
+    "\001\002\000\004\006\220\001\002\000\014\010\uffed\016" +
+    "\uffed\045\uffed\047\uffed\050\uffed\001\002\000\004\006\222" +
+    "\001\002\000\014\010\uffee\016\uffee\045\uffee\047\uffee\050" +
+    "\uffee\001\002\000\004\055\224\001\002\000\054\006\uffe8" +
+    "\011\uffe8\012\uffe8\013\uffe8\014\uffe8\026\uffe8\027\uffe8\030" +
+    "\uffe8\031\uffe8\032\uffe8\033\uffe8\034\uffe8\035\uffe8\036\uffe8" +
+    "\037\uffe8\040\uffe8\041\uffe8\042\uffe8\043\uffe8\044\uffe8\053" +
+    "\uffe8\001\002\000\006\061\057\062\061\001\002\000\054" +
+    "\006\uffcb\011\uffcb\012\uffcb\013\uffcb\014\uffcb\026\uffcb\027" +
+    "\uffcb\030\uffcb\031\uffcb\032\uffcb\033\uffcb\034\uffcb\035\uffcb" +
+    "\036\uffcb\037\uffcb\040\uffcb\041\uffcb\042\uffcb\043\uffcb\044" +
+    "\uffcb\053\uffcb\001\002\000\004\060\230\001\002\000\054" +
+    "\006\uffd8\011\uffd8\012\uffd8\013\uffd8\014\uffd8\026\uffd8\027" +
+    "\uffd8\030\uffd8\031\uffd8\032\uffd8\033\uffd8\034\uffd8\035\uffd8" +
+    "\036\uffd8\037\uffd8\040\uffd8\041\uffd8\042\uffd8\043\uffd8\044" +
+    "\uffd8\053\uffd8\001\002\000\004\056\232\001\002\000\054" +
+    "\006\uffd1\011\uffd1\012\uffd1\013\uffd1\014\uffd1\026\uffd1\027" +
+    "\uffd1\030\uffd1\031\uffd1\032\uffd1\033\uffd1\034\uffd1\035\uffd1" +
+    "\036\uffd1\037\uffd1\040\uffd1\041\uffd1\042\uffd1\043\uffd1\044" +
+    "\uffd1\053\uffd1\001\002\000\004\057\234\001\002\000\054" +
+    "\006\uffcf\011\uffcf\012\uffcf\013\uffcf\014\uffcf\026\uffcf\027" +
+    "\uffcf\030\uffcf\031\uffcf\032\uffcf\033\uffcf\034\uffcf\035\uffcf" +
+    "\036\uffcf\037\uffcf\040\uffcf\041\uffcf\042\uffcf\043\uffcf\044" +
+    "\uffcf\053\uffcf\001\002\000\010\002\ufffb\004\ufffb\007\ufffb" +
+    "\001\002\000\006\002\uffff\007\010\001\002\000\004\002" +
+    "\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -53,8 +270,66 @@ public class sintactico_g extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\004\000\004\002\003\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001" });
+    "\000\235\000\014\002\005\003\006\005\004\014\003\026" +
+    "\010\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\010\005\004\014\234\026\235\001\001\000" +
+    "\012\016\037\017\041\020\026\022\024\001\001\000\004" +
+    "\005\016\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\010\016\107" +
+    "\017\041\020\026\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\015\057\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\015\076\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\016\004\112\006\120\010" +
+    "\116\011\111\012\115\025\121\001\001\000\002\001\001" +
+    "\000\002\001\001\000\012\016\037\017\041\020\026\022" +
+    "\213\001\001\000\012\016\037\017\041\020\026\022\204" +
+    "\001\001\000\002\001\001\000\002\001\001\000\012\016" +
+    "\037\017\041\020\026\022\200\001\001\000\002\001\001" +
+    "\000\014\004\176\006\120\010\116\011\111\012\115\001" +
+    "\001\000\012\016\037\017\041\020\026\022\123\001\001" +
+    "\000\010\016\107\017\041\020\026\001\001\000\012\007" +
+    "\130\021\127\023\126\024\131\001\001\000\004\020\144" +
+    "\001\001\000\010\007\130\021\127\024\142\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\006\013\151\027\147\001\001\000\002" +
+    "\001\001\000\004\013\164\001\001\000\004\017\153\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\006\013\151\027\171\001\001" +
+    "\000\002\001\001\000\004\013\164\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\010\016\107\017" +
+    "\041\020\026\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\010\016\107\017\041\020\026\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\010\016\107\017\041\020\026\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\015\225\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\005\016\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -93,6 +368,8 @@ public class sintactico_g extends java_cup.runtime.lr_parser {
 
 
 
+
+public etiqueta raiz;
 public mng_error e = new mng_error();
 public void syntax_error(Symbol s){
         e.AddError("No se esperaba "+s.value,(s.left+1),(s.right+1),var.archivo,"SINTACTICO"); 
@@ -137,7 +414,7 @@ class CUP$sintactico_g$actions {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
 		int start_valright = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
-		String start_val = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		etiqueta start_val = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
 		RESULT = start_val;
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
             }
@@ -146,14 +423,993 @@ class CUP$sintactico_g$actions {
           return CUP$sintactico_g$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // S ::= er_id 
+          case 1: // S ::= LIMP 
             {
-              String RESULT =null;
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
 		
-                System.out.println("aceptada");
-                //raiz=n1;
-            
+                    System.out.println("aceptada");
+                    raiz=new e_xml(n1,null);
+                
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 2: // S ::= LIMP VENTANAS 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		LinkedList<etiqueta> n2 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    System.out.println("aceptada");
+                    raiz=new e_xml(n1,n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // S ::= VENTANAS 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		LinkedList<etiqueta> n1 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    System.out.println("aceptada");
+                    raiz=new e_xml(null,n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // VENTANAS ::= VENTANAS VEN 
+            {
+              LinkedList<etiqueta> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		LinkedList<etiqueta> n1 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n2 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                    n1.add(n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("VENTANAS",20, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // VENTANAS ::= VEN 
+            {
+              LinkedList<etiqueta> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("VENTANAS",20, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // LIMP ::= LIMP IMP 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		ruta n2 = (ruta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    e_Importar a=(e_Importar)n1;
+                    a.rutas.add(n2);
+                    RESULT=a;                
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LIMP",1, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // LIMP ::= IMP 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		ruta n1 = (ruta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new e_Importar(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LIMP",1, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // IMP ::= i_imp mayor er_cadena f_imp mayor 
+            {
+              ruta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new ruta(n1,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("IMP",10, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // VEN ::= i_ven ELEMENTOS mayor ETIQUETAS f_ven mayor 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		LinkedList<etiqueta> n2 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_ventana(n1,n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("VEN",3, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // ETIQUETAS ::= ETIQUETAS ETIQUETA 
+            {
+              LinkedList<etiqueta> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		LinkedList<etiqueta> n1 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n2 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                    n1.add(n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETAS",19, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // ETIQUETAS ::= ETIQUETA 
+            {
+              LinkedList<etiqueta> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETAS",19, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // ETIQUETA ::= CONTROL 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETA",2, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // ETIQUETA ::= MULTIMEDIA 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETA",2, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // ETIQUETA ::= BOTON 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETA",2, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // ETIQUETA ::= ENVIAR 
+            {
+              etiqueta RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ETIQUETA",2, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // MULTIMEDIA ::= i_multi ELEMENTOS mayor f_multi mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new e_multimedia(n1,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("MULTIMEDIA",6, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // BOTON ::= i_boton ELEMENTOS mayor all f_boton mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                     RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("BOTON",7, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 18: // BOTON ::= i_boton ELEMENTOS mayor f_boton mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new e_boton(n1,"",(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("BOTON",7, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // ENVIAR ::= i_enviar ELEMENTOS mayor all f_enviar mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_enviar(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ENVIAR",8, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 20: // ENVIAR ::= i_enviar ELEMENTOS mayor f_enviar mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new e_enviar(n1,"",(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ENVIAR",8, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 21: // LISTADATOS ::= i_lista ACC mayor DATOS f_lista mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		LinkedList<e_dato> n2 = (LinkedList<e_dato>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_listaDato(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LISTADATOS",5, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 22: // LISTADATOS ::= i_lista mayor DATOS f_lista mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		LinkedList<e_dato> n2 = (LinkedList<e_dato>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_listaDato(null,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LISTADATOS",5, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // LISTADATOS ::= i_lista ACC mayor f_lista mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new e_listaDato(n1,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LISTADATOS",5, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 24: // LISTADATOS ::= i_lista mayor f_lista mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new e_listaDato(null,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("LISTADATOS",5, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // ACC ::= accion is call 
+            {
+              elemento RESULT =null;
+		
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ACC",14, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // DATOS ::= DATOS DATO 
+            {
+              LinkedList<e_dato> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		LinkedList<e_dato> n1 = (LinkedList<e_dato>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		e_dato n2 = (e_dato)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                    n1.add(n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DATOS",21, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // DATOS ::= DATO 
+            {
+              LinkedList<e_dato> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		e_dato n1 = (e_dato)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DATOS",21, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // DATO ::= i_dato REFE mayor all f_dato mayor 
+            {
+              e_dato RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		                    
+                    RESULT=new e_dato(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DATO",9, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 29: // DATO ::= i_dato mayor all f_dato mayor 
+            {
+              e_dato RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_dato(null,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DATO",9, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 30: // REFE ::= referencia is er_id 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.referencia,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("REFE",13, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 31: // CONTROL ::= i_control ELEMENTOS mayor OPCS_CTRL f_control mayor 
+            {
+              etiqueta RESULT =null;
+		int n0left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).left;
+		int n0right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).right;
+		String n0 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)).value;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		LinkedList<Object> n2 = (LinkedList<Object>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new e_control(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("CONTROL",4, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-5)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 32: // OPCS_CTRL ::= OPCS_CTRL OPC_CTRL 
+            {
+              LinkedList<Object> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		LinkedList<Object> n1 = (LinkedList<Object>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		Object n2 = (Object)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                    n1.add(n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("OPCS_CTRL",17, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 33: // OPCS_CTRL ::= OPC_CTRL 
+            {
+              LinkedList<Object> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		Object n1 = (Object)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("OPCS_CTRL",17, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 34: // OPC_CTRL ::= DEFECTO 
+            {
+              Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("OPC_CTRL",18, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 35: // OPC_CTRL ::= LISTADATOS 
+            {
+              Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("OPC_CTRL",18, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // DEFECTO ::= i_defecto mayor all f_defecto mayor 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		
+                    RESULT=new elemento(var.defecto,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DEFECTO",15, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-4)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 37: // DEFECTO ::= i_defecto mayor f_defecto mayor 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)).value;
+		
+                    RESULT=new elemento(var.defecto,"",(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("DEFECTO",15, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-3)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // ELEMENTOS ::= ELEMENTOS ELEMENTO 
+            {
+              LinkedList<elemento> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).right;
+		LinkedList<elemento> n1 = (LinkedList<elemento>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		elemento n2 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=n1;
+                    n1.add(n2);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTOS",16, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 39: // ELEMENTOS ::= ELEMENTO 
+            {
+              LinkedList<elemento> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTOS",16, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 40: // ELEMENTO ::= id is er_id 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.id,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 41: // ELEMENTO ::= tipo is er_cadena 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.tipo,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 42: // ELEMENTO ::= color is er_cadena 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.color,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 43: // ELEMENTO ::= ac_in is call 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.accionInicial,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 44: // ELEMENTO ::= ac_fi is call 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.accionFinal,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 45: // ELEMENTO ::= ACC 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                        RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 46: // ELEMENTO ::= x is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.x,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 47: // ELEMENTO ::= y is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.y,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 48: // ELEMENTO ::= nombre is er_id 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.nombre,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 49: // ELEMENTO ::= alto is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.alto,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 50: // ELEMENTO ::= ancho is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.ancho,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 51: // ELEMENTO ::= fuente is er_cadena 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.fuente,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 52: // ELEMENTO ::= tam is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.tam,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 53: // ELEMENTO ::= negrita is BOL 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		Boolean n2 = (Boolean)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.negrita,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 54: // ELEMENTO ::= cursiva is BOL 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		Boolean n2 = (Boolean)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.cursiva,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 55: // ELEMENTO ::= maximo is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.maximo,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 56: // ELEMENTO ::= minimo is er_entero 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 57: // ELEMENTO ::= REFE 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		elemento n1 = (elemento)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                        RESULT=n1;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 58: // ELEMENTO ::= autoplay is BOL 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		Boolean n2 = (Boolean)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 59: // ELEMENTO ::= path is er_cadena 
+            {
+              elemento RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
+		String n2 = (String)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
+		
+                    RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("ELEMENTO",12, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-2)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 60: // BOL ::= verdadero 
+            {
+              Boolean RESULT =null;
+		
+                    RESULT=true;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("BOL",11, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
+            }
+          return CUP$sintactico_g$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 61: // BOL ::= falso 
+            {
+              Boolean RESULT =null;
+		
+                    RESULT=false;
+                
+              CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("BOL",11, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
             }
           return CUP$sintactico_g$result;
 

@@ -8,17 +8,105 @@ package g_gxml;
 /** CUP generated class containing symbol constants. */
 public class simb {
   /* terminals */
-  public static final int error = 1;
-  public static final int er_id = 3;
-  public static final int er_entero = 4;
+  public static final int f_multi = 36;
+  public static final int i_multi = 35;
+  public static final int call = 43;
+  public static final int ancho = 26;
+  public static final int maximo = 31;
+  public static final int accion = 21;
+  public static final int f_imp = 3;
+  public static final int er_cadena = 46;
+  public static final int f_boton = 39;
+  public static final int i_boton = 37;
+  public static final int alto = 25;
+  public static final int f_ven = 6;
+  public static final int f_defecto = 15;
+  public static final int i_imp = 2;
+  public static final int f_control = 13;
+  public static final int all = 42;
+  public static final int fuente = 27;
+  public static final int f_dato = 19;
+  public static final int i_ven = 5;
   public static final int EOF = 0;
-  public static final int id = 2;
+  public static final int verdadero = 47;
+  public static final int is = 11;
+  public static final int nombre = 22;
+  public static final int referencia = 20;
+  public static final int error = 1;
+  public static final int color = 8;
+  public static final int mayor = 4;
+  public static final int i_defecto = 14;
+  public static final int i_lista = 16;
+  public static final int f_lista = 17;
+  public static final int f_enviar = 40;
+  public static final int i_control = 12;
+  public static final int ac_in = 9;
+  public static final int id = 41;
+  public static final int falso = 48;
+  public static final int ac_fi = 10;
+  public static final int y = 24;
+  public static final int x = 23;
+  public static final int tipo = 7;
+  public static final int tam = 28;
+  public static final int er_entero = 45;
+  public static final int minimo = 32;
+  public static final int path = 34;
+  public static final int er_id = 44;
+  public static final int i_enviar = 38;
+  public static final int autoplay = 33;
+  public static final int cursiva = 30;
+  public static final int negrita = 29;
+  public static final int i_dato = 18;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
+  "i_imp",
+  "f_imp",
+  "mayor",
+  "i_ven",
+  "f_ven",
+  "tipo",
+  "color",
+  "ac_in",
+  "ac_fi",
+  "is",
+  "i_control",
+  "f_control",
+  "i_defecto",
+  "f_defecto",
+  "i_lista",
+  "f_lista",
+  "i_dato",
+  "f_dato",
+  "referencia",
+  "accion",
+  "nombre",
+  "x",
+  "y",
+  "alto",
+  "ancho",
+  "fuente",
+  "tam",
+  "negrita",
+  "cursiva",
+  "maximo",
+  "minimo",
+  "autoplay",
+  "path",
+  "i_multi",
+  "f_multi",
+  "i_boton",
+  "i_enviar",
+  "f_boton",
+  "f_enviar",
   "id",
+  "all",
+  "call",
   "er_id",
-  "er_entero"
+  "er_entero",
+  "er_cadena",
+  "verdadero",
+  "falso"
   };
 }
 
