@@ -5,6 +5,8 @@
  */
 package proyecto1;
 
+import ts.NodoTipo;
+
 /**
  *
  * @author Pamela Palacios
@@ -38,4 +40,29 @@ public class var {
     public static int path=119;
     public static int autoplay=120;
     public static int defecto=121;
+    /*de tipos*/
+    public static int booleano=0;
+    public static int numero=1;
+    public static int cadena=2;
+    public static int arreglo=3;
+    public static int objeto=4;
+    public static int nulo=5;    
+    public static int indefinido=6;
+    public static int error=7;
+    
+    
+    public static String t_booleano="booleano";
+    public static String t_numero="numero";
+    public static String t_cadena="cadena";
+    public static String t_arreglo="";
+    public static String t_objeto="objeto";
+    public static String t_error="error";
+    public static String t_nulo="nulo";
+    public static String t_indefinido="indefinido";
+    public static NodoTipo tipo_booleano=new NodoTipo(booleano,t_booleano);
+    public static NodoTipo tipo_numero=new NodoTipo(numero,t_numero);
+    public static NodoTipo tipo_cadena=new NodoTipo(cadena,t_cadena);
+    public static NodoTipo tipo_error=new NodoTipo(error,t_error);
+    public static NodoTipo tipo_nulo=new NodoTipo(nulo,t_nulo);
+    public static NodoTipo tipo_indefinido=new NodoTipo(indefinido,t_indefinido);
 }

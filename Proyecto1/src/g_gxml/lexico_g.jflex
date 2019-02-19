@@ -8,6 +8,7 @@ import proyecto1.var;
 er_id = [a-zA-Z_][a-zA-Z0-9_]*
 er_entero = [0-9]+
 er_cadena = [\"]([^\"])*[\"]
+call = [{]([^}])*[}]
 %cupsym simb
 %class lexico_g
 %cup
@@ -24,7 +25,6 @@ er_cadena = [\"]([^\"])*[\"]
 "Verdadero"             {return new Symbol(simb.verdadero,yyline,yycolumn,new String(yytext()));}
 "Falso"                 {return new Symbol(simb.falso,yyline,yycolumn,new String(yytext()));}
 "all"                   {return new Symbol(simb.all,yyline,yycolumn,new String(yytext()));}
-"call"                  {return new Symbol(simb.all,yyline,yycolumn,new String(yytext()));}
 "<Importar"             {return new Symbol(simb.i_imp,yyline,yycolumn,new String(yytext()));}
 "</Importar"            {return new Symbol(simb.f_imp,yyline,yycolumn,new String(yytext()));}
 "<Ventana"              {return new Symbol(simb.i_ven,yyline,yycolumn,new String(yytext()));}
@@ -61,7 +61,8 @@ er_cadena = [\"]([^\"])*[\"]
 "="                     {return new Symbol(simb.is,yyline,yycolumn,new String(yytext()));}
 "ID"                    {return new Symbol(simb.id,yyline,yycolumn,new String(yytext()));}
 {er_entero}             {return new Symbol(simb.er_entero,yyline,yycolumn,new String(yytext()));}
-{er_cadena}             {return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext()));}
+{er_cadena}             {return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-2)));}
+{call}                  {return new Symbol(simb.call,yyline,yycolumn,new String(yytext()));}
 {er_id}                 {return new Symbol(simb.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));}
 [ \t\r\f\n]+            {}
 .                       {      

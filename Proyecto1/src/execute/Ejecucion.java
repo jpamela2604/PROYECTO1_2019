@@ -10,5 +10,10 @@ package execute;
  * @author Pamela Palacios
  */
 public class Ejecucion {
-    
+    public Ejecucion()
+    {
+    }
+    public void Imprimir()
+    {
+    }
 }

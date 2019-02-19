@@ -4,8 +4,10 @@ import java_cup.runtime.*;
 import java.util.LinkedList;
 import errors.mng_error;
 import proyecto1.var;
+import codigo_fs.*;
 parser code
 {:
+public LinkedList<sent> raiz;
 public mng_error e = new mng_error();
 public void syntax_error(Symbol s){
         e.AddError("No se esperaba "+s.value,(s.left+1),(s.right+1),var.archivo,"SINTACTICO"); 
@@ -21,15 +23,629 @@ action code
 :}
 terminal   String id
             ;
-terminal   String er_id,er_entero
+terminal   String   nulo,verdadero,falso,decre,aumen,igual,mayori,menori,dif,mayor,menor,mas,
+                    menos,mul,divis,pote,llava,llavc,para,parc,dosptos,ptocoma,ques,op_or,op_and,op_not,
+                    imprimir,var,coma,is,pto,a_mas,a_por,a_menos,a_div,cora,corc,importar,si,sino,detener,
+                    retornar,selecciona,caso,defecto,funcion,descendente,ascendente,crearArrFile,
+                    invertir,maximo,minimo,filter,map,buscar,reduce,todos,alguno,leerGxml,ObtenerPorEtiqueta,
+                    ObtenerPorNombre,ObtenerPorId,CrearVentana,cerrar,cargar,clic,video,musica,imagen,boton,
+                    desple,controln,area,caja,texto,contenedor
             ;
-nonterminal String S
+terminal   String er_id,er_numero,er_cadena
             ;
-
+nonterminal LinkedList<sent> S,LSENT,LDECLA,LCOND,VALORES,LIMP,LINS
+            ;
+nonterminal sent COND,RELA,E,SENT,DECLARACION,ASIGNACION,IMPRIMIR,DECLA,ACCESO,OP_UNARIA,LOGICA,OBJETO,VALUE,
+                    IMP,INS,FUN,S_IF,S_SWITCH,LLAMADA
+            ;
+nonterminal s_bloque  BL,DEFECTO,SINO,CASO
+            ;
+nonterminal String OPEREL
+            ;
+nonterminal s_if IF_
+            ;
+nonterminal LinkedList<String> LPAR
+            ;
+nonterminal s_switch SWITCH_
+            ;
+nonterminal s_accesos LACCESO;
+precedence left mas,menos;  // +,-
+precedence left mul,divis;    // /,*
+precedence right pote;
+precedence right decre,aumen;
+precedence left igual,dif,menor,mayor,menori,mayori;
+precedence left op_or;
+precedence left op_and;
+precedence left ques;
+precedence right op_not;
 start with S;
-S ::=       er_id
+S ::=       LSENT:n1
             {:
                 System.out.println("aceptada");
-                //raiz=n1;
+                raiz=n1;
+            :}
+            |LIMP:n1
+            {:
+                System.out.println("aceptada");
+                raiz=n1;
+            :}
+            |LIMP:n1 LSENT:n2
+            {:
+                System.out.println("aceptada");
+                raiz=n1;
+                for(sent s:n2)
+                {
+                    raiz.add(s);
+                }
             :}
             ;
+LIMP::=     LIMP:n1 IMP:n2
+            {:
+                RESULT=n1;
+                RESULT.add(n2);
+            :}
+            |IMP:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+IMP::=      importar:n2 para COND:n1 parc
+            {:
+                RESULT=new s_importar(n1,(n2left+1),(n2right+1),var.archivo); 
+            :}
+            ;
+LSENT::=    LSENT:n1 SENT:n2
+            {:
+                RESULT=n1;
+                RESULT.add(n2);
+            :}
+            |SENT:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+LINS::=     LINS:n1 INS:n2
+            {:
+                RESULT=n1;
+                RESULT.add(n2);
+            :}
+            |INS:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+
+S_SWITCH::= SWITCH_:n1 llavc
+            {:
+                RESULT=n1;
+            :}
+            |SWITCH_:n1 DEFECTO:n2 llavc
+            {:
+                n1.casos.add(n2);
+                RESULT=n1;
+            :}
+            ;
+SWITCH_::=  SWITCH_:n1 CASO:n2
+            {:
+                n1.casos.add(n2);
+                RESULT=n1;
+            :}
+            |selecciona:n2 para COND:n1 parc llava CASO:n3
+            {:
+                RESULT=new s_switch(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+CASO::=     caso:n2 COND:n1 dosptos llava LINS:n3 llavc
+            {:
+                RESULT=new s_bloque(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |caso:n2 COND:n1 dosptos llava  llavc
+            {:
+                 RESULT=new s_bloque(n1,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+DEFECTO::=  defecto:n2  dosptos llava LINS:n3 llavc
+            {:
+                RESULT=new s_bloque(null,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |defecto:n2  dosptos llava  llavc
+            {:
+                 RESULT=new s_bloque(null,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+S_IF::=     IF_:n1 SINO:n2
+            {:
+                n1.bloques.add(n2);
+                RESULT=n1;
+            :}
+            |IF_:n1 
+            {:
+                RESULT=n1;
+            :}
+            ;
+IF_::=      IF_:n1 BL:n2
+            {:
+                RESULT=n1;
+                RESULT.bloques.add(n2);
+            :}
+            |si:n2 para COND:n1 parc llava LINS:n3 llavc
+            {:
+                RESULT=new s_if(new s_bloque(n1,n3,(n2left+1),(n2right+1),var.archivo));
+            :}
+            |si:n2 para COND:n1 parc llava  llavc
+            {:
+                RESULT=new s_if(new s_bloque(n1,new LinkedList(),(n2left+1),(n2right+1),var.archivo));
+            :}
+            ;   
+BL::=       sino:n2 si para COND:n1 parc llava LINS:n3 llavc  
+            {:
+                RESULT=new s_bloque(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |sino:n2 si para COND:n1 parc llava  llavc  
+            {:
+                RESULT=new s_bloque(n1,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+SINO    ::=  sino:n2 llava LINS:n1 llavc
+            {:
+                RESULT=new s_bloque(null,n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |sino:n2 llava  llavc
+            {:
+                RESULT=new s_bloque(null,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+SENT::=     INS:n1 ptocoma
+            {:
+                RESULT=n1;
+            :}
+            |FUN:n1
+            {:
+                RESULT=n1;
+            :}
+            ;
+FUN::=      funcion er_id:n2 para parc llava llavc
+            {:
+                RESULT=new s_funcion(n2,new LinkedList(),new LinkedList(),(n2left+1),(n2right+1),var.archivo); 
+            :}
+            |funcion er_id:n2 para parc llava LINS:n3 llavc
+            {:
+                RESULT=new s_funcion(n2,new LinkedList(),n3,(n2left+1),(n2right+1),var.archivo); 
+            :}
+            |funcion er_id:n2 para LPAR:n1 parc llava llavc
+            {:
+                RESULT=new s_funcion(n2,n1,new LinkedList(),(n2left+1),(n2right+1),var.archivo); 
+            :}
+            |funcion er_id:n2 para LPAR:n1 parc llava LINS:n3 llavc
+            {:
+                RESULT=new s_funcion(n2,n1,n3,(n2left+1),(n2right+1),var.archivo); 
+            :}
+            ;
+LPAR::=     LPAR:n1 coma er_id:n2
+            {:
+                RESULT=n1;
+                n1.add(n2);
+            :}
+            |er_id:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+INS::=    DECLARACION:n1 
+            {:
+                RESULT=n1;
+            :}
+            |ASIGNACION:n1 
+            {:
+                RESULT=n1;
+            :}
+            |IMPRIMIR:n1 
+            {:
+                RESULT=n1;
+            :}
+            |OP_UNARIA:n1 
+            {:
+                RESULT=n1;
+            :}
+            |retornar:n1 ptocoma
+            {:
+                RESULT=new s_retornarEmpty((n1left+1),(n1right+1),var.archivo);
+            :}  
+            |retornar:n1 COND:n2 ptocoma
+            {:
+                RESULT=new s_retornar(n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            |detener:n1 ptocoma
+            {:
+                 RESULT=new s_detener((n1left+1),(n1right+1),var.archivo);
+            :}            
+            |S_IF:n1
+            {:
+                RESULT=n1;
+            :}
+            |S_SWITCH:n1
+            {:
+                RESULT=n1;
+            :}
+            ;
+DECLARACION::= var:n2 LDECLA:n1
+            {:
+                RESULT= new s_declaraciones(n1,(n2left+1),(n2right+1),var.archivo); 
+            :}
+            ;
+LDECLA::=   LDECLA:n1 coma DECLA:n2
+            {:
+                RESULT=n1;
+                n1.add(n2);
+            :}
+            |DECLA:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+DECLA::=    er_id:n2
+            {:
+               RESULT= new s_declaracion(n2,null,(n2left+1),(n2right+1),var.archivo); 
+            :}
+            |er_id:n2 is COND:n1
+            {:
+                RESULT= new s_declaracion(n2,n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+ASIGNACION::=LACCESO:n1 is:n2 COND:n3
+            {:
+                RESULT= new s_asignacion(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |LACCESO:n1 a_mas:n2 COND:n3
+            {:
+                RESULT= new s_asignaMas(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |LACCESO:n1 a_menos:n2 COND:n3
+            {:
+                RESULT= new s_asignaMenos(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |LACCESO:n1 a_por:n2 COND:n3
+            {:
+                RESULT= new s_asignaPor(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |LACCESO:n1 a_div:n2 COND:n3
+            {:
+                RESULT= new s_asignaDiv(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+LACCESO::=  LACCESO:n1 pto ACCESO:n2
+            {:
+                RESULT=n1;
+                n1.accesos.add(n2);
+            :}
+            |ACCESO:n1
+            {:
+                RESULT=new s_accesos(new LinkedList());
+                RESULT.accesos.add(n1);
+            :}
+            ;
+ACCESO::=   er_id:n2
+            {:
+                RESULT=new s_acVariable(n2,(n2left+1),(n2right+1),var.archivo);
+            :}      
+            |er_id:n2 cora COND:n1 corc
+            {:
+                RESULT=new s_accArray(n2,n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |LLAMADA:n1
+            {:
+                RESULT=n1;
+            :}
+            |ascendente:n2
+            {:
+                RESULT=new s_propiaAscendente((n2left+1),(n2right+1),var.archivo);
+            :}
+            |descendente:n2
+            {:
+                RESULT=new s_propiaDescendente((n2left+1),(n2right+1),var.archivo);
+            :}
+            |invertir:n2
+            {:
+                RESULT=new s_propiaInvertir((n2left+1),(n2right+1),var.archivo);
+            :}
+            |maximo:n2
+            {:
+                RESULT=new s_propiaMaximo((n2left+1),(n2right+1),var.archivo);
+            :}
+            |minimo:n2
+            {:
+                RESULT=new s_propiaMinimo((n2left+1),(n2right+1),var.archivo);
+            :}
+            |filter:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalFilter(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |map:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalMap(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |buscar:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalBuscar(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |reduce:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalReduce(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |todos:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalTodos(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |alguno:n2 er_id:n1 parc
+            {:
+                RESULT=new s_funcionalAlgunos(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cerrar:n2 parc
+            {:
+                RESULT=new s_nEventoCerrar(null,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cerrar:n2 LLAMADA:n1 parc
+            {:
+                RESULT=new s_nEventoCerrar(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cargar:n2 parc
+            {:
+                RESULT=new s_nEventoCargar(null,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cargar:n2 LLAMADA:n1 parc
+            {:
+                RESULT=new s_nEventoCargar(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |clic:n2 LLAMADA:n1 parc
+            {:
+                RESULT=new s_nEventoClic(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |clic:n2 parc
+            {:
+                RESULT=new s_nEventoClic(null,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |video:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearVideo(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |musica:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearReproductor(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |imagen:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearImagen(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |boton:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearBoton(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |desple:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearDesplegable(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |controln:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearCtrlNum(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |area:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearAreaTexto(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |caja:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearCajaTexto(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |texto:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearTexto(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |contenedor:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearContenedor(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+
+LLAMADA::=  er_id:n2 para LCOND:n3 parc
+            {:
+                RESULT=new s_llamada(n2,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |er_id:n2 para parc
+            {:
+                RESULT=new s_llamada(n2,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+
+IMPRIMIR::= imprimir:n2 para COND:n1 parc
+            {:
+                RESULT=new s_imprimir(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+COND::=     LOGICA:n1
+            {:
+               RESULT=n1; 
+            :}
+            |cora:n2 LCOND:n1 corc
+            {:
+                RESULT=new o_array(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cora:n2 corc
+            {:
+                RESULT=new o_array(null,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |OBJETO:n1
+            {:
+                RESULT=n1;
+            :}
+            |crearArrFile:n2 COND:n1 parc
+            {:
+                RESULT=new s_propiaArrayFromFile(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |leerGxml:n2 COND:n1 parc
+            {:
+                RESULT=new s_nativaGxml(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            ;
+
+LCOND::=    LCOND:n1 coma LOGICA:n2
+            {:
+                RESULT=n1;
+                n1.add(n2);
+            :}
+            |LOGICA:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+LOGICA       ::=  LOGICA:n1 op_and:n2 LOGICA:n3
+                {:
+                     RESULT=new ol_and(n1,n3,(n2left+1),(n2right+1),var.archivo);
+                :}
+                |LOGICA:n1 op_or:n2 LOGICA:n3
+                {:
+                     RESULT=new ol_or(n1,n3,(n2left+1),(n2right+1),var.archivo);
+                :}
+                |op_not:n2 LOGICA:n1
+                {:
+                     RESULT=new ol_not(n1,(n2left+1),(n2right+1),var.archivo);
+                :}
+                |RELA:n1
+                {:
+                     RESULT=n1;
+                :}
+                | LOGICA:n1 ques:n0 LOGICA:n2 dosptos LOGICA:n3
+                {:
+                    RESULT=new o_ternario(n1,n2,n3,(n0left+1),(n0right+1),var.archivo);
+                :}
+                ;
+
+RELA            ::= RELA:n1 OPEREL:n2 RELA:n3   
+                {:
+                    RESULT=new o_relacional(n1,n3,n2,(n2left+1),(n2right+1),var.archivo);
+                :}
+                |E:n1
+                {:
+                     RESULT=n1;
+                :}
+                ;
+OPEREL      ::= mayor:n1
+                {:
+                     RESULT=">";
+                :}
+                |menor:n1
+                {:
+                     RESULT="<";
+                :}
+                |igual:n1
+                {:
+                     RESULT="==";
+                :}
+                |dif:n1
+                {:
+                     RESULT="!=";
+                :}
+                |mayori:n1
+                {:
+                     RESULT=">=";
+                :}
+                |menori:n1
+                {:
+                     RESULT="<=";
+                :}
+                ;
+E           ::= E:n1 mas:n2 E:n3
+            {:
+                RESULT=new oa_suma(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            | E:n1 menos:n2 E:n3
+            {:
+                RESULT=new oa_resta(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            | E:n1 mul:n2 E:n3
+            {:
+                RESULT=new oa_multiplicacion(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            | E:n1 divis:n2 E:n3
+            {:
+                RESULT=new oa_division(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |E:n1 pote:n2 E:n3
+            {:
+                 RESULT=new oa_potencia(n1,n3,(n2left+1),(n2right+1),var.archivo);
+            :}
+            | para:n1 LOGICA:n2 parc:n3
+            {:
+                 RESULT=n2;
+            :}
+            | menos:n1 E:n2
+            {:
+                 RESULT=new oa_negativo(n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            
+            | er_numero:n1
+            {:
+                 RESULT= new o_valorPuntual(var.tipo_numero, Double.parseDouble(n1),(n1left+1),(n1right+1),var.archivo);
+            :}
+            | er_cadena:n1
+            {:
+                 RESULT= new o_valorPuntual(var.tipo_cadena,n1,(n1left+1),(n1right+1),var.archivo);
+            :}
+            | falso:n1
+            {:
+                
+                RESULT= new o_valorPuntual(var.tipo_booleano,false,(n1left+1),(n1right+1),var.archivo);
+            :}
+            | verdadero:n1
+            {:
+                RESULT= new o_valorPuntual(var.tipo_booleano,true,(n1left+1),(n1right+1),var.archivo);
+            :}
+            | nulo:n1
+            {: 
+                RESULT= new o_valorPuntual(var.tipo_nulo,null,(n1left+1),(n1right+1),var.archivo);
+            :}
+            |LACCESO:n1
+            {:
+                RESULT= new o_valorPuntual(null,n1,(n1left+1),(n1right+1),var.archivo);
+            :}
+            |OP_UNARIA:n1
+            {:
+                RESULT=n1;
+            :}
+            ;
+OP_UNARIA::= LACCESO:n2 aumen:n1
+            {:
+                RESULT=new oa_aumento(n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            | LACCESO:n2 decre:n1
+            {:
+                RESULT=new oa_decremento(n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            ;
+OBJETO::=   llava:n1 VALORES:n2 llavc
+            {:
+                RESULT=new o_objeto(n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            ;
+VALORES::=  VALORES:n1 coma VALUE:n2
+            {:
+                RESULT=n1;
+                RESULT.add(n2);
+            :}
+            |VALUE:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
+            ;
+VALUE::=    er_id:n1 dosptos COND:n2
+            {:
+                RESULT=new o_objetoValor(n1,n2,(n1left+1),(n1right+1),var.archivo);
+            :}
+            ;
+
