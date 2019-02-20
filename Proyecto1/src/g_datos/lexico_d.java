@@ -36,10 +36,13 @@ public class lexico_d implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\6\1\6\1\7\1\6\1\6\22\0\1\6\17\0\12\2"+
-    "\7\0\3\1\1\5\4\1\1\4\21\1\4\0\1\1\1\0\3\1"+
-    "\1\5\4\1\1\4\21\1\12\0\1\7\252\0\2\3\u1ef6\0\1\7"+
-    "\1\7\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\11\0\1\25\1\25\1\26\1\25\1\25\22\0\1\21\1\0\1\3"+
+    "\14\0\1\15\12\2\2\0\1\4\1\23\1\24\2\0\1\13\1\1"+
+    "\1\12\5\1\1\10\2\1\1\14\1\1\1\11\1\22\1\5\1\1"+
+    "\1\6\1\17\1\20\6\1\4\0\1\1\1\0\1\13\1\1\1\12"+
+    "\5\1\1\10\2\1\1\14\1\1\1\11\1\22\1\5\1\1\1\6"+
+    "\1\17\1\20\6\1\12\0\1\26\252\0\2\7\115\0\1\16\u1ea8\0"+
+    "\1\26\1\26\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -52,10 +55,12 @@ public class lexico_d implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\1\1\2\1\4\2\5";
+    "\1\0\1\1\1\2\1\1\1\3\1\2\1\4\1\5"+
+    "\1\0\1\6\2\0\1\7\1\2\4\0\1\10\17\0"+
+    "\1\11\6\0\1\12\3\0\1\13\1\14";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[9];
+    int [] result = new int[47];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -80,11 +85,15 @@ public class lexico_d implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\10\0\20\0\30\0\40\0\50\0\60\0\10"+
-    "\0\20";
+    "\0\0\0\27\0\56\0\105\0\134\0\163\0\212\0\27"+
+    "\0\105\0\27\0\241\0\270\0\317\0\346\0\375\0\u0114"+
+    "\0\u012b\0\u0142\0\56\0\u0159\0\u0170\0\u0187\0\u019e\0\u01b5"+
+    "\0\u01cc\0\u01e3\0\u01fa\0\u0211\0\u0228\0\u023f\0\u0256\0\u026d"+
+    "\0\u0284\0\u029b\0\27\0\u02b2\0\u02c9\0\u02e0\0\u02f7\0\u030e"+
+    "\0\u0325\0\27\0\u033c\0\u0353\0\u036a\0\27\0\27";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[9];
+    int [] result = new int[47];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -107,12 +116,25 @@ public class lexico_d implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\3\1\7\12\0"+
-    "\2\3\1\0\2\3\4\0\1\4\12\0\1\10\3\0"+
-    "\2\3\1\0\1\3\1\11\10\0\1\7\1\0";
+    "\1\2\1\3\1\2\1\4\1\5\2\3\1\2\3\3"+
+    "\1\6\1\3\2\2\2\3\1\7\1\3\1\2\1\10"+
+    "\1\7\31\0\2\3\2\0\2\3\1\0\5\3\2\0"+
+    "\2\3\1\0\1\3\4\0\3\11\1\12\23\11\5\0"+
+    "\1\13\6\0\1\14\1\15\12\0\2\3\2\0\2\3"+
+    "\1\0\4\3\1\16\2\0\2\3\1\0\1\3\25\0"+
+    "\1\7\3\0\1\7\7\0\1\17\27\0\2\20\23\0"+
+    "\1\21\6\0\1\22\13\0\2\3\2\0\2\3\1\0"+
+    "\4\3\1\23\2\0\2\3\1\0\1\3\13\0\2\24"+
+    "\34\0\2\25\15\0\1\26\27\0\2\27\27\0\1\30"+
+    "\35\0\1\31\15\0\2\32\34\0\2\33\21\0\1\34"+
+    "\27\0\1\35\24\0\1\36\35\0\1\37\15\0\2\40"+
+    "\37\0\1\41\17\0\1\42\27\0\1\43\20\0\1\44"+
+    "\41\0\1\45\15\0\2\46\31\0\1\47\22\0\2\50"+
+    "\23\0\1\51\35\0\1\52\17\0\1\53\34\0\1\54"+
+    "\35\0\1\55\20\0\1\56\35\0\1\57\3\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[56];
+    int [] result = new int[897];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -150,10 +172,11 @@ public class lexico_d implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\5\1\1\11\1\1";
+    "\1\0\1\11\5\1\1\11\1\0\1\11\2\0\2\1"+
+    "\4\0\1\1\17\0\1\11\6\0\1\11\3\0\2\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[9];
+    int [] result = new int[47];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -252,7 +275,7 @@ public class lexico_d implements java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 96) {
+    while (i < 158) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -621,23 +644,51 @@ public class lexico_d implements java_cup.runtime.Scanner {
                             //
                             e.AddError("Caracter invalido "+yytext(),li,co,var.archivo,"LEXICO");
             }
-          case 6: break;
+          case 13: break;
           case 2: 
             { return new Symbol(simbolo.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));
             }
-          case 7: break;
+          case 14: break;
           case 3: 
-            { return new Symbol(simbolo.er_entero,yyline,yycolumn,new String(yytext()));
+            { return new Symbol(simbolo.menor,yyline,yycolumn,new String(yytext()));
             }
-          case 8: break;
+          case 15: break;
           case 4: 
             { 
             }
-          case 9: break;
+          case 16: break;
           case 5: 
-            { return new Symbol(simbolo.id,yyline,yycolumn,new String(yytext()));
+            { return new Symbol(simbolo.mayor,yyline,yycolumn,new String(yytext()));
             }
-          case 10: break;
+          case 17: break;
+          case 6: 
+            { return new Symbol(simbolo.er_cadena,yyline,yycolumn,new String(yytext()));
+            }
+          case 18: break;
+          case 7: 
+            { return new Symbol(simbolo.inf,yyline,yycolumn,new String(yytext()));
+            }
+          case 19: break;
+          case 8: 
+            { return new Symbol(simbolo.all,yyline,yycolumn,new String(yytext()));
+            }
+          case 20: break;
+          case 9: 
+            { return new Symbol(simbolo.f_lista,yyline,yycolumn,new String(yytext()));
+            }
+          case 21: break;
+          case 10: 
+            { return new Symbol(simbolo.i_prin,yyline,yycolumn,new String(yytext()));
+            }
+          case 22: break;
+          case 11: 
+            { return new Symbol(simbolo.f_prin,yyline,yycolumn,new String(yytext()));
+            }
+          case 23: break;
+          case 12: 
+            { return new Symbol(simbolo.i_lista,yyline,yycolumn,new String(yytext()));
+            }
+          case 24: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -8,17 +8,31 @@ package g_datos;
 /** CUP generated class containing symbol constants. */
 public class simbolo {
   /* terminals */
-  public static final int error = 1;
-  public static final int er_id = 3;
-  public static final int er_entero = 4;
+  public static final int inf = 10;
+  public static final int f_lista = 5;
+  public static final int er_cadena = 8;
+  public static final int i_prin = 2;
+  public static final int er_id = 9;
+  public static final int f_prin = 3;
   public static final int EOF = 0;
-  public static final int id = 2;
+  public static final int menor = 6;
+  public static final int error = 1;
+  public static final int i_lista = 4;
+  public static final int all = 11;
+  public static final int mayor = 7;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "id",
+  "i_prin",
+  "f_prin",
+  "i_lista",
+  "f_lista",
+  "menor",
+  "mayor",
+  "er_cadena",
   "er_id",
-  "er_entero"
+  "inf",
+  "all"
   };
 }
 

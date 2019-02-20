@@ -4,8 +4,11 @@ import java_cup.runtime.*;
 import java.util.LinkedList;
 import errors.mng_error;
 import proyecto1.var;
+import java.util.Hashtable;
+import codigo_gdato.*;
 parser code
 {:
+public FileArray raiz;
 public mng_error e = new mng_error();
 public void syntax_error(Symbol s){
         e.AddError("No se esperaba "+s.value,(s.left+1),(s.right+1),var.archivo,"SINTACTICO"); 
@@ -19,18 +22,101 @@ action code
 {:
       
 :}
-terminal   String id
+terminal   String i_prin,f_prin,i_lista,f_lista,menor,mayor,er_cadena,er_id,inf,all
             ;
-terminal   String er_id,er_entero
+nonterminal FileArray S,A
             ;
-nonterminal String S
+nonterminal LinkedList<tupla> T
             ;
-
+nonterminal LinkedList<item> LVAL,L
+            ;
+nonterminal item H
+            ;
 start with S;
-S ::=       er_id
+S ::=       A:n1
             {:
                 System.out.println("aceptada");
-                //raiz=n1;
+                raiz=n1;
             :}
             ;
+A::=        i_lista er_cadena:i1 mayor f_lista mayor
+            {:
+                RESULT=new FileArray(i1,new LinkedList(),(i1left+1),(i1right+1),var.archivo);
+            :}
+            |i_lista er_cadena:i1 mayor T:n1 f_lista mayor
+            {:
+                RESULT=new FileArray(i1,n1,(i1left+1),(i1right+1),var.archivo);
+            :}
+            ;
+T::=        T:n1 LVAL:n2
+            {:
+                RESULT=n1;
+                if(n2!=null)
+                {
+                    Hashtable tup= new Hashtable();
+                    for(item it:n2)
+                    {
+                        if(!tup.containsKey(it.clave))
+                        {
+                            tup.put(it.clave, it);
+                        }
+                    }
+                    RESULT.add(new tupla(tup));
+                }               
+            :}
+            |LVAL:n1
+            {:
+                RESULT=new LinkedList();
+                if(n1!=null)
+                {
+                    Hashtable tup= new Hashtable();
+                    for(item it:n1)
+                    {
+                        if(!tup.containsKey(it.clave))
+                        {
+                            tup.put(it.clave, it);
+                        }
+                    }
+                    RESULT.add(new tupla(tup));
+                }                
+            :}
+            ;
+LVAL::=     i_prin f_prin
+            {:
+            
+            :}
+            |i_prin L:n1 f_prin
+            {:
+                RESULT=n1;
+            :}
+            ;
+L::=        L:n1 H:n2
+            {:
+                RESULT=n1;
+                if(n2!=null)
+                {
+                    n1.add(n2);
+                }
+            :}
+            |H:n1
+            {:
+                RESULT=new LinkedList();
+                if(n1!=null)
+                {
+                    RESULT.add(n1);
+                }
+            :}
+            ;
+H::=        menor er_id:i1 mayor all:n2 inf er_id:i2 mayor
+            {:
+                if(i1.equals(i2))
+                {
+                   RESULT=new item(i1,i2,(i1left+1),(i1right+1),var.archivo); 
+                }else
+                {
+                    e.AddError("La etiqueta de inicio no es igual a la final",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+                }
+            :}
+            ;
+
 

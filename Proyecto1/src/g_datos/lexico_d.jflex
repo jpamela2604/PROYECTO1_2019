@@ -6,7 +6,7 @@ import proyecto1.var;
 %%
 
 er_id = [a-zA-Z_][a-zA-Z0-9_]*
-er_entero = [0-9]+
+er_cadena = [\"]([^\"])*[\"]
 
 %cupsym simbolo
 %class lexico_d
@@ -21,8 +21,15 @@ er_entero = [0-9]+
 
 %%
 <YYINITIAL>{
-"ID"                    {return new Symbol(simbolo.id,yyline,yycolumn,new String(yytext()));}
-{er_entero}             {return new Symbol(simbolo.er_entero,yyline,yycolumn,new String(yytext()));}
+"<principal"            {return new Symbol(simbolo.i_prin,yyline,yycolumn,new String(yytext()));}
+"</principal"           {return new Symbol(simbolo.f_prin,yyline,yycolumn,new String(yytext()));}
+"</lista"               {return new Symbol(simbolo.f_lista,yyline,yycolumn,new String(yytext()));}
+"<lista tipo="          {return new Symbol(simbolo.i_lista,yyline,yycolumn,new String(yytext()));}
+"</"                    {return new Symbol(simbolo.inf,yyline,yycolumn,new String(yytext()));}
+"<"                     {return new Symbol(simbolo.menor,yyline,yycolumn,new String(yytext()));}
+">"                     {return new Symbol(simbolo.mayor,yyline,yycolumn,new String(yytext()));}
+"all"                   {return new Symbol(simbolo.all,yyline,yycolumn,new String(yytext()));}
+{er_cadena}             {return new Symbol(simbolo.er_cadena,yyline,yycolumn,new String(yytext()));}
 {er_id}                 {return new Symbol(simbolo.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));}
 [ \t\r\f\n]+            {}
 .                       {      
