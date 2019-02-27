@@ -8,6 +8,7 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import java.util.LinkedList;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -36,6 +37,7 @@ public class o_objetoValor implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        
+        return (Simbolo)this.valor.ejecutar(ts, e, ej);
     }
 }

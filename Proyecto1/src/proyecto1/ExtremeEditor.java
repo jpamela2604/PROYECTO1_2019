@@ -429,7 +429,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         File Abrir;
         JFileChooser Ventana = new JFileChooser(System.getProperty(ru));
         Ventana.setCurrentDirectory(new File(ru));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("ExtremeEditor", "gxml","xml","js");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("ExtremeEditor", "gxml","xml","fs");
         Ventana.setFileFilter(filter);
         Ventana.setDialogTitle("Abrir Archivo");   
 	Ventana.showOpenDialog(this);
@@ -480,7 +480,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
             File Abrir;
             JFileChooser Ventana = new JFileChooser(System.getProperty(ru));
             Ventana.setCurrentDirectory(new File(ru));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("ExtremeEditor", "gxml","xml","js");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("ExtremeEditor", "gxml","xml","fs");
             Ventana.setFileFilter(filter);
             Ventana.setDialogTitle("Guardar Archivo");   
             Ventana.showSaveDialog(this);
@@ -704,6 +704,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         // TODO add your handling code here:
         //this.er= new mng_error();
         this.er.errores.clear();
+        jButton1.setBackground(new Color(204, 204, 204));
         if(files.getComponentCount()>0)
         {
             Pestania ta=arrayPanel[files.getSelectedIndex()];
@@ -712,6 +713,10 @@ public class ExtremeEditor extends javax.swing.JFrame {
         }else
         {
             JOptionPane.showMessageDialog(null, "No hay un archivo abierto para guardar");
+        }
+        if(!this.er.errores.isEmpty())
+        {            
+            jButton1.setBackground(new Color(255, 246, 221));
         }
     }//GEN-LAST:event_btnRunActionPerformed
     public void Buscar(Boolean Adelante,String mensaje)

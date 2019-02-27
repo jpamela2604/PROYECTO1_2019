@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -31,6 +33,13 @@ public class s_detener implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        if(ts.displayBreaks.isEmpty())
+        {
+            e.AddError("Break fuera de switch", linea, columna, archivo, "SEMANTICO");
+        }else
+        {
+            return new Simbolo(var.tipo_detener,null);
+        }
         return null;
     }
 }

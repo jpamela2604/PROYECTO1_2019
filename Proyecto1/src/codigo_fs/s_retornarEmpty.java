@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -31,6 +33,13 @@ public class s_retornarEmpty implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        if(ts.displayReturns.isEmpty())
+        {
+            e.AddError("Retorno fuera de metodo", linea, columna, archivo, "SEMANTICO");
+        }else
+        {
+            return new Simbolo(var.tipo_vacio,null);
+        }
         return null;
     }
 }

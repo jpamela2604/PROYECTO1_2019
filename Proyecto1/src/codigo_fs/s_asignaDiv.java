@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,10 @@ public class s_asignaDiv implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        oa_division d=new oa_division(new o_valorPuntual(null,acceso,linea,columna, archivo),valor,linea,columna, archivo);
+        s_asignacion a=new s_asignacion(acceso,d,linea,columna, archivo);
+        a.ejecutar(ts, e, ej);
+        
         return null;
     }
 }

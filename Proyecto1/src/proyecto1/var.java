@@ -12,6 +12,9 @@ import ts.NodoTipo;
  * @author Pamela Palacios
  */
 public class var {
+    
+    public static String valor_true="verdadero";
+    public static String valor_false="falso";
     public static String archivo;
     public static int filaGlobal=0;
     public static int columnaGlobal=0;
@@ -42,27 +45,73 @@ public class var {
     public static int defecto=121;
     /*de tipos*/
     public static int booleano=0;
-    public static int numero=1;
-    public static int cadena=2;
-    public static int arreglo=3;
-    public static int objeto=4;
-    public static int nulo=5;    
-    public static int indefinido=6;
+    public static int entero=1;
+    public static int decimal=2;
+    public static int cadena=3;
+    public static int arreglo=4;
+    public static int objeto=5;
+    public static int nulo=6;    
     public static int error=7;
-    
+    public static int vacio=8;
+    public static int gxml=9;
+    public static int ventana=10;
+    public static int contenedor=11;
+    public static int texto=12;
+    public static int cajatexto=13;
+    public static int areatexto=14;
+    public static int controlnum=15;
+    public static int desplegable=16;
+    public static int boton=17;
+    public static int imagen=18;
+    public static int reproductor=19;
+    public static int video=20;
+    public static int heterogenea=21;
+    public static int detener=-1;
     
     public static String t_booleano="booleano";
-    public static String t_numero="numero";
+    public static String t_entero="entero";    
+    public static String t_decimal="decimal";
     public static String t_cadena="cadena";
     public static String t_arreglo="";
     public static String t_objeto="objeto";
     public static String t_error="error";
     public static String t_nulo="nulo";
-    public static String t_indefinido="indefinido";
+    public static String t_vacio="vacio";
+    public static String t_gxml="Objeto gxml";    
+    public static String t_ventana="UI Ventana";
+    public static String t_contenedor="UI Contenedor";
+    public static String t_texto="UI Texto";
+    public static String t_cajatexto="UI CajaTexto";
+    public static String t_areatexto="UI AreaTexto";
+    public static String t_controlnum="UI ControlNumerico";
+    public static String t_desplegable="UI Desplegable";
+    public static String t_boton="UI Boton";
+    public static String t_imagen="UI Imagen";
+    public static String t_reproductor="UI Reproductor";
+    public static String t_video="UI Video";
+    public static String t_heterogeneo="Heterogeneo";
+        
     public static NodoTipo tipo_booleano=new NodoTipo(booleano,t_booleano);
-    public static NodoTipo tipo_numero=new NodoTipo(numero,t_numero);
+    public static NodoTipo tipo_entero=new NodoTipo(entero,t_entero);    
+    public static NodoTipo tipo_decimal=new NodoTipo(decimal,t_decimal);
     public static NodoTipo tipo_cadena=new NodoTipo(cadena,t_cadena);
+    public static NodoTipo tipo_arreglo=new NodoTipo(arreglo,"");
     public static NodoTipo tipo_error=new NodoTipo(error,t_error);
     public static NodoTipo tipo_nulo=new NodoTipo(nulo,t_nulo);
-    public static NodoTipo tipo_indefinido=new NodoTipo(indefinido,t_indefinido);
+    public static NodoTipo tipo_vacio=new NodoTipo(vacio,t_vacio);
+    public static NodoTipo tipo_gxml=new NodoTipo(gxml,t_gxml);
+    public static NodoTipo tipo_ventana=new NodoTipo(ventana,t_ventana);
+    public static NodoTipo tipo_contenedor=new NodoTipo(contenedor,t_contenedor);
+    public static NodoTipo tipo_texto=new NodoTipo(texto,t_texto);
+    public static NodoTipo tipo_cajatexto=new NodoTipo(cajatexto,t_cajatexto);
+    public static NodoTipo tipo_areatexto=new NodoTipo(areatexto,t_areatexto);
+    public static NodoTipo tipo_controlnum=new NodoTipo(controlnum,t_controlnum); 
+    public static NodoTipo tipo_desplegable=new NodoTipo(desplegable,t_desplegable); 
+    public static NodoTipo tipo_boton=new NodoTipo(boton,t_boton);  
+    public static NodoTipo tipo_imagen=new NodoTipo(imagen,t_imagen); 
+    public static NodoTipo tipo_reproductor=new NodoTipo(reproductor,t_reproductor); 
+    public static NodoTipo tipo_video=new NodoTipo(video,t_video);
+    public static NodoTipo tipo_heterogeneo=new NodoTipo(heterogenea,t_heterogeneo);
+    public static NodoTipo tipo_detener=new NodoTipo(heterogenea,"");
+    public static NodoTipo tipo_objeto=new NodoTipo(objeto,t_objeto);
 }

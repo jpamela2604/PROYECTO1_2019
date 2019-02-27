@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -33,6 +35,17 @@ public class s_retornar implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        if(ts.displayReturns.isEmpty())
+        {
+            e.AddError("Retorno fuera de metodo", linea, columna, archivo, "SEMANTICO");
+        }else
+        {
+            Simbolo s=(Simbolo) valor.ejecutar(ts, e, ej);
+            if(s.tipo.indice!=var.error)
+            {
+                return s;
+            }
+        }
         return null;
     }
 }

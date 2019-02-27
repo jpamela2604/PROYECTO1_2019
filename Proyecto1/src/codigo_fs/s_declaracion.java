@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,20 @@ public class s_declaracion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        if(valor!=null)
+        {
+            Simbolo val=(Simbolo) valor.ejecutar(ts, e, ej);
+            if(val.tipo.indice!=var.error)
+            {
+                if(val.tipo.indice!=var.vacio)
+                {
+                    e.AddError("La llamada no devuelve un valor "+val.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+                }else
+                {
+                    ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), false, linea, columna, archivo);
+                }
+            }
+        }
         return null;
     }
 }

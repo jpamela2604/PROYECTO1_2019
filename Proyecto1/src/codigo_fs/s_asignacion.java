@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,16 @@ public class s_asignacion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        Simbolo s=(Simbolo) acceso.ejecutar(ts, e, ej);
+        if(s.tipo.indice!=var.error)
+        {
+            Simbolo v=(Simbolo) valor.ejecutar(ts, e, ej);
+            if(v.tipo.indice!=var.error)
+            {
+                    s.tipo=v.tipo;
+                    s.valor=v.valor;
+            }
+        }
         return null;
     }
 }

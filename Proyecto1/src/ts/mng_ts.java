@@ -20,8 +20,13 @@ public class mng_ts {
     public Hashtable globales;
     private mng_error e;
     public Stack auxiliar;
+    public Simbolo actual;
+    public Stack displayReturns;
+    public Stack displayBreaks;
     public mng_ts(mng_error er)
-    {            
+    {
+        this.displayReturns=new Stack();
+        this.displayBreaks=new Stack();
         tabla = new Stack();
         ambitoActual = new Hashtable();
         globales = new Hashtable();

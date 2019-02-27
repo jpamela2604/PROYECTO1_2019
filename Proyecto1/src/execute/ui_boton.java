@@ -14,6 +14,7 @@ import javax.swing.JButton;
 public class ui_boton extends JButton{
     //obligatorios
     String nombre;
+    String texto;
     int x;
     int y;
     //opcionales
@@ -25,6 +26,13 @@ public class ui_boton extends JButton{
     {
         this.nombre=nombre;
         this.x=x;
-        this.y=y;        
+        this.y=y; 
+        this.alto=this.getSize().height;
+        this.ancho=this.getSize().width;
+    }
+    public void cargar()
+    {
+        this.setText(texto);
+        this.setSize(alto,ancho);
     }
 }

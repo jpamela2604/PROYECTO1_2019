@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -33,6 +35,15 @@ public class s_acVariable implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        if(ts.actual==null)
+        {
+            Simbolo r=ts.buscarSimbolo(new Simbolo(id,null,Simbolo.variable,null), linea, columna, archivo);
+            if(r!=null)
+            {
+                respuesta=r;
+            }
+        }
+        return respuesta;
     }
 }

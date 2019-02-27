@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -37,6 +39,27 @@ public class o_ternario implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Simbolo c=(Simbolo)cond.ejecutar(ts, e, ej);
+        Simbolo v1=(Simbolo)val1.ejecutar(ts, e, ej);
+        Simbolo v2=(Simbolo)val2.ejecutar(ts, e, ej);
+        if(c.tipo.indice==var.error||v1.tipo.indice==var.error||v2.tipo.indice==var.error)
+        {
+            return respuesta;
+        }
+        if(c.tipo.indice!=var.booleano)
+        {
+            e.AddError("Tipos incompatibles: La condicion del operador ternario debe ser tipo booleano, no "+c.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }else
+        {
+            if(Boolean.valueOf(c.valor.toString()))
+            {
+                return v1;
+            }else
+            {
+                return v2;
+            }
+        }
+        return respuesta;
     }
 }

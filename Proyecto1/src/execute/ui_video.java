@@ -5,11 +5,14 @@
  */
 package execute;
 
+
+import javax.swing.JButton;
+
 /**
  *
  * @author Pamela Palacios
  */
-public class ui_video {
+public class ui_video extends JButton{
      //obligatorios
     String ruta;
     String nombre;
@@ -21,9 +24,16 @@ public class ui_video {
         this.nombre=nombre;
         this.x=x;
         this.y=y;
+        this.alto=this.getSize().height;
+        this.ancho=this.getSize().width;
+        auto_reproduccion=false;
     }
     //opcionales
     int ancho;
     int alto;
     Boolean auto_reproduccion;
+    public void cargar()
+    {
+        this.setSize(alto,ancho);
+    }
 }

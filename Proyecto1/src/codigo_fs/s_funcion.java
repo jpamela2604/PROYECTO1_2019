@@ -8,6 +8,7 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import java.util.LinkedList;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -39,6 +40,8 @@ public class s_funcion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        Simbolo fun=new Simbolo(this.nombre+"#",this.parametros,this.sentencias);
+        ts.AgregarSimbolo(fun, true, linea, columna, archivo);
         return null;
     }
 }

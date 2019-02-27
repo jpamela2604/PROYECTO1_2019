@@ -28,14 +28,14 @@ terminal   String   nulo,verdadero,falso,decre,aumen,igual,mayori,menori,dif,may
                     imprimir,var,coma,is,pto,a_mas,a_por,a_menos,a_div,cora,corc,importar,si,sino,detener,
                     retornar,selecciona,caso,defecto,funcion,descendente,ascendente,crearArrFile,
                     invertir,maximo,minimo,filter,map,buscar,reduce,todos,alguno,leerGxml,ObtenerPorEtiqueta,
-                    ObtenerPorNombre,ObtenerPorId,CrearVentana,cerrar,cargar,clic,video,musica,imagen,boton,
+                    ObtenerPorNombre,ObtenerPorId,cerrar,clic,video,musica,imagen,boton,
                     desple,controln,area,caja,texto,contenedor
             ;
-terminal   String er_id,er_numero,er_cadena
+terminal   String er_id,er_decimal,er_cadena,er_entero
             ;
-nonterminal LinkedList<sent> S,LSENT,LDECLA,LCOND,VALORES,LIMP,LINS
+nonterminal LinkedList<sent> S,LSENT,LDECLA,LCOND,LIMP,LINS
             ;
-nonterminal sent COND,RELA,E,SENT,DECLARACION,ASIGNACION,IMPRIMIR,DECLA,ACCESO,OP_UNARIA,LOGICA,OBJETO,VALUE,
+nonterminal sent COND,RELA,E,SENT,DECLARACION,ASIGNACION,IMPRIMIR,DECLA,ACCESO,OP_UNARIA,LOGICA,OBJETO,
                     IMP,INS,FUN,S_IF,S_SWITCH,LLAMADA
             ;
 nonterminal s_bloque  BL,DEFECTO,SINO,CASO
@@ -48,6 +48,10 @@ nonterminal LinkedList<String> LPAR
             ;
 nonterminal s_switch SWITCH_
             ;
+nonterminal o_objetoValor VALUE 
+            ;
+nonterminal LinkedList<o_objetoValor> VALORES
+            ;
 nonterminal s_accesos LACCESO;
 precedence left mas,menos;  // +,-
 precedence left mul,divis;    // /,*
@@ -58,6 +62,7 @@ precedence left op_or;
 precedence left op_and;
 precedence left ques;
 precedence right op_not;
+
 start with S;
 S ::=       LSENT:n1
             {:
@@ -90,7 +95,7 @@ LIMP::=     LIMP:n1 IMP:n2
                 RESULT.add(n1);
             :}
             ;
-IMP::=      importar:n2 para COND:n1 parc
+IMP::=      importar:n2 para COND:n1 parc ptocoma
             {:
                 RESULT=new s_importar(n1,(n2left+1),(n2right+1),var.archivo); 
             :}
@@ -198,7 +203,7 @@ SINO    ::=  sino:n2 llava LINS:n1 llavc
                 RESULT=new s_bloque(null,new LinkedList(),(n2left+1),(n2right+1),var.archivo);
             :}
             ;
-SENT::=     INS:n1 ptocoma
+SENT::=     INS:n1
             {:
                 RESULT=n1;
             :}
@@ -235,19 +240,19 @@ LPAR::=     LPAR:n1 coma er_id:n2
                 RESULT.add(n1);
             :}
             ;
-INS::=    DECLARACION:n1 
+INS::=    DECLARACION:n1 ptocoma
             {:
                 RESULT=n1;
             :}
-            |ASIGNACION:n1 
+            |ASIGNACION:n1 ptocoma
             {:
                 RESULT=n1;
             :}
-            |IMPRIMIR:n1 
+            |IMPRIMIR:n1 ptocoma
             {:
                 RESULT=n1;
             :}
-            |OP_UNARIA:n1 
+            |OP_UNARIA:n1 ptocoma
             {:
                 RESULT=n1;
             :}
@@ -262,7 +267,13 @@ INS::=    DECLARACION:n1
             |detener:n1 ptocoma
             {:
                  RESULT=new s_detener((n1left+1),(n1right+1),var.archivo);
-            :}            
+            :}  
+            |LACCESO:n1 ptocoma
+            {:
+                s_accesos a=(s_accesos)n1;
+                a.IsSent=true;
+                RESULT=n1;
+            :}
             |S_IF:n1
             {:
                 RESULT=n1;
@@ -393,14 +404,6 @@ ACCESO::=   er_id:n2
             {:
                 RESULT=new s_nEventoCerrar(n1,(n2left+1),(n2right+1),var.archivo);
             :}
-            |cargar:n2 parc
-            {:
-                RESULT=new s_nEventoCargar(null,(n2left+1),(n2right+1),var.archivo);
-            :}
-            |cargar:n2 LLAMADA:n1 parc
-            {:
-                RESULT=new s_nEventoCargar(n1,(n2left+1),(n2right+1),var.archivo);
-            :}
             |clic:n2 LLAMADA:n1 parc
             {:
                 RESULT=new s_nEventoClic(n1,(n2left+1),(n2right+1),var.archivo);
@@ -449,6 +452,10 @@ ACCESO::=   er_id:n2
             {:
                 RESULT=new s_nCrearContenedor(n1,(n2left+1),(n2right+1),var.archivo);
             :}
+            /*|CrearVentana:n2  LCOND:n1 parc
+            {:
+                RESULT=new s_nCrearVentana(n1,(n2left+1),(n2right+1),var.archivo);
+            :}*/
             ;
 
 LLAMADA::=  er_id:n2 para LCOND:n3 parc
@@ -476,7 +483,7 @@ COND::=     LOGICA:n1
             :}
             |cora:n2 corc
             {:
-                RESULT=new o_array(null,(n2left+1),(n2right+1),var.archivo);
+                RESULT=new o_array(new LinkedList(),(n2left+1),(n2right+1),var.archivo);
             :}
             |OBJETO:n1
             {:
@@ -588,9 +595,13 @@ E           ::= E:n1 mas:n2 E:n3
                  RESULT=new oa_negativo(n2,(n1left+1),(n1right+1),var.archivo);
             :}
             
-            | er_numero:n1
+            | er_decimal:n1
             {:
-                 RESULT= new o_valorPuntual(var.tipo_numero, Double.parseDouble(n1),(n1left+1),(n1right+1),var.archivo);
+                 RESULT= new o_valorPuntual(var.tipo_decimal, Double.parseDouble(n1),(n1left+1),(n1right+1),var.archivo);
+            :}
+            | er_entero:n1
+            {:
+                 RESULT= new o_valorPuntual(var.tipo_entero,  Integer.parseInt(n1),(n1left+1),(n1right+1),var.archivo);
             :}
             | er_cadena:n1
             {:

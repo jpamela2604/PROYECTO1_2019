@@ -11,11 +11,11 @@ package codigo_gdato;
  */
 public class item {
     public String clave;
-    public String valor;
+    public Object valor;
     int fila;
     int columna;
     String archivo;
-    public item(String clave,String valor,int fila,int columna,String archivo)
+    public item(String clave,Object valor,int fila,int columna,String archivo)
     {
         this.fila=fila;
         this.columna=columna;

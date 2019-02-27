@@ -5,7 +5,9 @@
  */
 package proyecto1;
 
+import codigo_fs.sent;
 import errors.mng_error;
+import execute.Ejecucion;
 import g_fs.lexico_fs;
 import g_fs.sintactico_fs;
 import g_gxml.lexico_g;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import ts.mng_ts;
 
 /**
  *
@@ -31,6 +34,7 @@ public class Reconize {
     
     public void Run(String ruta,Pestania.Tipo t)
     {
+        var.archivo=ruta;
         if(Pestania.Tipo.FS==t)
         {
             gramaticaFS(ruta);
@@ -69,25 +73,27 @@ public class Reconize {
     }
      public void gramaticaFS(String ruta)
     {
-        //LinkedList<int> raiz = null;        
+        LinkedList<sent> raiz = null;        
         try
         {
             lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta))));            
             sintactico_fs sintactico=new sintactico_fs(le);
             sintactico.parse();            
-           // raiz =sintactico.raiz;
+            raiz =sintactico.raiz;
             e.Adding(le.e);
             e.Adding(sintactico.e);
-            /*if(raiz!=null)
+            mng_ts ts=new mng_ts(e);
+            Ejecucion ej=new Ejecucion();
+            if(raiz!=null)
             {
                 for(sent s:raiz)
                 {
-                    s.Ejecutar(ts, e, txtSalida);
+                    s.ejecutar(ts, e, ej);
                 }
             }else
             {
-                this.txtError.setText("entrada incorrecta");
-            }*/
+                e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
+            }
         }catch(Exception ex){
 
                 System.out.println("ex: "+ex.getMessage());

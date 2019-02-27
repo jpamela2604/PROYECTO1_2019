@@ -5,6 +5,7 @@
  */
 package execute;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -23,9 +24,18 @@ public class ui_imagen extends JButton{
         this.nombre=nombre;
         this.x=x;
         this.y=y;
+        this.alto=this.getSize().height;
+        this.ancho=this.getSize().width;
+        auto_reproduccion=false;
     }
     //opcionales
     int ancho;
     int alto;
     Boolean auto_reproduccion;
+    public void cargar()
+    {
+        this.setText("");
+        this.setIcon(new ImageIcon(ruta));
+        this.setSize(alto,ancho);
+    }
 }

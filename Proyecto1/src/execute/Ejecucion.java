@@ -13,12 +13,17 @@ public class Ejecucion {
     public Ejecucion()
     {
     }
-    public void Imprimir()
+    public void Imprimir(String valor)
     {
     }
     public ui_ventana CrearVentana(String id,String tipo)
     {
         ui_ventana ventana= new ui_ventana(id,tipo);
+        return ventana;
+    }
+     public ui_ventana CrearVentana(String color,Integer alto,Integer ancho)
+    {
+        ui_ventana ventana= new ui_ventana(color,alto,ancho);
         return ventana;
     }
     public ui_contenedor CrearContenedor(String id,int x,int y)

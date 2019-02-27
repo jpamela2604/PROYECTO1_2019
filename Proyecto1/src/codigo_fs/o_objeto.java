@@ -5,9 +5,13 @@
  */
 package codigo_fs;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import execute.Ejecucion;
+import java.util.Hashtable;
 import java.util.LinkedList;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -15,12 +19,12 @@ import ts.mng_ts;
  * @author Pamela Palacios
  */
 public class o_objeto implements sent{
-     LinkedList<sent>valores;
+     LinkedList<o_objetoValor>valores;
      int linea;
      int columna;
      String archivo;
      
-     public o_objeto(LinkedList<sent>valores,int linea,int columna,String archivo)
+     public o_objeto(LinkedList<o_objetoValor>valores,int linea,int columna,String archivo)
      {
          this.valores=valores;
          this.linea=linea;
@@ -34,6 +38,33 @@ public class o_objeto implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Hashtable vv=new Hashtable();
+        for(o_objetoValor s:this.valores)
+        {
+            Simbolo pp=(Simbolo)s.ejecutar(ts, e, ej);
+            if(pp.tipo.indice!=var.error)
+            {
+                if(pp.tipo.indice==var.vacio)
+                {
+                    e.AddError("Se llamo a un metodo vacio", linea, columna, archivo, "SEMANTICO");
+                    return respuesta;
+                }else
+                {
+                    if(vv.contains(s.clave))
+                    {
+                        e.AddError("el objeto tiene una clave repetida", linea, columna, archivo, "SEMANTICO");
+                        return respuesta;
+                    }
+                    vv.put(s.clave,new item(s.clave,pp,linea,columna,archivo));
+                }
+            }else
+            {
+                return respuesta;
+            }
+        }
+        respuesta=new Simbolo(var.tipo_objeto,vv);
+        
+        return respuesta;
     }
 }

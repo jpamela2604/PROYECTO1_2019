@@ -7,6 +7,9 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.NodoTipo;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -31,6 +34,53 @@ public class s_propiaMaximo implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        if(ts.actual!=null)
+        {
+            if(ts.actual.tipo.indice!=var.arreglo)
+            {
+                e.AddError("El metodo propio \"Maximo\" solo se pueden utilizar con arreglos", linea, columna, archivo, "SEMANTICO");
+            }else
+            {
+                Array a=(Array)ts.actual.valor;
+                NodoTipo tipo=a.getTipo();
+                if(tipo.indice==var.heterogenea)
+                {
+                    e.AddError("El metodo propio \"Maximo\" solo se puede aplicar en arreglos homogeneos", linea, columna, archivo, "SEMANTICO");
+                }else if(tipo.indice==var.decimal)
+                {
+                    Double valor=Double.valueOf(a.valores.get(0).valor.toString());
+                    
+                    for(int i=1;i<a.valores.size();i++)
+                    {
+                        Double vv=Double.valueOf(a.valores.get(0).valor.toString());
+                        if(vv>valor)
+                        {
+                            valor=vv;
+                        }
+                    }
+                    return new Simbolo(tipo,valor);
+                    
+                }else if(tipo.indice==var.entero)
+                {
+                    Integer valor=Integer.valueOf(a.valores.get(0).valor.toString());
+                    
+                    for(int i=1;i<a.valores.size();i++)
+                    {
+                        Integer vv=Integer.valueOf(a.valores.get(0).valor.toString());
+                        if(vv>valor)
+                        {
+                            valor=vv;
+                        }
+                    }
+                    return new Simbolo(tipo,valor);
+                }else
+                {
+                    e.AddError("El metodo propio \"Maximo\" no se puede aplicar en arreglos de tipo "+tipo.nombre, linea, columna, archivo, "SEMANTICO");
+                }
+            }
+        
+        }
+        return respuesta;
     }
 }

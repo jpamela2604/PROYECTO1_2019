@@ -5,6 +5,9 @@
  */
 package ts;
 
+import codigo_fs.sent;
+import java.util.LinkedList;
+
 /**
  *
  * @author Pamela Palacios
@@ -17,7 +20,21 @@ public class Simbolo {
     public NodoTipo tipo;
     int rol;
     public Object valor;
+    public LinkedList<String> parametros;
+    public LinkedList<sent> sentencias;
     
+    public Simbolo(String id,LinkedList<String> parametros,LinkedList<sent> sentencias)
+    {
+        this.id=id;
+        this.parametros=parametros;
+        this.sentencias=sentencias; 
+        this.rol=metodo;
+    }
+    public Simbolo(NodoTipo tipo,Object valor)
+    {
+        this.tipo=tipo;
+        this.valor=valor;
+    }
     public Simbolo(String nombre,NodoTipo tipo,int rol,Object valor)
     {
         this.id=nombre;

@@ -8,6 +8,7 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import java.util.LinkedList;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -36,6 +37,17 @@ public class s_bloque implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        ts.cambiarAmbito(false);
+        for(sent s:sentencias)
+        {
+            Simbolo p=(Simbolo) s.ejecutar(ts, e, ej);
+            if(p!=null)
+            {
+                ts.regresarAmbito(false);
+                return p;
+            }
+        }
+        ts.regresarAmbito(false);
         return null;
     }
 }

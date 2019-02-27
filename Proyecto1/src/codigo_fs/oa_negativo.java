@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -33,6 +35,26 @@ public class oa_negativo implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Simbolo o1=(Simbolo) op1.ejecutar(ts, e, ej);
+        if(respuesta.tipo.indice==var.error)
+        {
+            return respuesta;
+        }
+        if(o1.tipo.indice==var.entero)
+        {
+            Double a=Double.valueOf(o1.valor.toString())*-1;
+            o1.valor=a.intValue();
+            return o1;
+        }
+        else if(o1.tipo.indice==var.decimal)
+        {
+            Double a=Double.valueOf(o1.valor.toString())*-1;
+            return o1;
+        }else
+        {
+            e.AddError("Tipos incompatibles: tratar de volver negativo un valor de tipo "+o1.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }
+        return respuesta;
     }
 }

@@ -12,27 +12,26 @@ public class symbl {
   public static final int menos = 15;
   public static final int menor = 13;
   public static final int funcion = 48;
-  public static final int area = 75;
+  public static final int area = 73;
   public static final int a_por = 35;
   public static final int pto = 33;
   public static final int corc = 39;
-  public static final int musica = 70;
+  public static final int musica = 68;
   public static final int pote = 18;
   public static final int cora = 38;
   public static final int nulo = 3;
   public static final int reduce = 58;
-  public static final int controln = 74;
+  public static final int controln = 72;
   public static final int ptocoma = 24;
   public static final int importar = 40;
   public static final int descendente = 49;
-  public static final int imagen = 71;
+  public static final int imagen = 69;
   public static final int selecciona = 45;
-  public static final int boton = 72;
+  public static final int boton = 70;
   public static final int mas = 14;
   public static final int map = 56;
   public static final int imprimir = 29;
   public static final int ObtenerPorId = 64;
-  public static final int er_numero = 80;
   public static final int op_and = 27;
   public static final int detener = 43;
   public static final int sino = 42;
@@ -45,31 +44,31 @@ public class symbl {
   public static final int menori = 10;
   public static final int mayori = 9;
   public static final int alguno = 60;
+  public static final int er_entero = 80;
   public static final int is = 32;
-  public static final int CrearVentana = 65;
   public static final int aumen = 7;
-  public static final int video = 69;
-  public static final int er_id = 79;
+  public static final int video = 67;
+  public static final int er_id = 77;
   public static final int a_div = 37;
   public static final int op_or = 26;
   public static final int invertir = 52;
   public static final int a_mas = 34;
   public static final int id = 2;
-  public static final int cerrar = 66;
+  public static final int cerrar = 65;
+  public static final int er_decimal = 78;
   public static final int dosptos = 23;
   public static final int ObtenerPorEtiqueta = 62;
   public static final int leerGxml = 61;
   public static final int minimo = 54;
   public static final int a_menos = 36;
   public static final int divis = 17;
-  public static final int cargar = 67;
   public static final int ascendente = 50;
   public static final int retornar = 44;
   public static final int mayor = 12;
   public static final int ObtenerPorNombre = 63;
-  public static final int texto = 77;
+  public static final int texto = 75;
   public static final int op_not = 28;
-  public static final int clic = 68;
+  public static final int clic = 66;
   public static final int EOF = 0;
   public static final int decre = 6;
   public static final int falso = 5;
@@ -79,17 +78,17 @@ public class symbl {
   public static final int llava = 19;
   public static final int buscar = 57;
   public static final int si = 41;
-  public static final int er_cadena = 81;
-  public static final int caja = 76;
+  public static final int er_cadena = 79;
+  public static final int caja = 74;
   public static final int defecto = 47;
   public static final int parc = 22;
   public static final int para = 21;
-  public static final int contenedor = 78;
+  public static final int contenedor = 76;
   public static final int coma = 31;
   public static final int igual = 8;
   public static final int var = 30;
   public static final int crearArrFile = 51;
-  public static final int desple = 73;
+  public static final int desple = 71;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -156,9 +155,7 @@ public class symbl {
   "ObtenerPorEtiqueta",
   "ObtenerPorNombre",
   "ObtenerPorId",
-  "CrearVentana",
   "cerrar",
-  "cargar",
   "clic",
   "video",
   "musica",
@@ -171,8 +168,9 @@ public class symbl {
   "texto",
   "contenedor",
   "er_id",
-  "er_numero",
-  "er_cadena"
+  "er_decimal",
+  "er_cadena",
+  "er_entero"
   };
 }
 

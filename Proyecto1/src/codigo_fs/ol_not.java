@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -33,6 +35,20 @@ public class ol_not implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Simbolo o1=(Simbolo)op1.ejecutar(ts,e,ej);
+        if(o1.tipo.indice==var.error)
+        {
+            return respuesta;
+        }
+        if(o1.tipo.indice==var.booleano)
+        {
+            Boolean val=!Boolean.valueOf(o1.toString());
+            respuesta=new Simbolo(var.tipo_booleano,val);
+        }else
+        {
+            e.AddError("Tipos incompatibles: ! "+o1.tipo.nombre, linea, columna, archivo, "SEMANTICO");            
+        }
+        return respuesta;
     }
 }

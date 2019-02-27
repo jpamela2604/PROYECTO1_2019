@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,33 @@ public class s_accArray implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Simbolo pos=(Simbolo) valor.ejecutar(ts, e, ej);
+        if(pos.tipo.indice==var.error)
+        {
+            return respuesta;
+        }else if(pos.tipo.indice!=var.entero)
+        {
+            e.AddError("La posicion de un arreglo debe ser de tipo entero, no "+pos.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+            return respuesta;
+        }
+        if(ts.actual==null)
+        {
+            Simbolo r=ts.buscarSimbolo(new Simbolo(id,null,Simbolo.variable,null), linea, columna, archivo);
+            if(r!=null)
+            {
+                Array ar=(Array) r.valor;
+                Integer posi=Integer.valueOf(pos.valor.toString());
+                if(posi>=ar.valores.size()||posi<0)
+                {
+                    e.AddError("Indice fuera de los limites "+pos.tipo.nombre, linea, columna, archivo, "EJECUCION");
+                    return respuesta;
+                }else
+                {
+                    return ar.valores.get(posi);
+                }
+            }
+        }
         return null;
     }
 }

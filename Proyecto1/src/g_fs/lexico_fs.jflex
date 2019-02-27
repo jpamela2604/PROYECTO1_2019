@@ -6,7 +6,8 @@ import proyecto1.var;
 %%
 
 er_id = [a-zA-Z_][a-zA-Z0-9_]*
-er_numero = [0-9]+([.] [0-9]+)?
+er_entero = [0-9]+
+er_decimal = [0-9]+[.] [0-9]+
 er_cadena = ([\"]([^\"])*[\"])|([']([^'])*['])
 
 ComentarioMulti ="/*" ~ "*/" 
@@ -25,19 +26,17 @@ Comentario  ="//" [^\n]+ [\n]?
 %%
 <YYINITIAL>{ 
 "AlCerrar("            {return new Symbol(symbl.cerrar,yyline,yycolumn,new String(yytext()));}
-"AlCargar("            {return new Symbol(symbl.cargar,yyline,yycolumn,new String(yytext()));}
 "AlClic("              {return new Symbol(symbl.clic,yyline,yycolumn,new String(yytext()));}
 "CrearVideo("          {return new Symbol(symbl.video,yyline,yycolumn,new String(yytext()));}
 "CrearReproductor("    {return new Symbol(symbl.musica,yyline,yycolumn,new String(yytext()));}
 "CrearImagen("         {return new Symbol(symbl.imagen,yyline,yycolumn,new String(yytext()));}
 "CrearBoton("          {return new Symbol(symbl.boton,yyline,yycolumn,new String(yytext()));}
 "CrearDesplegable("    {return new Symbol(symbl.desple,yyline,yycolumn,new String(yytext()));}
-"CrearControlNumerico("{return new Symbol(symbl.controln,yyline,yycolumn,new String(yytext()));}
+"CrearControlNumerico(" {return new Symbol(symbl.controln,yyline,yycolumn,new String(yytext()));}
 "CrearAreaTexto("      {return new Symbol(symbl.area,yyline,yycolumn,new String(yytext()));}
 "CrearCajaTexto("      {return new Symbol(symbl.caja,yyline,yycolumn,new String(yytext()));}
 "CrearTexto("          {return new Symbol(symbl.texto,yyline,yycolumn,new String(yytext()));}
 "CrearContenedor("     {return new Symbol(symbl.contenedor,yyline,yycolumn,new String(yytext()));}
-"CrearVentana("        {return new Symbol(symbl.CrearVentana,yyline,yycolumn,new String(yytext()));}
 "ObtenerPorEtiqueta("  {return new Symbol(symbl.ObtenerPorEtiqueta,yyline,yycolumn,new String(yytext()));}
 "ObtenerPorId("        {return new Symbol(symbl.ObtenerPorId,yyline,yycolumn,new String(yytext()));}
 "ObtenerPorNombre("    {return new Symbol(symbl.ObtenerPorNombre,yyline,yycolumn,new String(yytext()));}
@@ -97,7 +96,8 @@ Comentario  ="//" [^\n]+ [\n]?
 "["                     {return new Symbol(symbl.cora,  yyline, yycolumn, new String(yytext()));}
 "]"                     {return new Symbol(symbl.corc ,  yyline, yycolumn, new String(yytext()));}
 "="                    {return new Symbol(symbl.is ,  yyline, yycolumn, new String(yytext()));}
-{er_numero}             {return new Symbol(symbl.er_numero,yyline,yycolumn,new String(yytext()));}
+{er_entero}             {return new Symbol(symbl.er_entero,yyline,yycolumn,new String(yytext()));}
+{er_decimal}             {return new Symbol(symbl.er_decimal,yyline,yycolumn,new String(yytext()));}
 {er_id}                 {return new Symbol(symbl.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));}
 {er_cadena}             {return new Symbol(symbl.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-2)));}
 {ComentarioMulti}       {}

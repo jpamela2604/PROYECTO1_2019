@@ -33,6 +33,10 @@ public class s_declaraciones implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        for(sent s:declas)
+        {
+            s.ejecutar(ts, e, ej);
+        }
         return null;
     }
 }

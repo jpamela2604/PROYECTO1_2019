@@ -8,6 +8,8 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import java.util.LinkedList;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,26 @@ public class o_array implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        LinkedList<Simbolo> val=new LinkedList();
+        for(sent s:valores)
+        {
+            Simbolo p=(Simbolo) s.ejecutar(ts, e, ej);
+            if(p.tipo.indice==var.error)
+            {
+                return respuesta;
+            }else if(p.tipo.indice==var.vacio)
+            {
+                e.AddError("Uno de los valores invoco a un metodo que no devuelve valor", linea, columna, archivo, "SEMANTICO");
+                return respuesta;
+            }else
+            {
+                val.add(p);
+            }
+                
+        }
+        Array ar=new Array(val);
+        respuesta=new Simbolo(var.tipo_arreglo,ar);
+        return respuesta;
     }
 }

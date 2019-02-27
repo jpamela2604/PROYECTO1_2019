@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -33,6 +35,30 @@ public class s_imprimir implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        Simbolo s=(Simbolo) valor.ejecutar(ts, e, ej);
+        if(s.tipo.indice!=var.error)
+        {
+            if(s.tipo.indice==var.booleano)
+            {
+                String v=var.valor_false;
+                if(Boolean.valueOf(s.valor.toString()))
+                {
+                    v=var.valor_true;
+                }
+                ej.Imprimir(v);
+            }
+            else if(s.tipo.indice==var.arreglo)
+            {
+                ej.Imprimir("OBJETO FS: Arreglo de tipo"+s.tipo.nombre);
+            }
+            else if(s.tipo.indice<4)
+            {
+                ej.Imprimir(s.valor.toString());
+            }else
+            {
+                ej.Imprimir("OBJETO FS: "+s.tipo.nombre);
+            }
+        }
         return null;
     }
 }

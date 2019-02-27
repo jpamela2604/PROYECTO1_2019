@@ -7,6 +7,8 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
+import ts.Simbolo;
 import ts.mng_ts;
 
 /**
@@ -35,6 +37,49 @@ public class oa_multiplicacion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        Simbolo o1=(Simbolo)op1.ejecutar(ts,e,ej);
+        Simbolo o2=(Simbolo)op2.ejecutar(ts,e,ej);    
+        if(o1.tipo.indice==var.error||o2.tipo.indice==var.error)
+        {
+            return respuesta;
+        }else if(o1.tipo.indice>3||o2.tipo.indice >3)
+        {
+            e.AddError("Tipos incompatibles: "+o1.tipo.nombre+" * "+o2.tipo.nombre, linea, columna, archivo, "SEMANTICO");            
+            return respuesta;
+        }
+        O opera=matriz[o1.tipo.indice][o2.tipo.indice];
+        switch(opera)
+        {
+            case MULTI:
+            {
+                Double r1=Double.valueOf(o1.valor.toString());
+                Double r2=Double.valueOf(o2.valor.toString());
+                Double val = r1*r2;
+                if(val-val.intValue()==0)
+                {
+                    respuesta=new Simbolo(var.tipo_entero,val.intValue());
+                }else
+                {
+                    respuesta=new Simbolo(var.tipo_decimal,val);
+                } 
+            }break;default:
+            {
+                e.AddError("Tipos incompatibles: "+o1.tipo.nombre+" * "+o2.tipo.nombre, linea, columna, archivo, "SEMANTICO");            
+            }break;
+        }
+        return respuesta;
+    }
+    static  O [][]  matriz={
+         /*     0|      1|      2|      3*/
+    /*0*/{O.ERROR,O.ERROR,O.ERROR,O.ERROR },
+    /*1*/{O.ERROR,O.MULTI,O.MULTI,O.ERROR }, 
+    /*2*/{O.ERROR,O.MULTI,O.MULTI,O.ERROR },
+    /*3*/{O.ERROR,O.ERROR,O.ERROR,O.ERROR }
+            };
+    private static enum O
+    {
+        MULTI,
+        ERROR
     }
 }
