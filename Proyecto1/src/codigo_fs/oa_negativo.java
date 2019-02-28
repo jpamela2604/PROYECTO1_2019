@@ -37,7 +37,7 @@ public class oa_negativo implements sent{
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
         Simbolo o1=(Simbolo) op1.ejecutar(ts, e, ej);
-        if(respuesta.tipo.indice==var.error)
+        if(o1.tipo.indice==var.error)
         {
             return respuesta;
         }
@@ -50,6 +50,7 @@ public class oa_negativo implements sent{
         else if(o1.tipo.indice==var.decimal)
         {
             Double a=Double.valueOf(o1.valor.toString())*-1;
+            o1.valor=a;
             return o1;
         }else
         {

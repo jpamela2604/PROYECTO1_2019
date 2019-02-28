@@ -25,7 +25,7 @@ terminal   String id
             ;
 terminal   String   nulo,verdadero,falso,decre,aumen,igual,mayori,menori,dif,mayor,menor,mas,
                     menos,mul,divis,pote,llava,llavc,para,parc,dosptos,ptocoma,ques,op_or,op_and,op_not,
-                    imprimir,var,coma,is,pto,a_mas,a_por,a_menos,a_div,cora,corc,importar,si,sino,detener,
+                    imprimir,varvar,coma,is,pto,a_mas,a_por,a_menos,a_div,cora,corc,importar,si,sino,detener,
                     retornar,selecciona,caso,defecto,funcion,descendente,ascendente,crearArrFile,
                     invertir,maximo,minimo,filter,map,buscar,reduce,todos,alguno,leerGxml,ObtenerPorEtiqueta,
                     ObtenerPorNombre,ObtenerPorId,cerrar,clic,video,musica,imagen,boton,
@@ -254,6 +254,15 @@ INS::=    DECLARACION:n1 ptocoma
             :}
             |OP_UNARIA:n1 ptocoma
             {:
+                if(n1 instanceof oa_decremento)
+                {
+                    oa_decremento d=(oa_decremento)n1;
+                    d.noRetorna=true;
+                }else
+                {
+                    oa_aumento d=(oa_aumento)n1;
+                    d.noRetorna=true;
+                }
                 RESULT=n1;
             :}
             |retornar:n1 ptocoma
@@ -283,7 +292,7 @@ INS::=    DECLARACION:n1 ptocoma
                 RESULT=n1;
             :}
             ;
-DECLARACION::= var:n2 LDECLA:n1
+DECLARACION::= varvar:n2 LDECLA:n1
             {:
                 RESULT= new s_declaraciones(n1,(n2left+1),(n2right+1),var.archivo); 
             :}

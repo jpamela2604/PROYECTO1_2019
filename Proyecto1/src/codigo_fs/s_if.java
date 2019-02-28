@@ -49,7 +49,7 @@ public class s_if implements sent{
                     if(Boolean.valueOf(p.valor.toString()))
                     {
                         Simbolo retorno=(Simbolo) s.ejecutar(ts, e, ej);
-                        if(retorno==null)
+                        if(retorno!=null)
                         {
                             return retorno;
                         }
@@ -58,7 +58,7 @@ public class s_if implements sent{
             }else
             {
                 Simbolo retorno=(Simbolo) s.ejecutar(ts, e, ej);
-                if(retorno==null)
+                if(retorno!=null)
                 {
                     return retorno;
                 }

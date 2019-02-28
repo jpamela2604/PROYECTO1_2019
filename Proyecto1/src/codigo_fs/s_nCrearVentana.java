@@ -39,7 +39,7 @@ public class s_nCrearVentana implements sent {
         Simbolo rr=new Simbolo(var.tipo_error,null);
         if(parametros.size()!=3)
         {
-            e.AddError("El metodo CrearVentana debe tener 3 parametors", linea, columna, archivo, "SEMANTICO");
+            e.AddError("El metodo CrearVentana debe tener 3 parametros", linea, columna, archivo, "SEMANTICO");
             return rr;
         }
         Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
@@ -63,7 +63,7 @@ public class s_nCrearVentana implements sent {
         }
         if(b&&n.tipo.indice!=var.entero)
         {
-            e.AddError("El segundo parametro deberia ser tipo entero, no "+n.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+            e.AddError("El tercer parametro deberia ser tipo entero, no "+n.tipo.nombre, linea, columna, archivo, "SEMANTICO");
             b=false;
         }
         if(b)

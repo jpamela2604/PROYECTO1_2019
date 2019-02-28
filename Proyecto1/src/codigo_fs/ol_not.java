@@ -43,7 +43,7 @@ public class ol_not implements sent{
         }
         if(o1.tipo.indice==var.booleano)
         {
-            Boolean val=!Boolean.valueOf(o1.toString());
+            Boolean val=!Boolean.valueOf(o1.valor.toString());
             respuesta=new Simbolo(var.tipo_booleano,val);
         }else
         {

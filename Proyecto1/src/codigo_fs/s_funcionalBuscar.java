@@ -75,6 +75,9 @@ public class s_funcionalBuscar implements sent {
         for(Simbolo s:a.valores)
         {
             ts.cambiarAmbito(true);
+            ts.displayReturns.push("");
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             //declarar parametro
             ts.AgregarSimbolo(new Simbolo(funcion.parametros.get(0),s.tipo,Simbolo.variable,s.valor), false, linea, columna, archivo);
             //ejecutar sentencias
@@ -88,6 +91,8 @@ public class s_funcionalBuscar implements sent {
                 }
             }
             ts.regresarAmbito(true);
+            ts.displayReturns.pop();
+            ts.actual=actual;
             if(retorno==null||retorno.tipo.indice!=var.booleano)
             {
             }else
@@ -95,6 +100,7 @@ public class s_funcionalBuscar implements sent {
                 if(Boolean.valueOf(retorno.valor.toString()))
                 {
                     respuesta=s;
+                    break;
                 }
             }
         }

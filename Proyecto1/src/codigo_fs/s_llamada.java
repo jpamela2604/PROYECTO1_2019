@@ -47,6 +47,7 @@ public class s_llamada implements sent{
         }else
         {
             /*es una llamada de un metodo cualquiera*/
+            
             Simbolo m=new Simbolo(nombre+"#",null,Simbolo.metodo,null);
             m=ts.buscarSimbolo(m, linea, columna, archivo);
             if(m!=null)
@@ -76,7 +77,10 @@ public class s_llamada implements sent{
                     //si no hubo errores
                     if(Bandera)
                     {
+                        ts.displayReturns.push("");
                         ts.cambiarAmbito(true);
+                        Simbolo actual=ts.actual;
+                        ts.actual=null;
                         //declarar las variable parametro
                         int x=0;
                         for(String name:m.parametros)
@@ -94,8 +98,9 @@ public class s_llamada implements sent{
                                 break;
                             }
                         }
-                        
+                        ts.actual=actual;
                         ts.regresarAmbito(true);
+                        ts.displayReturns.pop();
                     }
                     
                 }else

@@ -53,7 +53,7 @@ public class s_propiaMaximo implements sent {
                     
                     for(int i=1;i<a.valores.size();i++)
                     {
-                        Double vv=Double.valueOf(a.valores.get(0).valor.toString());
+                        Double vv=Double.valueOf(a.valores.get(i).valor.toString());
                         if(vv>valor)
                         {
                             valor=vv;
@@ -67,7 +67,7 @@ public class s_propiaMaximo implements sent {
                     
                     for(int i=1;i<a.valores.size();i++)
                     {
-                        Integer vv=Integer.valueOf(a.valores.get(0).valor.toString());
+                        Integer vv=Integer.valueOf(a.valores.get(i).valor.toString());
                         if(vv>valor)
                         {
                             valor=vv;

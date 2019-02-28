@@ -61,7 +61,7 @@ call = [{]([^}])*[}]
 "="                     {return new Symbol(simb.is,yyline,yycolumn,new String(yytext()));}
 "ID"                    {return new Symbol(simb.id,yyline,yycolumn,new String(yytext()));}
 {er_entero}             {return new Symbol(simb.er_entero,yyline,yycolumn,new String(yytext()));}
-{er_cadena}             {return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-2)));}
+{er_cadena}             {return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-1)));}
 {call}                  {return new Symbol(simb.call,yyline,yycolumn,new String(yytext()));}
 {er_id}                 {return new Symbol(simb.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));}
 [ \t\r\f\n]+            {}

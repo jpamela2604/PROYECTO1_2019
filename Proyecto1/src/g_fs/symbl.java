@@ -13,6 +13,7 @@ public class symbl {
   public static final int menor = 13;
   public static final int funcion = 48;
   public static final int area = 73;
+  public static final int varvar = 30;
   public static final int a_por = 35;
   public static final int pto = 33;
   public static final int corc = 39;
@@ -86,7 +87,6 @@ public class symbl {
   public static final int contenedor = 76;
   public static final int coma = 31;
   public static final int igual = 8;
-  public static final int var = 30;
   public static final int crearArrFile = 51;
   public static final int desple = 71;
   public static final String[] terminalNames = new String[] {
@@ -120,7 +120,7 @@ public class symbl {
   "op_and",
   "op_not",
   "imprimir",
-  "var",
+  "varvar",
   "coma",
   "is",
   "pto",

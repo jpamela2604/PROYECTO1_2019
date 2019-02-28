@@ -61,7 +61,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         initCom();
         ru="C:\\Users\\Pamela Palacios\\Desktop\\entradas";
         er=new mng_error();
-        gra=new Reconize(er);
+        gra=new Reconize(er,this.jTextArea1);
     }
     public void initCom()
     {
@@ -703,6 +703,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
         // TODO add your handling code here:
         //this.er= new mng_error();
+        this.jTextArea1.setText("");
         this.er.errores.clear();
         jButton1.setBackground(new Color(204, 204, 204));
         if(files.getComponentCount()>0)

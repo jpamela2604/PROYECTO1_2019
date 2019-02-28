@@ -33,6 +33,11 @@ public class oa_potencia implements sent{
      }
      @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
+        return null;
+    }
+
+    @Override
+    public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
         Simbolo o1=(Simbolo)op1.ejecutar(ts,e,ej);
         Simbolo o2=(Simbolo)op2.ejecutar(ts,e,ej);    
@@ -49,28 +54,8 @@ public class oa_potencia implements sent{
         {
             case POTEN:
             {
-                Double r1=1.0;
-                if(o1.tipo.indice==var.booleano)
-                {
-                    if(Boolean.valueOf(o1.valor.toString())==false)
-                    {
-                        r1=0.0;
-                    }
-                }else
-                {
-                    r1=Double.valueOf(o1.valor.toString());
-                }
-                Double r2=1.0;
-                if(o2.tipo.indice==var.booleano)
-                {
-                    if(Boolean.valueOf(o2.valor.toString())==false)
-                    {
-                        r2=0.0;
-                    }
-                }else
-                {
-                    r2=Double.valueOf(o2.valor.toString());
-                }
+                Double r1=Double.valueOf(o1.valor.toString());
+                Double r2=Double.valueOf(o2.valor.toString());
                 Double val =Math.pow(r1, r2) ;
                 if(val-val.intValue()==0)
                 {
@@ -86,16 +71,11 @@ public class oa_potencia implements sent{
         }
         return respuesta;
     }
-
-    @Override
-    public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        return null;
-    }
     static  O [][]  matriz={
          /*     0|      1|      2|      3*/
-    /*0*/{O.ERROR,O.POTEN,O.POTEN,O.ERROR },
-    /*1*/{O.POTEN,O.POTEN,O.POTEN,O.ERROR }, 
-    /*2*/{O.POTEN,O.POTEN,O.POTEN,O.ERROR },
+    /*0*/{O.ERROR,O.ERROR,O.ERROR,O.ERROR },
+    /*1*/{O.ERROR,O.POTEN,O.POTEN,O.ERROR }, 
+    /*2*/{O.ERROR,O.POTEN,O.POTEN,O.ERROR },
     /*3*/{O.ERROR,O.ERROR,O.ERROR,O.ERROR }
             };
     private static enum O

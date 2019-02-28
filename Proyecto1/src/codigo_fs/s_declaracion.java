@@ -42,7 +42,7 @@ public class s_declaracion implements sent{
             Simbolo val=(Simbolo) valor.ejecutar(ts, e, ej);
             if(val.tipo.indice!=var.error)
             {
-                if(val.tipo.indice!=var.vacio)
+                if(val.tipo.indice==var.vacio)
                 {
                     e.AddError("La llamada no devuelve un valor "+val.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 }else

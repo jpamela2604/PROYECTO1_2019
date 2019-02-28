@@ -61,6 +61,8 @@ public class s_propiaDescendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                     
                 }else if(tipo.indice==var.entero)
                 {
@@ -72,6 +74,8 @@ public class s_propiaDescendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                 }else if(tipo.indice==var.cadena)
                 {
                     LinkedList<String> nueva=new LinkedList();
@@ -82,11 +86,13 @@ public class s_propiaDescendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                 }else
                 {
                     e.AddError("No se pueden ordenar arreglos de tipo "+tipo.nombre , linea, columna, archivo, "SEMANTICO");
                 }
-                respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
+                //respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
             }
         }else
         {

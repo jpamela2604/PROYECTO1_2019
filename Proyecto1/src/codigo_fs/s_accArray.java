@@ -56,7 +56,7 @@ public class s_accArray implements sent{
                 Integer posi=Integer.valueOf(pos.valor.toString());
                 if(posi>=ar.valores.size()||posi<0)
                 {
-                    e.AddError("Indice fuera de los limites "+pos.tipo.nombre, linea, columna, archivo, "EJECUCION");
+                    e.AddError("Indice fuera de los limites", linea, columna, archivo, "EJECUCION");
                     return respuesta;
                 }else
                 {

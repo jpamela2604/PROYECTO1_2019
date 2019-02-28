@@ -7,6 +7,7 @@ package execute;
 
 import java.util.LinkedList;
 import javax.swing.JComponent;
+import ts.Simbolo;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ui_gxml {
         LinkedList<Object> elemntos=new LinkedList();        
         for(ui_ventana c:this.ventanas)
         {
-            if(c.id.equals(id))
+            if(((Simbolo)c.tabla.get("ID")).valor.toString().equals(id))
             {
                 elemntos.add(c);
             }

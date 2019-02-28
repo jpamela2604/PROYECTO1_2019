@@ -38,7 +38,11 @@ public class s_imprimir implements sent{
         Simbolo s=(Simbolo) valor.ejecutar(ts, e, ej);
         if(s.tipo.indice!=var.error)
         {
-            if(s.tipo.indice==var.booleano)
+            if(s.tipo.indice==var.vacio)
+            {
+                e.AddError("Se invoco un metodo vacio", linea, columna, archivo, "SEMANTICO");
+            }
+            else if(s.tipo.indice==var.booleano)
             {
                 String v=var.valor_false;
                 if(Boolean.valueOf(s.valor.toString()))
@@ -46,17 +50,20 @@ public class s_imprimir implements sent{
                     v=var.valor_true;
                 }
                 ej.Imprimir(v);
+            }else if(s.tipo.indice==var.nulo)
+            {
+                ej.Imprimir("NULO");
             }
             else if(s.tipo.indice==var.arreglo)
             {
-                ej.Imprimir("OBJETO FS: Arreglo de tipo"+s.tipo.nombre);
+                ej.Imprimir("ARREGLO FS");
             }
             else if(s.tipo.indice<4)
             {
                 ej.Imprimir(s.valor.toString());
             }else
             {
-                ej.Imprimir("OBJETO FS: "+s.tipo.nombre);
+                ej.Imprimir("OBJETO FS");
             }
         }
         return null;

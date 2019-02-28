@@ -46,7 +46,10 @@ public class ol_and implements sent{
         }
         if(o1.tipo.indice==var.booleano &&o2.tipo.indice==var.booleano)
         {
-            Boolean val=Boolean.valueOf(o1.toString())&&Boolean.valueOf(o2.toString());
+            Boolean v1=Boolean.valueOf(o1.valor.toString());
+            Boolean v2=Boolean.valueOf(o2.valor.toString());
+                    
+            Boolean val=v1&&v2;
             respuesta=new Simbolo(var.tipo_booleano,val);
         }else
         {

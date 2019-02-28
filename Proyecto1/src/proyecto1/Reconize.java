@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import ts.mng_ts;
 
 /**
@@ -27,9 +28,11 @@ import ts.mng_ts;
  */
 public class Reconize {
     public mng_error e;
-    public Reconize(mng_error e)
+    public JTextArea a;
+    public Reconize(mng_error e,JTextArea a)
     {
         this.e=e;
+        this.a=a;
     }
     
     public void Run(String ruta,Pestania.Tipo t)
@@ -83,7 +86,7 @@ public class Reconize {
             e.Adding(le.e);
             e.Adding(sintactico.e);
             mng_ts ts=new mng_ts(e);
-            Ejecucion ej=new Ejecucion();
+            Ejecucion ej=new Ejecucion(this.a);
             if(raiz!=null)
             {
                 for(sent s:raiz)

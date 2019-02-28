@@ -49,6 +49,7 @@ public class s_propiaAscendente implements sent {
                 LinkedList<Simbolo>valores=new  LinkedList();
                 Array a=(Array)ts.actual.valor;
                 NodoTipo tipo=a.getTipo();
+                
                 if(tipo.indice==var.heterogenea)
                 {
                     e.AddError("Solo se pueden ordenar arreglos heterogeneos", linea, columna, archivo, "SEMANTICO");
@@ -63,6 +64,8 @@ public class s_propiaAscendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                     
                 }else if(tipo.indice==var.entero)
                 {
@@ -74,6 +77,8 @@ public class s_propiaAscendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                 }else if(tipo.indice==var.cadena)
                 {
                     LinkedList<String> nueva=new LinkedList();
@@ -84,11 +89,13 @@ public class s_propiaAscendente implements sent {
                     nueva.forEach((ou) -> {
                         valores.add(new Simbolo(tipo,ou));
                     });
+                    a.valores=valores;
+                    respuesta=ts.actual;
                 }else
                 {
                     e.AddError("No se pueden ordenar arreglos de tipo "+tipo.nombre , linea, columna, archivo, "SEMANTICO");
                 }
-                respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
+                //respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
             }
         }else
         {

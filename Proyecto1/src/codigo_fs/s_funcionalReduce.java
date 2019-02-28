@@ -76,6 +76,9 @@ public class s_funcionalReduce implements sent {
         for(int i=1;i<a.valores.size();i++)
         {
             ts.cambiarAmbito(true);
+            ts.displayReturns.push("");
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             //declarar parametro
             ts.AgregarSimbolo(new Simbolo(funcion.parametros.get(0),acumulador.tipo,Simbolo.variable,acumulador.valor), false, linea, columna, archivo);
             ts.AgregarSimbolo(new Simbolo(funcion.parametros.get(1),a.valores.get(i).tipo,Simbolo.variable,a.valores.get(i).valor), false, linea, columna, archivo);
@@ -90,6 +93,8 @@ public class s_funcionalReduce implements sent {
                 }
             }
             ts.regresarAmbito(true);
+            ts.displayReturns.pop();
+            ts.actual=actual;
             acumulador=retorno;
         }
         

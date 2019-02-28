@@ -5,6 +5,7 @@
  */
 package codigo_fs;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import execute.Ejecucion;
 import proyecto1.var;
@@ -43,6 +44,17 @@ public class s_acVariable implements sent{
             {
                 respuesta=r;
             }
+        }else if(ts.actual.tipo.indice==var.objeto)
+        {
+            Objeto myObj=(Objeto)ts.actual.valor;
+            if(myObj.items.containsKey(id))
+            {
+                return ((item)myObj.items.get(id)).valor;
+            }else
+            {
+                e.AddError("No existe atributo llamado "+this.id, linea, columna, archivo, "SEMANTICO");
+            }
+            
         }
         return respuesta;
     }

@@ -22,6 +22,7 @@ public class Simbolo {
     public Object valor;
     public LinkedList<String> parametros;
     public LinkedList<sent> sentencias;
+    public Boolean PuedeCambiarTipo;
     
     public Simbolo(String id,LinkedList<String> parametros,LinkedList<sent> sentencias)
     {
@@ -29,11 +30,20 @@ public class Simbolo {
         this.parametros=parametros;
         this.sentencias=sentencias; 
         this.rol=metodo;
+        PuedeCambiarTipo=true;
     }
     public Simbolo(NodoTipo tipo,Object valor)
     {
         this.tipo=tipo;
         this.valor=valor;
+        PuedeCambiarTipo=true;
+    }
+    
+    public Simbolo(NodoTipo tipo,Object valor,Boolean p)
+    {
+        this.tipo=tipo;
+        this.valor=valor;
+        PuedeCambiarTipo=p;
     }
     public Simbolo(String nombre,NodoTipo tipo,int rol,Object valor)
     {
@@ -41,6 +51,7 @@ public class Simbolo {
         this.tipo=tipo;
         this.rol=rol;
         this.valor=valor;
+        PuedeCambiarTipo=true;
     }
     
     public String getRol()

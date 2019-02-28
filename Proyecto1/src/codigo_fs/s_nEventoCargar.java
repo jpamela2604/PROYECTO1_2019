@@ -50,6 +50,7 @@ public class s_nEventoCargar  implements sent {
             }else
             {
                 ui_ventana v=(ui_ventana) ts.actual.valor;
+                v.cargar();
                 v.show();
                 return ts.actual;
             }

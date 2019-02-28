@@ -41,7 +41,10 @@ public class o_valorPuntual implements sent{
         if(tipo!=null)
         {
             return new Simbolo(tipo,valor);
+        }else
+        {
+            s_accesos a=(s_accesos) this.valor;
+            return (Simbolo)a.ejecutar(ts, e, ej);
         }
-        return null;
     }
 }

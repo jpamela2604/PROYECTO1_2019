@@ -43,8 +43,20 @@ public class s_asignacion implements sent{
             Simbolo v=(Simbolo) valor.ejecutar(ts, e, ej);
             if(v.tipo.indice!=var.error)
             {
+                if(s.PuedeCambiarTipo)
+                {
                     s.tipo=v.tipo;
                     s.valor=v.valor;
+                }else
+                {
+                    if(s.tipo.indice==v.tipo.indice)
+                    {
+                        s.valor=v.valor;
+                    }else
+                    {
+                        e.AddError("El elemento pertenece a un miembro UI, por lo que no se le puede cambiar tipo", linea, columna, archivo, "SEMANTICO");
+                    }
+                }
             }
         }
         return null;

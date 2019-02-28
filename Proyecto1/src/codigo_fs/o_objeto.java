@@ -51,7 +51,7 @@ public class o_objeto implements sent{
                     return respuesta;
                 }else
                 {
-                    if(vv.contains(s.clave))
+                    if(vv.containsKey(s.clave))
                     {
                         e.AddError("el objeto tiene una clave repetida", linea, columna, archivo, "SEMANTICO");
                         return respuesta;
@@ -63,7 +63,7 @@ public class o_objeto implements sent{
                 return respuesta;
             }
         }
-        respuesta=new Simbolo(var.tipo_objeto,vv);
+        respuesta=new Simbolo(var.tipo_objeto,new Objeto(vv));
         
         return respuesta;
     }

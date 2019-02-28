@@ -47,9 +47,9 @@ Comentario  ="//" [^\n]+ [\n]?
 "reduce("              {return new Symbol(symbl.reduce,yyline,yycolumn,new String(yytext()));}
 "todos("               {return new Symbol(symbl.todos,yyline,yycolumn,new String(yytext()));}
 "alguno("              {return new Symbol(symbl.alguno,yyline,yycolumn,new String(yytext()));}
-"maximo("              {return new Symbol(symbl.maximo,yyline,yycolumn,new String(yytext()));}
-"minimo("              {return new Symbol(symbl.minimo,yyline,yycolumn,new String(yytext()));}
-"invertir()"            {return new Symbol(symbl.invertir,yyline,yycolumn,new String(yytext()));}
+"maximo()"              {return new Symbol(symbl.maximo,yyline,yycolumn,new String(yytext()));}
+"minimo()"              {return new Symbol(symbl.minimo,yyline,yycolumn,new String(yytext()));}
+"invertir()"           {return new Symbol(symbl.invertir,yyline,yycolumn,new String(yytext()));}
 "crearArrayDesdeArchivo(" {return new Symbol(symbl.crearArrFile,yyline,yycolumn,new String(yytext()));}
 "ascendente()"          {return new Symbol(symbl.ascendente,yyline,yycolumn,new String(yytext()));}
 "descendente()"         {return new Symbol(symbl.descendente,yyline,yycolumn,new String(yytext()));}
@@ -64,10 +64,13 @@ Comentario  ="//" [^\n]+ [\n]?
 "importar"              {return new Symbol(symbl.importar,yyline,yycolumn,new String(yytext()));}
 "imprimir"              {return new Symbol(symbl.imprimir,yyline,yycolumn,new String(yytext()));}
 ","                     {return new Symbol(symbl.coma,yyline,yycolumn,new String(yytext()));}
-"var"                   {return new Symbol(symbl.var,yyline,yycolumn,new String(yytext()));}
+"var"                   {return new Symbol(symbl.varvar,yyline,yycolumn,new String(yytext()));}
 "verdadero"             {return new Symbol(symbl.verdadero,yyline,yycolumn,new String(yytext()));}
 "falso"                 {return new Symbol(symbl.falso,yyline,yycolumn,new String(yytext()));}
 "nulo"                  {return new Symbol(symbl.nulo,yyline,yycolumn,new String(yytext()));}
+"&&"                    {return new Symbol(symbl.op_and ,  yyline, yycolumn, new String(yytext()));}
+"||"                    {return new Symbol(symbl.op_or ,  yyline, yycolumn, new String(yytext()));}
+"!"                     {return new Symbol(symbl.op_not ,  yyline, yycolumn, new String(yytext()));}
 "+="			{return new Symbol(symbl.a_mas,yyline,yycolumn,new String(yytext()));}
 "*="			{return new Symbol(symbl.a_por,yyline,yycolumn,new String(yytext()));}
 "-="			{return new Symbol(symbl.a_menos,yyline,yycolumn,new String(yytext()));}
@@ -99,7 +102,7 @@ Comentario  ="//" [^\n]+ [\n]?
 {er_entero}             {return new Symbol(symbl.er_entero,yyline,yycolumn,new String(yytext()));}
 {er_decimal}             {return new Symbol(symbl.er_decimal,yyline,yycolumn,new String(yytext()));}
 {er_id}                 {return new Symbol(symbl.er_id,yyline,yycolumn,new String(yytext().toUpperCase()));}
-{er_cadena}             {return new Symbol(symbl.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-2)));}
+{er_cadena}             {return new Symbol(symbl.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-1)));}
 {ComentarioMulti}       {}
 {Comentario}            {}
 [ \t\r\f\n]+            {}

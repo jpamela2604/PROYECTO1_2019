@@ -75,6 +75,9 @@ public class s_funcionalMap implements sent {
         for(Simbolo s:a.valores)
         {
             ts.cambiarAmbito(true);
+            ts.displayReturns.push("");
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             //declarar parametro
             ts.AgregarSimbolo(new Simbolo(funcion.parametros.get(0),s.tipo,Simbolo.variable,s.valor), false, linea, columna, archivo);
             //ejecutar sentencias
@@ -87,9 +90,13 @@ public class s_funcionalMap implements sent {
                     break;
                 }
             }
+            
+            ts.actual=actual;
             ts.regresarAmbito(true);
-            if(retorno==null||retorno.tipo.indice!=var.booleano)
+            ts.displayReturns.pop();
+            if(retorno==null||retorno.tipo.indice==var.vacio)
             {
+                val.add(new Simbolo(var.tipo_nulo,null));
             }else
             {
                 val.add(retorno);

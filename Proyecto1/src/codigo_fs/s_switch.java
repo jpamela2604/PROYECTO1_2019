@@ -67,7 +67,9 @@ public class s_switch implements sent{
                             if(EsIgual(v,p))
                             {
                                 bandera=true;
+                                ts.displayBreaks.push("");
                                 Simbolo h=(Simbolo) s.ejecutar(ts, e, ej);
+                                ts.displayBreaks.pop();
                                 if(h!=null)
                                 {
                                     if(h.tipo.indice==var.detener)
@@ -78,12 +80,15 @@ public class s_switch implements sent{
                                         return h;
                                     }
                                 }
+                                
                             }
                         }
 
                     }else
                     {
+                        ts.displayBreaks.push("");
                         Simbolo h=(Simbolo) s.ejecutar(ts, e, ej);
+                        ts.displayBreaks.pop();
                         if(h!=null)
                         {
                             if(h.tipo.indice==var.detener)
@@ -97,7 +102,9 @@ public class s_switch implements sent{
                     }
                 }else
                 {
+                    ts.displayBreaks.push("");
                     Simbolo h=(Simbolo) s.ejecutar(ts, e, ej);
+                    ts.displayBreaks.pop();
                     if(h!=null)
                     {
                         if(h.tipo.indice==var.detener)
@@ -122,12 +129,13 @@ public class s_switch implements sent{
                 if(a.valor.toString().equals(b.valor.toString()))
                 {
                     return true;
-                }
+                }         
+            }else
+            {
                 if(Objects.equals(Double.valueOf(a.valor.toString()), Double.valueOf(b.valor.toString())))
                 {
                     return true;
                 }
-                        
             }
         }
         return false;

@@ -33,6 +33,40 @@ public class mng_ts {
         e = er;
         auxiliar = new Stack();
         tabla.push(globales);
+        agregarOriginales();
+    }
+    
+    public void agregarOriginales()
+    {
+        AgregarSimbolo(new Simbolo("ALCERRAR#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("ALCLIC#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARVIDEO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARREPRODUCTOR#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARIMAGEN#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARBOTON#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARDESPLEGABLE#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARCONTROLNUMERICO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARAREATEXTO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARCAJATEXTO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARVENTANA#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARTEXTO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARCONTENEDOR#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("OBTENERPORETIQUETA#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("OBTENERPORID#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("OBTENERPORNOMBRE#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("LEERGXML#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("FILTER#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("MAP#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("BUSCAR#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("REDUCE#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("TODOS#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("ALGUNO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("MAXIMO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("MINIMO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("INVERTIR#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("CREARARRAYDESDEARCHIVO#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("ASCENDENTE#",new LinkedList(),new LinkedList()),true,0,0,"");
+        AgregarSimbolo(new Simbolo("DESCENDENTE#",new LinkedList(),new LinkedList()),true,0,0,"");
     }
     public Boolean AgregarSimbolo(Simbolo simb,Boolean IsGlobal,int linea,int columna,String arch)
     {
@@ -48,7 +82,7 @@ public class mng_ts {
     {
         if (h.containsKey(sim.id))
         {
-            e.AddError("Ya existe "+sim.getRol()+" con el nombre"+sim.getNombre(),linea,columna,arch,"SEMANTICO");
+            e.AddError("Ya existe "+sim.getRol()+" con el nombre \""+sim.getNombre()+"\"",linea,columna,arch,"SEMANTICO");
             return false;
         }
         else

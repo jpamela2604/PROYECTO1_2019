@@ -47,9 +47,11 @@ public class s_propiaInvertir implements sent {
                  int tam=a.valores.size();
                  for(int i=0;i<tam;i++)
                  {
-                     valores.add(a.valores.get(tam-i));
+                     valores.add(a.valores.get((tam-1)-i));
                  }
-                 respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
+                 //respuesta=new Simbolo(var.tipo_arreglo,new Array(valores));
+                 a.valores=valores;
+                 respuesta=ts.actual;
             }
         }
         return respuesta;

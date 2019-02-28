@@ -877,7 +877,7 @@ public class lexico_g implements java_cup.runtime.Scanner {
             }
           case 51: break;
           case 9: 
-            { return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-2)));
+            { return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-1)));
             }
           case 52: break;
           case 10: 

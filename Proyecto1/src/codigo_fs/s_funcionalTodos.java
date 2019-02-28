@@ -46,6 +46,7 @@ public class s_funcionalTodos implements sent {
             {
                 Simbolo m=new Simbolo(id+"#",null,Simbolo.metodo,null);
                 m=ts.buscarSimbolo(m, linea, columna, archivo);
+                
                 if(m!=null)
                 {
                     if(m.parametros.size()!=1)
@@ -74,6 +75,9 @@ public class s_funcionalTodos implements sent {
         for(Simbolo s:a.valores)
         {
             ts.cambiarAmbito(true);
+            ts.displayReturns.push("");
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             //declarar parametro
             ts.AgregarSimbolo(new Simbolo(funcion.parametros.get(0),s.tipo,Simbolo.variable,s.valor), false, linea, columna, archivo);
             //ejecutar sentencias
@@ -87,6 +91,8 @@ public class s_funcionalTodos implements sent {
                 }
             }
             ts.regresarAmbito(true);
+            ts.displayReturns.pop();
+            ts.actual=actual;
             if(retorno==null||retorno.tipo.indice!=var.booleano)
             {
             }else

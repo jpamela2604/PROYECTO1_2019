@@ -46,7 +46,7 @@ public class ol_or implements sent{
         }
         if(o1.tipo.indice==var.booleano &&o2.tipo.indice==var.booleano)
         {
-            Boolean val=Boolean.valueOf(o1.toString())||Boolean.valueOf(o2.toString());
+            Boolean val=Boolean.valueOf(o1.valor.toString())||Boolean.valueOf(o2.valor.toString());
             respuesta=new Simbolo(var.tipo_booleano,val);
         }else
         {
