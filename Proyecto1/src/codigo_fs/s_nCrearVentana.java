@@ -42,10 +42,13 @@ public class s_nCrearVentana implements sent {
             e.AddError("El metodo CrearVentana debe tener 3 parametros", linea, columna, archivo, "SEMANTICO");
             return rr;
         }
+        Simbolo actual=ts.actual;
+        ts.actual=null;
         Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
         Simbolo l=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
         Simbolo n=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
         Boolean b=true;
+        ts.actual=actual;
         if(t.tipo.indice==var.error||l.tipo.indice==var.error||n.tipo.indice==var.error)
         {
             b=false;

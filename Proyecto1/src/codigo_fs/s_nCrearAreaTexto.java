@@ -47,6 +47,8 @@ public class s_nCrearAreaTexto implements sent {
                 e.AddError("El metodo CrearAreaTexto debe tener 11 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
             } 
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             Simbolo alto=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo ancho=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo fuente=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
@@ -58,6 +60,7 @@ public class s_nCrearAreaTexto implements sent {
             Simbolo cursiva=(Simbolo) parametros.get(8).ejecutar(ts, e, ej);
             Simbolo defecto=(Simbolo) parametros.get(9).ejecutar(ts, e, ej);
             Simbolo nombre=(Simbolo) parametros.get(10).ejecutar(ts, e, ej);
+            ts.actual=actual;
             Boolean b=true;
             if(     alto.tipo.indice==var.error||ancho.tipo.indice==var.error||nombre.tipo.indice==var.error||
                     fuente.tipo.indice==var.error||tam.tipo.indice==var.error||color.tipo.indice==var.error

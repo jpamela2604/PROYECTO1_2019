@@ -46,7 +46,9 @@ public class s_nCrearTexto implements sent {
             {
                 e.AddError("El metodo CrearTexto debe tener 8 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
-            }        
+            }   
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             Simbolo fuente=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo tam=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo color=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
@@ -56,6 +58,7 @@ public class s_nCrearTexto implements sent {
             Simbolo cursiva=(Simbolo) parametros.get(6).ejecutar(ts, e, ej);
             Simbolo valor=(Simbolo) parametros.get(7).ejecutar(ts, e, ej);
             Boolean b=true;
+            ts.actual=actual;
             if(fuente.tipo.indice==var.error||tam.tipo.indice==var.error||color.tipo.indice==var.error
                     ||negrilla.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error
                     ||cursiva.tipo.indice==var.error||valor.tipo.indice==var.error)

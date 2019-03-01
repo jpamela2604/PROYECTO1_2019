@@ -46,7 +46,9 @@ public class s_nCrearVideo implements sent {
             {
                 e.AddError("El metodo CrearVideo debe tener 6 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
-            }        
+            }    
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             Simbolo ruta=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo x=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo y=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
@@ -54,6 +56,7 @@ public class s_nCrearVideo implements sent {
             Simbolo alto=(Simbolo) parametros.get(4).ejecutar(ts, e, ej);
             Simbolo ancho=(Simbolo) parametros.get(5).ejecutar(ts, e, ej);
             Boolean b=true;
+            ts.actual=actual;
             if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error||auto.tipo.indice==var.error
                     ||ruta.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error){
                 b=false;

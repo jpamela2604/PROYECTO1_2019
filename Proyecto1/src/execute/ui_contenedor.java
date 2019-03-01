@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import proyecto1.var;
@@ -172,6 +173,8 @@ public class ui_contenedor extends JPanel{
     
     public void cargar()
     {
+        //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(null);
         Boolean borde=Boolean.valueOf(((Simbolo)tabla.get("BORDE")).valor.toString());
         if(borde)
         {
@@ -181,15 +184,20 @@ public class ui_contenedor extends JPanel{
         this.setBackground(Color.decode(color));
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
+        int xxa=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
+        int yya=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
+        this.setBounds(xxa, yya, ancho, alto);
+        
         this.setPreferredSize(new Dimension(alto,ancho));
         this.setMaximumSize(new Dimension(alto,ancho));
         this.setMaximumSize(new Dimension(alto,ancho));
+        this.repaint();
         for(ui_texto t:textos)
         {
             t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
+            /*int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
+            t.setLocation(xx, yy);*/
             this.add(t);
         }
         for(ui_ControlNumerico t:spinners)
@@ -219,9 +227,9 @@ public class ui_contenedor extends JPanel{
         for(ui_desplegable t:combobox)
         {
             t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
+            /*int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
+            t.setLocation(xx, yy);*/
             this.add(t);
         }
         for(ui_imagen t:imagenes)

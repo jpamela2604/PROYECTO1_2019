@@ -66,13 +66,7 @@ public class ui_ventana extends JFrame{
     
     public void cargar()
     {
-        this.getContentPane().setBackground(Color.decode(((Simbolo)tabla.get("COLOR")).valor.toString()));
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setPreferredSize(new Dimension(alto ,ancho));
-        this.setMaximumSize(new Dimension(alto,ancho));
-        this.setMaximumSize(new Dimension(alto,ancho));
-        this.pack();
+        this.setLayout(null);
         for(ui_contenedor c:contenedores)
         {
             c.cargar();
@@ -81,6 +75,13 @@ public class ui_ventana extends JFrame{
             c.setLocation(xx, yy);
             this.add(c);
         }
+        this.getContentPane().setBackground(Color.decode(((Simbolo)tabla.get("COLOR")).valor.toString()));
+        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
+        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
+        this.setPreferredSize(new Dimension(alto ,ancho));
+        this.setMaximumSize(new Dimension(alto,ancho));
+        this.setMaximumSize(new Dimension(alto,ancho));
+        this.pack();
         
     }  
     public LinkedList<JComponent> getByNombre(String Nombre)

@@ -101,6 +101,7 @@ public class ui_texto extends JLabel{
     
     public void cargar()
     {
+       
         int tam=Integer.valueOf(((Simbolo)tabla.get("TAMAÑO")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
@@ -119,9 +120,13 @@ public class ui_texto extends JLabel{
         this.setForeground(Color.decode(color));
         String valor=((Simbolo)tabla.get("VALOR")).valor.toString();
         this.setText(valor);
+        int xx=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
+        int yy=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
         this.setSize(alto,ancho);
+        this.setBounds(xx, yy, ancho, alto);
+        
     }
     
 }

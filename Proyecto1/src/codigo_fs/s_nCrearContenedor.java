@@ -45,13 +45,16 @@ public class s_nCrearContenedor implements sent {
             {
                 e.AddError("El metodo CrearContenedor debe tener 6 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
-            }        
+            }   
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             Simbolo alto=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo ancho=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo color=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
             Simbolo borde=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
             Simbolo x=(Simbolo) parametros.get(4).ejecutar(ts, e, ej);
             Simbolo y=(Simbolo) parametros.get(5).ejecutar(ts, e, ej);
+            ts.actual=actual;
             Boolean b=true;
             if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error||color.tipo.indice==var.error
                     ||borde.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error)

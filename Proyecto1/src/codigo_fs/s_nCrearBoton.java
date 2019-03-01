@@ -46,7 +46,9 @@ public class s_nCrearBoton implements sent {
             {
                 e.AddError("El metodo CrearBoton debe tener 9 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
-            }        
+            }    
+            Simbolo actual=ts.actual;
+            ts.actual=null;
             Simbolo fuente=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo tam=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo color=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
@@ -56,6 +58,7 @@ public class s_nCrearBoton implements sent {
             Simbolo valor =(Simbolo) parametros.get(6).ejecutar(ts, e, ej);
             Simbolo alto=(Simbolo) parametros.get(7).ejecutar(ts, e, ej);
             Simbolo ancho=(Simbolo) parametros.get(8).ejecutar(ts, e, ej);
+            ts.actual=actual;
             Boolean b=true;
             if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error||fuente.tipo.indice==var.error
                     ||tam.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error
