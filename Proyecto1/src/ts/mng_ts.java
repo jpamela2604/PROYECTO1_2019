@@ -25,6 +25,7 @@ public class mng_ts {
     public Stack displayBreaks;
     public mng_ts(mng_error er)
     {
+         
         this.displayReturns=new Stack();
         this.displayBreaks=new Stack();
         tabla = new Stack();

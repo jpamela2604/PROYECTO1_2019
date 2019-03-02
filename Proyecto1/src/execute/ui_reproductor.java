@@ -39,10 +39,11 @@ public class ui_reproductor extends JButton{
         //this.y=y;
         //this.alto=this.getSize().height;
         //this.ancho=this.getSize().width;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.altoMu,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.anchoMu,false));
         this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,false,false));
         //auto_reproduccion=false;
+        this.setVisible(false);
     }
      public ui_reproductor(String ruta,int x,int y,Boolean autoplay,int alto,int ancho)
     {
@@ -60,11 +61,14 @@ public class ui_reproductor extends JButton{
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
         this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,false,false));
         //auto_reproduccion=autoplay;
+        this.setVisible(false);
     }
     public void cargar()
     {
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);
+        //setsize(width,height)
+        this.setSize(ancho,alto);
+        this.setVisible(true);
     }
 }

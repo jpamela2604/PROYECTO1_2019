@@ -41,20 +41,21 @@ public class ui_boton extends JButton{
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_boton,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_boton,false));
         /*this.fuente=this.getFont().getFontName();
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
-       this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,this.getFont().getFontName(),false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,this.getFont().getSize(),false));
+       this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         //referencia="";
         this.tabla.put("REFERENCIA", new Simbolo(var.tipo_cadena,"",false));
         //valor=nombre;
         this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,nombre,false));
+        this.setVisible(false);
     }
     public ui_boton(String fuente,int tam,String color,int x,int y,String ref,String valor,int alto,int ancho)
     {
@@ -81,6 +82,7 @@ public class ui_boton extends JButton{
         this.ancho=ancho;*/
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.setVisible(false);
         
         
     }
@@ -93,8 +95,10 @@ public class ui_boton extends JButton{
         this.setText(valor);
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);
+        //setsize(width,height)
+        this.setSize(ancho,alto);
         this.setFont(new java.awt.Font(fuente, 0, tam));
         this.setBackground(Color.decode(color));
+        this.setVisible(true);
     }
 }

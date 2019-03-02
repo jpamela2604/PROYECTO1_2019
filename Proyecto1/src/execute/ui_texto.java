@@ -62,10 +62,11 @@ public class ui_texto extends JLabel{
         this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,3000,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,-3000,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
+        this.setVisible(false);
         
     }
     public ui_texto(String nombre,int x,int y)
@@ -82,21 +83,22 @@ public class ui_texto extends JLabel{
         /*this.fuente=this.getFont().getFontName();
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,this.getFont().getFontName(),false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,this.getFont().getSize(),false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         /*this.negrita=false;
         this.cursiva=false;*/
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,3000,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,-3000,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
+        this.setVisible(false);
     }
     
     public void cargar()
@@ -124,9 +126,12 @@ public class ui_texto extends JLabel{
         int yy=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);
+        //setsize(width,height)
+        this.setSize(ancho,alto);
+        //setBounds(int x, int y, int width, int height)
         this.setBounds(xx, yy, ancho, alto);
-        
+        this.setVisible(true);
+        this.repaint();
     }
     
 }

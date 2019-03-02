@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import proyecto1.var;
 import ts.Simbolo;
 
@@ -66,10 +67,11 @@ public class ui_contenedor extends JPanel{
         this.botones=new LinkedList();
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_panel,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_panel,false));
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.color_fondo,false));
+        this.setVisible(false);
     }
     public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y)
     {
@@ -97,7 +99,7 @@ public class ui_contenedor extends JPanel{
         this.videos=new LinkedList();
         this.musica=new LinkedList();
         this.botones=new LinkedList();
-        
+        this.setVisible(false);
     }
     
     
@@ -182,22 +184,40 @@ public class ui_contenedor extends JPanel{
         }
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         this.setBackground(Color.decode(color));
+        /*
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        int xxa=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
-        int yya=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
-        this.setBounds(xxa, yya, ancho, alto);
         
         this.setPreferredSize(new Dimension(alto,ancho));
+        
+        int xxa=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
+        int yya=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
+        this.setBounds(xxa, yya, ancho, alto);        
+        
         this.setMaximumSize(new Dimension(alto,ancho));
         this.setMaximumSize(new Dimension(alto,ancho));
-        this.repaint();
+        this.repaint();*/
+        int x=0;
+        int y=0;
+        int ancho=0;
+        int alto=0;
+        
         for(ui_texto t:textos)
         {
             t.cargar();
-            /*int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
+            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);*/
+            //t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_ControlNumerico t:spinners)
@@ -205,16 +225,45 @@ public class ui_contenedor extends JPanel{
             t.cargar();
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
+            //setlocation(x,y)
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_areaTexto t:areas)
         {
             t.cargar();
+            JScrollPane sp = new JScrollPane();
+            sp.getViewport().add(t);
+            sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            int altxo=Integer.valueOf(((Simbolo)t.tabla.get("ALTO")).valor.toString());
+            int anchxo=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            this.add(t);
+            //setBounds(int x, int y, int width, int height)
+            sp.setBounds(xx, yy, anchxo, altxo);
+            //t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
+            this.add(sp);
         }
         for(ui_cajaTexto t:cajas)
         {
@@ -222,14 +271,34 @@ public class ui_contenedor extends JPanel{
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_desplegable t:combobox)
         {
             t.cargar();
-            /*int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
+            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);*/
+            //t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_imagen t:imagenes)
@@ -238,6 +307,16 @@ public class ui_contenedor extends JPanel{
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_video t:videos)
@@ -246,6 +325,16 @@ public class ui_contenedor extends JPanel{
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_reproductor t:musica)
@@ -254,6 +343,16 @@ public class ui_contenedor extends JPanel{
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
         for(ui_boton t:botones)
@@ -262,8 +361,23 @@ public class ui_contenedor extends JPanel{
             int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
             t.setLocation(xx, yy);
+            if(xx>=x)
+            {
+                x=xx;
+                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
+            }
+            if(yy>=y)
+            {
+                y=yy;
+                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
+            }
             this.add(t);
         }
+        this.validate();
+        ////new dimension(height,width)
+        this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
+        this.validate();
+        this.setVisible(true);
     }
     
 }

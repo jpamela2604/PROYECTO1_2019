@@ -6,9 +6,12 @@
 package execute;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.util.Hashtable;
+import javax.swing.JComponent;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import proyecto1.var;
 import ts.Simbolo;
@@ -44,25 +47,26 @@ public class ui_ControlNumerico extends JSpinner{
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         //this.fuente=this.getFont().getFontName();
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,this.getFont().getFontName(),false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,this.getFont().getSize(),false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
         //this.negrita=false;
         //this.cursiva=false;
         //this.alto=this.getSize().height;
         //this.ancho=this.getSize().width;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_entero,0,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_spinner,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_spiner,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_entero,var.defecto_spinner,false));
         //this.defecto=0;
         //this.minimo=-3000;
         //this.maximo=3000;
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,3000,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,-3000,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_spinner,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_spinner,false));
+        this.setVisible(false);
     }
     public ui_ControlNumerico(int alto,int ancho,int maximo,int minimo,int x,int y,int defecto,String nombre)
     {
@@ -84,14 +88,15 @@ public class ui_ControlNumerico extends JSpinner{
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
         //this.fuente=this.getFont().getFontName();
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,this.getFont().getFontName(),false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,this.getFont().getSize(),false));
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         //this.color="#000000";
         /*this.negrita=false;
         this.cursiva=false;*/
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
+        this.setVisible(false);
         
     }
     
@@ -114,14 +119,29 @@ public class ui_ControlNumerico extends JSpinner{
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         this.setFont(new java.awt.Font(fuente, font, tam));
         
-        this.setForeground(Color.decode(color));
+        
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);
+        //setsize(width,height)
+        this.setSize(ancho,alto);
         //default value,lower bound,upper bound,increment by 
         int minimo=Integer.valueOf(((Simbolo)tabla.get("MINIMO")).valor.toString());
         int maximo=Integer.valueOf(((Simbolo)tabla.get("MAXIMO")).valor.toString());
         int def=Integer.valueOf(((Simbolo)tabla.get("DEFECTO")).valor.toString());
-        this.setModel(new SpinnerNumberModel(def, minimo, maximo, 1));
+        this.setModel(new SpinnerNumberModel(def, minimo, maximo, var.incr_spinner));
+        //this.setForeground(Color.decode(color));
+        JComponent editor =(JSpinner.NumberEditor) this.getEditor();
+        int n = editor.getComponentCount();
+        for (int i=0; i<n; i++)
+        {
+            Component c = editor.getComponent(i);
+            if (c instanceof JTextField)
+            {
+                c.setForeground(Color.decode(color));
+            }
+        }
+        this.repaint();
+        this.setVisible(true);
+        
     }
 }

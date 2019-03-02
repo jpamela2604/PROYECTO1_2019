@@ -11,6 +11,8 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import proyecto1.var;
 import ts.Simbolo;
 
@@ -40,10 +42,10 @@ public class ui_ventana extends JFrame{
         //this.tipo=tipo;
         this.tabla.put("TIPO", new Simbolo(var.tipo_cadena,tipo,false));
         //this.alto=500;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,500,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_ven,false));
         //this.ancho=500;
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,500,false));
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_ven,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.color_fondo,false));
         //this.color="";
     }
      public ui_ventana(String color,int alto,int ancho)
@@ -66,21 +68,59 @@ public class ui_ventana extends JFrame{
     
     public void cargar()
     {
-        this.setLayout(null);
+        int xp=0;
+        int yp=0;
+        int anchop=0;
+        int altop=0;
+        //this.setLayout(null);
+        JPanel principal=new JPanel();
+        principal.setLayout(null);
+        JScrollPane sprin = new JScrollPane();
         for(ui_contenedor c:contenedores)
         {
             c.cargar();
-            int xx=Integer.valueOf(((Simbolo)c.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)c.tabla.get("Y")).valor.toString());
-            c.setLocation(xx, yy);
-            this.add(c);
+            JScrollPane sp = new JScrollPane();
+            sp.getViewport().add(c);
+            //c.setLocation(xx, yy);
+            //sp.setLayout(null);
+            int x=Integer.valueOf(((Simbolo)c.tabla.get("X")).valor.toString());
+            int y=Integer.valueOf(((Simbolo)c.tabla.get("Y")).valor.toString());
+            int alto=Integer.valueOf(((Simbolo)c.tabla.get("ALTO")).valor.toString());
+            int ancho=Integer.valueOf(((Simbolo)c.tabla.get("ANCHO")).valor.toString());
+            sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            //setBounds(int x, int y, int width, int height)
+            sp.setBounds(x, y, ancho, alto);
+            principal.add(sp);
+            this.repaint();
+            if(xp<=x)
+            {
+                xp=x;
+                anchop=ancho;
+            }
+            if(yp<=y)
+            {
+                yp=y;
+                altop=alto;
+            }
         }
-        this.getContentPane().setBackground(Color.decode(((Simbolo)tabla.get("COLOR")).valor.toString()));
+        sprin.getViewport().add(principal);
+        sprin.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        sprin.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        principal.setLayout(null);
+        principal.setBackground(Color.decode(((Simbolo)tabla.get("COLOR")).valor.toString()));
+        //new dimension(height,width)
+        principal.setPreferredSize(new Dimension(xp+anchop+50,yp+altop+50));
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setPreferredSize(new Dimension(alto ,ancho));
-        this.setMaximumSize(new Dimension(alto,ancho));
-        this.setMaximumSize(new Dimension(alto,ancho));
+        //new dimension(height,width)
+        this.setPreferredSize(new Dimension(ancho ,alto));
+        this.setMaximumSize(new Dimension(ancho,alto));
+        this.setMaximumSize(new Dimension(ancho,alto));
+        //setBounds(int x, int y, int width, int height)
+        sprin.setBounds(0, 0, ancho, alto);
+        //principal.add(sprin);
+        this.add(sprin);
         this.pack();
         
     }  

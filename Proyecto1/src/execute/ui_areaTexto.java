@@ -38,7 +38,7 @@ public class ui_areaTexto extends JTextArea{
     {
         this.tabla=new Hashtable();
         //this.nombre=nombre;
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,var.defecto_area,false));
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
         //this.x=x;
         //this.y=y;
@@ -48,21 +48,22 @@ public class ui_areaTexto extends JTextArea{
         
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,this.getFont().getFontName(),false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,this.getFont().getSize(),false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,"#000000",false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         /*this.negrita=false;
         this.cursiva=false;*/
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,this.getSize().height,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,this.getSize().width,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,3000,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,-3000,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_area,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_area,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_area,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_area,false));
+        this.setVisible(false);
     }
      public ui_areaTexto (int alto,int ancho,String fuente,int tam,String color,
              int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre)
@@ -92,14 +93,15 @@ public class ui_areaTexto extends JTextArea{
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,3000,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,-3000,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_area,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_area,false));
+        this.setVisible(false);
     }
    
     public void cargar()
     {
         int font=0;
-         Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
+        Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
         Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
         if(negrita)
         {
@@ -114,10 +116,11 @@ public class ui_areaTexto extends JTextArea{
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         this.setFont(new java.awt.Font(fuente, font, tam));
         this.setForeground(Color.decode(color));
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
+        /*int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);
+        this.setSize(alto,ancho);*/
          String def=((Simbolo)tabla.get("DEFECTO")).valor.toString();
          this.setText(def);
+         this.setVisible(true);
     }
 }

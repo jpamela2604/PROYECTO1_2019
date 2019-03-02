@@ -12,7 +12,60 @@ import ts.NodoTipo;
  * @author Pamela Palacios
  */
 public class var {
-    
+    /*valores por defecto*/
+    public static String fuenteDef="Agency FB";
+    public static int tamletra=12;
+    public static String colorDef="#000000";
+    //spinner
+    public static int alto_spinner=25;
+    public static int ancho_spiner=50;
+    public static int incr_spinner=1;
+    public static int max_spinner=3000;
+    public static int min_spinner=-3000;
+    public static int defecto_spinner=0;
+    //textbox
+    public static int alto_caja=25;
+    public static int ancho_caja=50;
+    public static int max_caja=3000;
+    public static int min_caja=-3000;
+    public static String defecto_caja="";
+    //area
+    public static int alto_area=75;
+    public static int ancho_area=75;
+    public static int max_area=3000;
+    public static int min_area=-3000;
+    public static String defecto_area="";
+    //combobox
+    public static int max_cb=3000;
+    public static int min_cb=-3000;
+    public static int alto_cb=25;
+    public static int ancho_cb=75;
+    public static String defecto_cb="";
+    //texto
+    public static int max_t=3000;
+    public static int min_t=-3000;
+    public static int alto_t=25;
+    public static int ancho_t=75;
+    //boton
+    public static int alto_boton=25;
+    public static int ancho_boton=75;
+    //panel
+     public static int alto_panel=25;
+    public static int ancho_panel=75;
+    public static String color_fondo="#FFFFFF";
+    //ventana
+    public static int alto_ven=500;
+    public static int ancho_ven=500;
+    //imagen
+    public static int altoIm=200;
+    public static int anchoIm=200;
+    //musica
+    public static int altoMu=40;
+    public static int anchoMu=100;
+    //video
+    public static int altoVi=300;
+    public static int anchoVi=300;
+    /*fin de valores x defecto */
     public static String valor_true="verdadero";
     public static String valor_false="falso";
     public static String archivo;
