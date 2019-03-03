@@ -47,7 +47,7 @@ public class s_declaracion implements sent{
                     e.AddError("La llamada no devuelve un valor "+val.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 }else
                 {
-                    ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), false, linea, columna, archivo);
+                    ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), true, linea, columna, archivo);
                 }
             }
         }

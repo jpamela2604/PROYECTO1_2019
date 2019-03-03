@@ -37,24 +37,27 @@ public class oa_aumento implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo s=(Simbolo) acceso.ejecutar(ts, e, ej);
+        Simbolo h=new Simbolo(var.tipo_error,null);
         if(s.tipo.indice==var.error)
         {
         }else if(s.tipo.indice==var.entero)
         {
+            h=new Simbolo(s.tipo,s.valor);
             s.valor=Integer.valueOf(s.valor.toString())+1;
             
         }else if(s.tipo.indice==var.decimal)
         {
+            h=new Simbolo(s.tipo,s.valor);
             s.valor=Double.valueOf(s.valor.toString())+1;
         }else
         {
             e.AddError("Tipos incompatibles: operacion unaria decremento con valor tipo "+s.tipo.nombre, linea, columna, archivo, "SEMANTICO"); 
-            s=new Simbolo(var.tipo_error,null);
+            //s=new Simbolo(var.tipo_error,null);
         }
         if(this.noRetorna)
         {
             return null;
         }
-        return s;
+        return h;
     }
 }

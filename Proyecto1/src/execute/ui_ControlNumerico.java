@@ -126,6 +126,7 @@ public class ui_ControlNumerico extends JSpinner{
         this.setSize(ancho,alto);
         //default value,lower bound,upper bound,increment by 
         int minimo=Integer.valueOf(((Simbolo)tabla.get("MINIMO")).valor.toString());
+       
         int maximo=Integer.valueOf(((Simbolo)tabla.get("MAXIMO")).valor.toString());
         int def=Integer.valueOf(((Simbolo)tabla.get("DEFECTO")).valor.toString());
         this.setModel(new SpinnerNumberModel(def, minimo, maximo, var.incr_spinner));

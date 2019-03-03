@@ -29,7 +29,7 @@ terminal   String   nulo,verdadero,falso,decre,aumen,igual,mayori,menori,dif,may
                     retornar,selecciona,caso,defecto,funcion,descendente,ascendente,crearArrFile,
                     invertir,maximo,minimo,filter,map,buscar,reduce,todos,alguno,leerGxml,ObtenerPorEtiqueta,
                     ObtenerPorNombre,ObtenerPorId,cerrar,clic,video,musica,imagen,boton,
-                    desple,controln,area,caja,texto,contenedor
+                    desple,controln,area,caja,texto,contenedor,cargar
             ;
 terminal   String er_id,er_decimal,er_cadena,er_entero
             ;
@@ -404,11 +404,11 @@ ACCESO::=   er_id:n2
             |alguno:n2 er_id:n1 parc
             {:
                 RESULT=new s_funcionalAlgunos(n1,(n2left+1),(n2right+1),var.archivo);
-            :}
+            :}/*
             |cerrar:n2 parc
             {:
                 RESULT=new s_nEventoCerrar(null,(n2left+1),(n2right+1),var.archivo);
-            :}
+            :}*/
             |cerrar:n2 LLAMADA:n1 parc
             {:
                 RESULT=new s_nEventoCerrar(n1,(n2left+1),(n2right+1),var.archivo);
@@ -416,10 +416,18 @@ ACCESO::=   er_id:n2
             |clic:n2 LLAMADA:n1 parc
             {:
                 RESULT=new s_nEventoClic(n1,(n2left+1),(n2right+1),var.archivo);
-            :}
+            :}/*
             |clic:n2 parc
             {:
                 RESULT=new s_nEventoClic(null,(n2left+1),(n2right+1),var.archivo);
+            :}*/
+            |cargar:n2 LLAMADA:n1 parc
+            {:
+                RESULT=new s_nEventoCargar(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |cargar:n2 parc
+            {:
+                RESULT=new s_nEventoCargar(null,(n2left+1),(n2right+1),var.archivo);
             :}
             |video:n2 LCOND:n1 parc
             {:
@@ -465,6 +473,14 @@ ACCESO::=   er_id:n2
             {:
                 RESULT=new s_nCrearVentana(n1,(n2left+1),(n2right+1),var.archivo);
             :}*/
+            |crearArrFile:n2  parc
+            {:
+                RESULT=new s_propiaArrayFromFile(new LinkedList(),(n2left+1),(n2right+1),var.archivo);
+            :}
+            |crearArrFile:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_propiaArrayFromFile(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
             ;
 
 LLAMADA::=  er_id:n2 para LCOND:n3 parc
@@ -498,10 +514,8 @@ COND::=     LOGICA:n1
             {:
                 RESULT=n1;
             :}
-            |crearArrFile:n2 COND:n1 parc
-            {:
-                RESULT=new s_propiaArrayFromFile(n1,(n2left+1),(n2right+1),var.archivo);
-            :}
+            
+            
             |leerGxml:n2 COND:n1 parc
             {:
                 RESULT=new s_nativaGxml(n1,(n2left+1),(n2right+1),var.archivo);

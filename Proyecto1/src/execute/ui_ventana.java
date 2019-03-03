@@ -5,6 +5,8 @@
  */
 package execute;
 
+import codigo_fs.sent;
+import codigo_gdato.item;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Hashtable;
@@ -31,8 +33,8 @@ public class ui_ventana extends JFrame{
     //public int ancho;
     //opcional
     //public String color;
-    //sent AccionInicial;
-    //sent AccionFinal;
+    public sent AccionInicial;
+    public sent AccionFinal;
     public ui_ventana(String id,String tipo)
     {
         this.tabla=new Hashtable();
@@ -64,7 +66,19 @@ public class ui_ventana extends JFrame{
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         
     }
-    
+   public LinkedList<item> getValores()
+    {
+        LinkedList<item> valores=new LinkedList();
+        for(ui_contenedor c:contenedores)
+        {
+            LinkedList<item> va=c.getValores();
+            for(item i:va)
+            {
+                valores.add(i);
+            }
+        }
+        return valores;
+    }
     
     public void cargar()
     {

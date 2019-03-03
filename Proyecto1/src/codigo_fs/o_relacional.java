@@ -47,8 +47,9 @@ public class o_relacional implements sent{
         if(o1.tipo.indice==var.error||o2.tipo.indice==var.error)
         {
             return respuesta;
-        }else if((o1.tipo.indice>3&&o1.tipo.indice!=8&&o2.tipo.indice==var.nulo)
-                 ||(o2.tipo.indice>3&&o2.tipo.indice!=8&&o1.tipo.indice==var.nulo))
+        }
+        else if((/*o1.tipo.indice>3&&o1.tipo.indice!=8&&*/o2.tipo.indice==var.nulo)
+                 ||(/*o2.tipo.indice>3&&o2.tipo.indice!=8&&o*/o1.tipo.indice==var.nulo))
         {
             Boolean val=false;
             if("==".equals(oprel))

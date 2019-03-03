@@ -7,6 +7,7 @@ package execute;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import javax.swing.JLabel;
 import proyecto1.var;
@@ -132,6 +133,10 @@ public class ui_texto extends JLabel{
         this.setBounds(xx, yy, ancho, alto);
         this.setVisible(true);
         this.repaint();
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

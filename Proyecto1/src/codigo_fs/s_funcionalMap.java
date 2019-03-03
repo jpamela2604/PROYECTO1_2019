@@ -96,7 +96,7 @@ public class s_funcionalMap implements sent {
             ts.displayReturns.pop();
             if(retorno==null||retorno.tipo.indice==var.vacio)
             {
-                val.add(new Simbolo(var.tipo_nulo,null));
+                //val.add(new Simbolo(var.tipo_nulo,null));
             }else
             {
                 val.add(retorno);

@@ -45,24 +45,25 @@ public class symbl {
   public static final int menori = 10;
   public static final int mayori = 9;
   public static final int alguno = 60;
-  public static final int er_entero = 80;
+  public static final int er_entero = 81;
   public static final int is = 32;
   public static final int aumen = 7;
   public static final int video = 67;
-  public static final int er_id = 77;
+  public static final int er_id = 78;
   public static final int a_div = 37;
   public static final int op_or = 26;
   public static final int invertir = 52;
   public static final int a_mas = 34;
   public static final int id = 2;
   public static final int cerrar = 65;
-  public static final int er_decimal = 78;
+  public static final int er_decimal = 79;
   public static final int dosptos = 23;
   public static final int ObtenerPorEtiqueta = 62;
   public static final int leerGxml = 61;
   public static final int minimo = 54;
   public static final int a_menos = 36;
   public static final int divis = 17;
+  public static final int cargar = 77;
   public static final int ascendente = 50;
   public static final int retornar = 44;
   public static final int mayor = 12;
@@ -79,7 +80,7 @@ public class symbl {
   public static final int llava = 19;
   public static final int buscar = 57;
   public static final int si = 41;
-  public static final int er_cadena = 79;
+  public static final int er_cadena = 80;
   public static final int caja = 74;
   public static final int defecto = 47;
   public static final int parc = 22;
@@ -167,6 +168,7 @@ public class symbl {
   "caja",
   "texto",
   "contenedor",
+  "cargar",
   "er_id",
   "er_decimal",
   "er_cadena",

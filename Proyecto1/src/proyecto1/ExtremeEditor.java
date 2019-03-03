@@ -50,7 +50,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
 
     public static Pestania[] arrayPanel= new Pestania[25] ;
     public static int cuentaArrayPanel=0;
-    String ru="";
+    public static String ru="";
     mng_error er;
     Reconize gra;
     /**

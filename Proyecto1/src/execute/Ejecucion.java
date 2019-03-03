@@ -6,7 +6,14 @@
 package execute;
 
 import codigo_fs.Array;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.JTextArea;
+import proyecto1.ExtremeEditor;
+import static proyecto1.ExtremeEditor.arrayPanel;
+import proyecto1.Reconize;
 
 /**
  *
@@ -22,6 +29,54 @@ public class Ejecucion {
     {
         this.a.setText(a.getText()+valor+"\n");
     }
+    public void GuardarDatos(String ventana,String contenido)
+    {
+        
+        String ruta=ExtremeEditor.ru+"\\"+ventana+".gxml";
+        contenido=trueContent(ruta,contenido);        
+        FileWriter fw;
+        try
+        {   
+            fw= new FileWriter(ruta);
+            fw.write(contenido);
+            fw.close();        
+                //JOptionPane.showMessageDialog(null, "Guardado Exitosamente ");
+         }
+        catch(IOException io)
+        {
+                  //l3.setText("Error al abrir el fichero");
+                 //JOptionPane.showMessageDialog(null, "Error al guardar ");
+        }        
+    }
+    public String trueContent(String ruta,String contenido)
+    {
+        String valor="<lista tipo=\"principal\">\n"+contenido+"\n</lista>";
+        String leido=Reconize.getContenido(ruta);
+        if(!leido.equals(""))
+        {
+            valor=leido.replace("</lista>","\n"+ contenido+"\n</lista>");
+        }
+        
+        return valor;
+    }
+    String leer(String ruta)
+    {
+        String w="";
+        try {
+            Scanner input = new Scanner(new File("/ruta/filename.txt"));
+            while (input.hasNextLine()) {
+                String line = input.nextLine();
+                //System.out.println(line);
+                w=w+"\n";
+            }
+            input.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return w;
+    }
+    
+    
     public ui_ventana CrearVentana(String id,String tipo)
     {
         ui_ventana ventana= new ui_ventana(id,tipo);

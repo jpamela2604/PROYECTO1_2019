@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gdato.item;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Hashtable;
@@ -172,7 +173,53 @@ public class ui_contenedor extends JPanel{
         }
         return elemntos;
     }
-    
+    public LinkedList<item> getValores()
+    {
+        LinkedList<item> valores=new LinkedList();
+        for(ui_ControlNumerico t:spinners)
+        {
+            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
+            valores.add(new item(nombre,t.getValue(),0,0,""));
+        }
+        for(ui_areaTexto t:areas)
+        {
+            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
+            valores.add(new item(nombre,t.getText(),0,0,""));
+        }
+        for(ui_cajaTexto t:cajas)
+        {
+            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
+            valores.add(new item(nombre,t.getText(),0,0,""));
+        }
+        for(ui_desplegable t:combobox)
+        {
+            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
+            Simbolo v=t.lista.valores.get(t.getSelectedIndex());
+            String valor="";
+            if(v!=null)
+            {
+                if(v.tipo.indice==var.booleano)
+                {
+                    if(Boolean.valueOf(v.valor.toString()))
+                    {
+                        valor="verdadero";
+                    }else
+                    {
+                        valor="falso";
+                    }
+                }else if(v.tipo.indice==var.nulo)
+                {
+                    valor="nulo";
+                }
+                else
+                {
+                    valor=v.valor.toString();
+                }
+            }
+            valores.add(new item(nombre,valor,0,0,""));
+        }
+        return valores;
+    }
     public void cargar()
     {
         //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -265,6 +312,7 @@ public class ui_contenedor extends JPanel{
             }
             this.add(sp);
         }
+        
         for(ui_cajaTexto t:cajas)
         {
             t.cargar();
@@ -283,6 +331,7 @@ public class ui_contenedor extends JPanel{
             }
             this.add(t);
         }
+       
         for(ui_desplegable t:combobox)
         {
             t.cargar();

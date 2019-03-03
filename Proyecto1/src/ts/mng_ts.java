@@ -34,7 +34,7 @@ public class mng_ts {
         e = er;
         auxiliar = new Stack();
         tabla.push(globales);
-        agregarOriginales();
+        //agregarOriginales();
     }
     
     public void agregarOriginales()

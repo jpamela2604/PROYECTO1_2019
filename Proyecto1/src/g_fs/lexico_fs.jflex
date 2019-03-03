@@ -43,6 +43,7 @@ Comentario  ="//" [^\n]+ [\n]?
 "LeerGxml("            {return new Symbol(symbl.leerGxml,yyline,yycolumn,new String(yytext()));}
 "filter("              {return new Symbol(symbl.filter,yyline,yycolumn,new String(yytext()));}
 "map("                 {return new Symbol(symbl.map,yyline,yycolumn,new String(yytext()));}
+"AlCargar("            {return new Symbol(symbl.cargar,yyline,yycolumn,new String(yytext()));}
 "buscar("              {return new Symbol(symbl.buscar,yyline,yycolumn,new String(yytext()));}
 "reduce("              {return new Symbol(symbl.reduce,yyline,yycolumn,new String(yytext()));}
 "todos("               {return new Symbol(symbl.todos,yyline,yycolumn,new String(yytext()));}
@@ -50,7 +51,7 @@ Comentario  ="//" [^\n]+ [\n]?
 "maximo()"              {return new Symbol(symbl.maximo,yyline,yycolumn,new String(yytext()));}
 "minimo()"              {return new Symbol(symbl.minimo,yyline,yycolumn,new String(yytext()));}
 "invertir()"           {return new Symbol(symbl.invertir,yyline,yycolumn,new String(yytext()));}
-"crearArrayDesdeArchivo(" {return new Symbol(symbl.crearArrFile,yyline,yycolumn,new String(yytext()));}
+"crearArrayDesdeArchivo("   {return new Symbol(symbl.crearArrFile,yyline,yycolumn,new String(yytext()));}
 "ascendente()"          {return new Symbol(symbl.ascendente,yyline,yycolumn,new String(yytext()));}
 "descendente()"         {return new Symbol(symbl.descendente,yyline,yycolumn,new String(yytext()));}
 "funcion"               {return new Symbol(symbl.funcion,yyline,yycolumn,new String(yytext()));}

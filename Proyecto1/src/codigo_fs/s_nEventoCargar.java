@@ -18,14 +18,14 @@ import ts.mng_ts;
  * @author Pamela Palacios
  */
 public class s_nEventoCargar  implements sent {
-     LinkedList<sent> parametros;
+    sent llamada;
      int linea;
      int columna;
      String archivo;
      
-     public s_nEventoCargar(LinkedList<sent> parametros,int linea,int columna,String archivo)
+     public s_nEventoCargar(sent llamada,int linea,int columna,String archivo)
      {
-         this.parametros=parametros;
+         this.llamada=llamada;
          this.linea=linea;
          this.columna=columna;
          this.archivo=archivo;
@@ -38,29 +38,46 @@ public class s_nEventoCargar  implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
-        if(parametros.isEmpty())
+        if(llamada==null)
         {
             //va a empezar desde aqui
             if(ts.actual==null)
             {
-                e.AddError("No hay objeto al cual agregar evento", linea, columna, archivo, "SEMANTICO");
+                e.AddError("No hay objeto al cual agregar evento cargar", linea, columna, archivo, "SEMANTICO");
             }else if(ts.actual.tipo.indice!=var.ventana)
             {
-                 e.AddError("No se le puede agregar un evento a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+                 e.AddError("No se le puede agregar un evento al cargar a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
             }else
             {
                 ui_ventana v=(ui_ventana) ts.actual.valor;
                 v.cargar();
                 v.show();
-                return ts.actual;
+                if(v.AccionInicial!=null)
+                {
+                    Simbolo actual=ts.actual;
+                    ts.actual=null;
+                    v.AccionInicial.ejecutar(ts, e, ej);
+                    ts.actual=actual;
+                }
+                return new Simbolo(var.tipo_vacio,null);
             }
         }
-        else if(parametros.size()!=1)
+        else 
         {
-            e.AddError("El metodo AlCargar solo tiene un parametro", linea, columna, archivo, "SEMANTICO");
-            return rr;
+            if(ts.actual==null)
+            {
+                e.AddError("No hay objeto al cual agregar evento", linea, columna, archivo, "SEMANTICO");
+            }else if(ts.actual.tipo.indice!=var.ventana)
+            {
+                 e.AddError("No se le puede agregar un evento al cargar a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+            }else
+            {
+                ui_ventana v=(ui_ventana) ts.actual.valor;
+                v.AccionInicial=this.llamada;
+                return new Simbolo(var.tipo_vacio,null);
+            }
         }
-        Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);       
+       //Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);       
         
         return rr;
     }

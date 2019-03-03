@@ -43,8 +43,12 @@ public class s_llamada implements sent{
             return new s_nCrearVentana(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
         }else if("ALCARGAR".equals(this.nombre))
         {
-            return new s_nEventoCargar(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
-        }else
+            //return new s_nEventoCargar(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
+        }else if("CREARARRAYDESDEARCHIVO".equals(this.nombre))
+        {
+            return new s_propiaArrayFromFile(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
+        }
+        else
         {
             /*es una llamada de un metodo cualquiera*/
             
