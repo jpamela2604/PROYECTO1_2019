@@ -32,7 +32,7 @@ public class Ejecucion {
     public void GuardarDatos(String ventana,String contenido)
     {
         
-        String ruta=ExtremeEditor.ru+"\\"+ventana+".gxml";
+        String ruta=ExtremeEditor.ru+"\\"+ventana+".gdato";
         contenido=trueContent(ruta,contenido);        
         FileWriter fw;
         try
@@ -50,8 +50,8 @@ public class Ejecucion {
     }
     public String trueContent(String ruta,String contenido)
     {
-        String valor="<lista tipo=\"principal\">\n"+contenido+"\n</lista>";
-        String leido=Reconize.getContenido(ruta);
+        String valor="<lista>\n"+contenido+"\n</lista>";
+        String leido=Reconize.getContenido(ruta,false);
         if(!leido.equals(""))
         {
             valor=leido.replace("</lista>","\n"+ contenido+"\n</lista>");

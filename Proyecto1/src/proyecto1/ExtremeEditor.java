@@ -485,7 +485,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
             Ventana.setDialogTitle("Guardar Archivo");   
             Ventana.showSaveDialog(this);
             Abrir = Ventana.getSelectedFile();
-            AgregarTab(Ventana.getSelectedFile().toString(),Reconize.getContenido(arrayPanel[files.getSelectedIndex()].ruta),getnombre(Ventana.getSelectedFile().toString()),TipoFile(Ventana.getSelectedFile().toString()));
+            AgregarTab(Ventana.getSelectedFile().toString(),Reconize.getContenido(arrayPanel[files.getSelectedIndex()].ruta,true),getnombre(Ventana.getSelectedFile().toString()),TipoFile(Ventana.getSelectedFile().toString()));
             //abrir(Ventana.getSelectedFile().toString(),getnombre(Ventana.getSelectedFile().toString()));
             guardar();
         }else

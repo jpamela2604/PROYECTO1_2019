@@ -11,7 +11,7 @@ er_decimal = [0-9]+[.] [0-9]+
 er_cadena = ([\"]([^\"])*[\"])|([']([^'])*['])
 
 ComentarioMulti ="/*" ~ "*/" 
-Comentario  ="//" [^\n]+ [\n]? 
+Comentario  ="//" [^\n]* [\n]? 
 %cupsym symbl
 %class lexico_fs
 %cup

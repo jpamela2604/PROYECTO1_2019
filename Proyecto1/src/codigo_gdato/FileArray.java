@@ -13,12 +13,13 @@ import java.util.LinkedList;
  */
 public class FileArray {
     String id;
-    LinkedList<tupla> tuplas;
+    public LinkedList<tupla> tuplas;
     int fila;
     int columna;
     String archivo;
     public FileArray(String id,LinkedList<tupla> tuplas,int fila,int columna,String archivo)
     {
+        
         this.fila=fila;
         this.columna=columna;
         this.archivo=archivo;

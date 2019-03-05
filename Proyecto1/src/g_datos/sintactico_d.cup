@@ -8,6 +8,8 @@ import java.util.Hashtable;
 import codigo_gdato.*;
 parser code
 {:
+
+
 public FileArray raiz;
 public mng_error e = new mng_error();
 public void syntax_error(Symbol s){
@@ -22,7 +24,7 @@ action code
 {:
       
 :}
-terminal   String i_prin,f_prin,i_lista,f_lista,menor,mayor,er_cadena,er_id,inf,all
+terminal   String menor,er_cadena,er_id,er_decimal,er_entero,slash,mayor,i_prin,f_prin,f_lista,i_lista,tipo,is
             ;
 nonterminal FileArray S,A
             ;
@@ -32,6 +34,8 @@ nonterminal LinkedList<item> LVAL,L
             ;
 nonterminal item H
             ;
+nonterminal String OPC
+            ;
 start with S;
 S ::=       A:n1
             {:
@@ -39,11 +43,19 @@ S ::=       A:n1
                 raiz=n1;
             :}
             ;
-A::=        i_lista er_cadena:i1 mayor f_lista mayor
+A::=        i_lista:i1   mayor f_lista mayor
+            {:
+                RESULT=new FileArray("",new LinkedList(),(i1left+1),(i1right+1),var.archivo);
+            :}
+            |i_lista:i1   mayor T:n1 f_lista mayor
+            {:
+                RESULT=new FileArray("",n1,(i1left+1),(i1right+1),var.archivo);
+            :}
+            | i_lista tipo is  er_cadena:i1 mayor f_lista mayor
             {:
                 RESULT=new FileArray(i1,new LinkedList(),(i1left+1),(i1right+1),var.archivo);
             :}
-            |i_lista er_cadena:i1 mayor T:n1 f_lista mayor
+            |i_lista tipo is er_cadena:i1 mayor T:n1 f_lista mayor
             {:
                 RESULT=new FileArray(i1,n1,(i1left+1),(i1right+1),var.archivo);
             :}
@@ -81,11 +93,11 @@ T::=        T:n1 LVAL:n2
                 }                
             :}
             ;
-LVAL::=     i_prin f_prin
+LVAL::=     i_prin mayor f_prin mayor
             {:
             
             :}
-            |i_prin L:n1 f_prin
+            |i_prin mayor L:n1 f_prin mayor
             {:
                 RESULT=n1;
             :}
@@ -107,16 +119,28 @@ L::=        L:n1 H:n2
                 }
             :}
             ;
-H::=        menor er_id:i1 mayor all:n2 inf er_id:i2 mayor
+H::=        menor er_id:i1  mayor OPC:n2 menor slash er_id:i2 mayor
             {:
                 if(i1.equals(i2))
                 {
-                   RESULT=new item(i1,i2,(i1left+1),(i1right+1),var.archivo); 
+                   RESULT=new item(i1,n2,(i1left+1),(i1right+1),var.archivo); 
                 }else
                 {
                     e.AddError("La etiqueta de inicio no es igual a la final",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
                 }
             :}
             ;
-
+OPC::=      er_cadena:n1
+            {:
+                RESULT=n1;
+            :}
+            |er_decimal:n1
+            {:
+                 RESULT=n1;
+            :}
+            |er_entero:n1
+            {:
+                 RESULT=n1;
+            :}
+            ;
 

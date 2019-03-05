@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * @author Pamela Palacios
  */
 public class tupla {
-    Hashtable items;
+    public Hashtable items;
     public tupla(Hashtable items)
     {
         this.items=items;

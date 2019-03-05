@@ -52,7 +52,7 @@ public class Reconize {
         //LinkedList<int> raiz = null;        
         try
         {
-            lexico_g le = new lexico_g(new BufferedReader( new StringReader(getContenido(ruta))));            
+            lexico_g le = new lexico_g(new BufferedReader( new StringReader(getContenido(ruta,false))));            
             sintactico_g sintactico=new sintactico_g(le);
             sintactico.parse();            
            // raiz =sintactico.raiz;
@@ -74,12 +74,13 @@ public class Reconize {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
     }
+    
      public void gramaticaFS(String ruta)
     {
         LinkedList<sent> raiz = null;        
         try
         {
-            lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta))));            
+            lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta,false))));            
             sintactico_fs sintactico=new sintactico_fs(le);
             sintactico.parse();            
             raiz =sintactico.raiz;
@@ -103,7 +104,7 @@ public class Reconize {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
     }
-    public static String getContenido(String ruta)
+    public static String getContenido(String ruta,Boolean bandera)
     {
         String Text;
         String contenido="";
@@ -119,7 +120,8 @@ public class Reconize {
         }
         catch(IOException ioe)
         {
-		JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
+            if(bandera)
+            {JOptionPane.showMessageDialog(null, "Error al abrir el archivo");}
         }
         return contenido;
     }

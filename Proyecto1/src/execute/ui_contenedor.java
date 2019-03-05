@@ -184,12 +184,12 @@ public class ui_contenedor extends JPanel{
         for(ui_areaTexto t:areas)
         {
             String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            valores.add(new item(nombre,t.getText(),0,0,""));
+            valores.add(new item(nombre,"\""+t.getText()+"\"",0,0,""));
         }
         for(ui_cajaTexto t:cajas)
         {
             String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            valores.add(new item(nombre,t.getText(),0,0,""));
+            valores.add(new item(nombre,"\""+t.getText()+"\"",0,0,""));
         }
         for(ui_desplegable t:combobox)
         {
@@ -214,6 +214,11 @@ public class ui_contenedor extends JPanel{
                 else
                 {
                     valor=v.valor.toString();
+                }
+                
+                if(!(v.tipo.indice==var.entero||v.tipo.indice==var.decimal))
+                {
+                    valor="\""+valor+"\"";
                 }
             }
             valores.add(new item(nombre,valor,0,0,""));
