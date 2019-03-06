@@ -5,7 +5,9 @@
  */
 package codigo_gxml;
 
+import errors.mng_error;
 import java.util.LinkedList;
+import proyecto1.var;
 
 /**
  *
@@ -24,5 +26,20 @@ public class e_listaDato implements etiqueta{
         this.linea=linea;
         this.columna = columna;
         this.archivo=archivo;
+    }
+    @Override
+    public Object Comprobar(mng_error e) {
+        String invalidos= "";
+        String aux="";
+        for(elemento el:this.elementos)
+        {
+            invalidos=invalidos+aux+var.elementos[el.tipo-100];
+                aux=",";
+        }
+        if(!invalidos.equals(""))
+        {
+            e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta ListaDatos", linea, columna, archivo, "SEMANTICO");
+        }
+        return null;
     }
 }

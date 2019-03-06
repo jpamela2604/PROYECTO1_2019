@@ -5,6 +5,7 @@
  */
 package codigo_gxml;
 
+import errors.mng_error;
 import java.util.LinkedList;
 
 /**
@@ -12,21 +13,16 @@ import java.util.LinkedList;
  * @author Pamela Palacios
  */
 public class e_Importar implements etiqueta{
-    /*
-    int linea;
-    int columna;
-    String archivo;
-    public (int linea, int columna,String archivo)
-    {
-        this.linea=linea;
-        this.columna = columna;
-        this.archivo=archivo;
-    }
-    */
+    
     public LinkedList<ruta> rutas;
     public e_Importar(ruta r)
     {
         this.rutas=new LinkedList();
         this.rutas.add(r);
+    }
+
+    @Override
+    public Object Comprobar(mng_error e) {
+        return null;
     }
 }

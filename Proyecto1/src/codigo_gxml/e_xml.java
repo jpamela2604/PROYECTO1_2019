@@ -5,6 +5,7 @@
  */
 package codigo_gxml;
 
+import errors.mng_error;
 import java.util.LinkedList;
 
 /**
@@ -18,6 +19,14 @@ public class e_xml implements etiqueta{
     {
         this.imports=imports;
         this.ventanas=ventanas;
+    }
+    @Override
+    public Object Comprobar(mng_error e) {
+        for(etiqueta et:ventanas)
+        {
+            et.Comprobar(e);
+        }
+        return null;
     }
     
 }

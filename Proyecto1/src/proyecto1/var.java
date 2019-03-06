@@ -50,7 +50,7 @@ public class var {
     public static int alto_boton=25;
     public static int ancho_boton=75;
     //panel
-     public static int alto_panel=25;
+    public static int alto_panel=25;
     public static int ancho_panel=75;
     public static String color_fondo="#FFFFFF";
     //ventana
@@ -65,6 +65,9 @@ public class var {
     //video
     public static int altoVi=300;
     public static int anchoVi=300;
+    //CONTROLADORES EN GENERAL
+    public static int alto_controlador=25;
+    public static int ancho_ontrolador=75;
     /*fin de valores x defecto */
     public static String valor_true="verdadero";
     public static String valor_false="falso";
@@ -96,6 +99,10 @@ public class var {
     public static int path=119;
     public static int autoplay=120;
     public static int defecto=121;
+    public static  String []  elementos={"ID","TIPO","COLOR","ACCIONINICIAL","ACCIONFINAL","X","Y","ALTO",
+                "ANCHO","BORDE","NOMBRE","FUENTE","TAM","NEGRITA","CURSIVA","MAXIMO","MINIMO","ACCION",
+                "REFERENCIA","RUTA","AUTOREPRODUCCION","DFECTO"};
+    
     //public static int borde=122;
     
     /*de tipos*/

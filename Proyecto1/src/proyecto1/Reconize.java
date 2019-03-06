@@ -6,6 +6,7 @@
 package proyecto1;
 
 import codigo_fs.sent;
+import codigo_gxml.etiqueta;
 import errors.mng_error;
 import execute.Ejecucion;
 import g_fs.lexico_fs;
@@ -49,25 +50,23 @@ public class Reconize {
     
     public void gramaticaGxml(String ruta)
     {
-        //LinkedList<int> raiz = null;        
+        etiqueta raiz = null;        
         try
         {
-            lexico_g le = new lexico_g(new BufferedReader( new StringReader(getContenido(ruta,false))));            
+            String con=getContenido(ruta,false);
+            lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
             sintactico_g sintactico=new sintactico_g(le);
             sintactico.parse();            
-           // raiz =sintactico.raiz;
+            raiz =sintactico.raiz;
             e.Adding(le.e);
             e.Adding(sintactico.e);
-            /*if(raiz!=null)
+            if(raiz!=null)
             {
-                for(sent s:raiz)
-                {
-                    s.Ejecutar(ts, e, txtSalida);
-                }
+                 raiz.Comprobar(e);
             }else
             {
-                this.txtError.setText("entrada incorrecta");
-            }*/
+                e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
+            }
         }catch(Exception ex){
 
                 System.out.println("ex: "+ex.getMessage());

@@ -40,7 +40,7 @@ nonterminal ruta IMP
             ;
 nonterminal Boolean BOL
             ;
-nonterminal elemento ELEMENTO,REFE,ACC,DEFECTO
+nonterminal elemento ELEMENTO,REFE,DEFECTO
             ;
 nonterminal LinkedList<elemento> ELEMENTOS
             ;
@@ -314,10 +314,7 @@ ELEMENTO::=     id:n1 is er_cadena:n2
                 {:
                     RESULT=new elemento(var.accionFinal,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
-                |ACC:n1
-                {:
-                        RESULT=n1;
-                :}
+                
                 |x:n1 is er_entero:n2
                 {:
                     RESULT=new elemento(var.x,n2,(n1left+1),(n1right+1),var.archivo);
@@ -372,11 +369,11 @@ ELEMENTO::=     id:n1 is er_cadena:n2
                 :}
                 |autoplay:n1 is BOL:n2
                 {:
-                    RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                    RESULT=new elemento(var.autoplay,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
                 |path:n1 is er_cadena:n2
                 {:
-                    RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                    RESULT=new elemento(var.path,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
                 |accion:n1 is call:n2
                 {:
