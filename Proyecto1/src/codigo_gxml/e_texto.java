@@ -11,16 +11,16 @@ import java.util.LinkedList;
  *
  * @author Pamela Palacios
  */
-public class e_dato implements etiqueta{
+public class e_texto implements etiqueta{
     LinkedList<elemento> elementos;
-    public Object valor;
+    String texto;
     int linea;
     int columna;
     String archivo;
-    public e_dato( LinkedList<elemento> elementos,Object valor,int linea, int columna,String archivo)
+    public e_texto(LinkedList<elemento> elementos,String texto,int linea, int columna,String archivo)
     {
+        this.texto=texto;
         this.elementos=elementos;
-        this.valor=valor;
         this.linea=linea;
         this.columna = columna;
         this.archivo=archivo;

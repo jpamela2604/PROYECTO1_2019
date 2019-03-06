@@ -96,6 +96,8 @@ public class var {
     public static int path=119;
     public static int autoplay=120;
     public static int defecto=121;
+    //public static int borde=122;
+    
     /*de tipos*/
     public static int booleano=0;
     public static int entero=1;

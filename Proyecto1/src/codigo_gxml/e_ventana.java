@@ -14,9 +14,15 @@ import java.util.LinkedList;
 public class e_ventana implements etiqueta{
     LinkedList<etiqueta> contenedores;
     LinkedList<elemento> elementos;
-    public e_ventana(LinkedList<elemento> elementos,LinkedList<etiqueta> contenedores)
+    int linea;
+    int columna;
+    String archivo;
+    public e_ventana(LinkedList<elemento> elementos,LinkedList<etiqueta> contenedores,int linea, int columna,String archivo)
     {
         this.contenedores=contenedores;
         this.elementos=elementos;
+        this.linea=linea;
+        this.columna = columna;
+        this.archivo=archivo;
     }
 }

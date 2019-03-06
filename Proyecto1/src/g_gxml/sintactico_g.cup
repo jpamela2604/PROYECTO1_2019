@@ -25,13 +25,14 @@ action code
 terminal   String i_imp,f_imp,mayor,i_ven,f_ven,tipo,color,ac_in,ac_fi,is,
             i_control,f_control,i_defecto,f_defecto,i_lista,f_lista,i_dato,f_dato,referencia,
             accion,nombre,x,y,alto,ancho,fuente,tam,negrita,cursiva,maximo,minimo,autoplay,path,
-            i_multi,f_multi,i_boton,i_enviar,f_boton,f_enviar
+            i_multi,f_multi,i_boton,i_enviar,f_boton,f_enviar,i_texto,f_texto,i_contenedor,f_contenedor,
+            borde
             ;
 terminal   String id, all,call
             ;
-terminal   String er_id,er_entero,er_cadena,verdadero,falso
+terminal   String er_entero,er_cadena,verdadero,falso
             ;
-nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR
+nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR,TEXTO,CONTE
             ;
 nonterminal e_dato DATO
             ;
@@ -45,7 +46,7 @@ nonterminal LinkedList<elemento> ELEMENTOS
             ;
 nonterminal LinkedList<Object> OPCS_CTRL;
 nonterminal Object OPC_CTRL;
-nonterminal LinkedList<etiqueta> ETIQUETAS,VENTANAS;
+nonterminal LinkedList<etiqueta> ETIQUETAS,VENTANAS,LCONTE;
 nonterminal LinkedList<e_dato> DATOS
             ;
 start with S;
@@ -87,14 +88,54 @@ LIMP::=         LIMP:n1 IMP:n2
                     RESULT=new e_Importar(n1);
                 :}
                 ;
-IMP ::=         i_imp mayor er_cadena:n1 f_imp mayor
+IMP ::=         i_imp  all:n1 f_imp 
                 {:
                     RESULT=new ruta(n1,(n1left+1),(n1right+1),var.archivo);
                 :}
                 ;
-VEN ::=         i_ven ELEMENTOS:n1 mayor ETIQUETAS:n2 f_ven mayor
+VEN ::=         i_ven:n0 ELEMENTOS:n1 mayor LCONTE:n2 f_ven mayor
                 {:
-                    RESULT=new e_ventana(n1,n2);
+                    RESULT=new e_ventana(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_ven:n0 ELEMENTOS:n1 mayor  f_ven mayor
+                {:
+                    RESULT=new e_ventana(n1,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_ven:n0  mayor LCONTE:n2 f_ven mayor
+                {:
+                    RESULT=new e_ventana(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_ven:n0  mayor  f_ven mayor
+                {:
+                    RESULT=new e_ventana(new LinkedList(),new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
+                ;
+LCONTE::=       LCONTE:n1 CONTE:n2
+                {:
+                    RESULT=n1;
+                    n1.add(n2);
+                :}
+                |CONTE:n1
+                {:
+                    RESULT=new LinkedList();
+                    RESULT.add(n1);
+                :}
+                ;
+CONTE::=        i_contenedor:n0 ELEMENTOS:n1 mayor ETIQUETAS:n2 f_contenedor mayor
+                {:
+                    RESULT=new e_contenedor(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_contenedor:n0 ELEMENTOS:n1 mayor  f_contenedor mayor
+                {:
+                    RESULT=new e_contenedor(n1,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_contenedor:n0  mayor ETIQUETAS:n2 f_contenedor mayor
+                {:
+                    RESULT=new e_contenedor(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_contenedor:n0 mayor  f_contenedor mayor
+                {:
+                    RESULT=new e_contenedor(new LinkedList(),new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
 ETIQUETAS::=    ETIQUETAS:n1 ETIQUETA:n2
@@ -124,31 +165,48 @@ ETIQUETA::=     CONTROL:n1
                 {:
                     RESULT=n1;
                 :}
+                |TEXTO:n1
+                {:
+                    RESULT=n1;
+                :}
                 ;
 MULTIMEDIA::=   i_multi:n0 ELEMENTOS:n1 mayor f_multi mayor
                 {:
                     RESULT=new e_multimedia(n1,(n0left+1),(n0right+1),var.archivo);
                 :}
+                |i_multi:n0  mayor f_multi mayor
+                {:
+                    RESULT=new e_multimedia(new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
                 ;
-BOTON::=        i_boton:n0 ELEMENTOS:n1 mayor all:n2 f_boton mayor
+TEXTO::=        i_texto:n0 ELEMENTOS:n1  all:n2 f_texto 
+                {:
+                    RESULT=new e_texto(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_texto:n0   all:n2 f_texto 
+                {:
+                    RESULT=new e_texto(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                ;
+BOTON::=        i_boton:n0 ELEMENTOS:n1  all:n2 f_boton 
                 {:
                      RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo);
                 :}
-                |i_boton:n0 ELEMENTOS:n1 mayor f_boton mayor
+                | i_boton:n0   all:n2 f_boton 
                 {:
-                    RESULT=new e_boton(n1,"",(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_boton(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
-ENVIAR::=        i_enviar:n0 ELEMENTOS:n1 mayor all:n2 f_enviar mayor
+ENVIAR::=        i_enviar:n0 ELEMENTOS:n1  all:n2 f_enviar 
                 {:
                     RESULT=new e_enviar(n1,n2,(n0left+1),(n0right+1),var.archivo);
                 :}
-                | i_enviar:n0 ELEMENTOS:n1 mayor f_enviar mayor
+                | i_enviar:n0   all:n2 f_enviar 
                 {:
-                    RESULT=new e_enviar(n1,"",(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_enviar(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
-LISTADATOS::=   i_lista:n0 ACC:n1 mayor DATOS:n2 f_lista mayor
+LISTADATOS::=   i_lista:n0 ELEMENTOS:n1 mayor DATOS:n2 f_lista mayor
                 {:
                     RESULT=new e_listaDato(n1,n2,(n0left+1),(n0right+1),var.archivo);
                 :}
@@ -156,7 +214,7 @@ LISTADATOS::=   i_lista:n0 ACC:n1 mayor DATOS:n2 f_lista mayor
                 {:
                     RESULT=new e_listaDato(null,n2,(n0left+1),(n0right+1),var.archivo);
                 :}
-                |i_lista:n0 ACC:n1 mayor  f_lista mayor
+                |i_lista:n0 ELEMENTOS:n1 mayor  f_lista mayor
                 {:
                     RESULT=new e_listaDato(n1,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
@@ -165,10 +223,7 @@ LISTADATOS::=   i_lista:n0 ACC:n1 mayor DATOS:n2 f_lista mayor
                     RESULT=new e_listaDato(null,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
-ACC::=          accion is call
-                {:
-                :}
-                ;
+
 DATOS::=        DATOS:n1 DATO:n2
                 {:
                     RESULT=n1;
@@ -180,16 +235,16 @@ DATOS::=        DATOS:n1 DATO:n2
                     RESULT.add(n1);
                 :}
                 ;
-DATO::=         i_dato:n0 REFE:n1 mayor all:n2 f_dato mayor
+DATO::=         i_dato:n0 ELEMENTOS:n1  all:n2 f_dato 
                 {:                    
                     RESULT=new e_dato(n1,n2,(n0left+1),(n0right+1),var.archivo);
                 :}
-                |i_dato:n0 mayor all:n2 f_dato mayor
+                |i_dato:n0  all:n2 f_dato 
                 {:
-                    RESULT=new e_dato(null,n2,(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_dato(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
-REFE::=          referencia:n1 is er_id:n2
+REFE::=          referencia:n1 is er_cadena:n2
                 {:
                     RESULT=new elemento(var.referencia,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
@@ -197,6 +252,10 @@ REFE::=          referencia:n1 is er_id:n2
 CONTROL::=      i_control:n0 ELEMENTOS:n1 mayor OPCS_CTRL:n2 f_control mayor
                 {:
                     RESULT=new e_control(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_control:n0 ELEMENTOS:n1 mayor  f_control mayor
+                {:
+                    RESULT=new e_control(n1,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
 OPCS_CTRL::=    OPCS_CTRL:n1 OPC_CTRL:n2
@@ -219,13 +278,9 @@ OPC_CTRL::=     DEFECTO:n1
                     RESULT=n1;
                 :}
                 ;
-DEFECTO::=      i_defecto:n1 mayor all:n2 f_defecto mayor
+DEFECTO::=      i_defecto:n1  all:n2 f_defecto 
                 {:
                     RESULT=new elemento(var.defecto,n2,(n1left+1),(n1right+1),var.archivo);
-                :}
-                |i_defecto:n1 mayor  f_defecto mayor
-                {:
-                    RESULT=new elemento(var.defecto,"",(n1left+1),(n1right+1),var.archivo);
                 :}
                 ;
 ELEMENTOS::=    ELEMENTOS:n1 ELEMENTO:n2
@@ -239,7 +294,7 @@ ELEMENTOS::=    ELEMENTOS:n1 ELEMENTO:n2
                     RESULT.add(n1);
                 :}
                 ;
-ELEMENTO::=     id:n1 is er_id:n2
+ELEMENTO::=     id:n1 is er_cadena:n2
                 {:
                     RESULT=new elemento(var.id,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
@@ -271,7 +326,7 @@ ELEMENTO::=     id:n1 is er_id:n2
                 {:
                     RESULT=new elemento(var.y,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
-                |nombre:n1 is er_id:n2
+                |nombre:n1 is er_cadena:n2
                 {:
                     RESULT=new elemento(var.nombre,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
@@ -299,6 +354,10 @@ ELEMENTO::=     id:n1 is er_id:n2
                 {:
                     RESULT=new elemento(var.cursiva,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
+                |borde:n1 is BOL:n2
+                {:
+                    RESULT=new elemento(var.borde,n2,(n1left+1),(n1right+1),var.archivo);
+                :}
                 |maximo:n1 is er_entero:n2
                 {:
                     RESULT=new elemento(var.maximo,n2,(n1left+1),(n1right+1),var.archivo);
@@ -318,6 +377,10 @@ ELEMENTO::=     id:n1 is er_id:n2
                 |path:n1 is er_cadena:n2
                 {:
                     RESULT=new elemento(var.minimo,n2,(n1left+1),(n1right+1),var.archivo);
+                :}
+                |accion:n1 is call:n2
+                {:
+                    RESULT=new elemento(var.accion,n2,(n1left+1),(n1right+1),var.archivo);
                 :}
                 ;
 BOL ::=         verdadero

@@ -16,10 +16,10 @@ public class e_listaDato implements etiqueta{
     int columna;
     String archivo;
     LinkedList<e_dato>datos;
-    elemento accion;
-    public e_listaDato(elemento accion,LinkedList<e_dato>datos,int linea, int columna,String archivo)
+    LinkedList<elemento> elementos;
+    public e_listaDato(LinkedList<elemento> elementos,LinkedList<e_dato>datos,int linea, int columna,String archivo)
     {
-        this.accion=accion;
+        this.elementos=elementos;
         this.datos=datos;
         this.linea=linea;
         this.columna = columna;

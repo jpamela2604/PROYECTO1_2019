@@ -10,25 +10,28 @@ public class simb {
   /* terminals */
   public static final int f_multi = 36;
   public static final int i_multi = 35;
-  public static final int call = 43;
+  public static final int call = 48;
   public static final int ancho = 26;
   public static final int maximo = 31;
   public static final int accion = 21;
+  public static final int f_texto = 42;
+  public static final int i_texto = 41;
   public static final int f_imp = 3;
-  public static final int er_cadena = 46;
+  public static final int er_cadena = 50;
   public static final int f_boton = 39;
   public static final int i_boton = 37;
+  public static final int i_contenedor = 43;
   public static final int alto = 25;
   public static final int f_ven = 6;
   public static final int f_defecto = 15;
   public static final int i_imp = 2;
   public static final int f_control = 13;
-  public static final int all = 42;
+  public static final int all = 47;
   public static final int fuente = 27;
   public static final int f_dato = 19;
   public static final int i_ven = 5;
   public static final int EOF = 0;
-  public static final int verdadero = 47;
+  public static final int verdadero = 51;
   public static final int is = 11;
   public static final int nombre = 22;
   public static final int referencia = 20;
@@ -38,20 +41,21 @@ public class simb {
   public static final int i_defecto = 14;
   public static final int i_lista = 16;
   public static final int f_lista = 17;
+  public static final int f_contenedor = 44;
   public static final int f_enviar = 40;
   public static final int i_control = 12;
   public static final int ac_in = 9;
-  public static final int id = 41;
-  public static final int falso = 48;
+  public static final int id = 46;
+  public static final int falso = 52;
   public static final int ac_fi = 10;
   public static final int y = 24;
   public static final int x = 23;
   public static final int tipo = 7;
   public static final int tam = 28;
-  public static final int er_entero = 45;
+  public static final int er_entero = 49;
   public static final int minimo = 32;
   public static final int path = 34;
-  public static final int er_id = 44;
+  public static final int borde = 45;
   public static final int i_enviar = 38;
   public static final int autoplay = 33;
   public static final int cursiva = 30;
@@ -99,10 +103,14 @@ public class simb {
   "i_enviar",
   "f_boton",
   "f_enviar",
+  "i_texto",
+  "f_texto",
+  "i_contenedor",
+  "f_contenedor",
+  "borde",
   "id",
   "all",
   "call",
-  "er_id",
   "er_entero",
   "er_cadena",
   "verdadero",
