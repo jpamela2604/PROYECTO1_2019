@@ -35,7 +35,6 @@ public class ui_desplegable extends JComboBox{
     int ancho;*/
     /*int maximo;
     int minimo;*/
-    //sent accion;
     public Array lista;
     public ui_desplegable(int alto,int ancho,Array lista,int x,int y,String defecto,String nombre)
     {
@@ -70,10 +69,53 @@ public class ui_desplegable extends JComboBox{
         this.setVisible(false);
         
     }
-    public ui_desplegable(String nombre,int x,int y)
+    //.CrearDesplegable(Alto, Ancho, lista, X, Y, Defecto, nombre)
+    public String getTraduccion(String ventana,String panel)
+    {
+        
+        String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
+        String nombre="Despl_"+name;
+        String namelista="lista_"+nombre;
+        String contenido="";
+        String aux="";
+        LinkedList<Simbolo>valores=this.lista.valores;
+        for(Simbolo s:valores)
+        {
+            contenido=contenido+aux+"\""+s.valor.toString() +"\"";
+            aux=",";
+        }
+        String t="var "+namelista+"=["+contenido+"];\n";
+         t=t+"var "+nombre+ " = "+panel+ ".CrearDesplegable("+
+                ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+","+
+                namelista+","+
+                ((Simbolo)tabla.get("X")).valor.toString()+","+
+                ((Simbolo)tabla.get("Y")).valor.toString()+",\""+
+                ((Simbolo)tabla.get("DEFECTO")).valor.toString()+"\",\""+
+                ((Simbolo)tabla.get("NOMBRE")).valor.toString()+
+        "\");\n";
+        //FUENTE
+        t=t+nombre+".fuente=\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\";\n";
+        //TAM
+         t=t+nombre+".tamaño="+((Simbolo)tabla.get("TAMAÑO")).valor.toString()+";\n";
+        //COLOR
+         t=t+nombre+".color=\""+((Simbolo)tabla.get("COLOR")).valor.toString()+"\";\n";
+        //NEGRILLA
+         t=t+nombre+".negrita="+((((Simbolo)tabla.get("NEGRITA")).valor.toString()).equals("true")?"verdadero":"falso")+";\n";
+        //CURSIVA
+         t=t+nombre+".cursiva="+((((Simbolo)tabla.get("CURSIVA")).valor.toString()).equals("true")?"verdadero":"falso")+";\n";
+        //MAXIMO
+         t=t+nombre+".maximo="+((Simbolo)tabla.get("MAXIMO")).valor.toString()+";\n";
+        //MINIMO
+         t=t+nombre+".minimo="+((Simbolo)tabla.get("MINIMO")).valor.toString()+";\n";
+        return t;
+    }
+    public ui_desplegable(int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre,
+             int maximo,int minimo,Array lista) 
     {
         this.tabla=new Hashtable();
-        this.lista=new Array(new LinkedList());
+        this.lista=lista;
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
@@ -84,22 +126,22 @@ public class ui_desplegable extends JComboBox{
         /*this.fuente=this.getFont().getFontName();
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         /*this.negrita=false;
         this.cursiva=false;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_cb,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_cb,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_cb,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_cb,false));
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,var.defecto_cb,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
         this.setVisible(false);
     }
     

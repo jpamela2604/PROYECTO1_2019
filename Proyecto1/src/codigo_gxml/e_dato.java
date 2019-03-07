@@ -8,6 +8,7 @@ package codigo_gxml;
 import errors.mng_error;
 import java.util.LinkedList;
 import proyecto1.var;
+import ts.Simbolo;
 
 /**
  *
@@ -29,7 +30,7 @@ public class e_dato implements etiqueta{
     }
     @Override
     public Object GetGxmlObject() {
-        return null;
+        return new Simbolo(var.tipo_cadena,valor.toString());
     }
     @Override
     public void Comprobar(mng_error e) {

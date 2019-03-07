@@ -5,10 +5,17 @@
  */
 package codigo_gxml;
 
+import codigo_fs.Array;
 import errors.mng_error;
+import execute.ui_ControlNumerico;
+import execute.ui_areaTexto;
+import execute.ui_boton;
+import execute.ui_cajaTexto;
+import execute.ui_desplegable;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
+import ts.Simbolo;
 
 /**
  *
@@ -16,13 +23,14 @@ import proyecto1.var;
  */
 public class e_control implements etiqueta {
     LinkedList<elemento> elementos;
-    LinkedList<Object> opciones;
+    LinkedList<etiqueta> opciones;
     int linea;
     int columna;
     String archivo;
     Hashtable obligatorios;
     Hashtable opcionales;
-    public e_control(LinkedList<elemento> elementos,LinkedList<Object> opciones,int linea, int columna,String archivo)
+    String tipo;
+    public e_control(LinkedList<elemento> elementos,LinkedList<etiqueta> opciones,int linea, int columna,String archivo)
     {
         this.opciones=opciones;
         this.elementos=elementos;
@@ -40,12 +48,117 @@ public class e_control implements etiqueta {
         opcionales.put("CURSIVA", false);
         opcionales.put("MAXIMO", var.max_area);
         opcionales.put("MINIMO", var.min_area);
-        opcionales.put("ACCION", "");
     }
     @Override
     public Object GetGxmlObject() {
-        return null;
+        String defecto="";
+        LinkedList<Simbolo>valores=new LinkedList();
+        Array  ar=new Array(valores);
+        for(etiqueta eti:opciones)
+        {
+            Object o=eti.GetGxmlObject();
+            if(o instanceof  Array)
+            {
+                ar=(Array)o;
+            }else
+            {
+                defecto=o.toString();
+            }
+        }
+        switch(this.tipo)
+        {
+            case "NUMERICO":
+            {
+                
+                return new ui_ControlNumerico(
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                opcionales.get("FUENTE").toString(),
+                Integer.valueOf(opcionales.get("TAM").toString()),
+                opcionales.get("COLOR").toString(),  
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("NEGRITA").toString()),
+                Boolean.valueOf(opcionales.get("CURSIVA").toString()),
+                tryParseInt(defecto),
+                obligatorios.get("NOMBRE").toString(),
+                Integer.valueOf(opcionales.get("MAXIMO").toString()),
+                Integer.valueOf(opcionales.get("MINIMO").toString())
+                );
+            }
+            case "TEXTOAREA":
+            {
+                return new ui_areaTexto(
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                opcionales.get("FUENTE").toString(),
+                Integer.valueOf(opcionales.get("TAM").toString()),
+                opcionales.get("COLOR").toString(),  
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("NEGRITA").toString()),
+                Boolean.valueOf(opcionales.get("CURSIVA").toString()),
+                defecto,
+                obligatorios.get("NOMBRE").toString(),
+                Integer.valueOf(opcionales.get("MAXIMO").toString()),
+                Integer.valueOf(opcionales.get("MINIMO").toString())
+                );
+            }
+            case "TEXTO":
+            {//CAJA DE TEXTO
+                /*int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre,
+             int maximo,int minimo
+                */
+                return new ui_cajaTexto(
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                opcionales.get("FUENTE").toString(),
+                Integer.valueOf(opcionales.get("TAM").toString()),
+                opcionales.get("COLOR").toString(),  
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("NEGRITA").toString()),
+                Boolean.valueOf(opcionales.get("CURSIVA").toString()),
+                defecto,
+                obligatorios.get("NOMBRE").toString(),
+                Integer.valueOf(opcionales.get("MAXIMO").toString()),
+                Integer.valueOf(opcionales.get("MINIMO").toString())
+                );
+            }
+            default:
+            {
+                /*(int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre,
+             int maximo,int minimo,Array lista) */
+                return new ui_desplegable(
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                opcionales.get("FUENTE").toString(),
+                Integer.valueOf(opcionales.get("TAM").toString()),
+                opcionales.get("COLOR").toString(),  
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("NEGRITA").toString()),
+                Boolean.valueOf(opcionales.get("CURSIVA").toString()),
+                defecto,
+                obligatorios.get("NOMBRE").toString(),
+                Integer.valueOf(opcionales.get("MAXIMO").toString()),
+                Integer.valueOf(opcionales.get("MINIMO").toString()),
+                        ar
+                );
+            }
+                
+        }
     }
+    int tryParseInt(String value) {  
+     try {  
+         
+         return  Integer.parseInt(value); 
+      } catch (NumberFormatException e) {  
+         return 0;  
+      }  
+}
     @Override
     public void Comprobar(mng_error e) {
         String invalidos= "";
@@ -93,9 +206,6 @@ public class e_control implements etiqueta {
             }else if(el.tipo==var.minimo)
             {
                 opcionales.put("MINIMO",el.valor);
-            }else if(el.tipo==var.accion)
-            {
-                opcionales.put("ACCION",el.valor);
             }else
             {
                 invalidos=invalidos+aux+var.elementos[el.tipo-100];
@@ -129,6 +239,7 @@ public class e_control implements etiqueta {
             {
                 e.AddError("El tipo \""+type+"\" no es valido para la etiqueta Control ", linea, columna, archivo, "SEMANTICO");
             }
+            this.tipo=type;
         }
         if(!missing.equals(""))
         {

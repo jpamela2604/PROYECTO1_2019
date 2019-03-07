@@ -84,15 +84,46 @@ public class ui_contenedor extends JPanel{
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
                 ((Simbolo)tabla.get("ANCHO")).valor.toString()+",\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
-                ((Simbolo)tabla.get("BORDE")).valor.toString()+","+
+                ((((Simbolo)tabla.get("BORDE")).valor.toString()).equals("true")?"verdadero":"falso")+","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
                 ((Simbolo)tabla.get("Y")).valor.toString()+
                 ");\n";
         c=c+nombre+".id=\""+name+"\";\n";
         for(ui_boton bo:botones)
         {
-            c=c+bo.getTraduccion(ventana, nombre);
-            
+            c=c+bo.getTraduccion(ventana, nombre);            
+        }
+        for(ui_texto bo:textos)
+        {
+            c=c+bo.getTraduccion( nombre);    
+        }
+        for(ui_ControlNumerico bo:spinners)
+        {
+            c=c+bo.getTraduccion(ventana, nombre);    
+        }
+        for(ui_areaTexto bo:areas)
+        {
+            c=c+bo.getTraduccion(ventana, nombre);    
+        }
+        for(ui_cajaTexto bo:cajas)
+        {
+            c=c+bo.getTraduccion(ventana, nombre);    
+        }
+        for(ui_desplegable bo:combobox)
+        {
+            c=c+bo.getTraduccion(ventana, nombre);    
+        }
+        for(ui_imagen bo:imagenes)
+        {
+            c=c+bo.getTraduccion( nombre);    
+        }
+        for(ui_video bo:videos)
+        {
+            c=c+bo.getTraduccion( nombre);    
+        }
+        for(ui_reproductor bo:musica)
+        {
+            c=c+bo.getTraduccion( nombre);    
         }
         
         return c;

@@ -26,7 +26,7 @@ public class ui_video extends JButton{
     //int ancho;
     //int alto;
     //Boolean auto_reproduccion;
-    public ui_video(String ruta,String nombre,int x,int y)
+    public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho,String nombre)
     {
         this.tabla=new Hashtable();
         //this.ruta=ruta;
@@ -39,11 +39,27 @@ public class ui_video extends JButton{
         //this.y=y;
         //this.alto=this.getSize().height;
         //this.ancho=this.getSize().width;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.altoVi,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.anchoVi,false));
-        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,false,false));
-        //auto_reproduccion=false;
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
+        //auto_reproduccion=false
         this.setVisible(false);
+    }
+    public String getTraduccion(String panel)
+    {
+        //Contenedor.CrearImagen(Ruta, X, Y, Auto-reproductor, Alto, Ancho)
+        String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
+        String nombre="Video_"+name;
+        String t="var "+nombre+ " = "+panel+ ".CrearVideo(\""+
+                ((Simbolo)tabla.get("RUTA")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("X")).valor.toString()+","+
+                ((Simbolo)tabla.get("Y")).valor.toString()+","+
+                ((((Simbolo)tabla.get("AUTO_REPRODUCCION")).valor.toString()).equals("true")?"verdadero":"falso")+","+
+                ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+
+        ");\n";
+        t=t+nombre+".nombre=\""+name+"\";\n";
+        return t;
     }
     public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho)
     {

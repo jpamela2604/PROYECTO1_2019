@@ -5,9 +5,11 @@
  */
 package codigo_gxml;
 
+import codigo_fs.Array;
 import errors.mng_error;
 import java.util.LinkedList;
 import proyecto1.var;
+import ts.Simbolo;
 
 /**
  *
@@ -29,7 +31,12 @@ public class e_listaDato implements etiqueta{
     }
     @Override
     public Object GetGxmlObject() {
-        return null;
+        LinkedList<Simbolo>valores=new LinkedList();
+        for(etiqueta et:datos)
+        {
+            valores.add((Simbolo)et.GetGxmlObject());
+        }
+        return new Array(valores);
     }
     @Override
     public void Comprobar(mng_error e) {

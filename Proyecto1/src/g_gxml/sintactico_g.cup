@@ -32,7 +32,7 @@ terminal   String id, all,call
             ;
 terminal   String er_entero,er_cadena,verdadero,falso
             ;
-nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR,TEXTO,CONTE
+nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR,TEXTO,CONTE,DEFECTO
             ;
 nonterminal e_dato DATO
             ;
@@ -40,13 +40,13 @@ nonterminal ruta IMP
             ;
 nonterminal Boolean BOL
             ;
-nonterminal elemento ELEMENTO,REFE,DEFECTO
+nonterminal elemento ELEMENTO,REFE
             ;
 nonterminal LinkedList<elemento> ELEMENTOS
             ;
-nonterminal LinkedList<Object> OPCS_CTRL;
-nonterminal Object OPC_CTRL;
-nonterminal LinkedList<etiqueta> ETIQUETAS,VENTANAS,LCONTE;
+
+nonterminal etiqueta OPC_CTRL;
+nonterminal LinkedList<etiqueta> ETIQUETAS,VENTANAS,LCONTE,OPCS_CTRL;
 nonterminal LinkedList<e_dato> DATOS
             ;
 start with S;
@@ -280,7 +280,7 @@ OPC_CTRL::=     DEFECTO:n1
                 ;
 DEFECTO::=      i_defecto:n1  all:n2 f_defecto 
                 {:
-                    RESULT=new elemento(var.defecto,n2,(n1left+1),(n1right+1),var.archivo);
+                    RESULT=new e_defecto(n2,(n1left+1),(n1right+1),var.archivo);
                 :}
                 ;
 ELEMENTOS::=    ELEMENTOS:n1 ELEMENTO:n2

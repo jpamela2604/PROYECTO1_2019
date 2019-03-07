@@ -6,6 +6,9 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_imagen;
+import execute.ui_reproductor;
+import execute.ui_video;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
@@ -21,6 +24,7 @@ public class e_multimedia implements etiqueta{
     String archivo;
     Hashtable obligatorios;
     Hashtable opcionales;
+    String tipo;
     
     public e_multimedia(LinkedList<elemento> elementos,int linea, int columna,String archivo)
     {
@@ -36,7 +40,46 @@ public class e_multimedia implements etiqueta{
     }
     @Override
     public Object GetGxmlObject() {
-        return null;
+        switch(tipo)
+        {
+            case "IMAGEN":
+            {
+                //String ruta,int x,int y,Boolean autoplay,int alto,int ancho,String nombre
+                return new ui_imagen(
+                obligatorios.get("PATH").toString(),
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("AUTOPLAY").toString()),
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                obligatorios.get("NOMBRE").toString()
+                );
+            }
+            case "MUSICA":
+            {
+                return new ui_reproductor(
+                obligatorios.get("PATH").toString(),
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("AUTOPLAY").toString()),
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                obligatorios.get("NOMBRE").toString()
+                );
+            }
+            default:
+            {
+                return new ui_video(
+                obligatorios.get("PATH").toString(),
+                Integer.valueOf(obligatorios.get("X").toString()),
+                Integer.valueOf(obligatorios.get("Y").toString()),
+                Boolean.valueOf(opcionales.get("AUTOPLAY").toString()),
+                Integer.valueOf(opcionales.get("ALTO").toString()),
+                Integer.valueOf(opcionales.get("ANCHO").toString()),
+                obligatorios.get("NOMBRE").toString()
+                );
+            }
+        }
     }
     @Override
     public void Comprobar(mng_error e) {
@@ -106,6 +149,7 @@ public class e_multimedia implements etiqueta{
             {
                 e.AddError("El tipo \""+type+"\" no es valido para la etiqueta multimedia ", linea, columna, archivo, "SEMANTICO");
             }
+            this.tipo=type;
         }
         if(!missing.equals(""))
         {

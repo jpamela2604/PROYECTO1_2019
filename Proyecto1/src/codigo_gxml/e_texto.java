@@ -6,6 +6,7 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_texto;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
@@ -39,7 +40,19 @@ public class e_texto implements etiqueta{
     }
     @Override
     public Object GetGxmlObject() {
-        return null;
+        /*ui_texto(String nombre,String fuente,int tam,String color,int x,int y,Boolean negrilla,
+            Boolean cursiva,String valor)*/
+        return new ui_texto(
+                obligatorios.get("NOMBRE").toString(),
+                opcionales.get("FUENTE").toString(),
+                Integer.valueOf(opcionales.get("TAM").toString()),
+                opcionales.get("COLOR").toString(),
+        Integer.valueOf(obligatorios.get("X").toString()),
+        Integer.valueOf(obligatorios.get("Y").toString()),
+        Boolean.valueOf(opcionales.get("NEGRITA").toString()),
+        Boolean.valueOf(opcionales.get("CURSIVA").toString()),
+                texto
+        );
     }
     @Override
     public void Comprobar(mng_error e) {

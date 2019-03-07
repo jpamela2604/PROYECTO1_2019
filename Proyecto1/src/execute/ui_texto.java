@@ -70,11 +70,32 @@ public class ui_texto extends JLabel{
         this.setVisible(false);
         
     }
-    public ui_texto(String nombre,int x,int y)
+    
+    //CrearTexto(Fuente, Tamaño, Color, X, Y, Negrilla, Cursiva, valor)
+    public String getTraduccion(String panel)
+    {
+        String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
+        String nombre="Texto_"+name;
+        String t="var "+nombre+ " = "+panel+ ".CrearTexto(\""+
+                ((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
+                +((Simbolo)tabla.get("TAMAÑO")).valor.toString()+",\""+
+                ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("X")).valor.toString()+","+
+                ((Simbolo)tabla.get("Y")).valor.toString()+","+
+                ((((Simbolo)tabla.get("NEGRITA")).valor.toString()).equals("true")?"verdadero":"falso")+","+
+                ((((Simbolo)tabla.get("CURSIVA")).valor.toString()).equals("true")?"verdadero":"falso")+",\""+
+                ((Simbolo)tabla.get("VALOR")).valor.toString()+
+        "\");\n";
+        t=t+nombre+".nombre=\""+name+"\";\n";
+        
+        return t;
+    }
+    public ui_texto(String nombre,String fuente,int tam,String color,int x,int y,Boolean negrilla,
+            Boolean cursiva,String valor)
     {
         this.tabla=new Hashtable();
         //valor=nombre;
-        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,nombre,false));        
+        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));        
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
        /* this.x=x;
@@ -84,15 +105,15 @@ public class ui_texto extends JLabel{
         /*this.fuente=this.getFont().getFontName();
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         /*this.negrita=false;
         this.cursiva=false;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
