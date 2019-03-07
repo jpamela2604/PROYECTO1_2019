@@ -30,8 +30,13 @@ public class ui_boton extends JButton{
     //String referencia;
     //String valor;
     //sent llamada;
-    public ui_boton(String nombre,int x,int y)
+    String accion;
+    Boolean IsEnviar;
+    public ui_boton(String nombre,int x,int y,int alto,int ancho,String accion,String ref,Boolean IsEnviar,String valor)
     {
+       
+        this.IsEnviar=IsEnviar;
+        this.accion=accion;
         this.tabla=new Hashtable();
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
@@ -41,8 +46,8 @@ public class ui_boton extends JButton{
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_boton,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_boton,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
         /*this.fuente=this.getFont().getFontName();
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
@@ -52,13 +57,47 @@ public class ui_boton extends JButton{
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         //referencia="";
-        this.tabla.put("REFERENCIA", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("REFERENCIA", new Simbolo(var.tipo_cadena,ref,false));
         //valor=nombre;
-        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
         this.setVisible(false);
+    }
+    
+    public String getTraduccion(String ventana,String panel)
+    {
+        // CrearBoton(Fuente, Tamaño, Color, X, Y,Referencia, valor, Alto, Ancho)
+         //AGREGAR ON CLICK,AGREGAR NOMBRE,SI ES ENVIAR
+        String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
+        String nombre="Boton_"+(IsEnviar?"Enviar_":"")+name;
+        
+        String t="var "+nombre+ " = "+panel+ ".CrearBoton(\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
+                +((Simbolo)tabla.get("TAMAÑO")).valor.toString()+",\""+
+                ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("X")).valor.toString()+","+
+                ((Simbolo)tabla.get("Y")).valor.toString()+",\""+
+                ((Simbolo)tabla.get("REFERENCIA")).valor.toString()+"\",\""+
+                ((Simbolo)tabla.get("VALOR")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+
+        ");\n";
+        t=t+nombre+".nombre=\""+name+"\";\n";
+        String funcion=accion;
+        if(this.IsEnviar)
+        {
+            funcion="generica_"+nombre+"()";
+            t=t+"funcion "+funcion+ "{\n";
+            t=t+"   "+ventana+".crearArrayDesdeArchivo();";
+            t=t+(!accion.equals("")?"   "+accion+";\n":"");
+            t=t+"}\n";
+        }
+        
+        t=t+(funcion.equals("")?"":nombre+".alclic("+funcion+");\n"); 
+        return t;
+        
     }
     public ui_boton(String fuente,int tam,String color,int x,int y,String ref,String valor,int alto,int ancho)
     {
+        accion="";
         this.tabla=new Hashtable();
         //this.nombre="";
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));

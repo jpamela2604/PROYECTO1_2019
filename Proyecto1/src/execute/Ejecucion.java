@@ -77,21 +77,12 @@ public class Ejecucion {
     }
     
     
-    public ui_ventana CrearVentana(String id,String tipo)
-    {
-        ui_ventana ventana= new ui_ventana(id,tipo);
-        return ventana;
-    }
      public ui_ventana CrearVentana(String color,Integer alto,Integer ancho)
     {
         ui_ventana ventana= new ui_ventana(color,alto,ancho);
         return ventana;
     }
-    public ui_contenedor CrearContenedor(String id,int x,int y)
-    {
-        ui_contenedor contenedor= new ui_contenedor( id, x, y);
-        return contenedor;
-    }
+    
     public ui_contenedor CrearContenedor(int alto,int ancho,String color,Boolean borde,int x,int y)
     {
         ui_contenedor contenedor= new ui_contenedor( alto,ancho,color,borde, x, y);
@@ -108,11 +99,6 @@ public class Ejecucion {
     {
         ui_texto texto= new ui_texto( fuente,tam,color,x,y,negrilla,cursiva,valor);
         return texto;
-    }
-    public ui_boton CrearBoton(String nombre,int x,int y)
-    {
-        ui_boton boton =new ui_boton(nombre,x,y);
-        return boton;
     }
     public ui_boton CrearBoton(String fuente,int tam,String color,int x,int y,String ref,String val,int alto,int ancho)
     {

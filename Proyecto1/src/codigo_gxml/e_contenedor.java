@@ -6,6 +6,16 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_ControlNumerico;
+import execute.ui_areaTexto;
+import execute.ui_boton;
+import execute.ui_cajaTexto;
+import execute.ui_contenedor;
+import execute.ui_desplegable;
+import execute.ui_imagen;
+import execute.ui_reproductor;
+import execute.ui_texto;
+import execute.ui_video;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
@@ -37,7 +47,52 @@ public class e_contenedor implements etiqueta{
         opcionales.put("BORDE", false);
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        //int alto,int ancho,String color,Boolean borde,int x,int y,String id
+        ui_contenedor con=new ui_contenedor(Integer.valueOf(opcionales.get("ALTO").toString()),
+        Integer.valueOf(opcionales.get("ANCHO").toString()),
+                opcionales.get("COLOR").toString(),
+        Boolean.valueOf(opcionales.get("BORDE").toString()),
+        Integer.valueOf(obligatorios.get("X").toString()),
+        Integer.valueOf(obligatorios.get("Y").toString()),
+               obligatorios.get("ID").toString()
+        );
+        for(etiqueta eti:this.etiquetas)
+        {
+            Object o=eti.GetGxmlObject();
+            if(o instanceof  ui_boton)
+            {
+                con.botones.add((ui_boton) o);
+            }else if(o instanceof  ui_cajaTexto)
+            {
+                con.cajas.add((ui_cajaTexto) o);
+            }else if(o instanceof  ui_ControlNumerico)
+            {
+                con.spinners.add((ui_ControlNumerico) o);
+            }else if(o instanceof  ui_areaTexto)
+            {
+                con.areas.add((ui_areaTexto) o);
+            }else if(o instanceof  ui_desplegable)
+            {
+                con.combobox.add((ui_desplegable) o);
+            }else if(o instanceof  ui_imagen)
+            {
+                con.imagenes.add((ui_imagen) o);
+            }else if(o instanceof  ui_reproductor)
+            {
+                con.musica.add((ui_reproductor) o);
+            }else if(o instanceof  ui_texto)
+            {
+                con.textos.add((ui_texto) o);
+            }else if(o instanceof  ui_video)
+            {
+                con.videos.add((ui_video) o);
+            }
+        }
+        return con;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -100,7 +155,5 @@ public class e_contenedor implements etiqueta{
         {
             eti.Comprobar(e);
         }
-        
-        return null;
     }
 }

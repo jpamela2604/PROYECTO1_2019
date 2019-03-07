@@ -20,9 +20,17 @@ public class e_Importar implements etiqueta{
         this.rutas=new LinkedList();
         this.rutas.add(r);
     }
+    public e_Importar()
+    {
+        this.rutas=new LinkedList();
+    }
+    @Override
+    public void Comprobar(mng_error e) {
+        
+    }
 
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
         return null;
     }
 }

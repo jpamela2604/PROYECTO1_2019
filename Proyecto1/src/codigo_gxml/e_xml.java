@@ -6,6 +6,8 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_gxml;
+import execute.ui_ventana;
 import java.util.LinkedList;
 
 /**
@@ -21,12 +23,23 @@ public class e_xml implements etiqueta{
         this.ventanas=ventanas;
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        ui_gxml archivo= new ui_gxml();
+        e_Importar im=(e_Importar)imports;
+        archivo.rutas=im.rutas;
+        for(etiqueta et:ventanas)
+        {
+            ui_ventana ven=(ui_ventana)et.GetGxmlObject();
+            archivo.ventanas.add(ven);
+        }
+        return archivo;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         for(etiqueta et:ventanas)
         {
             et.Comprobar(e);
         }
-        return null;
     }
     
 }

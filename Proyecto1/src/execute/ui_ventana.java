@@ -35,8 +35,12 @@ public class ui_ventana extends JFrame{
     //public String color;
     public sent AccionInicial;
     public sent AccionFinal;
-    public ui_ventana(String id,String tipo)
+    public String inicial;
+    public String fin;
+    public ui_ventana(String id,String tipo,String color,String inicial,String fin)
     {
+        this.inicial=inicial;
+        this.fin=fin;
         this.tabla=new Hashtable();
         this.contenedores=new LinkedList();
         this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
@@ -47,11 +51,36 @@ public class ui_ventana extends JFrame{
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_ven,false));
         //this.ancho=500;
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_ven,false));
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.color_fondo,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         //this.color="";
+    }
+    public String getTraduccion()
+    {
+        //CrearVentana(“Color hexadecimal”, Alto, ancho
+        String name=((Simbolo)tabla.get("ID")).valor.toString();
+        String nombre="ven_"+name;
+        String t="var "+nombre+"=crearVentana(\""+
+                ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+
+                ");\n";
+        t=t+(inicial.equals("")?"":nombre+".alcargar("+inicial+");\n");
+        t=t+(fin.equals("")?"":nombre+".alcerrar("+fin+");\n");
+        if("PRINCIPAL".equals(((Simbolo)tabla.get("TIPO")).valor.toString().toUpperCase()))
+        {
+            t=t+nombre+".alcargar();\n";
+        }
+        for(ui_contenedor con :this.contenedores)
+        {
+            t=t+con.getTraduccion(nombre);
+        }
+        
+        return t;
     }
      public ui_ventana(String color,int alto,int ancho)
     {
+        this.inicial="";
+        this.fin="";
         this.tabla=new Hashtable();
         this.contenedores=new LinkedList();
         //this.id="";

@@ -12,6 +12,8 @@ import errors.mng_error;
  * @author Pamela Palacios
  */
 public interface etiqueta {
-    public Object Comprobar(mng_error e);
+    public void Comprobar(mng_error e);
+    
+    public Object GetGxmlObject();
     
 }

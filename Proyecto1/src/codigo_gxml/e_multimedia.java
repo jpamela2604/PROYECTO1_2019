@@ -35,7 +35,11 @@ public class e_multimedia implements etiqueta{
         opcionales.put("AUTOPLAY", false);
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        return null;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -112,6 +116,5 @@ public class e_multimedia implements etiqueta{
         {
             e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta multimedia", linea, columna, archivo, "SEMANTICO");
         }
-        return null;
     }
 }

@@ -38,7 +38,11 @@ public class e_texto implements etiqueta{
         opcionales.put("CURSIVA", false);
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        return null;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -99,7 +103,5 @@ public class e_texto implements etiqueta{
         {
             e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta texto", linea, columna, archivo, "SEMANTICO");
         }
-        
-        return null;
     }
 }

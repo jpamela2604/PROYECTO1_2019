@@ -46,11 +46,11 @@ public class ui_contenedor extends JPanel{
     int ancho;*/
     //String color;
     //Boolean borde;
-    public ui_contenedor(String id,int x,int y)
+    public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y,String id)
     {
         this.tabla=new Hashtable();
         //this.borde=false;
-        this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,false,false));
+        this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,borde,false));
         //this.id=id;
         this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
         /*this.x=x;
@@ -68,11 +68,34 @@ public class ui_contenedor extends JPanel{
         this.botones=new LinkedList();
         /*this.alto=this.getSize().height;
         this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_panel,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_panel,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
         //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.color_fondo,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         this.setVisible(false);
+    }
+    public String getTraduccion(String ventana)
+    {
+        //CrearContenedor(Alto, Ancho, Color, Borde, X, Y)
+        String name=((Simbolo)tabla.get("ID")).valor.toString();
+        String nombre="Con_"+name;
+       
+        String c="var "+nombre+"="+ventana+".crearcontenedor("+
+                ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+",\""+
+                ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
+                ((Simbolo)tabla.get("BORDE")).valor.toString()+","+
+                ((Simbolo)tabla.get("X")).valor.toString()+","+
+                ((Simbolo)tabla.get("Y")).valor.toString()+
+                ");\n";
+        c=c+nombre+".id=\""+name+"\";\n";
+        for(ui_boton bo:botones)
+        {
+            c=c+bo.getTraduccion(ventana, nombre);
+            
+        }
+        
+        return c;
     }
     public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y)
     {

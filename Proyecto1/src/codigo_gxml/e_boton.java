@@ -6,6 +6,7 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_boton;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
@@ -37,7 +38,22 @@ public class e_boton implements etiqueta{
         opcionales.put("REF", "");
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        //String nombre,int x,int y,int alto,int ancho,String accion,String ref,Boolean IsEnviar,String valor
+        return new ui_boton(obligatorios.get("NOMBRE").toString(),
+        Integer.valueOf(obligatorios.get("X").toString()),
+        Integer.valueOf(obligatorios.get("Y").toString()),
+        Integer.valueOf(opcionales.get("ALTO").toString()),
+        Integer.valueOf(opcionales.get("ANCHO").toString()),
+        opcionales.get("ACCION").toString(),
+        opcionales.get("REF").toString(),
+                false,
+                texto
+        );
+    }
+    
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -95,6 +111,6 @@ public class e_boton implements etiqueta{
         {
             e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta multimedia", linea, columna, archivo, "SEMANTICO");
         }
-        return null;
+        
     }
 }

@@ -43,7 +43,11 @@ public class e_control implements etiqueta {
         opcionales.put("ACCION", "");
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        return null;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -135,6 +139,5 @@ public class e_control implements etiqueta {
         {
             e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta Control", linea, columna, archivo, "SEMANTICO");
         }
-        return null;
     }
 }

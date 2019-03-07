@@ -503,7 +503,7 @@ class CUP$sintactico_g$actions {
 		etiqueta n1 = (etiqueta)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
 		
                     System.out.println("aceptada");
-                    raiz=new e_xml(n1,null);
+                    raiz=new e_xml(n1,new LinkedList());
                 
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
             }
@@ -536,7 +536,7 @@ class CUP$sintactico_g$actions {
 		LinkedList<etiqueta> n1 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
 		
                     System.out.println("aceptada");
-                    raiz=new e_xml(null,n1);
+                    raiz=new e_xml(new e_Importar(),n1);
                 
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
             }

@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gxml.ruta;
 import java.util.LinkedList;
 import javax.swing.JComponent;
 import ts.Simbolo;
@@ -14,7 +15,28 @@ import ts.Simbolo;
  * @author Pamela Palacios
  */
 public class ui_gxml {
-    LinkedList<ui_ventana> ventanas;
+    public LinkedList<ui_ventana> ventanas;
+    public LinkedList<ruta> rutas;
+    public ui_gxml()
+    {
+        this.ventanas=new LinkedList();
+        this.rutas=new LinkedList();
+    }
+    public String getTraduccion()
+    {
+        String t="";
+        for(ruta rut:rutas)
+        {
+            t=t+"importar(\""+rut.ruta+"\");\n";
+        }
+        for(ui_ventana bo:ventanas)
+        {
+            t=t+bo.getTraduccion();
+            
+        }
+        
+        return t;
+    }
     
     public LinkedList<JComponent> getByNombre(String Nombre)
     {

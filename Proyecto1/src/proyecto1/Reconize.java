@@ -9,6 +9,7 @@ import codigo_fs.sent;
 import codigo_gxml.etiqueta;
 import errors.mng_error;
 import execute.Ejecucion;
+import execute.ui_gxml;
 import g_fs.lexico_fs;
 import g_fs.sintactico_fs;
 import g_gxml.lexico_g;
@@ -63,6 +64,11 @@ public class Reconize {
             if(raiz!=null)
             {
                  raiz.Comprobar(e);
+                 if(this.e.errores.isEmpty())
+                 {
+                    ui_gxml archivo=(ui_gxml) raiz.GetGxmlObject();
+                     System.out.println(archivo.getTraduccion());
+                 }
             }else
             {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");

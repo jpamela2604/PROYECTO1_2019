@@ -6,6 +6,8 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui_contenedor;
+import execute.ui_ventana;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;
@@ -36,7 +38,25 @@ public class e_ventana implements etiqueta{
         opcionales.put("ACCIONFINAL", "");
     }
     @Override
-    public Object Comprobar(mng_error e) {
+    public Object GetGxmlObject() {
+        //(String id,String tipo,String color,String inicial,String fin)
+        ui_ventana ven=new ui_ventana(
+        obligatorios.get("ID").toString(),
+        obligatorios.get("TIPO").toString(),
+        opcionales.get("COLOR").toString(),
+        opcionales.get("ACCIONINICIAL").toString(),
+        opcionales.get("ACCIONFINAL").toString()
+        );
+        for(etiqueta eti:this.contenedores)
+        {
+            ui_contenedor CON=(ui_contenedor)eti.GetGxmlObject();
+            ven.contenedores.add(CON);
+        }
+        
+        return ven;
+    }
+    @Override
+    public void Comprobar(mng_error e) {
         String invalidos= "";
         String aux="";
         for(elemento el:this.elementos)
@@ -97,6 +117,5 @@ public class e_ventana implements etiqueta{
         {
             eti.Comprobar(e);
         }
-        return null;
     }
 }
