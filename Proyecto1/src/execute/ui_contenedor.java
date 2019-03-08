@@ -160,70 +160,70 @@ public class ui_contenedor extends JPanel{
     
     
     
-    public LinkedList<JComponent> getByNombre(String Nombre)
+    public LinkedList<Simbolo> getByNombre(String Nombre)
     {
-        LinkedList<JComponent> elemntos=new LinkedList();
+        LinkedList<Simbolo> elemntos=new LinkedList();
         for(ui_texto t:textos)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_texto,t));
             }
         }
         for(ui_ControlNumerico t:spinners)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_controlnum,t));
             }
         }
         for(ui_areaTexto t:areas)
         {
            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_areatexto,t));
             }
         }
         for(ui_cajaTexto t:cajas)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_cajatexto,t));
             }
         }
         for(ui_desplegable t:combobox)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_desplegable,t));
             }
         }
         for(ui_imagen t:imagenes)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_imagen,t));
             }
         }
         for(ui_video t:videos)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_video,t));
             }
         }
         for(ui_reproductor t:musica)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+                elemntos.add(new Simbolo(var.tipo_reproductor,t));
             }
         }
         for(ui_boton t:botones)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
             {
-                elemntos.add(t);
+               elemntos.add(new Simbolo(var.tipo_boton,t));
             }
         }
         return elemntos;
@@ -488,6 +488,70 @@ public class ui_contenedor extends JPanel{
         this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
         this.validate();
         this.setVisible(true);
+    }
+    public LinkedList<Simbolo> getByTag(String tag)
+    {
+        LinkedList<Simbolo> elemntos=new LinkedList();  
+        switch(tag.toUpperCase())
+        {
+            case "TEXTO":
+            {
+                for(ui_texto con:this.textos)
+                {
+                    elemntos.add(new Simbolo(var.tipo_texto,con));
+                }
+            }break;
+            case "CONTROLADOR":
+            {
+                for(ui_areaTexto con:this.areas)
+                {
+                    elemntos.add(new Simbolo(var.tipo_areatexto,con));
+                }
+                for(ui_cajaTexto con:this.cajas)
+                {
+                    elemntos.add(new Simbolo(var.tipo_cajatexto,con));
+                }
+                for(ui_desplegable con:this.combobox)
+                {
+                    elemntos.add(new Simbolo(var.tipo_desplegable,con));
+                }
+                for(ui_ControlNumerico con:this.spinners)
+                {
+                    elemntos.add(new Simbolo(var.tipo_controlnum,con));
+                }
+            }break;
+            case "MULTIMEDIA":
+            {
+                for(ui_reproductor con:this.musica)
+                {
+                    elemntos.add(new Simbolo(var.tipo_reproductor,con));
+                }
+                for(ui_video con:this.videos)
+                {
+                    elemntos.add(new Simbolo(var.tipo_video,con));
+                }
+                for(ui_imagen con:this.imagenes)
+                {
+                    elemntos.add(new Simbolo(var.tipo_imagen,con));
+                }
+            }break;
+            case "BOTON":
+            {
+                for(ui_boton con:this.botones)
+                {
+                    elemntos.add(new Simbolo(var.tipo_boton,con));
+                }
+            }break;
+            case "ENVIAR":
+            {
+                for(ui_boton con:this.botones)
+                {
+                    elemntos.add(new Simbolo(var.tipo_boton,con));
+                }
+            }break;
+            
+        }
+        return elemntos;
     }
     
 }

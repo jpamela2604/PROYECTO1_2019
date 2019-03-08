@@ -17,6 +17,7 @@ import g_gxml.sintactico_g;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedList;
@@ -49,7 +50,7 @@ public class Reconize {
         }
     }
     
-    public void gramaticaGxml(String ruta)
+    public ui_gxml gramaticaGxml(String ruta)
     {
         etiqueta raiz = null;        
         try
@@ -67,7 +68,10 @@ public class Reconize {
                  if(this.e.errores.isEmpty())
                  {
                     ui_gxml archivo=(ui_gxml) raiz.GetGxmlObject();
-                     System.out.println(archivo.getTraduccion());
+                    String ruta2=ruta.replace(".gxml", "");
+                    ruta2=ruta2+".fs";
+                    GuardarDatos(ruta2,archivo.getTraduccion());
+                    // System.out.println(archivo.getTraduccion());
                  }
             }else
             {
@@ -78,6 +82,25 @@ public class Reconize {
                 System.out.println("ex: "+ex.getMessage());
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
+        return null;
+    }
+    
+    public void GuardarDatos(String ruta,String contenido)
+    {
+              
+        FileWriter fw;
+        try
+        {   
+            fw= new FileWriter(ruta);
+            fw.write(contenido);
+            fw.close();        
+                //JOptionPane.showMessageDialog(null, "Guardado Exitosamente ");
+         }
+        catch(IOException io)
+        {
+                  //l3.setText("Error al abrir el fichero");
+                 //JOptionPane.showMessageDialog(null, "Error al guardar ");
+        }        
     }
     
      public void gramaticaFS(String ruta)

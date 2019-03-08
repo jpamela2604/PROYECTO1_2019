@@ -18,6 +18,7 @@ public class Proyecto1 {
         // TODO code application logic here
         new ExtremeEditor().show();
         //new gdato().show();
+        
     }
     
 }

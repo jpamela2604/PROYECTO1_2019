@@ -8,6 +8,7 @@ package execute;
 import codigo_gxml.ruta;
 import java.util.LinkedList;
 import javax.swing.JComponent;
+import proyecto1.var;
 import ts.Simbolo;
 
 /**
@@ -38,13 +39,13 @@ public class ui_gxml {
         return t;
     }
     
-    public LinkedList<JComponent> getByNombre(String Nombre)
+    public LinkedList<Simbolo> getByNombre(String Nombre)
     {
-        LinkedList<JComponent> elemntos=new LinkedList();
+        LinkedList<Simbolo> elemntos=new LinkedList();
         for(ui_ventana c:this.ventanas)
         {
-            LinkedList<JComponent> aux=c.getByNombre(Nombre);
-            for(JComponent p:aux)
+            LinkedList<Simbolo> aux=c.getByNombre(Nombre);
+            for(Simbolo p:aux)
             {
                 elemntos.add(p);
             }
@@ -53,42 +54,43 @@ public class ui_gxml {
         return elemntos;
     }
     
-    public LinkedList<Object> getByID(String id)
+    public LinkedList<Simbolo> getByID(String id)
     {
-        LinkedList<Object> elemntos=new LinkedList();        
+        LinkedList<Simbolo> elemntos=new LinkedList();        
         for(ui_ventana c:this.ventanas)
         {
             if(((Simbolo)c.tabla.get("ID")).valor.toString().equals(id))
             {
-                elemntos.add(c);
+                elemntos.add(new Simbolo(var.tipo_ventana,c));
             }
-            LinkedList<JComponent> aux=c.getByID(id);
-            for(JComponent p:aux)
+            LinkedList<Simbolo> aux=c.getByID(id);
+            for(Simbolo p:aux)
             {
                 elemntos.add(p);
             }
         }
         return elemntos;
     }
-    public LinkedList<Object> getByTag(String tag)
+    public LinkedList<Simbolo> getByTag(String tag)
     {
-        LinkedList<Object> elemntos=new LinkedList(); 
+        LinkedList<Simbolo> elemntos=new LinkedList(); 
         switch(tag.toUpperCase())
         {
             case "VENTANAS":
             {
                 for(ui_ventana v:this.ventanas)
                 {
-                    elemntos.add(v);
+                    elemntos.add(new Simbolo(var.tipo_ventana,v));
                 }
             }break;
-            case "CONTENEDOR":
+            default:
             {
                 for(ui_ventana v:this.ventanas)
                 {
-                    for(ui_contenedor con:v.contenedores)
+                    LinkedList<Simbolo> el=v.getByTag(tag);
+                    for(Simbolo s:el)
                     {
-                        elemntos.add(con);
+                        elemntos.add(s);
                     }
                 }
             }break;

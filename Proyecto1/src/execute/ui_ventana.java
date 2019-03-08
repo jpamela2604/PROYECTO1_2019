@@ -167,13 +167,13 @@ public class ui_ventana extends JFrame{
         this.pack();
         
     }  
-    public LinkedList<JComponent> getByNombre(String Nombre)
+    public LinkedList<Simbolo> getByNombre(String Nombre)
     {
-        LinkedList<JComponent> elemntos=new LinkedList();
+        LinkedList<Simbolo> elemntos=new LinkedList();
         for(ui_contenedor c:this.contenedores)
         {
-            LinkedList<JComponent> aux=c.getByNombre(Nombre);
-            for(JComponent p:aux)
+            LinkedList<Simbolo> aux=c.getByNombre(Nombre);
+            for(Simbolo p:aux)
             {
                 elemntos.add(p);
             }
@@ -182,17 +182,45 @@ public class ui_ventana extends JFrame{
         return elemntos;
     }
     
-    public LinkedList<JComponent> getByID(String id)
+    public LinkedList<Simbolo> getByID(String id)
     {
-        LinkedList<JComponent> elemntos=new LinkedList();        
+        LinkedList<Simbolo> elemntos=new LinkedList();        
         for(ui_contenedor c:this.contenedores)
         {
             if(((Simbolo)c.tabla.get("ID")).valor.toString().equals(id))
             {
-                elemntos.add(c);
+                elemntos.add(new Simbolo(var.tipo_contenedor,c));
             }
         }
         return elemntos;
     }
+    
+    public LinkedList<Simbolo> getByTag(String tag)
+    {
+        LinkedList<Simbolo> elemntos=new LinkedList();  
+        switch(tag.toUpperCase())
+        {
+            case "CONTENEDOR":
+            {
+                for(ui_contenedor con:this.contenedores)
+                {
+                    elemntos.add(new Simbolo(var.tipo_contenedor,con));
+                }
+            }break;
+            default:
+            {
+                for(ui_contenedor v:this.contenedores)
+                {
+                    LinkedList<Simbolo> el=v.getByTag(tag);
+                    for(Simbolo s:el)
+                    {
+                        elemntos.add(s);
+                    }
+                }
+            }break;
+        }
+        return elemntos;
+    }
+    
     
 }

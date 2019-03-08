@@ -20,7 +20,7 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_ControlNumerico extends JSpinner{
+public class ui_ControlNumerico extends JSpinner implements ui{
     //obligatorios
    //String nombre;
     public Hashtable tabla;
@@ -73,6 +73,7 @@ public class ui_ControlNumerico extends JSpinner{
     }
     //Contenedor.CrearControlNumerico(Alto, Ancho, Maximo, Minimo, X, Y, defecto, nombre)
     
+    @Override
     public String getTraduccion(String ventana,String panel)
     {
          String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
@@ -136,6 +137,7 @@ public class ui_ControlNumerico extends JSpinner{
     }
     
     //sent accion;
+    @Override
     public void cargar()
     {
         int font=0;
@@ -180,4 +182,6 @@ public class ui_ControlNumerico extends JSpinner{
         this.setVisible(true);
         
     }
+    
+    
 }

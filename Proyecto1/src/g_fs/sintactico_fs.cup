@@ -21,8 +21,8 @@ action code
 {:
       
 :}
-terminal   String id
-            ;
+/*terminal   String id
+            ;*/
 terminal   String   nulo,verdadero,falso,decre,aumen,igual,mayori,menori,dif,mayor,menor,mas,
                     menos,mul,divis,pote,llava,llavc,para,parc,dosptos,ptocoma,ques,op_or,op_and,op_not,
                     imprimir,varvar,coma,is,pto,a_mas,a_por,a_menos,a_div,cora,corc,importar,si,sino,detener,
@@ -481,6 +481,18 @@ ACCESO::=   er_id:n2
             {:
                 RESULT=new s_propiaArrayFromFile(n1,(n2left+1),(n2right+1),var.archivo);
             :}
+            |ObtenerPorId:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nObtenerID(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |ObtenerPorNombre:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nObtenerNombre(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
+            |ObtenerPorEtiqueta:n2 LCOND:n1 parc
+            {:
+                RESULT=new s_nObtenerEtiqueta(n1,(n2left+1),(n2right+1),var.archivo);
+            :}
             ;
 
 LLAMADA::=  er_id:n2 para LCOND:n3 parc
@@ -516,7 +528,7 @@ COND::=     LOGICA:n1
             :}
             
             
-            |leerGxml:n2 COND:n1 parc
+            |leerGxml:n2 LCOND:n1 parc
             {:
                 RESULT=new s_nativaGxml(n1,(n2left+1),(n2right+1),var.archivo);
             :}
