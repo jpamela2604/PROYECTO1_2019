@@ -35,7 +35,7 @@ public class ui_desplegable extends JComboBox{
     int ancho;*/
     /*int maximo;
     int minimo;*/
-    public Array lista;
+    //public Array lista;
     public ui_desplegable(int alto,int ancho,Array lista,int x,int y,String defecto,String nombre)
     {
         this.tabla=new Hashtable();
@@ -43,7 +43,8 @@ public class ui_desplegable extends JComboBox{
         this.ancho=ancho;*/
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        this.lista=lista;
+        this.tabla.put("LISTA", new Simbolo(var.tipo_arreglo,lista,false));
+        //this.lista=lista;
         /*this.x=x;
         this.y=y;*/
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
@@ -78,7 +79,8 @@ public class ui_desplegable extends JComboBox{
         String namelista="lista_"+nombre;
         String contenido="";
         String aux="";
-        LinkedList<Simbolo>valores=this.lista.valores;
+        Array lista=(Array) ((Simbolo)tabla.get("LISTA")).valor;
+        LinkedList<Simbolo>valores=lista.valores;
         for(Simbolo s:valores)
         {
             contenido=contenido+aux+"\""+s.valor.toString() +"\"";
@@ -115,7 +117,8 @@ public class ui_desplegable extends JComboBox{
              int maximo,int minimo,Array lista) 
     {
         this.tabla=new Hashtable();
-        this.lista=lista;
+        //this.lista=lista;
+        this.tabla.put("LISTA", new Simbolo(var.tipo_arreglo,lista,false));
         //this.nombre=nombre;
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
@@ -168,8 +171,8 @@ public class ui_desplegable extends JComboBox{
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
         //setsize(width,height)
         this.setSize(ancho,alto);
-        
-        for(Simbolo s:this.lista.valores)
+        Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
+        for(Simbolo s:lista.valores)
         {
             this.addItem(s.valor.toString());
         }

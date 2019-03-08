@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_fs.Array;
 import codigo_gdato.item;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -248,7 +249,8 @@ public class ui_contenedor extends JPanel{
         for(ui_desplegable t:combobox)
         {
             String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            Simbolo v=t.lista.valores.get(t.getSelectedIndex());
+            Array lista=(Array) ((Simbolo)t.tabla.get("LISTA")).valor;
+            Simbolo v=lista.valores.get(t.getSelectedIndex());
             String valor="";
             if(v!=null)
             {
