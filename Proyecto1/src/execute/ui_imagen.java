@@ -76,7 +76,7 @@ public class ui_imagen extends JButton{
         //this.ancho=alto;
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,false,false));
+        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
         //auto_reproduccion=autoplay;
         this.setVisible(false);
     }

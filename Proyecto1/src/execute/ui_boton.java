@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -32,7 +32,8 @@ public class ui_boton extends JButton{
     //sent llamada;
     String accion;
     Boolean IsEnviar;
-    public ui_boton(String nombre,int x,int y,int alto,int ancho,String accion,String ref,Boolean IsEnviar,String valor)
+    public ui_boton(String nombre,int x,int y,int alto,int ancho,String accion,String ref,
+            Boolean IsEnviar,String valor)
     {
        
         this.IsEnviar=IsEnviar;
@@ -52,7 +53,7 @@ public class ui_boton extends JButton{
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
@@ -71,7 +72,7 @@ public class ui_boton extends JButton{
         String nombre="Boton_"+(IsEnviar?"Enviar_":"")+name;
         
         String t="var "+nombre+ " = "+panel+ ".CrearBoton(\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
-                +((Simbolo)tabla.get("TAMAÑO")).valor.toString()+",\""+
+                +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
                 ((Simbolo)tabla.get("Y")).valor.toString()+",\""+
@@ -95,7 +96,8 @@ public class ui_boton extends JButton{
         return t;
         
     }
-    public ui_boton(String fuente,int tam,String color,int x,int y,String ref,String valor,int alto,int ancho)
+    public ui_boton(String fuente,int tam,String color,int x,int y,String ref,String valor,
+            int alto,int ancho)
     {
         accion="";
         this.tabla=new Hashtable();
@@ -105,7 +107,7 @@ public class ui_boton extends JButton{
         this.tam=tam;
         this.color=color;*/
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
@@ -127,7 +129,7 @@ public class ui_boton extends JButton{
     }
     public void cargar()
     {
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAMAÑO")).valor.toString());
+        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         String valor=((Simbolo)tabla.get("VALOR")).valor.toString();

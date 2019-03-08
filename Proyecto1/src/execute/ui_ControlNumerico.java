@@ -50,7 +50,7 @@ public class ui_ControlNumerico extends JSpinner{
         this.tam=tam;
         this.color=color;*/
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
+            this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
@@ -91,7 +91,7 @@ public class ui_ControlNumerico extends JSpinner{
         //fuente
          t=t+nombre+".fuente=\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\";\n";
         //tam
-         t=t+nombre+".tamaño="+((Simbolo)tabla.get("TAMAÑO")).valor.toString()+";\n";
+         t=t+nombre+".tam="+((Simbolo)tabla.get("TAM")).valor.toString()+";\n";
          //color
          t=t+nombre+".color=\""+((Simbolo)tabla.get("COLOR")).valor.toString()+"\";\n";
          //NEGRITA
@@ -102,7 +102,8 @@ public class ui_ControlNumerico extends JSpinner{
     }
     //Contenedor.CrearControlNumerico(Alto, Ancho, Maximo, Minimo, X, Y, defecto, nombre)
     
-    public ui_ControlNumerico(int alto,int ancho,int maximo,int minimo,int x,int y,int defecto,String nombre)
+    public ui_ControlNumerico(int alto,int ancho,int maximo,int minimo,
+            int x,int y,int defecto,String nombre)
     {
         this.tabla=new Hashtable();
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
@@ -123,7 +124,7 @@ public class ui_ControlNumerico extends JSpinner{
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
         //this.fuente=this.getFont().getFontName();
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
         //this.color="#000000";
         /*this.negrita=false;
@@ -148,7 +149,7 @@ public class ui_ControlNumerico extends JSpinner{
         {
             font=font+Font.ITALIC;
         }
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAMAÑO")).valor.toString());
+        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         this.setFont(new java.awt.Font(fuente, font, tam));

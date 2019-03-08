@@ -47,7 +47,7 @@ public class ui_texto extends JLabel{
         this.tam=tam;
         this.color=color;*/
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
@@ -71,14 +71,14 @@ public class ui_texto extends JLabel{
         
     }
     
-    //CrearTexto(Fuente, Tamaño, Color, X, Y, Negrilla, Cursiva, valor)
+    //CrearTexto(Fuente, tam, Color, X, Y, Negrilla, Cursiva, valor)
     public String getTraduccion(String panel)
     {
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
         String nombre="Texto_"+name;
         String t="var "+nombre+ " = "+panel+ ".CrearTexto(\""+
                 ((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
-                +((Simbolo)tabla.get("TAMAÑO")).valor.toString()+",\""+
+                +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
                 ((Simbolo)tabla.get("Y")).valor.toString()+","+
@@ -106,7 +106,7 @@ public class ui_texto extends JLabel{
         this.tam=this.getFont().getSize();
         this.color="#000000";*/
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAMAÑO", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
         //this.tam=this.getFont().getSize();
         //this.color="#000000";
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
@@ -126,7 +126,7 @@ public class ui_texto extends JLabel{
     public void cargar()
     {
        
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAMAÑO")).valor.toString());
+        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
         String color=((Simbolo)tabla.get("COLOR")).valor.toString();
         Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
@@ -155,9 +155,10 @@ public class ui_texto extends JLabel{
         this.setVisible(true);
         this.repaint();
     }
-
+    /*
     public void addActionListener(ActionListener actionListener) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+*/
     
 }
