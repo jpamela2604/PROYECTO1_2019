@@ -121,7 +121,7 @@ public class s_nCrearCtrlNum implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.spinners.add(spinner);
+                    con.componentes.add(spinner);
                 }
                 return new Simbolo(var.tipo_controlnum,spinner);
 

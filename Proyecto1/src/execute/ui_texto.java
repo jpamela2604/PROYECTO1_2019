@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import javax.swing.JLabel;
 import proyecto1.var;
 import ts.Simbolo;
@@ -17,62 +18,31 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_texto extends JLabel{
+public class ui_texto extends JLabel implements ui{
      public Hashtable tabla;
-    //obligatorios
-    //String nombre;
-    //String valor;
-    /*int x;
-    int y;*/
-     //opcionales
-    /*String fuente;
-    int tam;
-    String color;*/
-    /*Boolean negrita;
-    Boolean cursiva;*/
-    /*no estoy segura*/
-    /*int alto;
-    int ancho;*/
-    /*int maximo;
-    int minimo;*/
-    //sent accion;
-    public ui_texto(String fuente,int tam,String color,int x,int y,Boolean negrilla,
-            Boolean cursiva,String valor)
+     @Override
+     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        
-        this.tabla=new Hashtable();        
-        //this.nombre="";
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));
-        /*this.fuente=fuente;
-        this.tam=tam;
-        this.color=color;*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
-        //this.tam=this.getFont().getSize();
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-       /* this.x=x;
-        this.y=y;  */    
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        /*this.negrita=negrilla;
-        this.cursiva=cursiva;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
-        //this.valor=valor;
-        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
-        /*this.alto=this.getSize().height;
-        this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
-        this.setVisible(false);
-        
+        if(tag.toUpperCase().trim().equals(getValor("TEXTO")))
+        {
+            valores.add(new Simbolo(var.tipo_texto,this));
+        }
     }
-    
+     @Override
+     public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {
+        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        {
+            valores.add(new Simbolo(var.tipo_texto,this));
+        }
+    }
+     @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+    }
+     @Override
     //CrearTexto(Fuente, tam, Color, X, Y, Negrilla, Cursiva, valor)
-    public String getTraduccion(String panel)
+    public String getTraduccion(String ventana,String panel)
     {
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
         String nombre="Texto_"+name;
@@ -90,39 +60,8 @@ public class ui_texto extends JLabel{
         
         return t;
     }
-    public ui_texto(String nombre,String fuente,int tam,String color,int x,int y,Boolean negrilla,
-            Boolean cursiva,String valor)
-    {
-        this.tabla=new Hashtable();
-        //valor=nombre;
-        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));        
-        //this.nombre=nombre;
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-       /* this.x=x;
-        this.y=y;*/
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        /*this.fuente=this.getFont().getFontName();
-        this.tam=this.getFont().getSize();
-        this.color="#000000";*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
-        //this.tam=this.getFont().getSize();
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-        /*this.negrita=false;
-        this.cursiva=false;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
-        /*this.alto=this.getSize().height;
-        this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
-        this.setVisible(false);
-    }
     
+    @Override
     public void cargar()
     {
        
@@ -155,10 +94,48 @@ public class ui_texto extends JLabel{
         this.setVisible(true);
         this.repaint();
     }
-    /*
-    public void addActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String getValor(String value) {
+        return ((Simbolo)tabla.get(value)).valor.toString();
     }
-*/
+     public ui_texto(String fuente,int tam,String color,int x,int y,Boolean negrilla,
+            Boolean cursiva,String valor)
+    {        
+        this.tabla=new Hashtable();   
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false)); 
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
+        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
+        this.setVisible(false);
+        
+    }  
+    public ui_texto(String nombre,String fuente,int tam,String color,int x,int y,Boolean negrilla,
+            Boolean cursiva,String valor)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));   
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,var.alto_t,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_t,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_t,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_t,false));
+        this.setVisible(false);
+    }
     
 }

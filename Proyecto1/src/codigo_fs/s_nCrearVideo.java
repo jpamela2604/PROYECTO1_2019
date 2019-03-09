@@ -105,7 +105,7 @@ public class s_nCrearVideo implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.videos.add(video);
+                    con.componentes.add(video);
                 }
                 return new Simbolo(var.tipo_video,video);
 

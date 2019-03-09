@@ -70,7 +70,7 @@ public class Reconize {
                     ui_gxml archivo=(ui_gxml) raiz.GetGxmlObject();
                     String ruta2=ruta.replace(".gxml", "");
                     ruta2=ruta2+".fs";
-                    GuardarDatos(ruta2,archivo.getTraduccion());
+                    GuardarDatos(ruta2,archivo.getTraduccion("",""));
                     // System.out.println(archivo.getTraduccion());
                  }
             }else

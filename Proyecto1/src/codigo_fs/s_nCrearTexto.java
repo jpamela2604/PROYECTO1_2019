@@ -120,7 +120,7 @@ public class s_nCrearTexto implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.textos.add(texto);
+                    con.componentes.add(texto);
                 }
                 return new Simbolo(var.tipo_texto,texto);
 

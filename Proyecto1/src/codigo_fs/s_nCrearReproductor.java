@@ -105,7 +105,7 @@ public class s_nCrearReproductor implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.musica.add(musica);
+                    con.componentes.add(musica);
                 }
                 return new Simbolo(var.tipo_reproductor,musica);
 

@@ -8,6 +8,7 @@ package execute;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import javax.swing.JTextField;
 import proyecto1.var;
 import ts.Simbolo;
@@ -16,57 +17,29 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_cajaTexto extends JTextField{
+public class ui_cajaTexto extends JTextField implements ui{
      public Hashtable tabla;
-    //obligatorios
-   // String nombre;
-    //String defecto;
-    /*int x;
-    int y;*/     
-    //opcionales
-    /*String fuente;
-    int tam;
-    String color;*/
-    /*Boolean negrita;
-    Boolean cursiva;*/
-    /*int alto;
-    int ancho;*/
-    /*int maximo;
-    int minimo;*/
-    public ui_cajaTexto (int alto,int ancho,String fuente,int tam,String color,
-             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre,
-             int maximo,int minimo)
+      @Override
+    public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        this.tabla=new Hashtable();
-        /*this.alto=alto;
-        this.ancho=ancho;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        /*this.fuente=fuente;
-        this.tam=tam;
-        this.color=color;*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
-        //this.tam=this.getFont().getSize();
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-        
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        /*this.x=x;
-        this.y=y;       */ 
-        /*this.negrita=negrilla;
-        this.cursiva=cursiva;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
-        //this.defecto=defecto;
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        //this.nombre=nombre;
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
-        this.setVisible(false);
+        if(tag.toUpperCase().trim().equals(getValor("CONTROL")))
+        {
+            valores.add(new Simbolo(var.tipo_cajatexto,this));
+        }
     }
+     @Override
+     public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {
+        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        {
+            valores.add(new Simbolo(var.tipo_cajatexto,this));
+        }
+    }
+     @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+    }
+    @Override
 //CrearCajaTexto(Alto, Ancho, Fuente, Tamaño, Color, X, Y, Negrilla, Cursiva, defecto, nombre
     public String getTraduccion(String ventana,String panel)
     {
@@ -92,39 +65,7 @@ public class ui_cajaTexto extends JTextField{
          t=t+nombre+".minimo="+((Simbolo)tabla.get("MINIMO")).valor.toString()+";\n";
         return t;
     }
-     public ui_cajaTexto (int alto,int ancho,String fuente,int tam,String color,
-             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre)
-    {
-        this.tabla=new Hashtable();
-        /*this.alto=alto;
-        this.ancho=ancho;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        /*this.fuente=fuente;
-        this.tam=tam;
-        this.color=color;*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
-        //this.tam=this.getFont().getSize();
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-        
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        /*this.x=x;
-        this.y=y;       */ 
-        /*this.negrita=negrilla;
-        this.cursiva=cursiva;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
-        //this.defecto=defecto;
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        //this.nombre=nombre;
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_caja,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_caja,false));
-        this.setVisible(false);
-    }
+    @Override
     public void cargar()
     {
         int font=0;
@@ -147,8 +88,51 @@ public class ui_cajaTexto extends JTextField{
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
         //setsize(width,height)
         this.setSize(ancho,alto);
-        
+        this.setLocation(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")));
         this.setText(((Simbolo)tabla.get("DEFECTO")).valor.toString());
         this.setVisible(true);
+    }
+    @Override
+    public String getValor(String value) {
+        return ((Simbolo)tabla.get(value)).valor.toString();
+    }
+    public ui_cajaTexto (int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre,
+             int maximo,int minimo)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
+        this.setVisible(false);
+    }
+     public ui_cajaTexto (int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,String defecto,String nombre)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));        
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_caja,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_caja,false));
+        this.setVisible(false);
     }
 }

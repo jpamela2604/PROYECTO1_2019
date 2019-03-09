@@ -143,7 +143,7 @@ public class s_nCrearAreaTexto implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.areas.add(area);
+                    con.componentes.add(area);
                 }
                 return new Simbolo(var.tipo_areatexto,area);
 

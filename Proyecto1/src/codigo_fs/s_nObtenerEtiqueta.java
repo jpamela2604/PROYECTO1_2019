@@ -64,7 +64,9 @@ public class s_nObtenerEtiqueta implements sent {
                     }else
                     {
                         ui_gxml myfile =(ui_gxml) ts.actual.valor;
-                        Array nuevo=new Array(myfile.getByTag(a.valor.toString().trim()));
+                        LinkedList<Simbolo> valores=new LinkedList();
+                        myfile.getByTag(a.valor.toString().trim(),valores);
+                        Array nuevo=new Array(valores);
                         rr=new Simbolo(var.tipo_arreglo,nuevo);                                
                         
                     }

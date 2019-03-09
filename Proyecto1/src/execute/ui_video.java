@@ -7,6 +7,7 @@ package execute;
 
 
 import java.util.Hashtable;
+import java.util.LinkedList;
 import javax.swing.JButton;
 import proyecto1.var;
 import ts.Simbolo;
@@ -15,37 +16,30 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_video extends JButton{
+public class ui_video extends JButton implements ui{
     public Hashtable tabla;
-     //obligatorios
-    //String ruta;
-    //String nombre;
-    //int x;
-    //int y;
-    //opcionales
-    //int ancho;
-    //int alto;
-    //Boolean auto_reproduccion;
-    public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho,String nombre)
+    @Override
+    public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        this.tabla=new Hashtable();
-        //this.ruta=ruta;
-        this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        //this.nombre=nombre;
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        //this.x=x;
-        //this.y=y;
-        //this.alto=this.getSize().height;
-        //this.ancho=this.getSize().width;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
-        //auto_reproduccion=false
-        this.setVisible(false);
+        if(tag.toUpperCase().trim().equals(getValor("MULTIMEDIA")))
+        {
+            valores.add(new Simbolo(var.tipo_video,this));
+        }
     }
-    public String getTraduccion(String panel)
+    @Override
+    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {
+        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        {
+            valores.add(new Simbolo(var.tipo_video,this));
+        }
+    }
+    @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+    }
+    @Override
+    public String getTraduccion(String ventana,String panel)
     {
         //Contenedor.CrearImagen(Ruta, X, Y, Auto-reproductor, Alto, Ancho)
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
@@ -60,32 +54,43 @@ public class ui_video extends JButton{
         ");\n";
         t=t+nombre+".nombre=\""+name+"\";\n";
         return t;
-    }
-    public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho)
-    {
-        this.tabla=new Hashtable();
-        this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
-        //this.nombre="";
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));
-        //this.x=x;
-        //this.y=y;
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        //this.alto=alto;
-        //this.ancho=alto;
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
-        //auto_reproduccion=autoplay;
-        this.setVisible(false);
-    }
-    
+    }   
+    @Override
     public void cargar()
     {
         int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
         int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
         //setsize(width,height)
         this.setSize(ancho,alto);
+        this.setLocation(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")));
         this.setVisible(true);
+    }
+    @Override
+    public String getValor(String value) {
+        return ((Simbolo)tabla.get(value)).valor.toString();
+    }
+    public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho,String nombre)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
+        this.setVisible(false);
+    }
+    public ui_video(String ruta,int x,int y,Boolean autoplay,int alto,int ancho)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
+        this.setVisible(false);
     }
 }

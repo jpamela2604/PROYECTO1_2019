@@ -6,6 +6,7 @@
 package codigo_gxml;
 
 import errors.mng_error;
+import execute.ui;
 import execute.ui_ControlNumerico;
 import execute.ui_areaTexto;
 import execute.ui_boton;
@@ -59,34 +60,11 @@ public class e_contenedor implements etiqueta{
         );
         for(etiqueta eti:this.etiquetas)
         {
+            
             Object o=eti.GetGxmlObject();
-            if(o instanceof  ui_boton)
+            if(o!=null)
             {
-                con.botones.add((ui_boton) o);
-            }else if(o instanceof  ui_cajaTexto)
-            {
-                con.cajas.add((ui_cajaTexto) o);
-            }else if(o instanceof  ui_ControlNumerico)
-            {
-                con.spinners.add((ui_ControlNumerico) o);
-            }else if(o instanceof  ui_areaTexto)
-            {
-                con.areas.add((ui_areaTexto) o);
-            }else if(o instanceof  ui_desplegable)
-            {
-                con.combobox.add((ui_desplegable) o);
-            }else if(o instanceof  ui_imagen)
-            {
-                con.imagenes.add((ui_imagen) o);
-            }else if(o instanceof  ui_reproductor)
-            {
-                con.musica.add((ui_reproductor) o);
-            }else if(o instanceof  ui_texto)
-            {
-                con.textos.add((ui_texto) o);
-            }else if(o instanceof  ui_video)
-            {
-                con.videos.add((ui_video) o);
+                con.componentes.add((ui) o);
             }
         }
         return con;

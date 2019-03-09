@@ -23,59 +23,112 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_contenedor extends JPanel{
-     public Hashtable tabla;
-    //elementos
-    public LinkedList<ui_texto> textos;
-    /*controladores*/
-    public LinkedList<ui_ControlNumerico> spinners;
-    public LinkedList<ui_areaTexto> areas;
-    public LinkedList<ui_cajaTexto> cajas;
-    public LinkedList<ui_desplegable> combobox;
-    /*multimedia*/
-    public LinkedList<ui_imagen> imagenes;
-    public LinkedList<ui_video> videos;
-    public LinkedList<ui_reproductor> musica;
-    /*boton*/
-    public LinkedList<ui_boton> botones;
-    //obligatorio
-    //String id;
-    /*int x;
-    int y;*/
-    //opcionales
-    /*int alto;
-    int ancho;*/
-    //String color;
-    //Boolean borde;
-    public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y,String id)
+public class ui_contenedor extends JPanel implements ui{
+    public Hashtable tabla;
+    public LinkedList<ui> componentes;
+    @Override
+    public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        this.tabla=new Hashtable();
-        //this.borde=false;
-        this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,borde,false));
-        //this.id=id;
-        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
-        /*this.x=x;
-        this.y=y;*/
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        this.textos=new LinkedList();
-        this.spinners=new LinkedList();
-        this.areas=new LinkedList();
-        this.cajas=new LinkedList();
-        this.combobox=new LinkedList();
-        this.imagenes=new LinkedList();
-        this.videos=new LinkedList();
-        this.musica=new LinkedList();
-        this.botones=new LinkedList();
-        /*this.alto=this.getSize().height;
-        this.ancho=this.getSize().width;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-        this.setVisible(false);
+        if(tag.toUpperCase().trim().equals(getValor("CONTENEDOR")))
+        {
+            valores.add(new Simbolo(var.tipo_contenedor,this));
+        }else
+        {
+            for(ui ven:this.componentes)
+            {
+                ven.getByTag(tag, valores);
+            }
+        }
     }
-    public String getTraduccion(String ventana)
+    @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+        if(id.toUpperCase().trim().equals(getValor("ID")))
+        {
+            valores.add(new Simbolo(var.tipo_contenedor,this));
+        }
+    }
+    @Override
+    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {        
+        for(ui con:this.componentes)
+        {
+            con.getByNombre(nombre, valores);
+        }
+    }
+    @Override
+    public void cargar()
+    {
+        
+        this.setLayout(null);
+        Boolean borde=Boolean.valueOf(((Simbolo)tabla.get("BORDE")).valor.toString());
+        if(borde)
+        {
+            this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));        
+        }
+        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
+        this.setBackground(Color.decode(color));
+        int x=0;
+        int y=0;
+        int ancho=0;
+        int alto=0;
+        
+        for(ui t:this.componentes)
+        {
+            if(t instanceof ui_areaTexto)
+            {
+                t.cargar();
+                JScrollPane sp = new JScrollPane();
+                sp.getViewport().add((JComponent)t);
+                sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                int altxo=Integer.valueOf(t.getValor("ALTO"));
+                int anchxo=Integer.valueOf(t.getValor("ANCHO"));
+                int xx=Integer.valueOf(t.getValor("X"));
+                int yy=Integer.valueOf(t.getValor("Y"));
+                //setBounds(int x, int y, int width, int height)
+                sp.setBounds(xx, yy, anchxo, altxo);
+                //t.setLocation(xx, yy);
+                if(xx>=x)
+                {
+                    x=xx;
+                    ancho=anchxo;                
+                }
+                if(yy>=y)
+                {
+                    y=yy;
+                    alto=altxo; 
+                }
+                this.add(sp);
+            }else
+            {
+                t.cargar();
+                int xx=Integer.valueOf(t.getValor("X"));
+                int yy=Integer.valueOf(t.getValor("Y"));
+                //t.setLocation(xx, yy);
+                if(xx>=x)
+                {
+                    x=xx;
+                    ancho=Integer.valueOf(t.getValor("ANCHO"));                
+                }
+                if(yy>=y)
+                {
+                    y=yy;
+                    alto=Integer.valueOf(t.getValor("ALTO")); 
+                }
+                this.add((JComponent)t);
+            }
+        }
+          
+       
+        this.validate();
+        ////new dimension(height,width)
+        this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
+        this.validate();
+        this.setVisible(true);
+    }
+    @Override
+    public String getTraduccion(String ventana,String panel)
     {
         //CrearContenedor(Alto, Ancho, Color, Borde, X, Y)
         String name=((Simbolo)tabla.get("ID")).valor.toString();
@@ -90,71 +143,42 @@ public class ui_contenedor extends JPanel{
                 ((Simbolo)tabla.get("Y")).valor.toString()+
                 ");\n";
         c=c+nombre+".id=\""+name+"\";\n";
-        for(ui_boton bo:botones)
+        for(ui com:this.componentes)
         {
-            c=c+bo.getTraduccion(ventana, nombre);            
+            c=c+com.getTraduccion(ventana, nombre);
         }
-        for(ui_texto bo:textos)
-        {
-            c=c+bo.getTraduccion( nombre);    
-        }
-        for(ui_ControlNumerico bo:spinners)
-        {
-            c=c+bo.getTraduccion(ventana, nombre);    
-        }
-        for(ui_areaTexto bo:areas)
-        {
-            c=c+bo.getTraduccion(ventana, nombre);    
-        }
-        for(ui_cajaTexto bo:cajas)
-        {
-            c=c+bo.getTraduccion(ventana, nombre);    
-        }
-        for(ui_desplegable bo:combobox)
-        {
-            c=c+bo.getTraduccion(ventana, nombre);    
-        }
-        for(ui_imagen bo:imagenes)
-        {
-            c=c+bo.getTraduccion( nombre);    
-        }
-        for(ui_video bo:videos)
-        {
-            c=c+bo.getTraduccion( nombre);    
-        }
-        for(ui_reproductor bo:musica)
-        {
-            c=c+bo.getTraduccion( nombre);    
-        }
-        
         return c;
+        
+    }    
+    
+    @Override
+    public String getValor(String value) {
+        return ((Simbolo)tabla.get(value)).valor.toString();
+    }
+    public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y,String id)
+    {
+        componentes=new LinkedList();
+        this.tabla=new Hashtable();
+        this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,borde,false));
+        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
+        this.setVisible(false);
     }
     public ui_contenedor(int alto,int ancho,String color,Boolean borde,int x,int y)
     {
+         componentes=new LinkedList();
         this.tabla=new Hashtable();
-        /*this.alto=alto;
-        this.ancho=ancho;*/
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        //this.color=color;
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,borde,false));
-        //this.borde=borde;        
-        /*this.x=x;
-        this.y=y;*/
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));        
-        //this.id="";
         this.tabla.put("ID", new Simbolo(var.tipo_cadena,"",false));
-        this.textos=new LinkedList();
-        this.spinners=new LinkedList();
-        this.areas=new LinkedList();
-        this.cajas=new LinkedList();
-        this.combobox=new LinkedList();
-        this.imagenes=new LinkedList();
-        this.videos=new LinkedList();
-        this.musica=new LinkedList();
-        this.botones=new LinkedList();
         this.setVisible(false);
     }
     
@@ -163,6 +187,7 @@ public class ui_contenedor extends JPanel{
     public LinkedList<Simbolo> getByNombre(String Nombre)
     {
         LinkedList<Simbolo> elemntos=new LinkedList();
+        /*
         for(ui_texto t:textos)
         {
             if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
@@ -225,13 +250,13 @@ public class ui_contenedor extends JPanel{
             {
                elemntos.add(new Simbolo(var.tipo_boton,t));
             }
-        }
+        }*/
         return elemntos;
     }
     public LinkedList<item> getValores()
     {
         LinkedList<item> valores=new LinkedList();
-        for(ui_ControlNumerico t:spinners)
+        /*for(ui_ControlNumerico t:spinners)
         {
             String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
             valores.add(new item(nombre,t.getValue(),0,0,""));
@@ -278,220 +303,14 @@ public class ui_contenedor extends JPanel{
                 }
             }
             valores.add(new item(nombre,valor,0,0,""));
-        }
+        }*/
         return valores;
     }
-    public void cargar()
-    {
-        //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.setLayout(null);
-        Boolean borde=Boolean.valueOf(((Simbolo)tabla.get("BORDE")).valor.toString());
-        if(borde)
-        {
-            this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));        
-        }
-        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
-        this.setBackground(Color.decode(color));
-        /*
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        
-        this.setPreferredSize(new Dimension(alto,ancho));
-        
-        int xxa=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
-        int yya=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
-        this.setBounds(xxa, yya, ancho, alto);        
-        
-        this.setMaximumSize(new Dimension(alto,ancho));
-        this.setMaximumSize(new Dimension(alto,ancho));
-        this.repaint();*/
-        int x=0;
-        int y=0;
-        int ancho=0;
-        int alto=0;
-        
-        for(ui_texto t:textos)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            //t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_ControlNumerico t:spinners)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            //setlocation(x,y)
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_areaTexto t:areas)
-        {
-            t.cargar();
-            JScrollPane sp = new JScrollPane();
-            sp.getViewport().add(t);
-            sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-            sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            int altxo=Integer.valueOf(((Simbolo)t.tabla.get("ALTO")).valor.toString());
-            int anchxo=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            //setBounds(int x, int y, int width, int height)
-            sp.setBounds(xx, yy, anchxo, altxo);
-            //t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(sp);
-        }
-        
-        for(ui_cajaTexto t:cajas)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-       
-        for(ui_desplegable t:combobox)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            //t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_imagen t:imagenes)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_video t:videos)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_reproductor t:musica)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        for(ui_boton t:botones)
-        {
-            t.cargar();
-            int xx=Integer.valueOf(((Simbolo)t.tabla.get("X")).valor.toString());
-            int yy=Integer.valueOf(((Simbolo)t.tabla.get("Y")).valor.toString());
-            t.setLocation(xx, yy);
-            if(xx>=x)
-            {
-                x=xx;
-                ancho=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString());                
-            }
-            if(yy>=y)
-            {
-                y=yy;
-                alto=Integer.valueOf(((Simbolo)t.tabla.get("ANCHO")).valor.toString()); 
-            }
-            this.add(t);
-        }
-        this.validate();
-        ////new dimension(height,width)
-        this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
-        this.validate();
-        this.setVisible(true);
-    }
+    
     public LinkedList<Simbolo> getByTag(String tag)
     {
         LinkedList<Simbolo> elemntos=new LinkedList();  
+        /*
         switch(tag.toUpperCase())
         {
             case "TEXTO":
@@ -551,6 +370,7 @@ public class ui_contenedor extends JPanel{
             }break;
             
         }
+        */
         return elemntos;
     }
     

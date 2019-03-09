@@ -114,7 +114,7 @@ public class s_nCrearDesplegable implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.combobox.add(des);
+                    con.componentes.add(des);
                 }
                 return new Simbolo(var.tipo_desplegable,des);
 

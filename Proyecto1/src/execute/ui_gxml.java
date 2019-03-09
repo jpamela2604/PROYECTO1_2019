@@ -15,7 +15,7 @@ import ts.Simbolo;
  *
  * @author Pamela Palacios
  */
-public class ui_gxml {
+public class ui_gxml implements ui{
     public LinkedList<ui_ventana> ventanas;
     public LinkedList<ruta> rutas;
     public ui_gxml()
@@ -23,7 +23,33 @@ public class ui_gxml {
         this.ventanas=new LinkedList();
         this.rutas=new LinkedList();
     }
-    public String getTraduccion()
+    @Override
+    public void getByTag(String tag,LinkedList<Simbolo>valores)
+    {        
+        for(ui_ventana ven:this.ventanas)
+        {
+            ven.getByTag(tag, valores);
+        }
+    }
+    @Override
+    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {
+        for(ui_ventana ven:this.ventanas)
+        {
+            ven.getByNombre(nombre, valores);
+        }
+    }
+    @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+        for(ui_ventana ven:this.ventanas)
+        {
+            ven.getById(id, valores);
+        }
+    }
+   
+    @Override
+    public String getTraduccion(String ventana,String panel)
     {
         String t="";
         for(ruta rut:rutas)
@@ -32,13 +58,21 @@ public class ui_gxml {
         }
         for(ui_ventana bo:ventanas)
         {
-            t=t+bo.getTraduccion();
+            t=t+bo.getTraduccion("","");
             
         }
         
         return t;
     }
-    
+    @Override
+    public void cargar()
+    {
+    }
+    @Override
+    public String getValor(String value)
+    {
+        return "";
+    }
     public LinkedList<Simbolo> getByNombre(String Nombre)
     {
         LinkedList<Simbolo> elemntos=new LinkedList();
@@ -54,23 +88,7 @@ public class ui_gxml {
         return elemntos;
     }
     
-    public LinkedList<Simbolo> getByID(String id)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();        
-        for(ui_ventana c:this.ventanas)
-        {
-            if(((Simbolo)c.tabla.get("ID")).valor.toString().equals(id))
-            {
-                elemntos.add(new Simbolo(var.tipo_ventana,c));
-            }
-            LinkedList<Simbolo> aux=c.getByID(id);
-            for(Simbolo p:aux)
-            {
-                elemntos.add(p);
-            }
-        }
-        return elemntos;
-    }
+    
     public LinkedList<Simbolo> getByTag(String tag)
     {
         LinkedList<Simbolo> elemntos=new LinkedList(); 

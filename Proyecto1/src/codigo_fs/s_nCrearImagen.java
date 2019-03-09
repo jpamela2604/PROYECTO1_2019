@@ -105,7 +105,7 @@ public class s_nCrearImagen implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.imagenes.add(imagen);
+                    con.componentes.add(imagen);
                 }
                 return new Simbolo(var.tipo_imagen,imagen);
 

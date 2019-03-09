@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import javax.swing.JComponent;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -21,58 +22,29 @@ import ts.Simbolo;
  * @author Pamela Palacios
  */
 public class ui_ControlNumerico extends JSpinner implements ui{
-    //obligatorios
-   //String nombre;
+   
     public Hashtable tabla;
-    //int defecto;
-    //int x;
-    //int y;
-    //opcionales
-    //String fuente;
-    //int tam;
-    //String color;
-    //Boolean negrita;
-    //Boolean cursiva;
-    //int alto;
-    //int ancho;
-    //int maximo;
-    //int minimo;
-   public ui_ControlNumerico (int alto,int ancho,String fuente,int tam,String color,
-             int x,int y,Boolean negrilla,Boolean cursiva,int defecto,String nombre,
-             int maximo,int minimo)
+    @Override
+    public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        this.tabla=new Hashtable();
-        /*this.alto=alto;
-        this.ancho=ancho;*/
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        /*this.fuente=fuente;
-        this.tam=tam;
-        this.color=color;*/
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
-            this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
-        //this.tam=this.getFont().getSize();
-        //this.color="#000000";
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
-        
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        /*this.x=x;
-        this.y=y;       */ 
-        /*this.negrita=negrilla;
-        this.cursiva=cursiva;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
-        //this.defecto=defecto;
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        //this.nombre=nombre;
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
-        this.setVisible(false);
+        if(tag.toUpperCase().trim().equals(getValor("CONTROL")))
+        {
+            valores.add(new Simbolo(var.tipo_controlnum,this));
+        }
+    }
+    @Override
+    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    {
+        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        {
+            valores.add(new Simbolo(var.tipo_controlnum,this));
+        }
     }
     //Contenedor.CrearControlNumerico(Alto, Ancho, Maximo, Minimo, X, Y, defecto, nombre)
-    
+    @Override
+    public void getById(String id,LinkedList<Simbolo>valores)
+    {
+    }
     @Override
     public String getTraduccion(String ventana,String panel)
     {
@@ -101,42 +73,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
          t=t+nombre+".cursiva="+((((Simbolo)tabla.get("CURSIVA")).valor.toString()).equals("true")?"verdadero":"falso")+";\n";
         return t;
     }
-    //Contenedor.CrearControlNumerico(Alto, Ancho, Maximo, Minimo, X, Y, defecto, nombre)
-    
-    public ui_ControlNumerico(int alto,int ancho,int maximo,int minimo,
-            int x,int y,int defecto,String nombre)
-    {
-        this.tabla=new Hashtable();
-        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        //this.alto=alto;
-        //this.ancho=ancho;
-        //this.maximo=maximo;
-        //this.minimo=minimo;
-        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
-        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
-        //this.x=x;
-        //this.y=y;
-        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
-        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        //this.defecto=defecto;
-        this.tabla.put("DEFECTO", new Simbolo(var.tipo_entero,defecto,false));
-        //this.nombre=nombre;
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
-        //this.fuente=this.getFont().getFontName();
-        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
-        this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
-        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
-        //this.color="#000000";
-        /*this.negrita=false;
-        this.cursiva=false;*/
-        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
-        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
-        this.setVisible(false);
-        
-    }
-    
-    //sent accion;
+     //sent accion;
     @Override
     public void cargar()
     {
@@ -163,7 +100,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
         this.setSize(ancho,alto);
         //default value,lower bound,upper bound,increment by 
         int minimo=Integer.valueOf(((Simbolo)tabla.get("MINIMO")).valor.toString());
-       
+        
         int maximo=Integer.valueOf(((Simbolo)tabla.get("MAXIMO")).valor.toString());
         int def=Integer.valueOf(((Simbolo)tabla.get("DEFECTO")).valor.toString());
         this.setModel(new SpinnerNumberModel(def, minimo, maximo, var.incr_spinner));
@@ -178,10 +115,61 @@ public class ui_ControlNumerico extends JSpinner implements ui{
                 c.setForeground(Color.decode(color));
             }
         }
+        this.setLocation(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")));
         this.repaint();
         this.setVisible(true);
         
     }
+
+    @Override
+    public String getValor(String value) {
+        return ((Simbolo)tabla.get(value)).valor.toString();
+    }
+   public ui_ControlNumerico (int alto,int ancho,String fuente,int tam,String color,
+             int x,int y,Boolean negrilla,Boolean cursiva,int defecto,String nombre,
+             int maximo,int minimo)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,tam,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
+        this.setVisible(false);
+    }
+    
+    //Contenedor.CrearControlNumerico(Alto, Ancho, Maximo, Minimo, X, Y, defecto, nombre)
+    
+    public ui_ControlNumerico(int alto,int ancho,int maximo,int minimo,
+            int x,int y,int defecto,String nombre)
+    {
+        this.tabla=new Hashtable();
+        this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
+        this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
+        this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
+        this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
+        this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
+        this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
+        this.tabla.put("DEFECTO", new Simbolo(var.tipo_entero,defecto,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
+        this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
+        this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
+        this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,false,false));
+        this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,false,false));
+        this.setVisible(false);
+        
+    }
+    
+   
     
     
 }

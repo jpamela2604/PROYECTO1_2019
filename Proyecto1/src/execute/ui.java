@@ -5,6 +5,9 @@
  */
 package execute;
 
+import java.util.LinkedList;
+import ts.Simbolo;
+
 /**
  *
  * @author Pamela Palacios
@@ -12,4 +15,8 @@ package execute;
 public interface ui {
     public String getTraduccion(String ventana,String panel);
     public void cargar();
+    public String getValor(String value);
+    public void getById(String id,LinkedList<Simbolo>valores);
+    public void getByNombre(String nombre,LinkedList<Simbolo>valores);
+    public void getByTag(String nombre,LinkedList<Simbolo>valores);
 }

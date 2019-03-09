@@ -143,7 +143,7 @@ public class s_nCrearCajaTexto implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.cajas.add(caja);
+                    con.componentes.add(caja);
                 }
                 return new Simbolo(var.tipo_cajatexto,caja);
 

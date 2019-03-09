@@ -128,7 +128,7 @@ public class s_nCrearBoton implements sent {
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.botones.add(boton);
+                    con.componentes.add(boton);
                 }
                 return new Simbolo(var.tipo_boton,boton);
 
