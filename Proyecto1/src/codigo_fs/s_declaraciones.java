@@ -19,12 +19,14 @@ public class s_declaraciones implements sent{
      int linea;
      int columna;
      String archivo;
+     public Boolean IsGlobal;
      public s_declaraciones(LinkedList<sent> declas,int linea,int columna,String archivo)
      {
          this.declas=declas;
          this.linea=linea;
          this.columna=columna;
          this.archivo=archivo;
+         IsGlobal=false;
      }
      @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
@@ -35,6 +37,8 @@ public class s_declaraciones implements sent{
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         for(sent s:declas)
         {
+            s_declaracion de=(s_declaracion)s;
+            de.IsGlobal=this.IsGlobal;
             s.ejecutar(ts, e, ej);
         }
         return null;

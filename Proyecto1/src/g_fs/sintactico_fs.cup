@@ -205,6 +205,11 @@ SINO    ::=  sino:n2 llava LINS:n1 llavc
             ;
 SENT::=     INS:n1
             {:
+                if(n1 instanceof s_declaraciones)
+                {
+                    s_declaraciones de=(s_declaraciones) n1;
+                    de.IsGlobal=true;
+                }
                 RESULT=n1;
             :}
             |FUN:n1

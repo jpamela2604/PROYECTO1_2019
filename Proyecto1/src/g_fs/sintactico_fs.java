@@ -1790,6 +1790,11 @@ class CUP$sintactico_fs$actions {
 		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()).right;
 		sent n1 = (sent)((java_cup.runtime.Symbol) CUP$sintactico_fs$stack.peek()).value;
 		
+                if(n1 instanceof s_declaraciones)
+                {
+                    s_declaraciones de=(s_declaraciones) n1;
+                    de.IsGlobal=true;
+                }
                 RESULT=n1;
             
               CUP$sintactico_fs$result = parser.getSymbolFactory().newSymbol("SENT",9, ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), RESULT);

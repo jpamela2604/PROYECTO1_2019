@@ -21,6 +21,7 @@ public class s_declaracion implements sent{
     int linea;
     int columna;
     String archivo;
+    public Boolean IsGlobal;
      
      public s_declaracion(String id,sent valor,int linea,int columna,String archivo)
      {
@@ -29,6 +30,7 @@ public class s_declaracion implements sent{
          this.linea=linea;
          this.columna=columna;
          this.archivo=archivo;
+         IsGlobal=false;
      }
      @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
@@ -47,7 +49,7 @@ public class s_declaracion implements sent{
                     e.AddError("La llamada no devuelve un valor "+val.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 }else
                 {
-                    ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), true, linea, columna, archivo);
+                    ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), IsGlobal, linea, columna, archivo);
                 }
             }
         }
