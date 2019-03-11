@@ -21,9 +21,11 @@ import proyecto1.Reconize;
  */
 public class Ejecucion {
     public JTextArea a;
-    public Ejecucion(JTextArea a)
+    public ui_gxml deTodo;
+    public Ejecucion(JTextArea a,ui_gxml deTodo)
     {
         this.a=a;
+        this.deTodo=deTodo;
     }
     public void Imprimir(String valor)
     {

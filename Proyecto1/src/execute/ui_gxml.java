@@ -6,10 +6,12 @@
 package execute;
 
 import codigo_gxml.ruta;
+import errors.mng_error;
 import java.util.LinkedList;
 import javax.swing.JComponent;
 import proyecto1.var;
 import ts.Simbolo;
+import ts.mng_ts;
 
 /**
  *
@@ -18,11 +20,29 @@ import ts.Simbolo;
 public class ui_gxml implements ui{
     public LinkedList<ui_ventana> ventanas;
     public LinkedList<ruta> rutas;
+    public ui_ventana principal;
     public ui_gxml()
     {
         this.ventanas=new LinkedList();
         this.rutas=new LinkedList();
+        this.principal=null;
     }
+    public void iniciar(mng_ts ts, mng_error e, Ejecucion ej)
+    {
+        if(principal!=null)
+        {
+            principal.cargar();
+            principal.show();
+            if(principal.AccionInicial!=null)
+            {
+                Simbolo actual=ts.actual;
+                ts.actual=null;
+                principal.AccionInicial.ejecutar(ts, e, ej);
+                ts.actual=actual;
+            }
+        }        
+    }
+    
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {        

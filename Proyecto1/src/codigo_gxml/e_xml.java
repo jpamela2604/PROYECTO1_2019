@@ -30,6 +30,10 @@ public class e_xml implements etiqueta{
         for(etiqueta et:ventanas)
         {
             ui_ventana ven=(ui_ventana)et.GetGxmlObject();
+            if(ven.getValor("TIPO").equals("PRINCIPAL"))
+            {
+                archivo.principal=ven;
+            }
             archivo.ventanas.add(ven);
         }
         return archivo;

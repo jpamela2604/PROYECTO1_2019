@@ -49,7 +49,10 @@ public class s_nEventoCargar  implements sent {
                  e.AddError("No se le puede agregar un evento al cargar a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
             }else
             {
+                
                 ui_ventana v=(ui_ventana) ts.actual.valor;
+                ej.deTodo.principal=v;
+                /*
                 v.cargar();
                 v.show();
                 if(v.AccionInicial!=null)
@@ -59,6 +62,7 @@ public class s_nEventoCargar  implements sent {
                     v.AccionInicial.ejecutar(ts, e, ej);
                     ts.actual=actual;
                 }
+                */
                 return new Simbolo(var.tipo_vacio,null);
             }
         }

@@ -116,8 +116,8 @@ public class Reconize {
             e.Adding(le.e);
             e.Adding(sintactico.e);
             mng_ts ts=new mng_ts(e);
-           
-            Ejecucion ej=new Ejecucion(this.a);
+            ui_gxml deTodo=new ui_gxml();
+            Ejecucion ej=new Ejecucion(this.a,deTodo);
             if(raiz!=null)
             {
                 ts.imports.push(ruta);
@@ -129,7 +129,8 @@ public class Reconize {
                 {
                     s.ejecutar(ts, e, ej);
                 }
-                 ts.imports.pop();
+                deTodo.iniciar(ts, e, ej);
+                ts.imports.pop();
             }else
             {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
