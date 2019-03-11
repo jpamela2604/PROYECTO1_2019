@@ -52,6 +52,9 @@ public class s_declaracion implements sent{
                     ts.AgregarSimbolo(new Simbolo(id,val.tipo,Simbolo.variable,val.valor), IsGlobal, linea, columna, archivo);
                 }
             }
+        }else
+        {
+            ts.AgregarSimbolo(new Simbolo(id,var.tipo_indefinido,Simbolo.variable,null), IsGlobal, linea, columna, archivo);
         }
         return null;
     }

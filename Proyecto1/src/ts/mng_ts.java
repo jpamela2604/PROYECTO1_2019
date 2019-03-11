@@ -23,9 +23,10 @@ public class mng_ts {
     public Simbolo actual;
     public Stack displayReturns;
     public Stack displayBreaks;
+    public Stack imports;
     public mng_ts(mng_error er)
     {
-         
+        this.imports=new Stack();
         this.displayReturns=new Stack();
         this.displayBreaks=new Stack();
         tabla = new Stack();

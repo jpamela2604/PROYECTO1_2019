@@ -41,6 +41,9 @@ public class s_imprimir implements sent{
             if(s.tipo.indice==var.vacio)
             {
                 e.AddError("Se invoco un metodo vacio", linea, columna, archivo, "SEMANTICO");
+            }else if(s.tipo.indice==var.indefinido)
+            {
+                ej.Imprimir("undefined");
             }
             else if(s.tipo.indice==var.booleano)
             {

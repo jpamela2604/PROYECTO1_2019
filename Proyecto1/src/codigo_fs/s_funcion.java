@@ -35,13 +35,14 @@ public class s_funcion implements sent{
      }
     @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
+        Simbolo fun=new Simbolo(this.nombre+"#",this.parametros,this.sentencias);
+        ts.AgregarSimbolo(fun, true, linea, columna, archivo);
         return null;
     }
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        Simbolo fun=new Simbolo(this.nombre+"#",this.parametros,this.sentencias);
-        ts.AgregarSimbolo(fun, true, linea, columna, archivo);
+        
         return null;
     }
 }

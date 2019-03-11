@@ -127,6 +127,7 @@ public class var {
     public static int imagen=18;
     public static int reproductor=19;
     public static int video=20;
+    public static int indefinido=21;
     public static int heterogenea=21;
     public static int detener=-1;
     
@@ -152,7 +153,8 @@ public class var {
     public static String t_reproductor="UI Reproductor";
     public static String t_video="UI Video";
     public static String t_heterogeneo="Heterogeneo";
-        
+    public static String t_indefinido="undefined";
+     
     public static NodoTipo tipo_booleano=new NodoTipo(booleano,t_booleano);
     public static NodoTipo tipo_entero=new NodoTipo(entero,t_entero);    
     public static NodoTipo tipo_decimal=new NodoTipo(decimal,t_decimal);
@@ -176,4 +178,5 @@ public class var {
     public static NodoTipo tipo_heterogeneo=new NodoTipo(heterogenea,t_heterogeneo);
     public static NodoTipo tipo_detener=new NodoTipo(heterogenea,"");
     public static NodoTipo tipo_objeto=new NodoTipo(objeto,t_objeto);
+    public static NodoTipo tipo_indefinido=new NodoTipo(indefinido,t_indefinido);   
 }

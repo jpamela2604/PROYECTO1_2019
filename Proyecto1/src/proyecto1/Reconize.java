@@ -103,11 +103,12 @@ public class Reconize {
         }        
     }
     
-     public void gramaticaFS(String ruta)
+    public void gramaticaFS(String ruta)
     {
         LinkedList<sent> raiz = null;        
         try
         {
+            
             lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta,false))));            
             sintactico_fs sintactico=new sintactico_fs(le);
             sintactico.parse();            
@@ -115,13 +116,20 @@ public class Reconize {
             e.Adding(le.e);
             e.Adding(sintactico.e);
             mng_ts ts=new mng_ts(e);
+           
             Ejecucion ej=new Ejecucion(this.a);
             if(raiz!=null)
             {
+                ts.imports.push(ruta);
+                for(sent s:raiz)
+                {
+                    s.cargar(ts, e, ej);
+                }
                 for(sent s:raiz)
                 {
                     s.ejecutar(ts, e, ej);
                 }
+                 ts.imports.pop();
             }else
             {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
@@ -131,6 +139,8 @@ public class Reconize {
                 System.out.println("ex: "+ex.getMessage());
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
+        
+        
     }
     public static String getContenido(String ruta,Boolean bandera)
     {
@@ -152,5 +162,12 @@ public class Reconize {
             {JOptionPane.showMessageDialog(null, "Error al abrir el archivo");}
         }
         return contenido;
+    }
+    
+    public static String getDireccion(String relativa)
+    {
+        String r=ExtremeEditor.ru+"\\"+relativa;
+        
+        return r;
     }
 }
