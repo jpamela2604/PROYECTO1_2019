@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -75,7 +76,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
     }
      //sent accion;
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
         int font=0;
         Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());

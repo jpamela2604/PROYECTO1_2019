@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -57,7 +58,7 @@ public class ui_contenedor extends JPanel implements ui{
         }
     }
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
         
         this.setLayout(null);
@@ -77,7 +78,7 @@ public class ui_contenedor extends JPanel implements ui{
         {
             if(t instanceof ui_areaTexto)
             {
-                t.cargar();
+                t.cargar(videos);
                 JScrollPane sp = new JScrollPane();
                 sp.getViewport().add((JComponent)t);
                 sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -102,7 +103,7 @@ public class ui_contenedor extends JPanel implements ui{
                 this.add(sp);
             }else
             {
-                t.cargar();
+                t.cargar(videos);
                 int xx=Integer.valueOf(t.getValor("X"));
                 int yy=Integer.valueOf(t.getValor("Y"));
                 //t.setLocation(xx, yy);

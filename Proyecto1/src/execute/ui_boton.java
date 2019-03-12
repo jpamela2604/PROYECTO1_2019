@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ui_boton extends JButton implements ui{
     {
     }
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
         int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();

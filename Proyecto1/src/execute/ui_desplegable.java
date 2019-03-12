@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import javax.swing.JComboBox;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -85,7 +86,7 @@ public class ui_desplegable extends JComboBox implements ui{
     }
     
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
         //falta defecto!!!!!!
         int font=0;

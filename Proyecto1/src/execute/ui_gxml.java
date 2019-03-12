@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -21,18 +22,25 @@ public class ui_gxml implements ui{
     public LinkedList<ui_ventana> ventanas;
     public LinkedList<ruta> rutas;
     public ui_ventana principal;
+    public LinkedList<EmbeddedMediaPlayer> videos;
     public ui_gxml()
     {
         this.ventanas=new LinkedList();
         this.rutas=new LinkedList();
         this.principal=null;
+        this.videos=new LinkedList();
     }
     public void iniciar(mng_ts ts, mng_error e, Ejecucion ej)
     {
         if(principal!=null)
         {
-            principal.cargar();
+            principal.setVisible(true);
+            principal.cargar(videos);
             principal.show();
+            for(EmbeddedMediaPlayer mu:videos)
+            {
+                mu.play();
+            }
             if(principal.AccionInicial!=null)
             {
                 Simbolo actual=ts.actual;
@@ -40,6 +48,7 @@ public class ui_gxml implements ui{
                 principal.AccionInicial.ejecutar(ts, e, ej);
                 ts.actual=actual;
             }
+            
         }        
     }
     
@@ -85,7 +94,7 @@ public class ui_gxml implements ui{
         return t;
     }
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
     }
     @Override

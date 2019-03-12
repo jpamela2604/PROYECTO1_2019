@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import javax.swing.JTextField;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -66,7 +67,7 @@ public class ui_cajaTexto extends JTextField implements ui{
         return t;
     }
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
         int font=0;
         Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());

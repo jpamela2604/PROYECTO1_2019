@@ -7,6 +7,7 @@ package execute;
 
 import java.util.LinkedList;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
  *
@@ -14,7 +15,7 @@ import ts.Simbolo;
  */
 public interface ui {
     public String getTraduccion(String ventana,String panel);
-    public void cargar();
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos);
     public String getValor(String value);
     public void getById(String id,LinkedList<Simbolo>valores);
     public void getByNombre(String nombre,LinkedList<Simbolo>valores);

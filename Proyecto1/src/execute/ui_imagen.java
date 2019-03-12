@@ -5,18 +5,32 @@
  */
 package execute;
 
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.player.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 /**
  *
  * @author Pamela Palacios
  */
-public class ui_imagen extends JButton implements ui{
+public class ui_imagen extends JPanel implements ui{
     public Hashtable tabla;
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
@@ -57,16 +71,11 @@ public class ui_imagen extends JButton implements ui{
     }
    
     @Override
-    public void cargar()
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
     {
-        this.setText("");
-        this.setIcon(new ImageIcon(((Simbolo)tabla.get("RUTA")).valor.toString()));
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        //setsize(width,height)
-        this.setSize(ancho,alto);
-        this.setLocation(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")));
-        this.setVisible(true);
+       media.cargar(this,videos,Integer.valueOf(getValor("ANCHO")),Integer.valueOf(getValor("ALTO")),
+                Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")),
+                Reconize.getDireccion(getValor("RUTA")),Boolean.valueOf(getValor("AUTO_REPRODUCCION")));
     }
     @Override
     public String getValor(String value) {
