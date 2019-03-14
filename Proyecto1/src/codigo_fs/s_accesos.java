@@ -19,10 +19,12 @@ import ts.mng_ts;
 public class s_accesos implements sent{
     public LinkedList <sent> accesos;
      public boolean IsSent;/*si es sent no deberia devolver nada*/
+     public boolean IsGlobal;
      public s_accesos(LinkedList<sent> accesos)
      {
          this.accesos=accesos;
          IsSent=false;
+         IsGlobal=false;
      }
      @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
@@ -34,6 +36,11 @@ public class s_accesos implements sent{
         Simbolo r=new Simbolo(var.tipo_error,null);
         for(sent s:accesos)
         {
+            if(s instanceof s_nEventoCargar)
+            {
+                s_nEventoCargar load=(s_nEventoCargar)s;
+                load.IsGlobal=this.IsGlobal;
+            }
             r=(Simbolo) s.ejecutar(ts, e, ej);
             if(r.tipo.indice==var.error)
             {

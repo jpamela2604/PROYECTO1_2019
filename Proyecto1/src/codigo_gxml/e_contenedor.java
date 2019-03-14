@@ -34,8 +34,8 @@ public class e_contenedor implements etiqueta{
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
         opcionales.put("COLOR", var.color_fondo);
-        opcionales.put("ALTO", var.alto_panel);
-        opcionales.put("ANCHO", var.ancho_panel);
+        opcionales.put("ALTO", 500);
+        opcionales.put("ANCHO", 500);
         opcionales.put("BORDE", false);
     }
     @Override

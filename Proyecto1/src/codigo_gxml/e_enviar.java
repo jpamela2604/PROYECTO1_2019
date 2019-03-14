@@ -32,8 +32,8 @@ public class e_enviar implements etiqueta{
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("ALTO", var.altoIm);
-        opcionales.put("ANCHO", var.altoVi);
+        opcionales.put("ALTO", 100);
+        opcionales.put("ANCHO", 100);
         opcionales.put("ACCION", "");
         opcionales.put("REF", "");
     }

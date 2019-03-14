@@ -135,7 +135,7 @@ public class Reconize {
                 {
                     s.ejecutar(ts, e, ej);
                 }
-                deTodo.iniciar(ts, e, ej);
+                deTodo.iniciar(deTodo.principal,ts, e, ej);
                 ts.imports.pop();
             }else
             {

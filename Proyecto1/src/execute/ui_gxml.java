@@ -21,39 +21,40 @@ public class ui_gxml implements ui{
     public LinkedList<ui_ventana> ventanas;
     public LinkedList<ruta> rutas;
     public ui_ventana principal;
-    public LinkedList<EmbeddedMediaPlayer> videos;
+   //public LinkedList<EmbeddedMediaPlayer> videos;
     public ui_gxml()
     {
         this.ventanas=new LinkedList();
         this.rutas=new LinkedList();
         this.principal=null;
-        this.videos=new LinkedList();
+        //this.videos=new LinkedList();
     }
-    public void iniciar(mng_ts ts, mng_error e, Ejecucion ej)
+    public void iniciar(ui_ventana pri,mng_ts ts, mng_error e, Ejecucion ej)
     {
         try
         {
-        if(principal!=null)
+        if(pri!=null)
         {
-            principal.setVisible(true);
-            principal.cargar(videos,e);
-            principal.show();
+            LinkedList<EmbeddedMediaPlayer> videos=new LinkedList();
+            pri.setVisible(true);
+            pri.cargar(videos,e);
+            pri.show();
             for(EmbeddedMediaPlayer mu:videos)
             {
                 mu.play();
             }
-            if(principal.AccionInicial!=null)
+            if(pri.AccionInicial!=null)
             {
                 Simbolo actual=ts.actual;
                 ts.actual=null;
-                principal.AccionInicial.ejecutar(ts, e, ej);
+                pri.AccionInicial.ejecutar(ts, e, ej);
                 ts.actual=actual;
             }
             
         }     
         }catch(Exception exc)
         {
-            e.AddError("No se pudo cargar ventana principal "+principal.getValor("ID"), 0, 0, "", "SEMANTICO");
+            e.AddError("No se pudo cargar ventana principal "+pri.getValor("ID"), 0, 0, "", "SEMANTICO");
         }
     }
     

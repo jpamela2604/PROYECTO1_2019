@@ -1841,6 +1841,10 @@ class CUP$sintactico_fs$actions {
                 {
                     s_declaraciones de=(s_declaraciones) n1;
                     de.IsGlobal=true;
+                }else if(n1 instanceof s_accesos)
+                {
+                    s_accesos ac =(s_accesos) n1;
+                    ac.IsGlobal=true;
                 }
                 RESULT=n1;
             

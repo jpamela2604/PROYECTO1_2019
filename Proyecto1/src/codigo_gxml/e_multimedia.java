@@ -34,8 +34,8 @@ public class e_multimedia implements etiqueta{
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("ALTO", var.altoIm);
-        opcionales.put("ANCHO", var.altoVi);
+        opcionales.put("ALTO", 200);
+        opcionales.put("ANCHO", 200);
         opcionales.put("AUTOPLAY", false);
     }
     @Override

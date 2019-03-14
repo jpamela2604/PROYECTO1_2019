@@ -39,8 +39,8 @@ public class e_control implements etiqueta {
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
         opcionales.put("COLOR", var.colorDef);
-        opcionales.put("ALTO", var.alto_controlador);
-        opcionales.put("ANCHO", var.ancho_ontrolador);
+        opcionales.put("ALTO", 50);
+        opcionales.put("ANCHO", 50);
         opcionales.put("FUENTE", var.fuenteDef);
         opcionales.put("TAM", var.tamletra);
         opcionales.put("NEGRITA", false);

@@ -22,7 +22,7 @@ public class s_nEventoCargar  implements sent {
      int linea;
      int columna;
      String archivo;
-     Boolean global;    
+     public Boolean IsGlobal;    
      
      public s_nEventoCargar(sent llamada,int linea,int columna,String archivo)
      {
@@ -30,6 +30,7 @@ public class s_nEventoCargar  implements sent {
          this.linea=linea;
          this.columna=columna;
          this.archivo=archivo;
+         IsGlobal=true;
      }
     @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
@@ -52,7 +53,13 @@ public class s_nEventoCargar  implements sent {
             {
                 
                 ui_ventana v=(ui_ventana) ts.actual.valor;
-                ej.deTodo.principal=v;
+                if(IsGlobal)
+                {
+                    ej.deTodo.principal=v;
+                }else
+                {
+                    ej.deTodo.iniciar(v, ts, e, ej);
+                }
                 /*
                 v.cargar();
                 v.show();
