@@ -84,6 +84,7 @@ public class o_relacional implements sent{
         {
             case CMPNO:
             {
+                
                 Double r1=getv(o1);
                 Double r2=getv(o2);
                 Boolean val=false;
@@ -147,7 +148,14 @@ public class o_relacional implements sent{
     public Double getv(Simbolo s)
     {
         Double r=0.0;
-        if(s.tipo.indice==var.cadena)
+        if(s.tipo.indice==var.booleano)
+        {
+            if(Boolean.valueOf(s.valor.toString()))
+            {
+                r=1.0;
+            }
+        }
+        else if(s.tipo.indice==var.cadena)
         {
             String g=s.valor.toString();
             for (int x=0;x<g.length();x++)
@@ -163,7 +171,7 @@ public class o_relacional implements sent{
     }
      static  O [][]  matriz={
          /*     0|      1|      2|      3*/
-    /*0*/{O.ERROR,O.ERROR,O.ERROR,O.ERROR },
+    /*0*/{O.CMPNO,O.ERROR,O.ERROR,O.ERROR },
     /*1*/{O.ERROR,O.CMPNO,O.CMPNO,O.CMPNO }, 
     /*2*/{O.ERROR,O.CMPNO,O.CMPNO,O.CMPNO },
     /*3*/{O.ERROR,O.CMPNO,O.CMPNO,O.CMPNO }
