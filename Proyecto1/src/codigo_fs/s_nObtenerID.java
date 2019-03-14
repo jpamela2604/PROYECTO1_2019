@@ -65,7 +65,7 @@ public class s_nObtenerID implements sent {
                     {
                         ui_gxml myfile =(ui_gxml) ts.actual.valor;
                         LinkedList<Simbolo> valores=new LinkedList();
-                        myfile.getById(a.valor.toString().trim(),valores);
+                        myfile.getById(a.valor.toString().toUpperCase().trim(),valores);
                         Array nuevo=new Array(valores);
                         rr=new Simbolo(var.tipo_arreglo,nuevo);                                
                         

@@ -49,6 +49,10 @@ public class o_objeto implements sent{
                 {
                     e.AddError("Se llamo a un metodo vacio", linea, columna, archivo, "SEMANTICO");
                     return respuesta;
+                }else if(pp.tipo.indice==var.objeto)
+                {
+                    e.AddError("el valor de un miembro del objeto, no puede ser de tipo objeto", linea, columna, archivo, "SEMANTICO");
+                    return respuesta;
                 }else
                 {
                     if(vv.containsKey(s.clave))

@@ -5,6 +5,7 @@
  */
 package codigo_fs;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import execute.Ejecucion;
 import proyecto1.var;
@@ -63,7 +64,33 @@ public class s_accArray implements sent{
                     return ar.valores.get(posi);
                 }
             }
+        }else if(ts.actual.tipo.indice==var.objeto)
+        {
+            Simbolo r=null;
+            Objeto myObj=(Objeto)ts.actual.valor;
+            if(myObj.items.containsKey(id))
+            {
+                r= (Simbolo) ((item)myObj.items.get(id)).valor;
+                Array ar=(Array) r.valor;
+                Integer posi=Integer.valueOf(pos.valor.toString());
+                if(posi>=ar.valores.size()||posi<0)
+                {
+                    e.AddError("Indice fuera de los limites", linea, columna, archivo, "EJECUCION");
+                    return respuesta;
+                }else
+                {
+                    return ar.valores.get(posi);
+                }                
+            }else
+            {
+                e.AddError("No existe atributo llamado "+this.id, linea, columna, archivo, "SEMANTICO");
+            }            
+            
+        }else
+        {
+            e.AddError("No hay arreglo que se pueda indexar", linea, columna, archivo, "EJECUCION");
         }
-        return null;
+            
+        return respuesta;
     }
 }

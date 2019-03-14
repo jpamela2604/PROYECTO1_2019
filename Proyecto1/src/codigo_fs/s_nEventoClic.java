@@ -75,7 +75,7 @@ public class s_nEventoClic implements sent {
                 }
 
             });
-        }else if(ts.actual.tipo.indice==var.imagen)
+        }/*else if(ts.actual.tipo.indice==var.imagen)
         {
             ui_imagen v=(ui_imagen)ts.actual.valor;
             v.addActionListener(new ActionListener() { 
@@ -87,7 +87,7 @@ public class s_nEventoClic implements sent {
                     ts.actual=actual;
                  }
             } );
-        }
+        }*/
         else 
         {
             e.AddError("No se le puede agregar un evento cerrar a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");

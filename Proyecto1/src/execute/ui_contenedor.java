@@ -7,6 +7,7 @@ package execute;
 
 import codigo_fs.Array;
 import codigo_gdato.item;
+import errors.mng_error;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Hashtable;
@@ -30,7 +31,7 @@ public class ui_contenedor extends JPanel implements ui{
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("CONTENEDOR")))
+        if(tag.equals("CONTENEDOR"))
         {
             valores.add(new Simbolo(var.tipo_contenedor,this));
         }else
@@ -44,89 +45,94 @@ public class ui_contenedor extends JPanel implements ui{
     @Override
     public void getById(String id,LinkedList<Simbolo>valores)
     {
-        if(id.toUpperCase().trim().equals(getValor("ID")))
+        if(id.equals(getValor("ID")))
         {
             valores.add(new Simbolo(var.tipo_contenedor,this));
         }
     }
     @Override
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {        
         for(ui con:this.componentes)
         {
-            con.getByNombre(nombre, valores);
+            con.getByNombre(ventana,nombre, valores);
         }
     }
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
-        
-        this.setLayout(null);
-        Boolean borde=Boolean.valueOf(((Simbolo)tabla.get("BORDE")).valor.toString());
-        if(borde)
+        try
         {
-            this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));        
-        }
-        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
-        this.setBackground(Color.decode(color));
-        int x=0;
-        int y=0;
-        int ancho=0;
-        int alto=0;
-        
-        for(ui t:this.componentes)
-        {
-            if(t instanceof ui_areaTexto)
+            this.setLayout(null);
+            Boolean borde=Boolean.valueOf(((Simbolo)tabla.get("BORDE")).valor.toString());
+            if(borde)
             {
-                t.cargar(videos);
-                JScrollPane sp = new JScrollPane();
-                sp.getViewport().add((JComponent)t);
-                sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                int altxo=Integer.valueOf(t.getValor("ALTO"));
-                int anchxo=Integer.valueOf(t.getValor("ANCHO"));
-                int xx=Integer.valueOf(t.getValor("X"));
-                int yy=Integer.valueOf(t.getValor("Y"));
-                //setBounds(int x, int y, int width, int height)
-                sp.setBounds(xx, yy, anchxo, altxo);
-                //t.setLocation(xx, yy);
-                if(xx>=x)
-                {
-                    x=xx;
-                    ancho=anchxo;                
-                }
-                if(yy>=y)
-                {
-                    y=yy;
-                    alto=altxo; 
-                }
-                this.add(sp);
-            }else
-            {
-                t.cargar(videos);
-                int xx=Integer.valueOf(t.getValor("X"));
-                int yy=Integer.valueOf(t.getValor("Y"));
-                //t.setLocation(xx, yy);
-                if(xx>=x)
-                {
-                    x=xx;
-                    ancho=Integer.valueOf(t.getValor("ANCHO"));                
-                }
-                if(yy>=y)
-                {
-                    y=yy;
-                    alto=Integer.valueOf(t.getValor("ALTO")); 
-                }
-                this.add((JComponent)t);
+                this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));        
             }
+            String color=((Simbolo)tabla.get("COLOR")).valor.toString();
+            this.setBackground(Color.decode(color));
+            int x=0;
+            int y=0;
+            int ancho=0;
+            int alto=0;
+
+            for(ui t:this.componentes)
+            {
+                if(t instanceof ui_areaTexto)
+                {
+                    t.cargar(videos,e);
+                    JScrollPane sp = new JScrollPane();
+                    sp.getViewport().add((JComponent)t);
+                    sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                    int altxo=Integer.valueOf(t.getValor("ALTO"));
+                    int anchxo=Integer.valueOf(t.getValor("ANCHO"));
+                    int xx=Integer.valueOf(t.getValor("X"));
+                    int yy=Integer.valueOf(t.getValor("Y"));
+                    //setBounds(int x, int y, int width, int height)
+                    sp.setBounds(xx, yy, anchxo, altxo);
+                    //t.setLocation(xx, yy);
+                    if(xx>=x)
+                    {
+                        x=xx;
+                        ancho=anchxo;                
+                    }
+                    if(yy>=y)
+                    {
+                        y=yy;
+                        alto=altxo; 
+                    }
+                    this.add(sp);
+                }else
+                {
+                    t.cargar(videos,e);
+                    int xx=Integer.valueOf(t.getValor("X"));
+                    int yy=Integer.valueOf(t.getValor("Y"));
+                    //t.setLocation(xx, yy);
+                    if(xx>=x)
+                    {
+                        x=xx;
+                        ancho=Integer.valueOf(t.getValor("ANCHO"));                
+                    }
+                    if(yy>=y)
+                    {
+                        y=yy;
+                        alto=Integer.valueOf(t.getValor("ALTO")); 
+                    }
+                    this.add((JComponent)t);
+                }
+            }
+
+
+            this.validate();
+            ////new dimension(height,width)
+            this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
+            this.validate();
+            this.setVisible(true);
+        }catch(Exception exc)
+        {
+            e.AddError("No se pudo cargar el contenedor "+getValor("ID"), 0, 0, "", "SEMANTICO");
         }
-          
-       
-        this.validate();
-        ////new dimension(height,width)
-        this.setPreferredSize(new Dimension(x+ancho+50,y+alto+50));
-        this.validate();
-        this.setVisible(true);
     }
     @Override
     public String getTraduccion(String ventana,String panel)

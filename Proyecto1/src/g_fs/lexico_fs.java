@@ -1200,7 +1200,8 @@ public class lexico_fs implements java_cup.runtime.Scanner {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
             { Integer li=yyline+1;
-                            Integer co=yycolumn+1;System.out.println("Error Lexico:js " + yytext() + "  linea: " +li + " columna: " + co);
+                            Integer co=yycolumn+1;
+                            //System.out.println("Error Lexico:js " + yytext() + "  linea: " +li + " columna: " + co);
                             //
                             e.AddError("Caracter invalido "+yytext(),li,co,var.archivo,"LEXICO");
             }

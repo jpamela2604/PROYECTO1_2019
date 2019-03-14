@@ -22,6 +22,7 @@ public class s_nEventoCargar  implements sent {
      int linea;
      int columna;
      String archivo;
+     Boolean global;    
      
      public s_nEventoCargar(sent llamada,int linea,int columna,String archivo)
      {

@@ -9,7 +9,6 @@ import codigo_fs.Array;
 import errors.mng_error;
 import execute.ui_ControlNumerico;
 import execute.ui_areaTexto;
-import execute.ui_boton;
 import execute.ui_cajaTexto;
 import execute.ui_desplegable;
 import java.util.Hashtable;

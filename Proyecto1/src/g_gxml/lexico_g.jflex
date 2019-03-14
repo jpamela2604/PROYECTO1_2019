@@ -77,7 +77,8 @@ Boolean estoyTodo=true;
 [ \t\r\f\n]+            {}
 .                       {      
                             Integer li=yyline+1;
-                            Integer co=yycolumn+1;System.out.println("Error Lexico:js " + yytext() + "  linea: " +li + " columna: " + co);
+                            Integer co=yycolumn+1;
+                            //System.out.println("Error Lexico:js " + yytext() + "  linea: " +li + " columna: " + co);
                             //
                             e.AddError("Caracter invalido "+yytext(),li,co,var.archivo,"LEXICO"); 
                         }

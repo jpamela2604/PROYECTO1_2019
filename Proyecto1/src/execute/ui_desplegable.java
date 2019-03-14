@@ -6,6 +6,7 @@
 package execute;
 
 import codigo_fs.Array;
+import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Hashtable;
@@ -24,15 +25,31 @@ public class ui_desplegable extends JComboBox implements ui{
      @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("CONTROL")))
+        if(tag.equals("CONTROL"))
         {
             valores.add(new Simbolo(var.tipo_desplegable,this));
+        }else if(tag.equals("DATO"))
+        {
+            Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
+            
+            for(Simbolo si:lista.valores)
+            {
+                valores.add(si);
+            }
+        }else if(tag.equals("DATOS"))
+        {
+            Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
+            valores.add(new Simbolo(var.tipo_arreglo,lista));
+        }else if(tag.equals("DEFECTO"))
+        {
+            valores.add(new Simbolo(var.tipo_cadena,
+                    ((Simbolo)tabla.get("DEFECTO")).valor.toString()));
         }
     }
      @Override
-     public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_desplegable,this));
         }
@@ -86,38 +103,41 @@ public class ui_desplegable extends JComboBox implements ui{
     }
     
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
         //falta defecto!!!!!!
-        int font=0;
-         Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
-        Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
-        if(negrita)
+        try
         {
-            font=font+Font.BOLD;
-        }
-        if(cursiva)
+            int font=0;
+             Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
+            Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
+            if(negrita)
+            {
+                font=font+Font.BOLD;
+            }
+            if(cursiva)
+            {
+                font=font+Font.ITALIC;
+            }
+            int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
+            String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
+            String color=((Simbolo)tabla.get("COLOR")).valor.toString();
+            this.setFont(new java.awt.Font(fuente, font, tam));
+            this.setForeground(Color.decode(color));
+            int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
+            int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
+            //setsize(width,height)
+            this.setSize(ancho,alto);
+            Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
+            for(Simbolo s:lista.valores)
+            {
+                this.addItem(s.valor.toString());
+            }
+            this.setVisible(true);    
+        }catch(Exception exc)
         {
-            font=font+Font.ITALIC;
+            e.AddError("No se pudo cargar desplegable "+getValor("NOMBRE"), 0, 0, "", "SEMANTICO");
         }
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
-        String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
-        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
-        this.setFont(new java.awt.Font(fuente, font, tam));
-        this.setForeground(Color.decode(color));
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        //setsize(width,height)
-        this.setSize(ancho,alto);
-        Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
-        for(Simbolo s:lista.valores)
-        {
-            this.addItem(s.valor.toString());
-        }
-        
-        
-        
-        this.setVisible(true);        
     }
     @Override
     public String getValor(String value) {

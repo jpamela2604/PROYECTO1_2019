@@ -6,25 +6,14 @@
 package execute;
 
 
-import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import errors.mng_error;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
-import uk.co.caprica.vlcj.binding.LibVlc;
-import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 /**
  *
@@ -35,14 +24,14 @@ public class ui_reproductor extends JPanel implements ui{
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("MULTIMEDIA")))
+        if(tag.equals("MULTIMEDIA"))
         {
             valores.add(new Simbolo(var.tipo_reproductor,this));
         }
     }
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_reproductor,this));
         }
@@ -69,11 +58,17 @@ public class ui_reproductor extends JPanel implements ui{
         return t;
     }
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
-       media.cargar(this,videos,Integer.valueOf(getValor("ANCHO")),Integer.valueOf(getValor("ALTO")),
+        try
+        {
+            media.cargar(this,videos,Integer.valueOf(getValor("ANCHO")),Integer.valueOf(getValor("ALTO")),
                 Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")),
                 Reconize.getDireccion(getValor("RUTA")),Boolean.valueOf(getValor("AUTO_REPRODUCCION")));
+        }catch(Exception exc)
+        {
+            e.AddError("No se pudo cargar reproductor "+getValor("NOMBRE"), 0, 0, "", "SEMANTICO");
+        }
     }
     @Override
     public String getValor(String value) {

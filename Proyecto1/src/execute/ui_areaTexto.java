@@ -5,6 +5,7 @@
  */
 package execute;
 
+import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Hashtable;
@@ -23,15 +24,19 @@ public class ui_areaTexto extends JTextArea implements ui{
      @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("CONTROL")))
+        if(tag.equals("CONTROL"))
         {
             valores.add(new Simbolo(var.tipo_areatexto,this));
+        }else if(tag.equals("DEFECTO"))
+        {
+            valores.add(new Simbolo(var.tipo_cadena,
+                    ((Simbolo)tabla.get("DEFECTO")).valor.toString()));
         }
     }
      @Override
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_areatexto,this));
         }
@@ -67,30 +72,36 @@ public class ui_areaTexto extends JTextArea implements ui{
         return t;
     }
      @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
-        int font=0;
-        Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
-        Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
-        if(negrita)
+        try
         {
-            font=font+Font.BOLD;
-        }
-        if(cursiva)
+            int font=0;
+            Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
+            Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
+            if(negrita)
+            {
+                font=font+Font.BOLD;
+            }
+            if(cursiva)
+            {
+                font=font+Font.ITALIC;
+            }
+            int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
+            String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
+            String color=((Simbolo)tabla.get("COLOR")).valor.toString();
+            this.setFont(new java.awt.Font(fuente, font, tam));
+            this.setForeground(Color.decode(color));
+            /*int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
+            int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
+            this.setSize(alto,ancho);*/
+             String def=((Simbolo)tabla.get("DEFECTO")).valor.toString();
+             this.setText(def);
+             this.setVisible(true);
+        }catch(Exception exc)
         {
-            font=font+Font.ITALIC;
+            e.AddError("No se pudo cargar el area texto "+getValor("NOMBRE"), 0, 0, "", "SEMANTICO");
         }
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
-        String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
-        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
-        this.setFont(new java.awt.Font(fuente, font, tam));
-        this.setForeground(Color.decode(color));
-        /*int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        this.setSize(alto,ancho);*/
-         String def=((Simbolo)tabla.get("DEFECTO")).valor.toString();
-         this.setText(def);
-         this.setVisible(true);
     }
     @Override
     public String getValor(String value) {

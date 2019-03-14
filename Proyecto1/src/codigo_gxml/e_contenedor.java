@@ -7,16 +7,7 @@ package codigo_gxml;
 
 import errors.mng_error;
 import execute.ui;
-import execute.ui_ControlNumerico;
-import execute.ui_areaTexto;
-import execute.ui_boton;
-import execute.ui_cajaTexto;
 import execute.ui_contenedor;
-import execute.ui_desplegable;
-import execute.ui_imagen;
-import execute.ui_reproductor;
-import execute.ui_texto;
-import execute.ui_video;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.var;

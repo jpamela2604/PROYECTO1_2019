@@ -8,7 +8,6 @@ package execute;
 import codigo_gxml.ruta;
 import errors.mng_error;
 import java.util.LinkedList;
-import javax.swing.JComponent;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -32,10 +31,12 @@ public class ui_gxml implements ui{
     }
     public void iniciar(mng_ts ts, mng_error e, Ejecucion ej)
     {
+        try
+        {
         if(principal!=null)
         {
             principal.setVisible(true);
-            principal.cargar(videos);
+            principal.cargar(videos,e);
             principal.show();
             for(EmbeddedMediaPlayer mu:videos)
             {
@@ -49,23 +50,34 @@ public class ui_gxml implements ui{
                 ts.actual=actual;
             }
             
-        }        
+        }     
+        }catch(Exception exc)
+        {
+            e.AddError("No se pudo cargar ventana principal "+principal.getValor("ID"), 0, 0, "", "SEMANTICO");
+        }
     }
     
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
-    {        
-        for(ui_ventana ven:this.ventanas)
+    {       
+        if(tag.equals("IMPORTAR"))
         {
-            ven.getByTag(tag, valores);
+            this.rutas.forEach((ru) -> {
+                valores.add(new Simbolo(var.tipo_cadena,ru.ruta));
+            });
+        }else
+        {
+            this.ventanas.forEach((ven) -> {
+                ven.getByTag(tag, valores);
+            });
         }
     }
     @Override
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
         for(ui_ventana ven:this.ventanas)
         {
-            ven.getByNombre(nombre, valores);
+            ven.getByNombre(ventana,nombre, valores);
         }
     }
     @Override
@@ -94,7 +106,7 @@ public class ui_gxml implements ui{
         return t;
     }
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
     }
     @Override
@@ -102,48 +114,6 @@ public class ui_gxml implements ui{
     {
         return "";
     }
-    public LinkedList<Simbolo> getByNombre(String Nombre)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();
-        for(ui_ventana c:this.ventanas)
-        {
-            LinkedList<Simbolo> aux=c.getByNombre(Nombre);
-            for(Simbolo p:aux)
-            {
-                elemntos.add(p);
-            }
-        }     
-        
-        return elemntos;
-    }
+   
     
-    
-    public LinkedList<Simbolo> getByTag(String tag)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList(); 
-        switch(tag.toUpperCase())
-        {
-            case "VENTANAS":
-            {
-                for(ui_ventana v:this.ventanas)
-                {
-                    elemntos.add(new Simbolo(var.tipo_ventana,v));
-                }
-            }break;
-            default:
-            {
-                for(ui_ventana v:this.ventanas)
-                {
-                    LinkedList<Simbolo> el=v.getByTag(tag);
-                    for(Simbolo s:el)
-                    {
-                        elemntos.add(s);
-                    }
-                }
-            }break;
-            
-        }
-        
-        return elemntos;
-    }
 }

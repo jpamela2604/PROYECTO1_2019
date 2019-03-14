@@ -5,9 +5,9 @@
  */
 package execute;
 
+import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import javax.swing.JLabel;
@@ -24,15 +24,15 @@ public class ui_texto extends JLabel implements ui{
      @Override
      public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("TEXTO")))
+        if(tag.equals("TEXTO"))
         {
             valores.add(new Simbolo(var.tipo_texto,this));
         }
     }
      @Override
-     public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_texto,this));
         }
@@ -63,37 +63,43 @@ public class ui_texto extends JLabel implements ui{
     }
     
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
-       
-        int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
-        String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
-        String color=((Simbolo)tabla.get("COLOR")).valor.toString();
-        Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
-        Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
-        int font=0;
-        if(negrita)
+        try
         {
-            font=font+Font.BOLD;
+            int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
+            String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();
+            String color=((Simbolo)tabla.get("COLOR")).valor.toString();
+            Boolean negrita=Boolean.valueOf(((Simbolo)tabla.get("NEGRITA")).valor.toString());
+            Boolean cursiva=Boolean.valueOf(((Simbolo)tabla.get("CURSIVA")).valor.toString());
+            int font=0;
+            if(negrita)
+            {
+                font=font+Font.BOLD;
+            }
+            if(cursiva)
+            {
+                font=font+Font.ITALIC;
+            }
+            this.setFont(new java.awt.Font(fuente, font, tam));
+            this.setForeground(Color.decode(color));
+            String valor=((Simbolo)tabla.get("VALOR")).valor.toString();
+            this.setText(valor);
+            int xx=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
+            int yy=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
+            int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
+            int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
+            //setsize(width,height)
+            this.setSize(ancho,alto);
+            //setBounds(int x, int y, int width, int height)
+            this.setBounds(xx, yy, ancho, alto);
+            this.setVisible(true);
+            this.repaint();
         }
-        if(cursiva)
+        catch(Exception exc)
         {
-            font=font+Font.ITALIC;
+            e.AddError("No se pudo cargar texto "+getValor("NOMBRE"), 0, 0, "", "SEMANTICO");
         }
-        this.setFont(new java.awt.Font(fuente, font, tam));
-        this.setForeground(Color.decode(color));
-        String valor=((Simbolo)tabla.get("VALOR")).valor.toString();
-        this.setText(valor);
-        int xx=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
-        int yy=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
-        int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
-        int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-        //setsize(width,height)
-        this.setSize(ancho,alto);
-        //setBounds(int x, int y, int width, int height)
-        this.setBounds(xx, yy, ancho, alto);
-        this.setVisible(true);
-        this.repaint();
     }
     @Override
     public String getValor(String value) {

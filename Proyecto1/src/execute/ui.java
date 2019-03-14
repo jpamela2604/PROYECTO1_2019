@@ -5,6 +5,7 @@
  */
 package execute;
 
+import errors.mng_error;
 import java.util.LinkedList;
 import ts.Simbolo;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
@@ -15,9 +16,9 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 public interface ui {
     public String getTraduccion(String ventana,String panel);
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos);
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos,mng_error e);
     public String getValor(String value);
     public void getById(String id,LinkedList<Simbolo>valores);
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores);
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores);
     public void getByTag(String nombre,LinkedList<Simbolo>valores);
 }

@@ -52,7 +52,7 @@ nonterminal LinkedList<e_dato> DATOS
 start with S;
 S ::=           LIMP:n1
                 {:
-                    System.out.println("aceptada");
+                   // System.out.println("aceptada");
                     raiz=new e_xml(n1,new LinkedList());
                 :}
                 |LIMP:n1 VENTANAS:n2
@@ -109,6 +109,10 @@ VEN ::=         i_ven:n0 ELEMENTOS:n1 mayor LCONTE:n2 f_ven mayor
                 {:
                     RESULT=new e_ventana(new LinkedList(),new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
+                |error:i1 mayor
+                {:
+                    e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+                :}
                 ;
 LCONTE::=       LCONTE:n1 CONTE:n2
                 {:
@@ -136,6 +140,10 @@ CONTE::=        i_contenedor:n0 ELEMENTOS:n1 mayor ETIQUETAS:n2 f_contenedor may
                 |i_contenedor:n0 mayor  f_contenedor mayor
                 {:
                     RESULT=new e_contenedor(new LinkedList(),new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
+                |error:i1 mayor
+                {:
+                    e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
                 :}
                 ;
 ETIQUETAS::=    ETIQUETAS:n1 ETIQUETA:n2
@@ -169,6 +177,10 @@ ETIQUETA::=     CONTROL:n1
                 {:
                     RESULT=n1;
                 :}
+                |error:i1 mayor
+                {:
+                    e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+                :}
                 ;
 MULTIMEDIA::=   i_multi:n0 ELEMENTOS:n1 mayor f_multi mayor
                 {:
@@ -178,6 +190,7 @@ MULTIMEDIA::=   i_multi:n0 ELEMENTOS:n1 mayor f_multi mayor
                 {:
                     RESULT=new e_multimedia(new LinkedList(),(n0left+1),(n0right+1),var.archivo);
                 :}
+
                 ;
 TEXTO::=        i_texto:n0 ELEMENTOS:n1  all:n2 f_texto 
                 {:
@@ -221,6 +234,10 @@ LISTADATOS::=   i_lista:n0 ELEMENTOS:n1 mayor DATOS:n2 f_lista mayor
                 |i_lista:n0  mayor  f_lista mayor
                 {:
                     RESULT=new e_listaDato(null,new LinkedList(),(n0left+1),(n0right+1),var.archivo);
+                :}
+                |error:i1 mayor
+                {:
+                    e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
                 :}
                 ;
 

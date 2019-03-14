@@ -6,9 +6,6 @@
 package codigo_gxml;
 
 import errors.mng_error;
-import java.util.LinkedList;
-import proyecto1.var;
-import ts.Simbolo;
 
 /**
  *

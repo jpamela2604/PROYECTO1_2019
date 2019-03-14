@@ -39,7 +39,7 @@ nonterminal String OPC
 start with S;
 S ::=       A:n1
             {:
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
             :}
             ;
@@ -58,6 +58,10 @@ A::=        i_lista:i1   mayor f_lista mayor
             |i_lista tipo is er_cadena:i1 mayor T:n1 f_lista mayor
             {:
                 RESULT=new FileArray(i1,n1,(i1left+1),(i1right+1),var.archivo);
+            :}
+            |error:i1 mayor
+            {:
+                e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
             :}
             ;
 T::=        T:n1 LVAL:n2
@@ -101,6 +105,10 @@ LVAL::=     i_prin mayor f_prin mayor
             {:
                 RESULT=n1;
             :}
+            |error:i1 mayor
+            {:
+                e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+            :}
             ;
 L::=        L:n1 H:n2
             {:
@@ -128,6 +136,10 @@ H::=        menor er_id:i1  mayor OPC:n2 menor slash er_id:i2 mayor
                 {
                     e.AddError("La etiqueta de inicio no es igual a la final",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
                 }
+            :}
+            |error:i1 mayor
+            {:
+                e.AddError("Falta >",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
             :}
             ;
 OPC::=      er_cadena:n1

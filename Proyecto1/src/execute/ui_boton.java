@@ -5,6 +5,7 @@
  */
 package execute;
 
+import errors.mng_error;
 import java.awt.Color;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -24,18 +25,18 @@ public class ui_boton extends JButton implements ui{
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.toUpperCase().trim().equals(getValor("BOTON"))&&!IsEnviar)
+        if(tag.equals("BOTON")&&!IsEnviar)
         {
             valores.add(new Simbolo(var.tipo_boton,this));
-        }else if(tag.toUpperCase().trim().equals(getValor("ENVIAR"))&&IsEnviar)
+        }else if(tag.equals("ENVIAR")&&IsEnviar)
         {
             valores.add(new Simbolo(var.tipo_boton,this));
         }
     }
     @Override
-    public void getByNombre(String nombre,LinkedList<Simbolo>valores)
+    public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.toUpperCase().trim().equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_boton,this));
         }
@@ -45,7 +46,7 @@ public class ui_boton extends JButton implements ui{
     {
     }
     @Override
-    public void cargar(LinkedList<EmbeddedMediaPlayer> videos)
+    public void cargar(LinkedList<EmbeddedMediaPlayer> videos, mng_error e)
     {
         int tam=Integer.valueOf(((Simbolo)tabla.get("TAM")).valor.toString());
         String fuente=((Simbolo)tabla.get("FUENTE")).valor.toString();

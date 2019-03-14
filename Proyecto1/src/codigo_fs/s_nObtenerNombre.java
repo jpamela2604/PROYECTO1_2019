@@ -47,25 +47,30 @@ public class s_nObtenerNombre implements sent {
         e.AddError("El metodo ObtenerPorNombre solo se puee aplicar sobre objetos GXML", linea, columna, archivo, "SEMANTICO");
         return rr;
     }
-        if(parametros.size()!=1)
+        if(parametros.size()!=2)
             {
-                e.AddError("el metodo solo tiene un parametro", linea, columna, archivo, "SEMANTICO");
+                e.AddError("el metodo tiene dos parametros", linea, columna, archivo, "SEMANTICO");
             }else
             {
                 Simbolo actual=ts.actual;
                 ts.actual=null;                    
-                Simbolo a=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
+                Simbolo id=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
+                Simbolo ventana=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
                 //ts.actual=actual;
-                if(a.tipo.indice!=var.error)
+                if(id.tipo.indice!=var.error||ventana.tipo.indice!=var.error)
                 {
-                    if(a.tipo.indice!=var.cadena)
+                    if(id.tipo.indice!=var.cadena)
                     {
-                        e.AddError("el parametro deberia ser de tipo cadena", linea, columna, archivo, "SEMANTICO");
+                        e.AddError("el primer parametro deberia ser de tipo cadena", linea, columna, archivo, "SEMANTICO");
+                    }else if(ventana.tipo.indice!=var.cadena)
+                    {
+                        e.AddError("el segundo parametro deberia ser de tipo cadena", linea, columna, archivo, "SEMANTICO");
                     }else
                     {
                         ui_gxml myfile =(ui_gxml) ts.actual.valor;
                         LinkedList<Simbolo> valores=new LinkedList();
-                        myfile.getByNombre(a.valor.toString().trim(),valores);
+                        myfile.getByNombre(ventana.valor.toString().toUpperCase().trim(),
+                                id.valor.toString().toUpperCase().trim(),valores);
                         Array nuevo=new Array(valores);
                         rr=new Simbolo(var.tipo_arreglo,nuevo);                                
                         

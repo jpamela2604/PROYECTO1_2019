@@ -36,7 +36,7 @@ terminal   String er_id,er_decimal,er_cadena,er_entero
 nonterminal LinkedList<sent> S,LSENT,LDECLA,LCOND,LIMP,LINS
             ;
 nonterminal sent COND,RELA,E,SENT,DECLARACION,ASIGNACION,IMPRIMIR,DECLA,ACCESO,OP_UNARIA,LOGICA,OBJETO,
-                    IMP,INS,FUN,S_IF,S_SWITCH,LLAMADA
+                    IMP,INS,FUN,S_IF,S_SWITCH,LLAMADA,SENT_CTRL,SENT_LINEAL 
             ;
 nonterminal s_bloque  BL,DEFECTO,SINO,CASO
             ;
@@ -66,7 +66,7 @@ precedence right op_not;
 start with S;
 S ::=       LSENT:n1
             {:
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
             :}
             |LIMP:n1
@@ -99,6 +99,10 @@ IMP::=      importar:n2 para COND:n1 parc ptocoma
             {:
                 RESULT=new s_importar(n1,(n2left+1),(n2right+1),var.archivo); 
             :}
+            /*|error:i1 ptocoma
+            {:
+                e.AddError("Falta ;",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+            :}*/
             ;
 LSENT::=    LSENT:n1 SENT:n2
             {:
@@ -239,13 +243,32 @@ LPAR::=     LPAR:n1 coma er_id:n2
                 RESULT=n1;
                 n1.add(n2);
             :}
+            |LPAR:n1 coma varvar er_id:n2
+            {:
+                RESULT=n1;
+                n1.add(n2);
+            :}
             |er_id:n1
             {:
                 RESULT=new LinkedList();
                 RESULT.add(n1);
             :}
+            |varvar er_id:n1
+            {:
+                RESULT=new LinkedList();
+                RESULT.add(n1);
+            :}
             ;
-INS::=    DECLARACION:n1 ptocoma
+INS::=      SENT_LINEAL:n1
+            {:
+                RESULT=n1;
+            :}
+            |SENT_CTRL:n1
+            {:
+                RESULT=n1;
+            :}
+            ;
+SENT_LINEAL ::=DECLARACION:n1 ptocoma 
             {:
                 RESULT=n1;
             :}
@@ -288,13 +311,22 @@ INS::=    DECLARACION:n1 ptocoma
                 a.IsSent=true;
                 RESULT=n1;
             :}
-            |S_IF:n1
+            |error:i1 ptocoma
+            {:
+                e.AddError("Falta ;",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
+            :}
+            ;
+SENT_CTRL   ::=S_IF:n1
             {:
                 RESULT=n1;
             :}
             |S_SWITCH:n1
             {:
                 RESULT=n1;
+            :}
+            |error:i1 llavc
+            {:
+                e.AddError("Falta }",(i1left+1),(i1right+1),var.archivo,"SEMANTICO"); 
             :}
             ;
 DECLARACION::= varvar:n2 LDECLA:n1
