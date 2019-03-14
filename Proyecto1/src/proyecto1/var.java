@@ -76,6 +76,7 @@ public class var {
     public static int columnaGlobal=0;
     public static String ext_fs=".fs";
     public static String ext_gxml=".gxml";
+    public static String ext_gdato=".gdato";
     /*TIPO DE ELEMENTOS*/
     public static int id=100;
     public static int tipo=101;

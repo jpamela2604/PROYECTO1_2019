@@ -28,6 +28,7 @@ public class Pestania {
     public static enum Tipo
     {
         GXML,
-        FS
+        FS,
+        GDATO
     }
 }

@@ -1391,7 +1391,7 @@ class CUP$sintactico_fs$actions {
 		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()).right;
 		LinkedList<sent> n1 = (LinkedList<sent>)((java_cup.runtime.Symbol) CUP$sintactico_fs$stack.peek()).value;
 		
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
             
               CUP$sintactico_fs$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), RESULT);
@@ -1409,7 +1409,7 @@ class CUP$sintactico_fs$actions {
 		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()).right;
 		LinkedList<sent> n2 = (LinkedList<sent>)((java_cup.runtime.Symbol) CUP$sintactico_fs$stack.peek()).value;
 		
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
                 for(sent s:n2)
                 {

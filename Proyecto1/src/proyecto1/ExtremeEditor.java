@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -188,9 +189,9 @@ public class ExtremeEditor extends javax.swing.JFrame {
                 .addComponent(btnGuardarComo)
                 .addGap(87, 87, 87)
                 .addComponent(btnRun)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addGap(69, 69, 69))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +338,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
                         .addComponent(btnBuscarPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
                     .addComponent(jScrollPane1)
-                    .addComponent(files))
+                    .addComponent(files, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE))
                 .addContainerGap(79, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -433,6 +434,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         abrir(Ventana.getSelectedFile().toString(),getnombre(Ventana.getSelectedFile().toString()));
         }catch(Exception e)
         {
+            //System.out.println(""+e.getMessage());
             JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
         }   
     }
@@ -495,7 +497,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     public void nueva()
     {
-     String[] buttons = { "gxml", "fs" };        
+     String[] buttons = { "gxml", "fs","gdato" };        
             Integer rc = JOptionPane.showOptionDialog(null, "Qué tipo de archivo desea crear?", "TIPO DE ARCHIVO",
             JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
             String extension;
@@ -508,6 +510,10 @@ public class ExtremeEditor extends javax.swing.JFrame {
                 case 1:
                 {
                     extension=var.ext_fs;
+                }break;
+                case 2:
+                {
+                    extension=var.ext_gdato;
                 }break;
                 default:
                 {
@@ -580,6 +586,9 @@ public class ExtremeEditor extends javax.swing.JFrame {
         if(extVal(ruta,var.ext_fs))
         {
             return Pestania.Tipo.FS;
+        }else if(extVal(ruta,var.ext_gdato))
+        {
+            return Pestania.Tipo.GDATO;
         }
         return Pestania.Tipo.GXML;
     }
@@ -597,6 +606,9 @@ public class ExtremeEditor extends javax.swing.JFrame {
         /*fin*/      
         
         RTextScrollPane sp = new RTextScrollPane(textArea); // agregar el scroll mi textarea
+       // sp.setAutoscrolls(true);
+        
+        sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         //guardar la pestania
         Pestania n = new Pestania(tipo,ruta,textArea,sp); 
         arrayPanel[cuentaArrayPanel]=n;        
@@ -704,7 +716,11 @@ public class ExtremeEditor extends javax.swing.JFrame {
         {
             Pestania ta=arrayPanel[files.getSelectedIndex()];
             var.archivo=ta.ruta;
-            this.gra.Run(ta.ruta, ta.tipo);
+            if(ta.tipo==Pestania.Tipo.GDATO)
+            {
+                JOptionPane.showMessageDialog(null, "No se puede reconocer archivo gdato");
+            }
+            else{this.gra.Run(ta.ruta, ta.tipo);}
         }else
         {
             JOptionPane.showMessageDialog(null, "No hay un archivo abierto para guardar");

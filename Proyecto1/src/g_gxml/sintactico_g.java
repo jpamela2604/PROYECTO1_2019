@@ -538,7 +538,7 @@ class CUP$sintactico_g$actions {
 		int n2right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
 		LinkedList<etiqueta> n2 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
 		
-                    System.out.println("aceptada");
+                    //System.out.println("aceptada");
                     raiz=new e_xml(n1,n2);
                 
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.elementAt(CUP$sintactico_g$top-1)), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);
@@ -553,7 +553,7 @@ class CUP$sintactico_g$actions {
 		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()).right;
 		LinkedList<etiqueta> n1 = (LinkedList<etiqueta>)((java_cup.runtime.Symbol) CUP$sintactico_g$stack.peek()).value;
 		
-                    System.out.println("aceptada");
+                    //System.out.println("aceptada");
                     raiz=new e_xml(new e_Importar(),n1);
                 
               CUP$sintactico_g$result = parser.getSymbolFactory().newSymbol("S",0, ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_g$stack.peek()), RESULT);

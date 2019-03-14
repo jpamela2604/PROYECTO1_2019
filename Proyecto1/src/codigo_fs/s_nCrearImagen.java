@@ -7,11 +7,9 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
-import execute.ui_boton;
 import execute.ui_contenedor;
 import execute.ui_imagen;
 import java.io.File;
-import java.nio.file.Files;
 import java.util.LinkedList;
 import proyecto1.Reconize;
 import proyecto1.var;
@@ -135,11 +133,11 @@ public class s_nCrearImagen implements sent {
                 return true;
             }else
             {
-                 e.AddError("La extension del archivo de imagen debe ser bmp,jpg,tpg o png", linea, columna, archivo, "SEMANTICO");
+                 e.AddError("La extension del archivo de imagen debe ser bmp,jpg,tpg o png", linea, columna, archivo, "EJECUCION");
             }
         }else
         {
-            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "EJECUCION");
            
         }
        

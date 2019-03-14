@@ -102,14 +102,21 @@ public class s_importar implements sent{
     {
         LinkedList<sent> raiz = null;        
         try
-        {            
-            lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta,false))));            
-            sintactico_fs sintactico=new sintactico_fs(le);
-            sintactico.parse();            
-            raiz =sintactico.raiz;
-            e.Adding(le.e);
-            e.Adding(sintactico.e);
-            this.raiz=raiz;
+        {
+            String con=getContenido(ruta,false);
+            if(con!=null&&!con.equals(""))
+            {
+                lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(con)));                     
+                sintactico_fs sintactico=new sintactico_fs(le);
+                sintactico.parse();            
+                raiz =sintactico.raiz;
+                e.Adding(le.e);
+                e.Adding(sintactico.e);
+                this.raiz=raiz;
+            }else
+            {
+                e.AddError("No existe/no tiene contenido el archivo: "+ruta, linea, columna, archivo, "SEMANTICO");
+            }
             /*if(raiz!=null)
             {
                 ts.imports.push(ruta);

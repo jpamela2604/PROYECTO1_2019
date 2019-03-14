@@ -57,12 +57,12 @@ S ::=           LIMP:n1
                 :}
                 |LIMP:n1 VENTANAS:n2
                 {:
-                    System.out.println("aceptada");
+                    //System.out.println("aceptada");
                     raiz=new e_xml(n1,n2);
                 :}
                 |VENTANAS:n1
                 {:
-                    System.out.println("aceptada");
+                    //System.out.println("aceptada");
                     raiz=new e_xml(new e_Importar(),n1);
                 :}
                 ;

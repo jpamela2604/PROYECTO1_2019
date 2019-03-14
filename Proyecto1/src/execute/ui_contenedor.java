@@ -5,7 +5,7 @@
  */
 package execute;
 
-import codigo_fs.Array;
+
 import codigo_gdato.item;
 import errors.mng_error;
 import java.awt.Color;
@@ -13,7 +13,6 @@ import java.awt.Dimension;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;

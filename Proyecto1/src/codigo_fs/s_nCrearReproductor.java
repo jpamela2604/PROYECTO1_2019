@@ -8,7 +8,6 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_contenedor;
-import execute.ui_imagen;
 import execute.ui_reproductor;
 import java.io.File;
 import java.util.LinkedList;
@@ -132,11 +131,11 @@ public class s_nCrearReproductor implements sent {
                 return true;
             }else
             {
-                 e.AddError("La extension del archivo de musica debe ser wav o mp3", linea, columna, archivo, "SEMANTICO");
+                 e.AddError("La extension del archivo de musica debe ser wav o mp3", linea, columna, archivo, "EJECUCION");
             }
         }else
         {
-            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "EJECUCION");
            
         }
        

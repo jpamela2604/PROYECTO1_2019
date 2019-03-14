@@ -71,12 +71,12 @@ S ::=       LSENT:n1
             :}
             |LIMP:n1
             {:
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
             :}
             |LIMP:n1 LSENT:n2
             {:
-                System.out.println("aceptada");
+                //System.out.println("aceptada");
                 raiz=n1;
                 for(sent s:n2)
                 {

@@ -8,7 +8,6 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_contenedor;
-import execute.ui_imagen;
 import execute.ui_video;
 import java.io.File;
 import java.util.LinkedList;
@@ -136,11 +135,11 @@ public class s_nCrearVideo implements sent {
                 return true;
             }else
             {
-                 e.AddError("La extension del archivo de video debe ser avi,mp4,mepg,rm o flv", linea, columna, archivo, "SEMANTICO");
+                 e.AddError("La extension del archivo de video debe ser avi,mp4,mepg,rm o flv", linea, columna, archivo, "EJECUCION");
             }
         }else
         {
-            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "EJECUCION");
            
         }
        

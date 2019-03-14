@@ -179,7 +179,7 @@ public class Reconize {
         }
         //String r=ExtremeEditor.ru+"\\"+relativa;
         
-        return ExtremeEditor.ru+"\\"+relativa;
+        return (ExtremeEditor.ru+"\\"+(relativa.contains("/")?relativa.replace("/","\\"):relativa)).replace("\\\\", "\\");
     }
     public static String getFileExtension(File file) {
         String fileName = file.getName();
