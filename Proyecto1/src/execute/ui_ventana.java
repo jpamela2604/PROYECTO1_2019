@@ -178,6 +178,7 @@ public class ui_ventana extends JFrame implements ui{
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,var.ancho_ven,false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         //this.color="";
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
      public ui_ventana(String color,int alto,int ancho)
     {
@@ -195,7 +196,7 @@ public class ui_ventana extends JFrame implements ui{
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
         //this.alto=alto;
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
-        
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
    public LinkedList<item> getValores()
     {

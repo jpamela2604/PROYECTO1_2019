@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import proyecto1.Reconize;
 import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.player.MediaPlayerFactory;
@@ -112,5 +114,23 @@ public class media {
             videos.add(emp);
             //emp.play();
         }
+        prin.addAncestorListener(new AncestorListener()
+        {
+            @Override
+            public void ancestorAdded(AncestorEvent ae) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void ancestorRemoved(AncestorEvent ae) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                emp.stop();
+            }
+
+            @Override
+            public void ancestorMoved(AncestorEvent ae) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 }

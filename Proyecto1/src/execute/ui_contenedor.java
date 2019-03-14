@@ -91,12 +91,12 @@ public class ui_contenedor extends JPanel implements ui{
                     //setBounds(int x, int y, int width, int height)
                     sp.setBounds(xx, yy, anchxo, altxo);
                     //t.setLocation(xx, yy);
-                    if(xx>=x)
+                    if(xx+anchxo>=x+ancho)
                     {
                         x=xx;
                         ancho=anchxo;                
                     }
-                    if(yy>=y)
+                    if(yy+altxo>=y+alto)
                     {
                         y=yy;
                         alto=altxo; 
@@ -108,15 +108,17 @@ public class ui_contenedor extends JPanel implements ui{
                     int xx=Integer.valueOf(t.getValor("X"));
                     int yy=Integer.valueOf(t.getValor("Y"));
                     //t.setLocation(xx, yy);
-                    if(xx>=x)
+                    Integer anchxo=Integer.valueOf(t.getValor("ANCHO"));
+                    Integer altxo=Integer.valueOf(t.getValor("ALTO"));
+                    if(xx+anchxo>=x+ancho)
                     {
                         x=xx;
-                        ancho=Integer.valueOf(t.getValor("ANCHO"));                
+                        ancho=anchxo;                
                     }
-                    if(yy>=y)
+                    if(yy+altxo>=y+alto)
                     {
                         y=yy;
-                        alto=Integer.valueOf(t.getValor("ALTO")); 
+                        alto=altxo; 
                     }
                     this.add((JComponent)t);
                 }
