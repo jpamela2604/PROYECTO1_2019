@@ -5,7 +5,6 @@
  */
 package codigo_fs;
 
-import codigo_gdato.FileArray;
 import codigo_gxml.etiqueta;
 import errors.mng_error;
 import execute.Ejecucion;
@@ -15,7 +14,7 @@ import g_gxml.sintactico_g;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.LinkedList;
-import proyecto1.ExtremeEditor;
+import proyecto1.Reconize;
 import static proyecto1.Reconize.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
@@ -66,15 +65,13 @@ public class s_nativaGxml implements sent {
                         //ejecuta la accion
                         String anterior=var.archivo;
                         var.archivo=a.valor.toString();
-                        ui_gxml miarc= gramaticaGxml(a.valor.toString(),e);
+                        ui_gxml miarc= gramaticaGxml(Reconize.getDireccion(a.valor.toString()),e);
                         var.archivo=anterior;
                         if(miarc!=null)
                         {
                             rr=new Simbolo(var.tipo_gxml,miarc);
-                        }
-                        
+                        }                        
                     }
-
                 }
             }
         return rr;

@@ -54,14 +54,17 @@ public class Reconize {
     {
         etiqueta raiz = null;        
         try
-        {
+        {            
             String con=getContenido(ruta,false);
-            lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
-            sintactico_g sintactico=new sintactico_g(le);
-            sintactico.parse();            
-            raiz =sintactico.raiz;
-            e.Adding(le.e);
-            e.Adding(sintactico.e);
+            if(con!=null&&!con.equals(""))
+            {
+                lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
+                sintactico_g sintactico=new sintactico_g(le);
+                sintactico.parse();            
+                raiz =sintactico.raiz;
+                e.Adding(le.e);
+                e.Adding(sintactico.e);
+            }
             if(raiz!=null)
             {
                  raiz.Comprobar(e);
@@ -108,16 +111,19 @@ public class Reconize {
         LinkedList<sent> raiz = null;        
         try
         {
-            
-            lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(getContenido(ruta,false))));            
-            sintactico_fs sintactico=new sintactico_fs(le);
-            sintactico.parse();            
-            raiz =sintactico.raiz;
-            e.Adding(le.e);
-            e.Adding(sintactico.e);
+            String con=getContenido(ruta,false);
             mng_ts ts=new mng_ts(e);
             ui_gxml deTodo=new ui_gxml();
             Ejecucion ej=new Ejecucion(this.a,deTodo);
+            if(con!=null&&!con.equals(""))
+            {
+                lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(con)));            
+                sintactico_fs sintactico=new sintactico_fs(le);
+                sintactico.parse();            
+                raiz =sintactico.raiz;
+                e.Adding(le.e);
+                e.Adding(sintactico.e);
+            }
             if(raiz!=null)
             {
                 ts.imports.push(ruta);
@@ -167,8 +173,18 @@ public class Reconize {
     
     public static String getDireccion(String relativa)
     {
-        String r=ExtremeEditor.ru+"\\"+relativa;
+        if(relativa.contains("C:\\"))
+        {
+            return relativa;
+        }
+        //String r=ExtremeEditor.ru+"\\"+relativa;
         
-        return r;
+        return ExtremeEditor.ru+"\\"+relativa;
+    }
+    public static String getFileExtension(File file) {
+        String fileName = file.getName();
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+        return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
     }
 }

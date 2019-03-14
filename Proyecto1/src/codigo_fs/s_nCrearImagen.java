@@ -10,7 +10,10 @@ import execute.Ejecucion;
 import execute.ui_boton;
 import execute.ui_contenedor;
 import execute.ui_imagen;
+import java.io.File;
+import java.nio.file.Files;
 import java.util.LinkedList;
+import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -94,21 +97,23 @@ public class s_nCrearImagen implements sent {
             }
             if(b)
             {
-                ui_imagen imagen=
-                            ej.CrearImagen(
-                                    ruta.valor.toString(),
-                                    Integer.valueOf(x.valor.toString()),
-                                    Integer.valueOf(y.valor.toString()),
-                                    Boolean.valueOf(auto.valor.toString()),
-                                    Integer.valueOf(alto.valor.toString()),                                    
-                                    Integer.valueOf(ancho.valor.toString()));
-                if(ts.actual!=null)
+                String path=ruta.valor.toString();
+                if(rutaValida(e,Reconize.getDireccion(path)))
                 {
-                    ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.componentes.add(imagen);
+                    ui_imagen imagen=
+                                ej.CrearImagen(path,
+                                        Integer.valueOf(x.valor.toString()),
+                                        Integer.valueOf(y.valor.toString()),
+                                        Boolean.valueOf(auto.valor.toString()),
+                                        Integer.valueOf(alto.valor.toString()),                                    
+                                        Integer.valueOf(ancho.valor.toString()));
+                    if(ts.actual!=null)
+                    {
+                        ui_contenedor con=(ui_contenedor) ts.actual.valor;
+                        con.componentes.add(imagen);
+                    }
+                    return new Simbolo(var.tipo_imagen,imagen);
                 }
-                return new Simbolo(var.tipo_imagen,imagen);
-
             }
         }else
         {
@@ -116,4 +121,30 @@ public class s_nCrearImagen implements sent {
         }
         return rr;
     }
+    Boolean rutaValida(mng_error e,String ruta)
+    {
+        File file= new File(ruta);
+        if(file.exists())
+        {
+            String extension=Reconize.getFileExtension(file).toUpperCase();
+            if(extension.equals("BMP")
+              ||extension.equals("JPG")
+              ||extension.equals("TPG")
+              ||extension.equals("PNG"))
+            {
+                return true;
+            }else
+            {
+                 e.AddError("La extension del archivo de imagen debe ser bmp,jpg,tpg o png", linea, columna, archivo, "SEMANTICO");
+            }
+        }else
+        {
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+           
+        }
+       
+        return false;
+    }
+    
+
 }

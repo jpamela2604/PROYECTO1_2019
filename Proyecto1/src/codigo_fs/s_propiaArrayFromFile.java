@@ -19,6 +19,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.ExtremeEditor;
+import proyecto1.Reconize;
 import static proyecto1.Reconize.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
@@ -94,7 +95,7 @@ public class s_propiaArrayFromFile implements sent {
                         //ejecuta la accion
                         String anterior=var.archivo;
                         var.archivo=a.valor.toString();
-                        FileArray raiz= gramaticaGDATO(ExtremeEditor.ru+"//"+a.valor.toString(),e);
+                        FileArray raiz= gramaticaGDATO(Reconize.getDireccion(a.valor.toString()),e);
                         var.archivo=anterior;
                         if(raiz!=null)
                         {

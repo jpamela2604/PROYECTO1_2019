@@ -10,7 +10,9 @@ import execute.Ejecucion;
 import execute.ui_contenedor;
 import execute.ui_imagen;
 import execute.ui_video;
+import java.io.File;
 import java.util.LinkedList;
+import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -94,26 +96,54 @@ public class s_nCrearVideo implements sent {
             }
             if(b)
             {
-                ui_video video=
-                            ej.CrearVideo(
-                                    ruta.valor.toString(),
-                                    Integer.valueOf(x.valor.toString()),
-                                    Integer.valueOf(y.valor.toString()),
-                                    Boolean.valueOf(auto.valor.toString()),
-                                    Integer.valueOf(alto.valor.toString()),                                    
-                                    Integer.valueOf(ancho.valor.toString()));
-                if(ts.actual!=null)
+                String path=ruta.valor.toString();
+                if(rutaValida(e,Reconize.getDireccion(path)))
                 {
-                    ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.componentes.add(video);
+                    ui_video video=
+                                ej.CrearVideo(
+                                        path,
+                                        Integer.valueOf(x.valor.toString()),
+                                        Integer.valueOf(y.valor.toString()),
+                                        Boolean.valueOf(auto.valor.toString()),
+                                        Integer.valueOf(alto.valor.toString()),                                    
+                                        Integer.valueOf(ancho.valor.toString()));
+                    if(ts.actual!=null)
+                    {
+                        ui_contenedor con=(ui_contenedor) ts.actual.valor;
+                        con.componentes.add(video);
+                    }
+                    return new Simbolo(var.tipo_video,video);
                 }
-                return new Simbolo(var.tipo_video,video);
-
             }
         }else
         {
                 e.AddError("No se puede agregar un video a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
         }
         return rr;
+    }
+    Boolean rutaValida(mng_error e,String ruta)
+    {
+        File file= new File(ruta);
+        if(file.exists())
+        {
+            String extension=Reconize.getFileExtension(file).toUpperCase();
+            if(extension.equals("AVI")
+              ||extension.equals("MP4")
+              ||extension.equals("MEPG")
+              ||extension.equals("RM")
+                    ||extension.equals("FLV"))
+            {
+                return true;
+            }else
+            {
+                 e.AddError("La extension del archivo de video debe ser avi,mp4,mepg,rm o flv", linea, columna, archivo, "SEMANTICO");
+            }
+        }else
+        {
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+           
+        }
+       
+        return false;
     }
 }

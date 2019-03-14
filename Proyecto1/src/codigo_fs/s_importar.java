@@ -98,7 +98,7 @@ public class s_importar implements sent{
         }
         return null;
     }
-     public void gramaticaFS(String ruta,mng_error e)
+    public void gramaticaFS(String ruta,mng_error e)
     {
         LinkedList<sent> raiz = null;        
         try

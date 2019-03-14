@@ -10,7 +10,9 @@ import execute.Ejecucion;
 import execute.ui_contenedor;
 import execute.ui_imagen;
 import execute.ui_reproductor;
+import java.io.File;
 import java.util.LinkedList;
+import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -94,26 +96,50 @@ public class s_nCrearReproductor implements sent {
             }
             if(b)
             {
-                ui_reproductor musica=
-                            ej.CrearReproductor(
-                                    ruta.valor.toString(),
-                                    Integer.valueOf(x.valor.toString()),
-                                    Integer.valueOf(y.valor.toString()),
-                                    Boolean.valueOf(auto.valor.toString()),
-                                    Integer.valueOf(alto.valor.toString()),                                    
-                                    Integer.valueOf(ancho.valor.toString()));
-                if(ts.actual!=null)
+                String path=ruta.valor.toString();
+                if(rutaValida(e,Reconize.getDireccion(path)))
                 {
-                    ui_contenedor con=(ui_contenedor) ts.actual.valor;
-                    con.componentes.add(musica);
+                    ui_reproductor musica=
+                                ej.CrearReproductor(path,
+                                        Integer.valueOf(x.valor.toString()),
+                                        Integer.valueOf(y.valor.toString()),
+                                        Boolean.valueOf(auto.valor.toString()),
+                                        Integer.valueOf(alto.valor.toString()),                                    
+                                        Integer.valueOf(ancho.valor.toString()));
+                    if(ts.actual!=null)
+                    {
+                        ui_contenedor con=(ui_contenedor) ts.actual.valor;
+                        con.componentes.add(musica);
+                    }
+                    return new Simbolo(var.tipo_reproductor,musica);
                 }
-                return new Simbolo(var.tipo_reproductor,musica);
-
             }
         }else
         {
                 e.AddError("No se puede agregar un reproductor a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
         }
         return rr;
+    }
+    Boolean rutaValida(mng_error e,String ruta)
+    {
+        File file= new File(ruta);
+        if(file.exists())
+        {
+            String extension=Reconize.getFileExtension(file).toUpperCase();
+            if(extension.equals("WAV")
+              ||extension.equals("MP3"))
+            {
+                return true;
+            }else
+            {
+                 e.AddError("La extension del archivo de musica debe ser wav o mp3", linea, columna, archivo, "SEMANTICO");
+            }
+        }else
+        {
+            e.AddError("No existe archivo en la ruta: "+ruta, linea, columna, archivo, "SEMANTICO");
+           
+        }
+       
+        return false;
     }
 }
