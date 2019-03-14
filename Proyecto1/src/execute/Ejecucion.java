@@ -79,9 +79,9 @@ public class Ejecucion {
     }
     
     
-     public ui_ventana CrearVentana(String color,Integer alto,Integer ancho)
+     public ui_ventana CrearVentana(String color,Integer alto,Integer ancho,String id)
     {
-        ui_ventana ventana= new ui_ventana(color,alto,ancho);
+        ui_ventana ventana= new ui_ventana(color,alto,ancho,id);
         return ventana;
     }
     

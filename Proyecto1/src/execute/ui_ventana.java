@@ -143,8 +143,9 @@ public class ui_ventana extends JFrame implements ui{
         String t="var "+nombre+"=crearVentana(\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
-                ((Simbolo)tabla.get("ANCHO")).valor.toString()+
-                ");\n";
+                ((Simbolo)tabla.get("ANCHO")).valor.toString()+",\""+
+                name+
+                "\");\n";
         t=t+(inicial.equals("")?"":nombre+".alcargar("+inicial+");\n");
         t=t+(fin.equals("")?"":nombre+".alcerrar("+fin+");\n");
         if("PRINCIPAL".equals(((Simbolo)tabla.get("TIPO")).valor.toString().toUpperCase()))
@@ -180,14 +181,14 @@ public class ui_ventana extends JFrame implements ui{
         //this.color="";
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-     public ui_ventana(String color,int alto,int ancho)
+     public ui_ventana(String color,int alto,int ancho,String id)
     {
         this.inicial="";
         this.fin="";
         this.tabla=new Hashtable();
         this.contenedores=new LinkedList();
         //this.id="";
-        this.tabla.put("ID", new Simbolo(var.tipo_cadena,"",false));
+        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
         //this.tipo="SECUNDARIA";
         this.tabla.put("TIPO", new Simbolo(var.tipo_cadena,"SECUNDARIA",false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));

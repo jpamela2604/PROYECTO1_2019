@@ -37,7 +37,7 @@ public class s_nCrearVentana implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
-        if(parametros.size()!=3)
+        if(parametros.size()!=4)
         {
             e.AddError("El metodo CrearVentana debe tener 3 parametros", linea, columna, archivo, "SEMANTICO");
             return rr;
@@ -47,6 +47,7 @@ public class s_nCrearVentana implements sent {
         Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
         Simbolo l=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
         Simbolo n=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
+        Simbolo id=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
         Boolean b=true;
         ts.actual=actual;
         if(t.tipo.indice==var.error||l.tipo.indice==var.error||n.tipo.indice==var.error)
@@ -69,12 +70,18 @@ public class s_nCrearVentana implements sent {
             e.AddError("El tercer parametro deberia ser tipo entero, no "+n.tipo.nombre, linea, columna, archivo, "SEMANTICO");
             b=false;
         }
+        if(b&&id.tipo.indice!=var.cadena)
+        {
+            e.AddError("El cuarto parametro deberia ser tipo cadena, no "+n.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+            b=false;
+        }
         if(b)
         {
             if(ts.actual==null)
             {
                 return new Simbolo(var.tipo_ventana,ej.CrearVentana(t.valor.toString()
-                        ,Integer.valueOf(l.valor.toString()),Integer.valueOf(n.valor.toString())));
+                        ,Integer.valueOf(l.valor.toString()),Integer.valueOf(n.valor.toString())
+                ,id.valor.toString().toUpperCase().trim()));
             }else
             {
                 e.AddError("No se puede agregar una ventana a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");

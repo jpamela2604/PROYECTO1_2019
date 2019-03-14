@@ -36,6 +36,7 @@ public class e_boton implements etiqueta{
         opcionales.put("ANCHO", 100);
         opcionales.put("ACCION", "");
         opcionales.put("REF", "");
+        
     }
     @Override
     public Object GetGxmlObject() {
