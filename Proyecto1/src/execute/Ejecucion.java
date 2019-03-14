@@ -146,9 +146,9 @@ public class Ejecucion {
         return video;
     }
     
-     public ui_imagen CrearImagen(String ruta,int x,int y,Boolean auto,int alto,int ancho)
+     public ui_imagen CrearImagen(String ruta,int x,int y,int alto,int ancho)
     {
-        ui_imagen imagen=new ui_imagen(ruta,x,y,auto,alto,ancho);
+        ui_imagen imagen=new ui_imagen(ruta,x,y,alto,ancho);
         return imagen;
     }
 }

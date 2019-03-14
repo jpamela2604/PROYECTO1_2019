@@ -45,7 +45,7 @@ public class s_nCrearImagen implements sent {
         {
             if(parametros.size()!=6)
             {
-                e.AddError("El metodo CrearImagen debe tener 6 parametros", linea, columna, archivo, "SEMANTICO");
+                e.AddError("El metodo CrearImagen debe tener 5 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;
             }   
             Simbolo actual=ts.actual;
@@ -53,12 +53,12 @@ public class s_nCrearImagen implements sent {
             Simbolo ruta=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
             Simbolo x=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
             Simbolo y=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
-            Simbolo auto=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
-            Simbolo alto=(Simbolo) parametros.get(4).ejecutar(ts, e, ej);
-            Simbolo ancho=(Simbolo) parametros.get(5).ejecutar(ts, e, ej);
+            //Simbolo auto=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
+            Simbolo alto=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
+            Simbolo ancho=(Simbolo) parametros.get(4).ejecutar(ts, e, ej);
             ts.actual=actual;
             Boolean b=true;
-            if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error||auto.tipo.indice==var.error
+            if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error/*||auto.tipo.indice==var.error*/
                     ||ruta.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error){
                 b=false;
             }
@@ -78,11 +78,11 @@ public class s_nCrearImagen implements sent {
                 e.AddError("El tercer parametro deberia ser tipo entero, no "+y.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
             }            
-            if(b&&auto.tipo.indice!=var.booleano)
+            /*if(b&&auto.tipo.indice!=var.booleano)
             {
                 e.AddError("El cuarto parametro deberia ser tipo booleano, no "+auto.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
-            }
+            }*/
             if(b&&alto.tipo.indice!=var.entero)
             {
                 e.AddError("El quinto parametro deberia ser tipo entero, no "+alto.tipo.nombre, linea, columna, archivo, "SEMANTICO");
@@ -102,7 +102,7 @@ public class s_nCrearImagen implements sent {
                                 ej.CrearImagen(path,
                                         Integer.valueOf(x.valor.toString()),
                                         Integer.valueOf(y.valor.toString()),
-                                        Boolean.valueOf(auto.valor.toString()),
+                                        //Boolean.valueOf(auto.valor.toString()),
                                         Integer.valueOf(alto.valor.toString()),                                    
                                         Integer.valueOf(ancho.valor.toString()));
                     if(ts.actual!=null)

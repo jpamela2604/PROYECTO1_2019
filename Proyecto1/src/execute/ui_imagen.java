@@ -51,7 +51,7 @@ public class ui_imagen extends JPanel implements ui{
                 ((Simbolo)tabla.get("RUTA")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
                 ((Simbolo)tabla.get("Y")).valor.toString()+","+
-                ((((Simbolo)tabla.get("AUTO_REPRODUCCION")).valor.toString()).equals("true")?"verdadero":"falso")+","+
+                //((((Simbolo)tabla.get("AUTO_REPRODUCCION")).valor.toString()).equals("true")?"verdadero":"falso")+","+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
                 ((Simbolo)tabla.get("ANCHO")).valor.toString()+
         ");\n";
@@ -88,7 +88,7 @@ public class ui_imagen extends JPanel implements ui{
         this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
         this.setVisible(false);
     }
-       public ui_imagen(String ruta,int x,int y,Boolean autoplay,int alto,int ancho)
+       public ui_imagen(String ruta,int x,int y,/*Boolean autoplay,*/int alto,int ancho)
     {
         this.tabla=new Hashtable();
         this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
@@ -97,7 +97,7 @@ public class ui_imagen extends JPanel implements ui{
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));
-        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,autoplay,false));
+        this.tabla.put("AUTO_REPRODUCCION", new Simbolo(var.tipo_booleano,true,false));
         this.setVisible(false);
     }
 }

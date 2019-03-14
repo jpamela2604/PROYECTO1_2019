@@ -50,7 +50,8 @@ public class s_nCrearVentana implements sent {
         Simbolo id=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
         Boolean b=true;
         ts.actual=actual;
-        if(t.tipo.indice==var.error||l.tipo.indice==var.error||n.tipo.indice==var.error)
+        if(t.tipo.indice==var.error||l.tipo.indice==var.error||n.tipo.indice==var.error||
+                id.tipo.indice==var.error)
         {
             b=false;
         }
