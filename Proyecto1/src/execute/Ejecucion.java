@@ -6,6 +6,7 @@
 package execute;
 
 import codigo_fs.Array;
+import codigo_fs.sent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -98,7 +99,7 @@ public class Ejecucion {
         ui_texto texto= new ui_texto( fuente,tam,color,x,y,negrilla,cursiva,valor);
         return texto;
     }
-    public ui_boton CrearBoton(String fuente,int tam,String color,int x,int y,String ref,String val,int alto,int ancho)
+    public ui_boton CrearBoton(String fuente,int tam,String color,int x,int y,sent ref,String val,int alto,int ancho)
     {
         ui_boton boton =new ui_boton(fuente,tam,color,x,y,ref,val,alto,ancho);
         return boton;

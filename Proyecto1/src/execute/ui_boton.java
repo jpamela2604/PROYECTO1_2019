@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_fs.sent;
 import errors.mng_error;
 import java.awt.Color;
 import java.util.Hashtable;
@@ -19,9 +20,10 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  * @author Pamela Palacios
  */
 public class ui_boton extends JButton implements ui{
-     public Hashtable tabla;
+    public Hashtable tabla;
     String accion;
     Boolean IsEnviar;
+    public sent referencia;
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
@@ -72,36 +74,48 @@ public class ui_boton extends JButton implements ui{
          //AGREGAR ON CLICK,AGREGAR NOMBRE,SI ES ENVIAR
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
         String nombre="Boton_"+(IsEnviar?"Enviar_":"")+name;
+        String ref=((Simbolo)tabla.get("REFERENCIA")).valor.toString();
+        String name_referencia="referencia_"+nombre+"()";
         
         String t="var "+nombre+ " = "+panel+ ".CrearBoton(\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
                 +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
-                ((Simbolo)tabla.get("Y")).valor.toString()+",\""+
-                ((Simbolo)tabla.get("REFERENCIA")).valor.toString()+"\",\""+
+                ((Simbolo)tabla.get("Y")).valor.toString()+","+
+                //((Simbolo)tabla.get("REFERENCIA")).valor.toString()
+                name_referencia+",\""+
                 ((Simbolo)tabla.get("VALOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
                 ((Simbolo)tabla.get("ANCHO")).valor.toString()+
         ");\n";
         t=t+nombre+".nombre=\""+name+"\";\n";
         String funcion=accion;
+        
         if(this.IsEnviar)
         {
+            
             funcion="generica_"+nombre+"()";
             t=t+"funcion "+funcion+ "{\n";
-            t=t+"   "+ventana+".crearArrayDesdeArchivo();";
+            t=t+"   "+ventana+".crearArrayDesdeArchivo();\n";
             t=t+(!accion.equals("")?"   "+accion+";\n":"");
             t=t+"}\n";
         }
         
-        t=t+(funcion.equals("")?"":nombre+".alclic("+funcion+");\n"); 
+        t=t+(funcion.equals("")?"":nombre+".alclic("+funcion+");\n");         
+        
+        if(!ref.equals(""))
+        {
+            t=t+"funcion "+name_referencia+ "{\n";
+            t=t+"   "+ref+".alcargar();\n";
+            t=t+"}\n";
+        }
         return t;
         
     }
     public ui_boton(String nombre,int x,int y,int alto,int ancho,String accion,String ref,
             Boolean IsEnviar,String valor)
     {
-       
+        
         this.IsEnviar=IsEnviar;
         this.accion=accion;
         this.tabla=new Hashtable();
@@ -117,10 +131,11 @@ public class ui_boton extends JButton implements ui{
         this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
         this.setVisible(false);
     }
-    public ui_boton(String fuente,int tam,String color,int x,int y,String ref,String valor,
+    public ui_boton(String fuente,int tam,String color,int x,int y,sent ref,String valor,
             int alto,int ancho)
     {
         accion="";
+        referencia=ref;
         this.tabla=new Hashtable();
         this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,"",false));
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));
@@ -128,7 +143,7 @@ public class ui_boton extends JButton implements ui{
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
-        this.tabla.put("REFERENCIA", new Simbolo(var.tipo_cadena,ref,false));
+        this.tabla.put("REFERENCIA", new Simbolo(var.tipo_cadena,"",false));
         this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.tabla.put("ANCHO", new Simbolo(var.tipo_entero,ancho,false));

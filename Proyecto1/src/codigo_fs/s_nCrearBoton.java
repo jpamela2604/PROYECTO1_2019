@@ -7,9 +7,10 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
-import execute.ui_ControlNumerico;
 import execute.ui_boton;
 import execute.ui_contenedor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import proyecto1.var;
 import ts.Simbolo;
@@ -54,7 +55,7 @@ public class s_nCrearBoton implements sent {
             Simbolo color=(Simbolo) parametros.get(2).ejecutar(ts, e, ej);
             Simbolo x=(Simbolo) parametros.get(3).ejecutar(ts, e, ej);
             Simbolo y=(Simbolo) parametros.get(4).ejecutar(ts, e, ej);
-            Simbolo referencia=(Simbolo) parametros.get(5).ejecutar(ts, e, ej);
+            //Simbolo referencia=(Simbolo) parametros.get(5).ejecutar(ts, e, ej);
             Simbolo valor =(Simbolo) parametros.get(6).ejecutar(ts, e, ej);
             Simbolo alto=(Simbolo) parametros.get(7).ejecutar(ts, e, ej);
             Simbolo ancho=(Simbolo) parametros.get(8).ejecutar(ts, e, ej);
@@ -62,7 +63,7 @@ public class s_nCrearBoton implements sent {
             Boolean b=true;
             if(alto.tipo.indice==var.error||ancho.tipo.indice==var.error||fuente.tipo.indice==var.error
                     ||tam.tipo.indice==var.error||x.tipo.indice==var.error||y.tipo.indice==var.error
-                    ||color.tipo.indice==var.error||referencia.tipo.indice==var.error||valor.tipo.indice==var.error)
+                    ||color.tipo.indice==var.error/*||referencia.tipo.indice==var.error*/||valor.tipo.indice==var.error)
             {
                 b=false;
             }
@@ -92,11 +93,11 @@ public class s_nCrearBoton implements sent {
                 e.AddError("El quinto parametro deberia ser tipo entero, no "+y.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
             }
-            if(b&&referencia.tipo.indice!=var.cadena)
+            /*if(b&&!(parametros.get(5) instanceof s_llamada))
             {
-                e.AddError("El sexto parametro deberia ser tipo cadena, no "+referencia.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+                e.AddError("El sexto parametro deberia ser una llamada", linea, columna, archivo, "SEMANTICO");
                 b=false;
-            }
+            }*/
             if(b&&valor.tipo.indice!=var.cadena)
             {
                 e.AddError("El septimo parametro deberia ser tipo cadena, no "+valor.tipo.nombre, linea, columna, archivo, "SEMANTICO");
@@ -121,10 +122,24 @@ public class s_nCrearBoton implements sent {
                                     color.valor.toString(),
                                     Integer.valueOf(x.valor.toString()),
                                     Integer.valueOf(y.valor.toString()),
-                                    referencia.valor.toString(),
+                                    //referencia.valor.toString(),
+                                    parametros.get(5),
                                     valor.valor.toString(),
                                     Integer.valueOf(alto.valor.toString()),                                    
                                     Integer.valueOf(ancho.valor.toString()));
+                if(boton.referencia!=null)
+                {
+                     boton.addActionListener(new ActionListener() { 
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                       Simbolo actual=ts.actual;
+                       ts.actual=null; 
+                       boton.referencia.ejecutar(ts, e, ej);
+                       ts.actual=actual;
+
+                    }
+                   } );
+                }
                 if(ts.actual!=null)
                 {
                     ui_contenedor con=(ui_contenedor) ts.actual.valor;

@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import proyecto1.var;
@@ -52,6 +53,12 @@ public class s_nEventoClic implements sent {
         }else if(ts.actual.tipo.indice==var.boton)
         {
              ui_boton v=(ui_boton) ts.actual.valor;
+             ActionListener[] ac=v.getActionListeners();
+             if(ac.length>0)
+             {
+                 v.removeActionListener(ac[0]);
+             }
+             
              v.addActionListener(new ActionListener() { 
                  @Override
                  public void actionPerformed(ActionEvent ae) {
@@ -59,12 +66,24 @@ public class s_nEventoClic implements sent {
                     ts.actual=null; 
                     llamada.ejecutar(ts, e, ej);
                     ts.actual=actual;
+                    if(v.referencia!=null)
+                    {
+                        actual=ts.actual;
+                        ts.actual=null; 
+                        v.referencia.ejecutar(ts, e, ej);
+                        ts.actual=actual;
+                    }
                  }
             } );
         }
         else if(ts.actual.tipo.indice==var.texto)
         {
             ui_texto v= (ui_texto)ts.actual.valor;
+            MouseListener[] ac=v.getMouseListeners();
+            if(ac.length>0)
+            {
+                v.removeMouseListener(ac[0]);
+            }
             v.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent ev) {
