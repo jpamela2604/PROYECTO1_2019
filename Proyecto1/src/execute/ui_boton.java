@@ -24,6 +24,7 @@ public class ui_boton extends JButton implements ui{
     String accion;
     Boolean IsEnviar;
     public sent referencia;
+    String id_texto;
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
@@ -33,6 +34,9 @@ public class ui_boton extends JButton implements ui{
         }else if(tag.equals("ENVIAR")&&IsEnviar)
         {
             valores.add(new Simbolo(var.tipo_boton,this));
+        }else if(tag.equals("TEXTO")&&!id_texto.equals(""))
+        {
+            valores.add(new Simbolo(var.tipo_cadena,((Simbolo)tabla.get("VALOR")).valor.toString()));
         }
     }
     @Override
@@ -41,6 +45,9 @@ public class ui_boton extends JButton implements ui{
         if(nombre.equals(getValor("NOMBRE")))
         {
             valores.add(new Simbolo(var.tipo_boton,this));
+        }else if(nombre.equals(id_texto))
+        {
+            valores.add(new Simbolo(var.tipo_cadena,id_texto));
         }
     }
     @Override
@@ -112,10 +119,11 @@ public class ui_boton extends JButton implements ui{
         return t;
         
     }
+    
     public ui_boton(String nombre,int x,int y,int alto,int ancho,String accion,String ref,
-            Boolean IsEnviar,String valor)
+            Boolean IsEnviar,String valor,String id_texto)
     {
-        
+        this.id_texto=id_texto;
         this.IsEnviar=IsEnviar;
         this.accion=accion;
         this.tabla=new Hashtable();
@@ -134,6 +142,8 @@ public class ui_boton extends JButton implements ui{
     public ui_boton(String fuente,int tam,String color,int x,int y,sent ref,String valor,
             int alto,int ancho)
     {
+        
+        id_texto="";
         accion="";
         referencia=ref;
         this.tabla=new Hashtable();

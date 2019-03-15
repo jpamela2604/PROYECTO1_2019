@@ -59,7 +59,8 @@ Boolean estoyTodo=true;
 "Ancho"                 {/*System.out.println("ancho ");*/return new Symbol(simb.ancho,yyline,yycolumn,new String(yytext()));}
 "Fuente"                {/*System.out.println("fuente ");*/return new Symbol(simb.fuente,yyline,yycolumn,new String(yytext()));}
 "borde"                {/*System.out.println("borde ");*/return new Symbol(simb.borde,yyline,yycolumn,new String(yytext()));}
-
+"</boton"               {estoyTodo=false;/*System.out.println("bot f ");*/return new Symbol(simb.f_boton,yyline,yycolumn,new String(yytext()));}
+"</enviar"              {estoyTodo=false;/*System.out.println("enviar f ");*/return new Symbol(simb.f_enviar,yyline,yycolumn,new String(yytext()));}
 "Tam"                   {/*System.out.println("tam ");*/return new Symbol(simb.tam,yyline,yycolumn,new String(yytext()));}
 "Negrita"               {/*System.out.println("negrita ");*/return new Symbol(simb.negrita,yyline,yycolumn,new String(yytext()));}
 "Cursiva"               {/*System.out.println("cursiva ");*/return new Symbol(simb.cursiva,yyline,yycolumn,new String(yytext()));}
@@ -104,7 +105,7 @@ Boolean estoyTodo=true;
     [^"$#"]  {/*System.out.println("dentro de comentario: "+yytext());*/}
     "$#" {/*System.out.println("comentario multi");*/yybegin(TODO);}
 }
-
+<AUXILIAR> "<Texto"                {yypushback(6);yybegin(YYINITIAL); }
 <AUXILIAR> "</Importar"            {/*System.out.println("imp f ");*/return new Symbol(simb.f_imp,yyline,yycolumn,new String(yytext()));}
 <AUXILIAR> "</Texto"               {/*System.out.println("txt f ");*/return new Symbol(simb.f_texto,yyline,yycolumn,new String(yytext()));}
 <AUXILIAR> "</Dato"                {/*System.out.println("dat f ");*/return new Symbol(simb.f_dato,yyline,yycolumn,new String(yytext()));}

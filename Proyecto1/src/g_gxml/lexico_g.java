@@ -64,20 +64,20 @@ public class lexico_g implements java_cup.runtime.Scanner {
     "\5\0\1\1\1\2\3\1\1\3\6\1\1\4\6\1"+
     "\1\5\1\6\1\7\2\10\1\11\1\12\3\0\1\13"+
     "\1\14\1\0\1\15\1\0\1\16\26\0\1\17\10\0"+
-    "\1\20\1\21\1\22\1\0\1\23\27\0\1\24\16\0"+
-    "\1\25\2\0\1\26\23\0\1\27\2\0\1\30\15\0"+
-    "\1\31\2\0\1\32\4\0\1\33\16\0\1\34\1\35"+
-    "\11\0\1\36\1\0\1\37\4\0\1\40\6\0\1\41"+
-    "\2\0\1\42\1\43\1\0\1\44\3\0\1\45\11\0"+
-    "\1\46\13\0\1\47\1\50\2\0\1\51\1\0\1\52"+
-    "\5\0\1\53\1\54\11\0\1\55\1\56\2\0\1\57"+
-    "\5\0\1\60\1\0\1\61\3\0\1\62\1\0\1\63"+
-    "\1\0\1\64\11\0\1\65\1\66\2\0\1\67\1\70"+
-    "\3\0\1\71\2\0\1\72\1\73\1\74\1\75\4\0"+
-    "\1\76";
+    "\1\20\1\21\1\22\2\0\1\23\31\0\1\24\17\0"+
+    "\1\25\2\0\1\26\25\0\1\27\2\0\1\30\16\0"+
+    "\1\31\2\0\1\32\4\0\1\33\20\0\1\34\1\35"+
+    "\12\0\1\36\1\0\1\37\4\0\1\40\10\0\1\41"+
+    "\2\0\1\42\1\43\1\0\1\44\1\0\1\45\2\0"+
+    "\1\46\11\0\1\47\10\0\1\50\4\0\1\51\1\52"+
+    "\2\0\1\53\1\0\1\54\5\0\1\55\1\56\4\0"+
+    "\1\57\5\0\1\60\1\61\2\0\1\62\5\0\1\63"+
+    "\1\0\1\64\3\0\1\65\1\0\1\66\1\0\1\67"+
+    "\11\0\1\70\1\71\2\0\1\72\1\73\3\0\1\74"+
+    "\2\0\1\75\1\76\1\77\1\100\4\0\1\101";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[308];
+    int [] result = new int[324];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -111,39 +111,41 @@ public class lexico_g implements java_cup.runtime.Scanner {
     "\0\u04c8\0\u04ec\0\u0510\0\u0534\0\u0558\0\u057c\0\u05a0\0\u05c4"+
     "\0\u05e8\0\u060c\0\u0630\0\u0654\0\u0678\0\u069c\0\264\0\u06c0"+
     "\0\u06e4\0\u0708\0\u072c\0\u0750\0\u0774\0\u0798\0\u07bc\0\264"+
-    "\0\264\0\264\0\u07e0\0\264\0\u0804\0\u0828\0\u084c\0\u0870"+
+    "\0\264\0\264\0\u07e0\0\u0804\0\264\0\u0828\0\u084c\0\u0870"+
     "\0\u0894\0\u08b8\0\u08dc\0\u0900\0\u0924\0\u0948\0\u096c\0\u0990"+
     "\0\u09b4\0\u09d8\0\u09fc\0\u0a20\0\u0a44\0\u0a68\0\u0a8c\0\u0ab0"+
-    "\0\u0ad4\0\u0af8\0\u0b1c\0\264\0\u0b40\0\u0b64\0\u0b88\0\u0bac"+
+    "\0\u0ad4\0\u0af8\0\u0b1c\0\u0b40\0\u0b64\0\u0b88\0\264\0\u0bac"+
     "\0\u0bd0\0\u0bf4\0\u0c18\0\u0c3c\0\u0c60\0\u0c84\0\u0ca8\0\u0ccc"+
-    "\0\u0cf0\0\u0d14\0\264\0\u0d38\0\u0d5c\0\264\0\u0d80\0\u0da4"+
-    "\0\u0dc8\0\u0dec\0\u0e10\0\u0e34\0\u0e58\0\u0e7c\0\u0ea0\0\u0ec4"+
+    "\0\u0cf0\0\u0d14\0\u0d38\0\u0d5c\0\u0d80\0\u0da4\0\264\0\u0dc8"+
+    "\0\u0dec\0\264\0\u0e10\0\u0e34\0\u0e58\0\u0e7c\0\u0ea0\0\u0ec4"+
     "\0\u0ee8\0\u0f0c\0\u0f30\0\u0f54\0\u0f78\0\u0f9c\0\u0fc0\0\u0fe4"+
-    "\0\u1008\0\264\0\u102c\0\u1050\0\264\0\u1074\0\u1098\0\u10bc"+
-    "\0\u10e0\0\u1104\0\u1128\0\u114c\0\u1170\0\u1194\0\u11b8\0\u11dc"+
-    "\0\u1200\0\u1224\0\264\0\u1248\0\u126c\0\264\0\u1290\0\u12b4"+
-    "\0\u12d8\0\u12fc\0\264\0\u1320\0\u1344\0\u1368\0\u138c\0\u13b0"+
-    "\0\u13d4\0\u13f8\0\u141c\0\u1440\0\u1464\0\u1488\0\u14ac\0\u14d0"+
-    "\0\u14f4\0\264\0\264\0\u1518\0\u153c\0\u1560\0\u1584\0\u15a8"+
-    "\0\u15cc\0\u15f0\0\u1614\0\u1638\0\u165c\0\u1680\0\264\0\u16a4"+
-    "\0\u16c8\0\u16ec\0\u1710\0\264\0\u1734\0\u1758\0\u177c\0\u17a0"+
-    "\0\u17c4\0\u17e8\0\264\0\u180c\0\u1830\0\264\0\264\0\u1854"+
-    "\0\264\0\u1878\0\u189c\0\u18c0\0\264\0\u18e4\0\u1908\0\u192c"+
-    "\0\u1950\0\u1974\0\u1998\0\u19bc\0\u19e0\0\u1a04\0\264\0\u1a28"+
-    "\0\u1a4c\0\u1a70\0\u1a94\0\u1ab8\0\u1adc\0\u1b00\0\u1b24\0\u1b48"+
-    "\0\u1b6c\0\u1b90\0\264\0\264\0\u1bb4\0\u1bd8\0\264\0\u1bfc"+
-    "\0\264\0\u1c20\0\u1c44\0\u1c68\0\u1c8c\0\u1cb0\0\264\0\264"+
-    "\0\u1cd4\0\u1cf8\0\u1d1c\0\u1d40\0\u1d64\0\u1d88\0\u1dac\0\u1dd0"+
-    "\0\u1df4\0\264\0\264\0\u1e18\0\u1e3c\0\264\0\u1e60\0\u1e84"+
-    "\0\u1ea8\0\u1ecc\0\u1ef0\0\264\0\u1f14\0\264\0\u1f38\0\u1f5c"+
-    "\0\u1f80\0\264\0\u1fa4\0\264\0\u1fc8\0\264\0\u1fec\0\u2010"+
-    "\0\u2034\0\u2058\0\u207c\0\u20a0\0\u20c4\0\u20e8\0\u210c\0\264"+
-    "\0\264\0\u2130\0\u2154\0\264\0\264\0\u2178\0\u219c\0\u21c0"+
-    "\0\264\0\u21e4\0\u2208\0\264\0\264\0\264\0\264\0\u222c"+
-    "\0\u2250\0\u2274\0\u2298\0\264";
+    "\0\u1008\0\u102c\0\u1050\0\u1074\0\u1098\0\u10bc\0\u10e0\0\264"+
+    "\0\u1104\0\u1128\0\264\0\u114c\0\u1170\0\u1194\0\u11b8\0\u11dc"+
+    "\0\u1200\0\u1224\0\u1248\0\u126c\0\u1290\0\u12b4\0\u12d8\0\u12fc"+
+    "\0\u1320\0\264\0\u1344\0\u1368\0\264\0\u138c\0\u13b0\0\u13d4"+
+    "\0\u13f8\0\264\0\u141c\0\u1440\0\u1464\0\u1488\0\u14ac\0\u14d0"+
+    "\0\u14f4\0\u1518\0\u153c\0\u1560\0\u1584\0\u15a8\0\u15cc\0\u15f0"+
+    "\0\u1614\0\u1638\0\264\0\264\0\u165c\0\u1680\0\u16a4\0\u16c8"+
+    "\0\u16ec\0\u1710\0\u1734\0\u1758\0\u177c\0\u17a0\0\u17c4\0\u17e8"+
+    "\0\264\0\u180c\0\u1830\0\u1854\0\u1878\0\264\0\u189c\0\u18c0"+
+    "\0\u18e4\0\u1908\0\u192c\0\u1950\0\u1974\0\u1998\0\264\0\u19bc"+
+    "\0\u19e0\0\264\0\264\0\u1a04\0\264\0\u1a28\0\264\0\u1a4c"+
+    "\0\u1a70\0\264\0\u1a94\0\u1ab8\0\u1adc\0\u1b00\0\u1b24\0\u1b48"+
+    "\0\u1b6c\0\u1b90\0\u1bb4\0\264\0\u1bd8\0\u1bfc\0\u1c20\0\u1c44"+
+    "\0\u1c68\0\u1c8c\0\u1cb0\0\u1cd4\0\264\0\u1cf8\0\u1d1c\0\u1d40"+
+    "\0\u1d64\0\264\0\264\0\u1d88\0\u1dac\0\264\0\u1dd0\0\264"+
+    "\0\u1df4\0\u1e18\0\u1e3c\0\u1e60\0\u1e84\0\264\0\264\0\u1ea8"+
+    "\0\u1ecc\0\u1ef0\0\u1f14\0\264\0\u1f38\0\u1f5c\0\u1f80\0\u1fa4"+
+    "\0\u1fc8\0\264\0\264\0\u1fec\0\u2010\0\264\0\u2034\0\u2058"+
+    "\0\u207c\0\u20a0\0\u20c4\0\264\0\u20e8\0\264\0\u210c\0\u2130"+
+    "\0\u2154\0\264\0\u2178\0\264\0\u219c\0\264\0\u21c0\0\u21e4"+
+    "\0\u2208\0\u222c\0\u2250\0\u2274\0\u2298\0\u22bc\0\u22e0\0\264"+
+    "\0\264\0\u2304\0\u2328\0\264\0\264\0\u234c\0\u2370\0\u2394"+
+    "\0\264\0\u23b8\0\u23dc\0\264\0\264\0\264\0\264\0\u2400"+
+    "\0\u2424\0\u2448\0\u246c\0\264";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[308];
+    int [] result = new int[324];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -182,69 +184,73 @@ public class lexico_g implements java_cup.runtime.Scanner {
     "\1\75\7\0\1\76\32\0\1\77\44\0\1\100\7\0"+
     "\1\101\33\0\1\102\40\0\1\103\3\0\1\104\43\0"+
     "\1\105\43\0\1\106\15\0\1\107\15\0\1\110\1\111"+
-    "\42\0\1\112\66\0\1\113\13\0\7\51\1\114\34\51"+
-    "\6\52\1\115\35\52\12\0\1\116\47\0\1\117\47\0"+
-    "\1\120\53\0\1\121\43\0\1\122\33\0\1\123\40\0"+
-    "\1\124\35\0\1\125\43\0\1\126\61\0\1\127\25\0"+
-    "\1\130\2\0\1\131\53\0\1\132\30\0\1\133\57\0"+
-    "\1\134\51\0\1\135\20\0\1\136\6\0\1\137\5\0"+
-    "\1\140\4\0\1\141\26\0\1\142\43\0\1\143\53\0"+
-    "\1\144\44\0\1\145\40\0\1\146\47\0\1\147\36\0"+
-    "\1\150\57\0\1\151\32\0\1\152\30\0\1\153\50\0"+
-    "\1\154\36\0\1\155\42\0\1\156\1\0\1\157\6\0"+
-    "\1\160\1\0\1\161\4\0\1\162\12\0\5\52\1\163"+
-    "\1\115\35\52\13\0\1\164\41\0\1\165\47\0\1\166"+
-    "\63\0\1\167\32\0\1\170\34\0\1\171\46\0\1\172"+
-    "\52\0\1\173\43\0\1\174\24\0\1\175\51\0\1\176"+
-    "\47\0\1\177\41\0\1\200\46\0\1\201\46\0\1\202"+
-    "\34\0\1\203\35\0\1\204\56\0\1\205\52\0\1\206"+
-    "\25\0\1\207\50\0\1\210\50\0\1\211\31\0\1\212"+
-    "\52\0\1\213\43\0\1\214\54\0\1\215\20\0\1\216"+
-    "\62\0\1\217\25\0\1\220\45\0\1\221\46\0\1\222"+
-    "\52\0\1\223\25\0\1\224\2\0\1\225\40\0\1\226"+
-    "\57\0\1\227\33\0\1\230\42\0\1\231\41\0\1\232"+
-    "\46\0\1\233\43\0\1\234\65\0\1\235\21\0\1\236"+
-    "\50\0\1\237\43\0\1\240\45\0\1\241\30\0\1\242"+
-    "\47\0\1\243\50\0\1\244\43\0\1\245\36\0\1\246"+
-    "\50\0\1\247\50\0\1\250\34\0\1\251\42\0\1\252"+
-    "\53\0\1\253\31\0\1\254\50\0\1\255\46\0\1\256"+
-    "\43\0\1\257\42\0\1\260\31\0\1\261\42\0\1\262"+
-    "\44\0\1\263\55\0\1\264\27\0\1\265\51\0\1\266"+
-    "\47\0\1\267\44\0\1\270\46\0\1\271\37\0\1\272"+
-    "\34\0\1\273\41\0\1\274\61\0\1\275\26\0\1\276"+
-    "\42\0\1\277\46\0\1\300\43\0\1\301\61\0\1\302"+
-    "\25\0\1\303\44\0\1\304\40\0\1\305\55\0\1\306"+
-    "\41\0\1\307\43\0\1\310\43\0\1\311\43\0\1\312"+
-    "\50\0\1\313\25\0\1\314\1\315\46\0\1\316\43\0"+
-    "\1\317\50\0\1\320\32\0\1\321\42\0\1\322\57\0"+
-    "\1\323\30\0\1\324\47\0\1\325\50\0\1\326\36\0"+
-    "\1\327\43\0\1\330\37\0\1\331\61\0\1\332\32\0"+
-    "\1\333\5\0\1\334\30\0\1\335\61\0\1\336\26\0"+
-    "\1\337\53\0\1\340\34\0\1\341\52\0\1\342\46\0"+
-    "\1\343\32\0\1\344\43\0\1\345\53\0\1\346\30\0"+
-    "\1\347\1\350\60\0\1\351\31\0\1\352\42\0\1\353"+
-    "\43\0\1\354\43\0\1\355\61\0\1\356\26\0\1\357"+
-    "\40\0\1\360\60\0\1\361\26\0\1\362\63\0\1\363"+
-    "\35\0\1\364\46\0\1\365\42\0\1\366\31\0\1\367"+
-    "\44\0\1\370\42\0\1\371\43\0\1\372\40\0\1\373"+
-    "\61\0\1\374\27\0\1\375\55\0\1\376\45\0\1\377"+
-    "\31\0\1\u0100\37\0\1\u0101\51\0\1\u0102\36\0\1\u0103"+
-    "\53\0\1\u0104\43\0\1\u0105\36\0\1\u0106\52\0\1\u0107"+
-    "\46\0\1\u0108\40\0\1\u0109\31\0\1\u010a\53\0\1\u010b"+
-    "\33\0\1\u010c\44\0\1\u010d\44\0\1\u010e\43\0\1\u010f"+
-    "\40\0\1\u0110\43\0\1\u0111\51\0\1\u0112\37\0\1\u0113"+
-    "\45\0\1\u0114\42\0\1\u0115\43\0\1\u0116\43\0\1\u0117"+
-    "\61\0\1\u0118\26\0\1\u0119\43\0\1\u011a\52\0\1\u011b"+
-    "\41\0\1\u011c\34\0\1\u011d\43\0\1\u011e\45\0\1\u011f"+
-    "\40\0\1\u0120\50\0\1\u0121\50\0\1\u0122\32\0\1\u0123"+
-    "\50\0\1\u0124\37\0\1\u0125\44\0\1\u0126\52\0\1\u0127"+
-    "\34\0\1\u0128\40\0\1\u0129\45\0\1\u012a\62\0\1\u012b"+
-    "\30\0\1\u012c\37\0\1\u012d\41\0\1\u012e\50\0\1\u012f"+
-    "\56\0\1\u0130\43\0\1\u0131\35\0\1\u0132\34\0\1\u0133"+
-    "\55\0\1\u0134\14\0";
+    "\42\0\1\112\60\0\1\113\5\0\1\114\13\0\7\51"+
+    "\1\115\34\51\6\52\1\116\35\52\12\0\1\117\47\0"+
+    "\1\120\47\0\1\121\53\0\1\122\43\0\1\123\33\0"+
+    "\1\124\40\0\1\125\35\0\1\126\43\0\1\127\61\0"+
+    "\1\130\25\0\1\131\2\0\1\132\53\0\1\133\30\0"+
+    "\1\134\57\0\1\135\51\0\1\136\20\0\1\137\1\140"+
+    "\5\0\1\141\5\0\1\142\3\0\1\143\1\144\26\0"+
+    "\1\145\43\0\1\146\53\0\1\147\44\0\1\150\40\0"+
+    "\1\151\47\0\1\152\36\0\1\153\57\0\1\154\32\0"+
+    "\1\155\30\0\1\156\50\0\1\157\36\0\1\160\42\0"+
+    "\1\161\43\0\1\162\1\0\1\163\6\0\1\164\1\0"+
+    "\1\165\4\0\1\166\12\0\5\52\1\167\1\116\35\52"+
+    "\13\0\1\170\41\0\1\171\47\0\1\172\63\0\1\173"+
+    "\32\0\1\174\34\0\1\175\46\0\1\176\52\0\1\177"+
+    "\43\0\1\200\24\0\1\201\51\0\1\202\47\0\1\203"+
+    "\41\0\1\204\46\0\1\205\46\0\1\206\34\0\1\207"+
+    "\35\0\1\210\61\0\1\211\40\0\1\212\52\0\1\213"+
+    "\25\0\1\214\43\0\1\215\50\0\1\216\50\0\1\217"+
+    "\31\0\1\220\52\0\1\221\43\0\1\222\54\0\1\223"+
+    "\20\0\1\224\62\0\1\225\25\0\1\226\45\0\1\227"+
+    "\46\0\1\230\46\0\1\231\47\0\1\232\25\0\1\233"+
+    "\2\0\1\234\40\0\1\235\57\0\1\236\33\0\1\237"+
+    "\42\0\1\240\41\0\1\241\46\0\1\242\43\0\1\243"+
+    "\65\0\1\244\21\0\1\245\50\0\1\246\43\0\1\247"+
+    "\45\0\1\250\30\0\1\251\47\0\1\252\50\0\1\253"+
+    "\43\0\1\254\36\0\1\255\50\0\1\256\50\0\1\257"+
+    "\24\0\1\260\53\0\1\261\42\0\1\262\46\0\1\263"+
+    "\50\0\1\264\31\0\1\265\50\0\1\266\46\0\1\267"+
+    "\43\0\1\270\42\0\1\271\31\0\1\272\42\0\1\273"+
+    "\44\0\1\274\55\0\1\275\41\0\1\276\31\0\1\277"+
+    "\51\0\1\300\47\0\1\301\44\0\1\302\46\0\1\303"+
+    "\37\0\1\304\34\0\1\305\41\0\1\306\61\0\1\307"+
+    "\26\0\1\310\42\0\1\311\46\0\1\312\43\0\1\313"+
+    "\61\0\1\314\25\0\1\315\44\0\1\316\40\0\1\317"+
+    "\55\0\1\320\41\0\1\321\45\0\1\322\41\0\1\323"+
+    "\43\0\1\324\36\0\1\325\50\0\1\326\50\0\1\327"+
+    "\25\0\1\330\1\331\46\0\1\332\43\0\1\333\50\0"+
+    "\1\334\32\0\1\335\42\0\1\336\50\0\1\337\52\0"+
+    "\1\340\30\0\1\341\47\0\1\342\50\0\1\343\36\0"+
+    "\1\344\43\0\1\345\37\0\1\346\61\0\1\347\32\0"+
+    "\1\350\5\0\1\351\30\0\1\352\61\0\1\353\26\0"+
+    "\1\354\53\0\1\355\34\0\1\356\52\0\1\357\46\0"+
+    "\1\360\32\0\1\361\43\0\1\362\43\0\1\363\53\0"+
+    "\1\364\46\0\1\365\25\0\1\366\1\367\60\0\1\370"+
+    "\31\0\1\371\42\0\1\372\43\0\1\373\43\0\1\374"+
+    "\61\0\1\375\26\0\1\376\40\0\1\377\60\0\1\u0100"+
+    "\26\0\1\u0101\63\0\1\u0102\35\0\1\u0103\46\0\1\u0104"+
+    "\42\0\1\u0105\31\0\1\u0106\44\0\1\u0107\42\0\1\u0108"+
+    "\43\0\1\u0109\40\0\1\u010a\61\0\1\u010b\26\0\1\u010c"+
+    "\44\0\1\u010d\55\0\1\u010e\45\0\1\u010f\31\0\1\u0110"+
+    "\37\0\1\u0111\51\0\1\u0112\36\0\1\u0113\53\0\1\u0114"+
+    "\43\0\1\u0115\36\0\1\u0116\52\0\1\u0117\46\0\1\u0118"+
+    "\40\0\1\u0119\31\0\1\u011a\53\0\1\u011b\33\0\1\u011c"+
+    "\44\0\1\u011d\44\0\1\u011e\43\0\1\u011f\40\0\1\u0120"+
+    "\43\0\1\u0121\51\0\1\u0122\37\0\1\u0123\45\0\1\u0124"+
+    "\42\0\1\u0125\43\0\1\u0126\43\0\1\u0127\61\0\1\u0128"+
+    "\26\0\1\u0129\43\0\1\u012a\52\0\1\u012b\41\0\1\u012c"+
+    "\34\0\1\u012d\43\0\1\u012e\45\0\1\u012f\40\0\1\u0130"+
+    "\50\0\1\u0131\50\0\1\u0132\32\0\1\u0133\50\0\1\u0134"+
+    "\37\0\1\u0135\44\0\1\u0136\52\0\1\u0137\34\0\1\u0138"+
+    "\40\0\1\u0139\45\0\1\u013a\62\0\1\u013b\30\0\1\u013c"+
+    "\37\0\1\u013d\41\0\1\u013e\50\0\1\u013f\56\0\1\u0140"+
+    "\43\0\1\u0141\35\0\1\u0142\34\0\1\u0143\55\0\1\u0144"+
+    "\14\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[8892];
+    int [] result = new int[9360];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -284,18 +290,19 @@ public class lexico_g implements java_cup.runtime.Scanner {
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\5\0\1\11\13\1\1\11\6\1\4\11\1\1\2\11"+
     "\3\0\2\11\1\0\1\11\1\0\1\11\26\0\1\11"+
-    "\10\0\3\11\1\0\1\11\27\0\1\11\16\0\1\11"+
-    "\2\0\1\11\23\0\1\11\2\0\1\11\15\0\1\11"+
-    "\2\0\1\11\4\0\1\11\16\0\2\11\11\0\1\1"+
-    "\1\0\1\11\4\0\1\11\6\0\1\11\2\0\2\11"+
-    "\1\0\1\11\3\0\1\11\11\0\1\11\13\0\2\11"+
-    "\2\0\1\11\1\0\1\11\5\0\2\11\11\0\2\11"+
-    "\2\0\1\11\5\0\1\11\1\0\1\11\3\0\1\11"+
-    "\1\0\1\11\1\0\1\11\11\0\2\11\2\0\2\11"+
-    "\3\0\1\11\2\0\4\11\4\0\1\11";
+    "\10\0\3\11\2\0\1\11\31\0\1\11\17\0\1\11"+
+    "\2\0\1\11\25\0\1\11\2\0\1\11\16\0\1\11"+
+    "\2\0\1\11\4\0\1\11\20\0\2\11\12\0\1\1"+
+    "\1\0\1\11\4\0\1\11\10\0\1\11\2\0\2\11"+
+    "\1\0\1\11\1\0\1\11\2\0\1\11\11\0\1\11"+
+    "\10\0\1\11\4\0\2\11\2\0\1\11\1\0\1\11"+
+    "\5\0\2\11\4\0\1\11\5\0\2\11\2\0\1\11"+
+    "\5\0\1\11\1\0\1\11\3\0\1\11\1\0\1\11"+
+    "\1\0\1\11\11\0\2\11\2\0\2\11\3\0\1\11"+
+    "\2\0\4\11\4\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[308];
+    int [] result = new int[324];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -766,251 +773,263 @@ Boolean estoyTodo=true;
                             //
                             e.AddError("Caracter invalido "+yytext(),li,co,var.archivo,"LEXICO");
             }
-          case 63: break;
+          case 66: break;
           case 2: 
             { /*System.out.println("entero: "+yytext());*/return new Symbol(simb.er_entero,yyline,yycolumn,new String(yytext()));
             }
-          case 64: break;
+          case 67: break;
           case 3: 
             { 
             }
-          case 65: break;
+          case 68: break;
           case 4: 
             { /*System.out.println("x ");*/return new Symbol(simb.x,yyline,yycolumn,new String(yytext()));
             }
-          case 66: break;
+          case 69: break;
           case 5: 
             { /*System.out.println("y ");*/return new Symbol(simb.y,yyline,yycolumn,new String(yytext()));
             }
-          case 67: break;
+          case 70: break;
           case 6: 
             { if(estoyTodo){/*System.out.println("empieza todo ");*/todo="";yybegin(TODO);}else{/*System.out.println("> ");*/estoyTodo=true;return new Symbol(simb.mayor,yyline,yycolumn,new String(yytext()));}
             }
-          case 68: break;
+          case 71: break;
           case 7: 
             { /*System.out.println("= ");*/return new Symbol(simb.is,yyline,yycolumn,new String(yytext()));
             }
-          case 69: break;
+          case 72: break;
           case 8: 
             { /*System.out.println("mas: "+yytext());*/ todo=todo+yytext();
             }
-          case 70: break;
+          case 73: break;
           case 9: 
             { /*System.out.println("fin de todi ");*/yypushback(1); yybegin(AUXILIAR);/*System.out.println("fin de todo: "+todo);*/return new Symbol(simb.all,yyline,yycolumn,todo.trim());
             }
-          case 71: break;
+          case 74: break;
           case 10: 
             { /*System.out.println("dentro de comentario: "+yytext());*/
             }
-          case 72: break;
+          case 75: break;
           case 11: 
             { /*System.out.println("regresa al inicio");*/yybegin(YYINITIAL);
             }
-          case 73: break;
+          case 76: break;
           case 12: 
             { /*System.out.println("comentario");*/yybegin(TODO);
             }
-          case 74: break;
+          case 77: break;
           case 13: 
             { /*System.out.println("cadena: "+yytext());*/return new Symbol(simb.er_cadena,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-1).trim()));
             }
-          case 75: break;
+          case 78: break;
           case 14: 
             { /*System.out.println("llamada: "+yytext());*/return new Symbol(simb.call,yyline,yycolumn,new String(yytext().substring(1, yytext().length()-1).trim()));
             }
-          case 76: break;
+          case 79: break;
           case 15: 
             { /*System.out.println("id ");*/return new Symbol(simb.id,yyline,yycolumn,new String(yytext()));
             }
-          case 77: break;
+          case 80: break;
           case 16: 
             { yybegin(LINEA);
             }
-          case 78: break;
+          case 81: break;
           case 17: 
             { yybegin(COMENTARIO);
             }
-          case 79: break;
+          case 82: break;
           case 18: 
             { /*System.out.println("comentario multi");*/yybegin(TODO);
             }
-          case 80: break;
+          case 83: break;
           case 19: 
             { /*System.out.println("comentario");*/
             }
-          case 81: break;
+          case 84: break;
           case 20: 
             { /*System.out.println("tam ");*/return new Symbol(simb.tam,yyline,yycolumn,new String(yytext()));
             }
-          case 82: break;
+          case 85: break;
           case 21: 
             { /*System.out.println("comentario multi");*/
             }
-          case 83: break;
+          case 86: break;
           case 22: 
             { /*System.out.println("alto ");*/return new Symbol(simb.alto,yyline,yycolumn,new String(yytext()));
             }
-          case 84: break;
+          case 87: break;
           case 23: 
             { /*System.out.println("tipo ");*/return new Symbol(simb.tipo,yyline,yycolumn,new String(yytext()));
             }
-          case 85: break;
+          case 88: break;
           case 24: 
             { /*System.out.println("path ");*/return new Symbol(simb.path,yyline,yycolumn,new String(yytext()));
             }
-          case 86: break;
+          case 89: break;
           case 25: 
             { /*System.out.println("ancho ");*/return new Symbol(simb.ancho,yyline,yycolumn,new String(yytext()));
             }
-          case 87: break;
+          case 90: break;
           case 26: 
             { /*System.out.println("falso ");*/return new Symbol(simb.falso,yyline,yycolumn,new String(yytext()));
             }
-          case 88: break;
+          case 91: break;
           case 27: 
             { /*System.out.println("dato i ");*/return new Symbol(simb.i_dato,yyline,yycolumn,new String(yytext()));
             }
-          case 89: break;
+          case 92: break;
           case 28: 
             { /*System.out.println("borde ");*/return new Symbol(simb.borde,yyline,yycolumn,new String(yytext()));
             }
-          case 90: break;
+          case 93: break;
           case 29: 
             { /*System.out.println("color ");*/return new Symbol(simb.color,yyline,yycolumn,new String(yytext()));
             }
-          case 91: break;
+          case 94: break;
           case 30: 
             { /*System.out.println("accion ");*/return new Symbol(simb.accion,yyline,yycolumn,new String(yytext()));
             }
-          case 92: break;
+          case 95: break;
           case 31: 
             { /*System.out.println("fuente ");*/return new Symbol(simb.fuente,yyline,yycolumn,new String(yytext()));
             }
-          case 93: break;
+          case 96: break;
           case 32: 
             { /*System.out.println("texto i ");*/return new Symbol(simb.i_texto,yyline,yycolumn,new String(yytext()));
             }
-          case 94: break;
+          case 97: break;
           case 33: 
             { /*System.out.println("boton i ");*/return new Symbol(simb.i_boton,yyline,yycolumn,new String(yytext()));
             }
-          case 95: break;
+          case 98: break;
           case 34: 
             { /*System.out.println("maximo ");*/return new Symbol(simb.maximo,yyline,yycolumn,new String(yytext()));
             }
-          case 96: break;
+          case 99: break;
           case 35: 
             { /*System.out.println("minimo ");*/return new Symbol(simb.minimo,yyline,yycolumn,new String(yytext()));
             }
-          case 97: break;
+          case 100: break;
           case 36: 
             { /*System.out.println("nombre ");*/return new Symbol(simb.nombre,yyline,yycolumn,new String(yytext()));
             }
-          case 98: break;
-          case 37: 
-            { /*System.out.println("dat f ");*/return new Symbol(simb.f_dato,yyline,yycolumn,new String(yytext()));
-            }
-          case 99: break;
-          case 38: 
-            { /*System.out.println("enviar i ");*/return new Symbol(simb.i_enviar,yyline,yycolumn,new String(yytext()));
-            }
-          case 100: break;
-          case 39: 
-            { /*System.out.println("negrita ");*/return new Symbol(simb.negrita,yyline,yycolumn,new String(yytext()));
-            }
           case 101: break;
-          case 40: 
-            { /*System.out.println("cursiva ");*/return new Symbol(simb.cursiva,yyline,yycolumn,new String(yytext()));
+          case 37: 
+            { yypushback(6);yybegin(YYINITIAL);
             }
           case 102: break;
-          case 41: 
-            { /*System.out.println("txt f ");*/return new Symbol(simb.f_texto,yyline,yycolumn,new String(yytext()));
+          case 38: 
+            { /*System.out.println("dat f ");*/return new Symbol(simb.f_dato,yyline,yycolumn,new String(yytext()));
             }
           case 103: break;
-          case 42: 
-            { /*System.out.println("bot f ");*/return new Symbol(simb.f_boton,yyline,yycolumn,new String(yytext()));
+          case 39: 
+            { /*System.out.println("enviar i ");*/return new Symbol(simb.i_enviar,yyline,yycolumn,new String(yytext()));
             }
           case 104: break;
-          case 43: 
-            { /*System.out.println("ventana i ");*/estoyTodo=false;return new Symbol(simb.i_ven,yyline,yycolumn,new String(yytext()));
+          case 40: 
+            { estoyTodo=false;/*System.out.println("bot f ");*/return new Symbol(simb.f_boton,yyline,yycolumn,new String(yytext()));
             }
           case 105: break;
-          case 44: 
-            { /*System.out.println("dfec i ");*/return new Symbol(simb.i_defecto,yyline,yycolumn,new String(yytext()));
+          case 41: 
+            { /*System.out.println("negrita ");*/return new Symbol(simb.negrita,yyline,yycolumn,new String(yytext()));
             }
           case 106: break;
-          case 45: 
-            { /*System.out.println("ctrl i ");*/estoyTodo=false;return new Symbol(simb.i_control,yyline,yycolumn,new String(yytext()));
+          case 42: 
+            { /*System.out.println("cursiva ");*/return new Symbol(simb.cursiva,yyline,yycolumn,new String(yytext()));
             }
           case 107: break;
-          case 46: 
-            { /*System.out.println("emviar f ");*/return new Symbol(simb.f_enviar,yyline,yycolumn,new String(yytext()));
+          case 43: 
+            { /*System.out.println("txt f ");*/return new Symbol(simb.f_texto,yyline,yycolumn,new String(yytext()));
             }
           case 108: break;
-          case 47: 
-            { /*System.out.println("verdadero ");*/return new Symbol(simb.verdadero,yyline,yycolumn,new String(yytext()));
+          case 44: 
+            { /*System.out.println("bot f ");*/return new Symbol(simb.f_boton,yyline,yycolumn,new String(yytext()));
             }
           case 109: break;
-          case 48: 
-            { /*System.out.println("importar i ");*/return new Symbol(simb.i_imp,yyline,yycolumn,new String(yytext()));
+          case 45: 
+            { /*System.out.println("ventana i ");*/estoyTodo=false;return new Symbol(simb.i_ven,yyline,yycolumn,new String(yytext()));
             }
           case 110: break;
-          case 49: 
-            { /*System.out.println("ventana f ");*/estoyTodo=false;return new Symbol(simb.f_ven,yyline,yycolumn,new String(yytext()));
+          case 46: 
+            { /*System.out.println("dfec i ");*/return new Symbol(simb.i_defecto,yyline,yycolumn,new String(yytext()));
             }
           case 111: break;
-          case 50: 
-            { /*System.out.println("ctrl f ");*/estoyTodo=false;return new Symbol(simb.f_control,yyline,yycolumn,new String(yytext()));
+          case 47: 
+            { estoyTodo=false;/*System.out.println("enviar f ");*/return new Symbol(simb.f_enviar,yyline,yycolumn,new String(yytext()));
             }
           case 112: break;
-          case 51: 
-            { /*System.out.println("def f ");*/return new Symbol(simb.f_defecto,yyline,yycolumn,new String(yytext()));
+          case 48: 
+            { /*System.out.println("ctrl i ");*/estoyTodo=false;return new Symbol(simb.i_control,yyline,yycolumn,new String(yytext()));
             }
           case 113: break;
-          case 52: 
-            { /*System.out.println("ref ");*/return new Symbol(simb.referencia,yyline,yycolumn,new String(yytext()));
+          case 49: 
+            { /*System.out.println("emviar f ");*/return new Symbol(simb.f_enviar,yyline,yycolumn,new String(yytext()));
             }
           case 114: break;
-          case 53: 
-            { /*System.out.println("imp f ");*/return new Symbol(simb.f_imp,yyline,yycolumn,new String(yytext()));
+          case 50: 
+            { /*System.out.println("verdadero ");*/return new Symbol(simb.verdadero,yyline,yycolumn,new String(yytext()));
             }
           case 115: break;
-          case 54: 
-            { /*System.out.println("accion final");*/return new Symbol(simb.ac_fi,yyline,yycolumn,new String(yytext()));
+          case 51: 
+            { /*System.out.println("importar i ");*/return new Symbol(simb.i_imp,yyline,yycolumn,new String(yytext()));
             }
           case 116: break;
-          case 55: 
-            { /*System.out.println("lidatos i ");*/estoyTodo=false;return new Symbol(simb.i_lista,yyline,yycolumn,new String(yytext()));
+          case 52: 
+            { /*System.out.println("ventana f ");*/estoyTodo=false;return new Symbol(simb.f_ven,yyline,yycolumn,new String(yytext()));
             }
           case 117: break;
-          case 56: 
-            { /*System.out.println("multi i ");*/estoyTodo=false;return new Symbol(simb.i_multi,yyline,yycolumn,new String(yytext()));
+          case 53: 
+            { /*System.out.println("ctrl f ");*/estoyTodo=false;return new Symbol(simb.f_control,yyline,yycolumn,new String(yytext()));
             }
           case 118: break;
-          case 57: 
-            { /*System.out.println("contenedor i ");*/estoyTodo=false;return new Symbol(simb.i_contenedor,yyline,yycolumn,new String(yytext()));
+          case 54: 
+            { /*System.out.println("def f ");*/return new Symbol(simb.f_defecto,yyline,yycolumn,new String(yytext()));
             }
           case 119: break;
-          case 58: 
-            { /*System.out.println("lidatos f ");*/estoyTodo=false;return new Symbol(simb.f_lista,yyline,yycolumn,new String(yytext()));
+          case 55: 
+            { /*System.out.println("ref ");*/return new Symbol(simb.referencia,yyline,yycolumn,new String(yytext()));
             }
           case 120: break;
-          case 59: 
-            { /*System.out.println("multi f ");*/estoyTodo=false;return new Symbol(simb.f_multi,yyline,yycolumn,new String(yytext()));
+          case 56: 
+            { /*System.out.println("imp f ");*/return new Symbol(simb.f_imp,yyline,yycolumn,new String(yytext()));
             }
           case 121: break;
-          case 60: 
-            { /*System.out.println("contenedor f ");*/estoyTodo=false;return new Symbol(simb.f_contenedor,yyline,yycolumn,new String(yytext()));
+          case 57: 
+            { /*System.out.println("accion final");*/return new Symbol(simb.ac_fi,yyline,yycolumn,new String(yytext()));
             }
           case 122: break;
-          case 61: 
-            { /*System.out.println("accion inicial");*/return new Symbol(simb.ac_in,yyline,yycolumn,new String(yytext()));
+          case 58: 
+            { /*System.out.println("lidatos i ");*/estoyTodo=false;return new Symbol(simb.i_lista,yyline,yycolumn,new String(yytext()));
             }
           case 123: break;
-          case 62: 
-            { /*System.out.println("auto ");*/return new Symbol(simb.autoplay,yyline,yycolumn,new String(yytext()));
+          case 59: 
+            { /*System.out.println("multi i ");*/estoyTodo=false;return new Symbol(simb.i_multi,yyline,yycolumn,new String(yytext()));
             }
           case 124: break;
+          case 60: 
+            { /*System.out.println("contenedor i ");*/estoyTodo=false;return new Symbol(simb.i_contenedor,yyline,yycolumn,new String(yytext()));
+            }
+          case 125: break;
+          case 61: 
+            { /*System.out.println("lidatos f ");*/estoyTodo=false;return new Symbol(simb.f_lista,yyline,yycolumn,new String(yytext()));
+            }
+          case 126: break;
+          case 62: 
+            { /*System.out.println("multi f ");*/estoyTodo=false;return new Symbol(simb.f_multi,yyline,yycolumn,new String(yytext()));
+            }
+          case 127: break;
+          case 63: 
+            { /*System.out.println("contenedor f ");*/estoyTodo=false;return new Symbol(simb.f_contenedor,yyline,yycolumn,new String(yytext()));
+            }
+          case 128: break;
+          case 64: 
+            { /*System.out.println("accion inicial");*/return new Symbol(simb.ac_in,yyline,yycolumn,new String(yytext()));
+            }
+          case 129: break;
+          case 65: 
+            { /*System.out.println("auto ");*/return new Symbol(simb.autoplay,yyline,yycolumn,new String(yytext()));
+            }
+          case 130: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

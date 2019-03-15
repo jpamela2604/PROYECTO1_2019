@@ -23,7 +23,8 @@ public class e_enviar implements etiqueta{
     String archivo;
     Hashtable obligatorios;
     Hashtable opcionales;
-    public e_enviar(LinkedList<elemento> elementos,String texto,int linea, int columna,String archivo)
+    etiqueta ete;
+    public e_enviar(LinkedList<elemento> elementos,String texto,int linea, int columna,String archivo,etiqueta ete)
     {
         this.texto=texto;
         this.elementos=elementos;
@@ -36,9 +37,17 @@ public class e_enviar implements etiqueta{
         opcionales.put("ANCHO", 100);
         opcionales.put("ACCION", "");
         opcionales.put("REF", "");
+        this.ete=ete;
     }
     @Override
     public Object GetGxmlObject() {
+        String id_texto="";
+        if(ete!=null)
+        {
+            LinkedList<String> v=(LinkedList<String>)ete.GetGxmlObject();
+            id_texto=v.get(0);
+            texto=v.get(1);            
+        }
         return new ui_boton(obligatorios.get("NOMBRE").toString(),
         Integer.valueOf(obligatorios.get("X").toString()),
         Integer.valueOf(obligatorios.get("Y").toString()),
@@ -47,7 +56,7 @@ public class e_enviar implements etiqueta{
         opcionales.get("ACCION").toString(),
         opcionales.get("REF").toString(),
                 true,
-                texto
+                texto,id_texto
         );
     }
     @Override
@@ -108,6 +117,10 @@ public class e_enviar implements etiqueta{
         if(!invalidos.equals(""))
         {
             e.AddError("El/los elemento(s) "+invalidos+" no son validos para la etiqueta multimedia", linea, columna, archivo, "SEMANTICO");
+        }
+        if(ete!=null)
+        {
+            ete.Comprobar(e);
         }
     }
 }

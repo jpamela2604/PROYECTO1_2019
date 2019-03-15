@@ -32,7 +32,8 @@ terminal   String id, all,call
             ;
 terminal   String er_entero,er_cadena,verdadero,falso
             ;
-nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR,TEXTO,CONTE,DEFECTO
+nonterminal etiqueta S,LIMP,ETIQUETA,VEN,CONTROL,LISTADATOS,MULTIMEDIA,BOTON,ENVIAR,TEXTO,CONTE,DEFECTO,
+                        TEXTO2
             ;
 nonterminal e_dato DATO
             ;
@@ -201,22 +202,48 @@ TEXTO::=        i_texto:n0 ELEMENTOS:n1  all:n2 f_texto
                     RESULT=new e_texto(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
                 :}
                 ;
+TEXTO2::=        i_texto:n0 ELEMENTOS:n1  all:n2 f_texto 
+                {:
+                    RESULT=new e_texto2(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                |i_texto:n0   all:n2 f_texto 
+                {:
+                    RESULT=new e_texto2(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                :}
+                ;
 BOTON::=        i_boton:n0 ELEMENTOS:n1  all:n2 f_boton 
                 {:
-                     RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                     RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo,null);
                 :}
                 | i_boton:n0   all:n2 f_boton 
                 {:
-                    RESULT=new e_boton(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_boton(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo,null);
+                :}
+                |i_boton:n0 ELEMENTOS:n1  all:n2 TEXTO2:t1  f_boton mayor
+                {:
+                     RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo,t1);
+                :}
+                | i_boton:n0   all:n2 TEXTO2:t1 f_boton mayor
+                {:
+                    RESULT=new e_boton(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo,t1);
                 :}
                 ;
+
 ENVIAR::=        i_enviar:n0 ELEMENTOS:n1  all:n2 f_enviar 
                 {:
-                    RESULT=new e_enviar(n1,n2,(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_enviar(n1,n2,(n0left+1),(n0right+1),var.archivo,null);
                 :}
                 | i_enviar:n0   all:n2 f_enviar 
                 {:
-                    RESULT=new e_enviar(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo);
+                    RESULT=new e_enviar(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo,null);
+                :}
+                |i_enviar:n0 ELEMENTOS:n1  all:n2 TEXTO2:t1  f_enviar mayor
+                {:
+                     RESULT=new e_boton(n1,n2,(n0left+1),(n0right+1),var.archivo,t1);
+                :}
+                | i_enviar:n0   all:n2 TEXTO2:t1 f_enviar mayor
+                {:
+                    RESULT=new e_boton(new LinkedList(),n2,(n0left+1),(n0right+1),var.archivo,t1);
                 :}
                 ;
 LISTADATOS::=   i_lista:n0 ELEMENTOS:n1 mayor DATOS:n2 f_lista mayor
