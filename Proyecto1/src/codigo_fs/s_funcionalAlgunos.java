@@ -55,10 +55,10 @@ public class s_funcionalAlgunos implements sent {
                         //si va a ejecutar
                         return alguno( ts,  e,  ej, m);
                     }
-                }else
+                }/*else
                 {
                     e.AddError("No existe metodo llamado \""+this.id+"\"", linea, columna, archivo, "SEMANTICO");
-                }
+                }*/
             }
         }else
         {

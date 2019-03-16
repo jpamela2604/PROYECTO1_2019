@@ -56,10 +56,10 @@ public class s_funcionalReduce implements sent {
                         //si va a ejecutar
                          return reduce( ts,  e,  ej, m);
                     }
-                }else
+                }/*else
                 {
                     e.AddError("No existe metodo llamado \""+this.id+"\"", linea, columna, archivo, "SEMANTICO");
-                }
+                }*/
             }
         }else
         {

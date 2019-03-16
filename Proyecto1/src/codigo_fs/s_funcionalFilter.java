@@ -56,10 +56,10 @@ public class s_funcionalFilter implements sent {
                         //si va a ejecutar
                         return filtrar( ts,  e,  ej, m);
                     }
-                }else
+                }/*else
                 {
                     e.AddError("No existe metodo llamado \""+this.id+"\"", linea, columna, archivo, "SEMANTICO");
-                }
+                }*/
             }
         }else
         {

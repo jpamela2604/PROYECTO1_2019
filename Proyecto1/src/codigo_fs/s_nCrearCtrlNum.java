@@ -9,7 +9,6 @@ import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_ControlNumerico;
 import execute.ui_contenedor;
-import execute.ui_texto;
 import java.util.LinkedList;
 import proyecto1.var;
 import ts.Simbolo;
@@ -76,12 +75,26 @@ public class s_nCrearCtrlNum implements sent {
                 e.AddError("El segundo parametro deberia ser tipo entero, no "+ancho.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
             }
-            if(b&&maximo.tipo.indice!=var.entero)
+            Integer maximun=var.max_spinner;
+            if(b&&maximo.tipo.indice==var.nulo)
+            {
+                
+            }else if(b&&maximo.tipo.indice==var.entero)
+            {
+                maximun=Integer.valueOf(maximo.valor.toString());
+            }    
+            else if(b)
             {
                 e.AddError("El tercer parametro deberia ser tipo entero, no "+maximo.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
-            }            
-            if(b&&minimo.tipo.indice!=var.entero)
+            }
+            Integer minimum=var.min_spinner;
+            if(b&&minimo.tipo.indice==var.nulo)
+            {
+            }else if(b&&minimo.tipo.indice==var.entero)
+            {
+                minimum=Integer.valueOf(minimo.valor.toString());
+            }else if(b)
             {
                 e.AddError("El cuarto parametro deberia ser tipo entero, no "+minimo.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
@@ -112,8 +125,7 @@ public class s_nCrearCtrlNum implements sent {
                             ej.CrearControlNumerico(
                                     Integer.valueOf(alto.valor.toString()),
                                     Integer.valueOf(ancho.valor.toString()),
-                                    Integer.valueOf(maximo.valor.toString()),
-                                    Integer.valueOf(minimo.valor.toString()),
+                                    maximun,minimum,
                                     Integer.valueOf(x.valor.toString()),
                                     Integer.valueOf(y.valor.toString()),
                                     Integer.valueOf(defecto.valor.toString()),

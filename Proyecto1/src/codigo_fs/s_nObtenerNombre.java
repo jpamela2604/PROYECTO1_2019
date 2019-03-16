@@ -56,7 +56,7 @@ public class s_nObtenerNombre implements sent {
                 ts.actual=null;                    
                 Simbolo id=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
                 Simbolo ventana=(Simbolo) parametros.get(1).ejecutar(ts, e, ej);
-                //ts.actual=actual;
+                ts.actual=actual;
                 if(id.tipo.indice!=var.error||ventana.tipo.indice!=var.error)
                 {
                     if(id.tipo.indice!=var.cadena)

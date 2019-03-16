@@ -7,7 +7,6 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
-import java.util.LinkedList;
 import ts.Simbolo;
 import ts.mng_ts;
 

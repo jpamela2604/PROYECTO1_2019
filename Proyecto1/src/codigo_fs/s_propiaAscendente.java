@@ -5,11 +5,9 @@
  */
 package codigo_fs;
 
-import codigo_gdato.item;
 import errors.mng_error;
 import execute.Ejecucion;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import proyecto1.var;
 import ts.NodoTipo;

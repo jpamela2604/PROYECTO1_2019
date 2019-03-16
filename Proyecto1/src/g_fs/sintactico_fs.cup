@@ -677,7 +677,15 @@ E           ::= E:n1 mas:n2 E:n3
             :}
             | er_entero:n1
             {:
-                 RESULT= new o_valorPuntual(var.tipo_entero,  Integer.parseInt(n1),(n1left+1),(n1right+1),var.archivo);
+                 try
+                 {
+                    RESULT= new o_valorPuntual(var.tipo_entero,  Integer.parseInt(n1),(n1left+1),(n1right+1),var.archivo);
+                 }catch(Exception exc)
+                 {
+                    e.AddError("Numero muy grande",(n1left+1),(n1right+1),var.archivo,"EJECUCION");
+                    RESULT= new o_valorPuntual(var.tipo_error,  null,(n1left+1),(n1right+1),var.archivo);
+                 }
+
             :}
             | er_cadena:n1
             {:

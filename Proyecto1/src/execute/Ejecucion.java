@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JTextArea;
 import proyecto1.ExtremeEditor;
-import static proyecto1.ExtremeEditor.arrayPanel;
 import proyecto1.Reconize;
 
 /**

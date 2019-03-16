@@ -71,16 +71,22 @@ public class s_accArray implements sent{
             if(myObj.items.containsKey(id))
             {
                 r= (Simbolo) ((item)myObj.items.get(id)).valor;
-                Array ar=(Array) r.valor;
-                Integer posi=Integer.valueOf(pos.valor.toString());
-                if(posi>=ar.valores.size()||posi<0)
+                if(r.tipo.indice==var.arreglo)
                 {
-                    e.AddError("Indice fuera de los limites", linea, columna, archivo, "EJECUCION");
-                    return respuesta;
+                    Array ar=(Array) r.valor;
+                    Integer posi=Integer.valueOf(pos.valor.toString());
+                    if(posi>=ar.valores.size()||posi<0)
+                    {
+                        e.AddError("Indice fuera de los limites", linea, columna, archivo, "EJECUCION");
+                        return respuesta;
+                    }else
+                    {
+                        return ar.valores.get(posi);
+                    } 
                 }else
                 {
-                    return ar.valores.get(posi);
-                }                
+                    e.AddError("El atributo "+this.id+" no es de tipo arreglo", linea, columna, archivo, "SEMANTICO");
+                }
             }else
             {
                 e.AddError("No existe atributo llamado "+this.id, linea, columna, archivo, "SEMANTICO");

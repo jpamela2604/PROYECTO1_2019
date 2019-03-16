@@ -55,7 +55,7 @@ public class s_nObtenerID implements sent {
                 Simbolo actual=ts.actual;
                 ts.actual=null;                    
                 Simbolo a=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
-                //ts.actual=actual;
+                ts.actual=actual;
                 if(a.tipo.indice!=var.error)
                 {
                     if(a.tipo.indice!=var.cadena)

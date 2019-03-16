@@ -7,7 +7,6 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
-import java.util.LinkedList;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -57,10 +56,10 @@ public class s_funcionalTodos implements sent {
                         //si va a ejecutar
                         return todos( ts,  e,  ej, m);
                     }
-                }else
+                }/*else
                 {
                     e.AddError("No existe metodo llamado \""+this.id+"\"", linea, columna, archivo, "SEMANTICO");
-                }
+                }*/
             }
         }else
         {

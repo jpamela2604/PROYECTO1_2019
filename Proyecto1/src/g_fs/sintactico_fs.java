@@ -3486,7 +3486,15 @@ class CUP$sintactico_fs$actions {
 		int n1right = ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()).right;
 		String n1 = (String)((java_cup.runtime.Symbol) CUP$sintactico_fs$stack.peek()).value;
 		
-                 RESULT= new o_valorPuntual(var.tipo_entero,  Integer.parseInt(n1),(n1left+1),(n1right+1),var.archivo);
+                 try
+                 {
+                    RESULT= new o_valorPuntual(var.tipo_entero,  Integer.parseInt(n1),(n1left+1),(n1right+1),var.archivo);
+                 }catch(Exception exc)
+                 {
+                    e.AddError("Numero muy grande",(n1left+1),(n1right+1),var.archivo,"EJECUCION");
+                    RESULT= new o_valorPuntual(var.tipo_error,  null,(n1left+1),(n1right+1),var.archivo);
+                 }
+
             
               CUP$sintactico_fs$result = parser.getSymbolFactory().newSymbol("E",8, ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), ((java_cup.runtime.Symbol)CUP$sintactico_fs$stack.peek()), RESULT);
             }

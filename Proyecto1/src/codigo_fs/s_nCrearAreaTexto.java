@@ -8,7 +8,6 @@ package codigo_fs;
 import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_areaTexto;
-import execute.ui_cajaTexto;
 import execute.ui_contenedor;
 import java.util.LinkedList;
 import proyecto1.var;

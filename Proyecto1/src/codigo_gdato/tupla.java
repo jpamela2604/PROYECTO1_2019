@@ -6,7 +6,6 @@
 package codigo_gdato;
 
 import java.util.Hashtable;
-import java.util.LinkedList;
 
 /**
  *

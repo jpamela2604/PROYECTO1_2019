@@ -37,7 +37,7 @@ public class s_llamada implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        Simbolo respuesta=new Simbolo(var.tipo_vacio,null);
+        Simbolo respuesta=new Simbolo(var.tipo_error,null);
         if("CREARVENTANA".equals(this.nombre))
         {
             return new s_nCrearVentana(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
@@ -58,6 +58,7 @@ public class s_llamada implements sent{
             {
                 if(m.parametros.size()==this.parametros.size())
                 {
+                    
                     LinkedList<Simbolo> valores=new LinkedList(); 
                     Boolean Bandera=true;
                     //ejecutar los parametros
@@ -81,6 +82,7 @@ public class s_llamada implements sent{
                     //si no hubo errores
                     if(Bandera)
                     {
+                        respuesta=new Simbolo(var.tipo_vacio,null);
                         ts.displayReturns.push("");
                         ts.cambiarAmbito(true);
                         Simbolo actual=ts.actual;

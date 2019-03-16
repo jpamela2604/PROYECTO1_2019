@@ -7,7 +7,6 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
-import execute.ui_areaTexto;
 import execute.ui_contenedor;
 import execute.ui_desplegable;
 import java.util.LinkedList;

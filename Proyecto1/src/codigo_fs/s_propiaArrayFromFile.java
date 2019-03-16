@@ -18,7 +18,6 @@ import java.io.StringReader;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import proyecto1.ExtremeEditor;
 import proyecto1.Reconize;
 import static proyecto1.Reconize.getContenido;
 import proyecto1.var;

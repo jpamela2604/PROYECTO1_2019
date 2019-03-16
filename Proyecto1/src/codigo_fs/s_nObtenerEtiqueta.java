@@ -40,7 +40,7 @@ public class s_nObtenerEtiqueta implements sent {
         Simbolo rr=new Simbolo(var.tipo_error,null);
     if(ts.actual==null)
     {
-        e.AddError("No se elemento sobre el cual aplicar el metodo", linea, columna, archivo, "SEMANTICO");
+        e.AddError("No hay elemento sobre el cual aplicar el metodo obtenerPorEtiqueta", linea, columna, archivo, "SEMANTICO");
         return rr;
     }else if(ts.actual.tipo!=var.tipo_gxml)
     {
@@ -55,7 +55,7 @@ public class s_nObtenerEtiqueta implements sent {
                 Simbolo actual=ts.actual;
                 ts.actual=null;                    
                 Simbolo a=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);
-                //ts.actual=actual;
+                ts.actual=actual;
                 if(a.tipo.indice!=var.error)
                 {
                     if(a.tipo.indice!=var.cadena)

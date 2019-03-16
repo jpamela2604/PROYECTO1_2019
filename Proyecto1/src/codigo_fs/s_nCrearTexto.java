@@ -9,7 +9,6 @@ import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_contenedor;
 import execute.ui_texto;
-import execute.ui_ventana;
 import java.util.LinkedList;
 import proyecto1.var;
 import ts.Simbolo;

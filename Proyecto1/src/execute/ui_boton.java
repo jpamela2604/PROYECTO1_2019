@@ -82,7 +82,7 @@ public class ui_boton extends JButton implements ui{
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
         String nombre="Boton_"+(IsEnviar?"Enviar_":"")+name;
         String ref=((Simbolo)tabla.get("REFERENCIA")).valor.toString();
-        String name_referencia="referencia_"+nombre+"()";
+        String name_referencia=ref.equals("")?"nulo":"referencia_"+nombre+"()";
         
         String t="var "+nombre+ " = "+panel+ ".CrearBoton(\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
                 +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+

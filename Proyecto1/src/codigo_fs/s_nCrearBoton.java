@@ -93,7 +93,8 @@ public class s_nCrearBoton implements sent {
                 e.AddError("El quinto parametro deberia ser tipo entero, no "+y.tipo.nombre, linea, columna, archivo, "SEMANTICO");
                 b=false;
             }
-            /*if(b&&!(parametros.get(5) instanceof s_llamada))
+            /*
+            if(b&&!(parametros.get(5) instanceof o_valorPuntual))
             {
                 e.AddError("El sexto parametro deberia ser una llamada", linea, columna, archivo, "SEMANTICO");
                 b=false;

@@ -80,6 +80,9 @@ public class s_propiaMinimo implements sent {
                 }
             }
         
+        }else
+        {
+            e.AddError("No hay arreglo en el cual aplicar la funcion minimo", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

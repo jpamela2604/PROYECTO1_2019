@@ -80,6 +80,9 @@ public class s_propiaMaximo implements sent {
                 }
             }
         
+        }else
+        {
+            e.AddError("No hay arreglo en el cual aplicar la funcion maximo", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }
