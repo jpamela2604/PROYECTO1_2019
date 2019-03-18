@@ -64,11 +64,13 @@ public class ui_cajaTexto extends JTextField implements ui{
                 ((((Simbolo)tabla.get("CURSIVA")).valor.toString()).equals("true")?"verdadero":"falso")+",\""+                
                 ((Simbolo)tabla.get("DEFECTO")).valor.toString()+"\",\""+
                 ((Simbolo)tabla.get("NOMBRE")).valor.toString()+
-        "\");\n";        
+        "\");\n";
+         /*
         //MAXIMO
          t=t+nombre+".maximo="+((Simbolo)tabla.get("MAXIMO")).valor.toString()+";\n";
         //MINIMO
          t=t+nombre+".minimo="+((Simbolo)tabla.get("MINIMO")).valor.toString()+";\n";
+        */
         return t;
     }
     @Override

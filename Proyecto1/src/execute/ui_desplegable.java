@@ -95,10 +95,10 @@ public class ui_desplegable extends JComboBox implements ui{
          t=t+nombre+".negrita="+((((Simbolo)tabla.get("NEGRITA")).valor.toString()).equals("true")?"verdadero":"falso")+";\n";
         //CURSIVA
          t=t+nombre+".cursiva="+((((Simbolo)tabla.get("CURSIVA")).valor.toString()).equals("true")?"verdadero":"falso")+";\n";
-        //MAXIMO
+        /*//MAXIMO
          t=t+nombre+".maximo="+((Simbolo)tabla.get("MAXIMO")).valor.toString()+";\n";
         //MINIMO
-         t=t+nombre+".minimo="+((Simbolo)tabla.get("MINIMO")).valor.toString()+";\n";
+         t=t+nombre+".minimo="+((Simbolo)tabla.get("MINIMO")).valor.toString()+";\n";*/
         return t;
     }
     
@@ -128,6 +128,7 @@ public class ui_desplegable extends JComboBox implements ui{
             int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
             //setsize(width,height)
             this.setSize(ancho,alto);
+            this.setLocation(Integer.valueOf(this.getValor("X")), Integer.valueOf(this.getValor("Y")));
             Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
             for(Simbolo s:lista.valores)
             {

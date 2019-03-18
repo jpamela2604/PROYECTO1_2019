@@ -32,9 +32,9 @@ public class e_texto implements etiqueta{
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("COLOR", var.colorDef);
-        opcionales.put("FUENTE", var.fuenteDef);
-        opcionales.put("TAM", var.tamletra);
+        opcionales.put("COLOR", Defecto.texto_color);
+        opcionales.put("FUENTE", Defecto.texto_fuente);
+        opcionales.put("TAM", Defecto.texto_tam);
         opcionales.put("NEGRITA", false);
         opcionales.put("CURSIVA", false);
     }

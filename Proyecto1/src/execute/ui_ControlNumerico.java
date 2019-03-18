@@ -104,8 +104,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
 
             int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
             int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
-            //setsize(width,height)
-            this.setSize(ancho,alto);
+            
             //default value,lower bound,upper bound,increment by 
             int minimo=Integer.valueOf(((Simbolo)tabla.get("MINIMO")).valor.toString());
 
@@ -124,6 +123,9 @@ public class ui_ControlNumerico extends JSpinner implements ui{
                 }
             }
             this.setLocation(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")));
+            //setsize(width,height)
+            this.setSize(ancho,alto);
+            //this.setBounds(Integer.valueOf(getValor("X")), n, n, n);
             this.repaint();
             this.setVisible(true);
         }catch(Exception exc)

@@ -38,15 +38,15 @@ public class e_control implements etiqueta {
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("COLOR", var.colorDef);
-        opcionales.put("ALTO", 50);
-        opcionales.put("ANCHO", 50);
-        opcionales.put("FUENTE", var.fuenteDef);
-        opcionales.put("TAM", var.tamletra);
+        opcionales.put("COLOR", Defecto.controlador_color);
+        opcionales.put("ALTO", Defecto.controlador_alto);
+        opcionales.put("ANCHO", Defecto.controlador_ancho);
+        opcionales.put("FUENTE", Defecto.controlador_fuente);
+        opcionales.put("TAM", Defecto.controlador_tam);
         opcionales.put("NEGRITA", false);
         opcionales.put("CURSIVA", false);
-        opcionales.put("MAXIMO", var.max_area);
-        opcionales.put("MINIMO", var.min_area);
+        opcionales.put("MAXIMO", Defecto.maximo);
+        opcionales.put("MINIMO", Defecto.minimo);
     }
     @Override
     public Object GetGxmlObject() {

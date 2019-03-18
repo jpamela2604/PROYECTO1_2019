@@ -33,7 +33,7 @@ public class e_ventana implements etiqueta{
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("COLOR", var.color_fondo);
+        opcionales.put("COLOR", Defecto.ver_color);
         opcionales.put("ACCIONINICIAL", "");
         opcionales.put("ACCIONFINAL", "");
     }

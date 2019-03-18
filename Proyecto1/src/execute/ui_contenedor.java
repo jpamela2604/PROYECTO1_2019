@@ -132,6 +132,7 @@ public class ui_contenedor extends JPanel implements ui{
             this.setVisible(true);
         }catch(Exception exc)
         {
+            System.out.println(""+exc.getMessage());
             e.AddError("No se pudo cargar el contenedor "+getValor("ID"), 0, 0, "", "SEMANTICO");
         }
     }

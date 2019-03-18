@@ -84,15 +84,17 @@ public class ui_texto extends JLabel implements ui{
             this.setFont(new java.awt.Font(fuente, font, tam));
             this.setForeground(Color.decode(color));
             String valor=((Simbolo)tabla.get("VALOR")).valor.toString();
-            this.setText(valor);
+            this.setText("<html>"+valor+"</html>");
             int xx=Integer.valueOf(((Simbolo)tabla.get("X")).valor.toString());
             int yy=Integer.valueOf(((Simbolo)tabla.get("Y")).valor.toString());
             int alto=Integer.valueOf(((Simbolo)tabla.get("ALTO")).valor.toString());
             int ancho=Integer.valueOf(((Simbolo)tabla.get("ANCHO")).valor.toString());
             //setsize(width,height)
-            this.setSize(ancho,alto);
+            //this.setSize(ancho>this.getWidth()?ancho:this.getWidth(),alto);
             //setBounds(int x, int y, int width, int height)
-            this.setBounds(xx, yy, ancho, alto);
+            
+            this.setBounds(xx, yy, getmyWidth(),
+                    alto>this.getPreferredSize().height?alto:this.getPreferredSize().height);
             this.setVisible(true);
             this.repaint();
         }
@@ -101,6 +103,18 @@ public class ui_texto extends JLabel implements ui{
             e.AddError("No se pudo cargar texto "+getValor("NOMBRE"), 0, 0, "", "SEMANTICO");
         }
     }
+    Integer getmyWidth()
+    {
+        Integer anchoActual=Integer.valueOf(getValor("ANCHO"));
+        Integer ancho=this.getPreferredSize().width;
+        if(ancho>anchoActual)
+        {
+            ((Simbolo)tabla.get("ANCHO")).valor=ancho;
+            return ancho;
+        }
+        return anchoActual;        
+    }
+    
     @Override
     public String getValor(String value) {
         return ((Simbolo)tabla.get(value)).valor.toString();

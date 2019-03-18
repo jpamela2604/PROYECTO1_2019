@@ -61,7 +61,7 @@ public class s_propiaArrayFromFile implements sent {
                     cadena=cadena+"        <"+i.clave+">"+i.valor.toString()+"</"+i.clave+">\n";
                 }
                 cadena=cadena+"    </principal>\n";
-                System.out.println(cadena);
+                //System.out.println(cadena);
                 ej.GuardarDatos(((Simbolo)ven.tabla.get("ID")).valor.toString(),cadena);
                 return new Simbolo(var.tipo_vacio,null);            
             }else

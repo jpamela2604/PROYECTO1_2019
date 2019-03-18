@@ -33,8 +33,8 @@ public class e_boton implements etiqueta{
         this.archivo=archivo;
         obligatorios=new Hashtable();
         opcionales=new Hashtable();
-        opcionales.put("ALTO", 100);
-        opcionales.put("ANCHO", 100);
+        opcionales.put("ALTO", Defecto.boton_alto);
+        opcionales.put("ANCHO", Defecto.boton_ancho);
         opcionales.put("ACCION", "");
         opcionales.put("REF", "");
         this.ete=ete;

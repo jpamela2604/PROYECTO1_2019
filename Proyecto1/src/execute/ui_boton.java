@@ -68,8 +68,11 @@ public class ui_boton extends JButton implements ui{
         this.setSize(ancho,alto);
         this.setFont(new java.awt.Font(fuente, 0, tam));
         this.setBackground(Color.decode(color));
+        //x,y,ancho,alto
+        this.setBounds(Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")),ancho,alto);
         this.setVisible(true);
     }
+   
     @Override
     public String getValor(String value) {
         return ((Simbolo)tabla.get(value)).valor.toString();
