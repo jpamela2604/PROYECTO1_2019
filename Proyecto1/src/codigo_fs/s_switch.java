@@ -51,8 +51,8 @@ public class s_switch implements sent{
             Boolean bandera=false;
             for(s_bloque s:casos)
             {
-                if(!bandera)
-                {
+                //if(!bandera)
+                //{
                     if(s.cond!=null)
                     {
                         Simbolo p=(Simbolo) s.cond.ejecutar(ts, e, ej);
@@ -86,7 +86,8 @@ public class s_switch implements sent{
 
                     }else
                     {
-                        ts.displayBreaks.push("");
+                        if(!bandera)
+                        {ts.displayBreaks.push("");
                         Simbolo h=(Simbolo) s.ejecutar(ts, e, ej);
                         ts.displayBreaks.pop();
                         if(h!=null)
@@ -99,8 +100,10 @@ public class s_switch implements sent{
                                 return h;
                             }
                         }
+                        }
                     }
-                }else
+                //}
+            /*else
                 {
                     ts.displayBreaks.push("");
                     Simbolo h=(Simbolo) s.ejecutar(ts, e, ej);
@@ -115,7 +118,7 @@ public class s_switch implements sent{
                             return h;
                         }
                     }
-                }
+                }*/
             }
         }
         return null;

@@ -163,8 +163,9 @@ public class Reconize {
                     contenido=contenido+Text+ "\n";
                 }
                 leer.close();
+                Fichero.close();
         }
-        catch(IOException ioe)
+        catch(Exception ioe)
         {
             if(bandera)
             {JOptionPane.showMessageDialog(null, "Error al abrir el archivo");}

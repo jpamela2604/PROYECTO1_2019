@@ -88,6 +88,7 @@ public class s_importar implements sent{
         {
             try
             {
+                
                 etiqueta root=null;
                 String con=getContenido(ruta,false);
                 if(con!=null&&!con.equals(""))
