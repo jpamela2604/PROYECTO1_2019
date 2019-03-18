@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import java.awt.Color;
 import java.awt.Component;
@@ -26,6 +27,11 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 public class ui_ControlNumerico extends JSpinner implements ui{
    
     public Hashtable tabla;
+    @Override
+    public void getDatos(LinkedList<item> it) {
+        String nombre=this.getValor("NOMBRE");
+        it.add(new item(nombre,this.getValue(),0,0,""));
+    }
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {

@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import java.util.LinkedList;
 import ts.Simbolo;
@@ -21,4 +22,5 @@ public interface ui {
     public void getById(String id,LinkedList<Simbolo>valores);
     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores);
     public void getByTag(String nombre,LinkedList<Simbolo>valores);
+    public void  getDatos(LinkedList<item> it);
 }

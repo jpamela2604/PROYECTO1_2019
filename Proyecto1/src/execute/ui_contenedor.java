@@ -193,93 +193,20 @@ public class ui_contenedor extends JPanel implements ui{
     
     
     
-    public LinkedList<Simbolo> getByNombre(String Nombre)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();
-        /*
-        for(ui_texto t:textos)
+    @Override
+    public void getDatos(LinkedList<item> it) {
+        for(ui u:this.componentes)
         {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_texto,t));
-            }
+            u.getDatos(it);
         }
-        for(ui_ControlNumerico t:spinners)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_controlnum,t));
-            }
-        }
-        for(ui_areaTexto t:areas)
-        {
-           if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_areatexto,t));
-            }
-        }
-        for(ui_cajaTexto t:cajas)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_cajatexto,t));
-            }
-        }
-        for(ui_desplegable t:combobox)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_desplegable,t));
-            }
-        }
-        for(ui_imagen t:imagenes)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_imagen,t));
-            }
-        }
-        for(ui_video t:videos)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_video,t));
-            }
-        }
-        for(ui_reproductor t:musica)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-                elemntos.add(new Simbolo(var.tipo_reproductor,t));
-            }
-        }
-        for(ui_boton t:botones)
-        {
-            if(((Simbolo)t.tabla.get("NOMBRE")).valor.toString().equals(Nombre))
-            {
-               elemntos.add(new Simbolo(var.tipo_boton,t));
-            }
-        }*/
-        return elemntos;
     }
     public LinkedList<item> getValores()
     {
         LinkedList<item> valores=new LinkedList();
-        /*for(ui_ControlNumerico t:spinners)
-        {
-            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            valores.add(new item(nombre,t.getValue(),0,0,""));
-        }
-        for(ui_areaTexto t:areas)
-        {
-            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            valores.add(new item(nombre,"\""+t.getText()+"\"",0,0,""));
-        }
-        for(ui_cajaTexto t:cajas)
-        {
-            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            valores.add(new item(nombre,"\""+t.getText()+"\"",0,0,""));
-        }
+        
+        /*
+        
+        
         for(ui_desplegable t:combobox)
         {
             String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();

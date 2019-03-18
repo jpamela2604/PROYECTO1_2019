@@ -91,7 +91,7 @@ public class oa_suma implements sent{
                     r2=o2.valor.toString();
                 }
                 String val=r1+r2;
-                respuesta=new Simbolo(var.tipo_decimal,val);
+                respuesta=new Simbolo(var.tipo_cadena,val);
             }break;
             default:
             {

@@ -6,6 +6,7 @@
 package execute;
 
 import codigo_fs.Array;
+import codigo_gdato.item;
 import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
@@ -22,6 +23,39 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 public class ui_desplegable extends JComboBox implements ui{
      public Hashtable tabla;
+     @Override
+    public void getDatos(LinkedList<item> it) {
+        String nombre=this.getValor("NOMBRE");
+            Array lista=(Array) ((Simbolo)tabla.get("LISTA")).valor;
+            Simbolo v=lista.valores.get(this.getSelectedIndex());
+            String valor="";
+            if(v!=null)
+            {
+                if(v.tipo.indice==var.booleano)
+                {
+                    if(Boolean.valueOf(v.valor.toString()))
+                    {
+                        valor="verdadero";
+                    }else
+                    {
+                        valor="falso";
+                    }
+                }else if(v.tipo.indice==var.nulo)
+                {
+                    valor="nulo";
+                }
+                else
+                {
+                    valor=v.valor.toString();
+                }
+                
+                if(!(v.tipo.indice==var.entero||v.tipo.indice==var.decimal))
+                {
+                    valor="\""+valor+"\"";
+                }
+            }
+            it.add(new item(nombre,valor,0,0,""));
+    }
      @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {

@@ -6,6 +6,7 @@
 package execute;
 
 
+import codigo_gdato.item;
 import errors.mng_error;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -21,6 +22,10 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 public class ui_reproductor extends JPanel implements ui{
     public Hashtable tabla;
+    @Override
+    public void getDatos(LinkedList<item> it) {
+        
+    }
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {

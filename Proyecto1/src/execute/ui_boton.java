@@ -6,6 +6,7 @@
 package execute;
 
 import codigo_fs.sent;
+import codigo_gdato.item;
 import errors.mng_error;
 import java.awt.Color;
 import java.util.Hashtable;
@@ -25,6 +26,10 @@ public class ui_boton extends JButton implements ui{
     Boolean IsEnviar;
     public sent referencia;
     String id_texto;
+    @Override
+    public void getDatos(LinkedList<item> it) {
+        
+    }
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {

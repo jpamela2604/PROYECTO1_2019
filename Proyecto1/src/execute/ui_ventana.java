@@ -204,62 +204,18 @@ public class ui_ventana extends JFrame implements ui{
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-   public LinkedList<item> getValores()
-    {
-        LinkedList<item> valores=new LinkedList();
+   
+   @Override
+    public void getDatos(LinkedList<item> it) {
         for(ui_contenedor c:contenedores)
         {
-            LinkedList<item> va=c.getValores();
-            for(item i:va)
-            {
-                valores.add(i);
-            }
+            c.getDatos(it);
         }
-        return valores;
-    }
-    
-    public LinkedList<Simbolo> getByNombre(String Nombre)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();
-        for(ui_contenedor c:this.contenedores)
-        {
-            LinkedList<Simbolo> aux=c.getByNombre(Nombre);
-            for(Simbolo p:aux)
-            {
-                elemntos.add(p);
-            }
-        }     
-        
-        return elemntos;
     }
     
     
-    public LinkedList<Simbolo> getByTag(String tag)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();  
-        switch(tag.toUpperCase())
-        {
-            case "CONTENEDOR":
-            {
-                for(ui_contenedor con:this.contenedores)
-                {
-                    elemntos.add(new Simbolo(var.tipo_contenedor,con));
-                }
-            }break;
-            default:
-            {
-                for(ui_contenedor v:this.contenedores)
-                {
-                    LinkedList<Simbolo> el=v.getByTag(tag);
-                    for(Simbolo s:el)
-                    {
-                        elemntos.add(s);
-                    }
-                }
-            }break;
-        }
-        return elemntos;
-    }
+    
+   
     
     
 }

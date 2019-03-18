@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gdato.item;
 import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,6 +22,10 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 public class ui_texto extends JLabel implements ui{
      public Hashtable tabla;
+     @Override
+    public void getDatos(LinkedList<item> it) {
+        
+    }
      @Override
      public void getByTag(String tag,LinkedList<Simbolo>valores)
     {

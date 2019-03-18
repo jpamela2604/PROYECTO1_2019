@@ -54,7 +54,9 @@ public class s_propiaArrayFromFile implements sent {
             if(ts.actual.tipo.indice==var.ventana)
             {
                 ui_ventana ven=(ui_ventana)ts.actual.valor;
-                LinkedList<item> valores=ven.getValores();
+                
+                LinkedList<item> valores=new LinkedList();
+                ven.getDatos(valores);
                 String cadena="    <principal>\n";
                 for(item i:valores)
                 {

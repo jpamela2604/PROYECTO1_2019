@@ -42,6 +42,7 @@ Comentario  ="//" [^\n]* [\n]?
 "ObtenerPorNombre("    {return new Symbol(symbl.ObtenerPorNombre,yyline,yycolumn,new String(yytext()));}
 "LeerGxml("            {return new Symbol(symbl.leerGxml,yyline,yycolumn,new String(yytext()));}
 "filter("              {return new Symbol(symbl.filter,yyline,yycolumn,new String(yytext()));}
+"filtrar("             {return new Symbol(symbl.filter,yyline,yycolumn,new String(yytext()));}
 "map("                 {return new Symbol(symbl.map,yyline,yycolumn,new String(yytext()));}
 "AlCargar("            {return new Symbol(symbl.cargar,yyline,yycolumn,new String(yytext()));}
 "buscar("              {return new Symbol(symbl.buscar,yyline,yycolumn,new String(yytext()));}

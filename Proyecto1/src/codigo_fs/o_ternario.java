@@ -41,9 +41,8 @@ public class o_ternario implements sent{
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
         Simbolo c=(Simbolo)cond.ejecutar(ts, e, ej);
-        Simbolo v1=(Simbolo)val1.ejecutar(ts, e, ej);
-        Simbolo v2=(Simbolo)val2.ejecutar(ts, e, ej);
-        if(c.tipo.indice==var.error||v1.tipo.indice==var.error||v2.tipo.indice==var.error)
+        
+        if(c.tipo.indice==var.error)
         {
             return respuesta;
         }
@@ -54,10 +53,10 @@ public class o_ternario implements sent{
         {
             if(Boolean.valueOf(c.valor.toString()))
             {
-                return v1;
+                return (Simbolo)val1.ejecutar(ts, e, ej);
             }else
             {
-                return v2;
+                return (Simbolo)val2.ejecutar(ts, e, ej);
             }
         }
         return respuesta;

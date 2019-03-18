@@ -5,6 +5,7 @@
  */
 package execute;
 
+import codigo_gdato.item;
 import codigo_gxml.ruta;
 import errors.mng_error;
 import java.util.LinkedList;
@@ -120,6 +121,11 @@ public class ui_gxml implements ui{
     public String getValor(String value)
     {
         return "";
+    }
+
+    @Override
+    public void getDatos(LinkedList<item> it) {
+        
     }
    
     

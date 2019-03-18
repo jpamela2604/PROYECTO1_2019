@@ -18,7 +18,15 @@ public class Proyecto1 {
         // TODO code application logic here
         new ExtremeEditor().show();
         //new gdato().show();
+       // System.out.println(" aa"+invertirNumero(11));
         
     }
+    /*
+    public static Integer invertirNumero (Integer n){
+    return n < 10 ? n : modulo(n, 10) + invertirNumero (n / 10) * 10;
+    }
     
+    public static Integer modulo(Integer n, Integer p){
+    return n < p ? n : modulo( n - p, p);
+    }*/
 }
