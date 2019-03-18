@@ -41,11 +41,11 @@ public class ui_reproductor extends JPanel implements ui{
     {
     }
     @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         //Contenedor.CrearImagen(Ruta, X, Y, Auto-reproductor, Alto, Ancho)
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="Reproductor_"+name;
+        String nombre=name+num+"_"+panel;
         String t="var "+nombre+ " = "+panel+ ".CrearReproductor(\""+
                 ((Simbolo)tabla.get("RUTA")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+

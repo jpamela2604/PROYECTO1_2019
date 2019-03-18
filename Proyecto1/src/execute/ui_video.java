@@ -42,11 +42,11 @@ public class ui_video extends JPanel implements ui{
     {
     }
     @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         //Contenedor.CrearImagen(Ruta, X, Y, Auto-reproductor, Alto, Ancho)
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="Video_"+name;
+        String nombre=name+num+"_"+panel;
         String t="var "+nombre+ " = "+panel+ ".CrearVideo(\""+
                 ((Simbolo)tabla.get("RUTA")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("X")).valor.toString()+","+

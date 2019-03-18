@@ -98,7 +98,7 @@ public class e_ventana implements etiqueta{
         {
             String type=obligatorios.get("TIPO").toString().toUpperCase();
             if(!(type.equals("SECUNDARIA")
-                    ||type.equals("PRIMARIA")))
+                    ||type.equals("PRIMARIA")||type.equals("PRINCIPAL")))
             {
                 e.AddError("El tipo \""+type+"\" no es valido para la etiqueta ventana ", linea, columna, archivo, "SEMANTICO");
             }

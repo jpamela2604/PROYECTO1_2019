@@ -73,7 +73,8 @@ public class Reconize {
                     ui_gxml archivo=(ui_gxml) raiz.GetGxmlObject();
                     String ruta2=ruta.replace(".gxml", "");
                     ruta2=ruta2+".fs";
-                    GuardarDatos(ruta2,archivo.getTraduccion("",""));
+                    GuardarDatos(ruta2,archivo.getTraduccion("","",0));
+                    a.setText("Archivo traducido en la ruta "+ruta2);
                     // System.out.println(archivo.getTraduccion());
                  }
             }else
@@ -88,7 +89,7 @@ public class Reconize {
         return null;
     }
     
-    public void GuardarDatos(String ruta,String contenido)
+    public static void GuardarDatos(String ruta,String contenido)
     {
               
         FileWriter fw;

@@ -5,11 +5,16 @@
  */
 package codigo_fs;
 
+import codigo_gxml.etiqueta;
 import errors.mng_error;
 import execute.Ejecucion;
+import execute.ui_gxml;
 import g_fs.lexico_fs;
 import g_fs.sintactico_fs;
+import g_gxml.lexico_g;
+import g_gxml.sintactico_g;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -50,9 +55,9 @@ public class s_importar implements sent{
             e.AddError("El parametro de la ruta del import debe ser una cadena no un "+s.tipo.nombre, linea, columna, archivo, "SEMANTICO");
             return null;
         }
-        path=Reconize.getDireccion(s.valor.toString());
-        if(IsValida((Stack) ts.imports.clone()))
-        {
+        path=getRutaReal(Reconize.getDireccion(s.valor.toString()),e);
+        if(!path.equals("")&&IsValida((Stack) ts.imports.clone()))
+        {           
             ts.imports.push(path);
             String anterior=var.archivo;
             var.archivo=path;
@@ -73,6 +78,50 @@ public class s_importar implements sent{
             e.AddError("ya se importo el archivo \""+path+"\"", linea, columna, archivo, "SEMANTICO");
         }
         return null;
+    }
+    
+    String getRutaReal(String ruta, mng_error er)
+    {
+        mng_error e = new mng_error();
+        File a=new File(ruta);
+        if(Reconize.getFileExtension(a).toUpperCase().equals("GXML"))
+        {
+            try
+            {
+                etiqueta root=null;
+                String con=getContenido(ruta,false);
+                if(con!=null&&!con.equals(""))
+                {
+                    lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
+                    sintactico_g sintactico=new sintactico_g(le);
+                    sintactico.parse();            
+                    root =sintactico.raiz;
+                    e.Adding(le.e);
+                    e.Adding(sintactico.e);
+                }
+                if(root!=null)
+                {
+                     root.Comprobar(e);
+                     if(e.errores.isEmpty())
+                     {
+                        ui_gxml archivo=(ui_gxml) root.GetGxmlObject();
+                        String ruta2=ruta.replace(".gxml", "");
+                        ruta2=ruta2+".fs";
+                        Reconize.GuardarDatos(ruta2,archivo.getTraduccion("","",0));
+                        return ruta2;
+                     }
+                }else
+                {
+                    e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
+                }
+            }catch(Exception ex){
+
+                    System.out.println("ex: "+ex.getMessage());
+                    e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
+            }
+        }
+        er.Adding(e);
+        return ruta;
     }
     
     Boolean IsValida(Stack t)

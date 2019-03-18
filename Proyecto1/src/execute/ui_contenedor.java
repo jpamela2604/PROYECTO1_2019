@@ -136,11 +136,11 @@ public class ui_contenedor extends JPanel implements ui{
         }
     }
     @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         //CrearContenedor(Alto, Ancho, Color, Borde, X, Y)
         String name=((Simbolo)tabla.get("ID")).valor.toString();
-        String nombre="Con_"+name;
+        String nombre=name+num+"_"+ventana;
        
         String c="var "+nombre+"="+ventana+".crearcontenedor("+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
@@ -151,9 +151,9 @@ public class ui_contenedor extends JPanel implements ui{
                 ((Simbolo)tabla.get("Y")).valor.toString()+
                 ");\n";
         c=c+nombre+".id=\""+name+"\";\n";
-        for(ui com:this.componentes)
+        for(int i=0;i<this.componentes.size();i++)
         {
-            c=c+com.getTraduccion(ventana, nombre);
+            c=c+this.componentes.get(i).getTraduccion(ventana, nombre,i);
         }
         return c;
         

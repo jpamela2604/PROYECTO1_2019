@@ -15,7 +15,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  * @author Pamela Palacios
  */
 public interface ui {
-    public String getTraduccion(String ventana,String panel);
+    public String getTraduccion(String ventana,String panel,int num);
     public void cargar(LinkedList<EmbeddedMediaPlayer> videos,mng_error e);
     public String getValor(String value);
     public void getById(String id,LinkedList<Simbolo>valores);

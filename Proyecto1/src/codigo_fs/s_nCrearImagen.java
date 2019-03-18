@@ -43,7 +43,7 @@ public class s_nCrearImagen implements sent {
         Simbolo rr=new Simbolo(var.tipo_error,null);
         if(ts.actual==null||ts.actual.tipo.indice==var.contenedor)
         {
-            if(parametros.size()!=6)
+            if(parametros.size()!=5)
             {
                 e.AddError("El metodo CrearImagen debe tener 5 parametros", linea, columna, archivo, "SEMANTICO");
                 return rr;

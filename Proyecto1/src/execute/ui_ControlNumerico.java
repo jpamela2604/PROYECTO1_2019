@@ -52,10 +52,10 @@ public class ui_ControlNumerico extends JSpinner implements ui{
     {
     }
     @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
          String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="numerico_"+name;
+        String nombre=name+num+"_"+panel;
        
          String t="var "+nombre+ " = "+panel+ ".CrearControlNumerico("+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+

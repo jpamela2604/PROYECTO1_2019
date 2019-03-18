@@ -135,28 +135,33 @@ public class ui_ventana extends JFrame implements ui{
         }
     }  
     @Override
-    public String getTraduccion(String ventana,String panel)
-    {
+    public String getTraduccion(String ventana,String panel,int num)
+    {        
         //CrearVentana(“Color hexadecimal”, Alto, ancho
         String name=((Simbolo)tabla.get("ID")).valor.toString();
-        String nombre="ven_"+name;
-        String t="var "+nombre+"=crearVentana(\""+
+        String t="/*********************************************************************/\n";
+        t=t+"/*********** TRADUCCION VENTANA "+name+"***********/\n";
+        t=t+"/*********************************************************************/\n\n";
+        //String nombre=name;
+        t=t+"var "+name+"=crearVentana(\""+
                 ((Simbolo)tabla.get("COLOR")).valor.toString()+"\","+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+
                 ((Simbolo)tabla.get("ANCHO")).valor.toString()+",\""+
                 name+
                 "\");\n";
-        t=t+(inicial.equals("")?"":nombre+".alcargar("+inicial+");\n");
-        t=t+(fin.equals("")?"":nombre+".alcerrar("+fin+");\n");
+        t=t+(inicial.equals("")?"":name+".alcargar("+inicial+");\n");
+        t=t+(fin.equals("")?"":name+".alcerrar("+fin+");\n");
         if("PRINCIPAL".equals(((Simbolo)tabla.get("TIPO")).valor.toString().toUpperCase()))
         {
-            t=t+nombre+".alcargar();\n";
+            t=t+name+".alcargar();\n";
         }
-        for(ui_contenedor con :this.contenedores)
+        for(int i=0;i<contenedores.size();i++)
         {
-            t=t+con.getTraduccion(nombre,"");
+            t=t+contenedores.get(i).getTraduccion(name,"",i);
         }
-        
+        t=t+"\n\n/*********************************************************************/\n";
+        t=t+"/*********** FIN TRADUCCION VENTANA "+name+"***********/\n";
+        t=t+"/*********************************************************************/\n";
         return t;
     }
     @Override

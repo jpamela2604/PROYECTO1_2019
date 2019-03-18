@@ -47,10 +47,10 @@ public class ui_cajaTexto extends JTextField implements ui{
     }
     @Override
 //CrearCajaTexto(Alto, Ancho, Fuente, Tamaño, Color, X, Y, Negrilla, Cursiva, defecto, nombre
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
          String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="caja_"+name;
+        String nombre=name+num+"_"+panel;
        
          String t="var "+nombre+ " = "+panel+ ".CrearCajaTexto("+
                 ((Simbolo)tabla.get("ALTO")).valor.toString()+","+

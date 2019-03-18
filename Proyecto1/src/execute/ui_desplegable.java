@@ -60,11 +60,11 @@ public class ui_desplegable extends JComboBox implements ui{
     }
     //.CrearDesplegable(Alto, Ancho, lista, X, Y, Defecto, nombre)
      @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="Despl_"+name;
+        String nombre=name+num+"_"+panel;
         String namelista="lista_"+nombre;
         String contenido="";
         String aux="";

@@ -43,10 +43,10 @@ public class ui_texto extends JLabel implements ui{
     }
      @Override
     //CrearTexto(Fuente, tam, Color, X, Y, Negrilla, Cursiva, valor)
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
-        String nombre="Texto_"+name;
+        String nombre=name+num+"_"+panel;
         String t="var "+nombre+ " = "+panel+ ".CrearTexto(\""+
                 ((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
                 +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+

@@ -91,16 +91,16 @@ public class ui_gxml implements ui{
     }
    
     @Override
-    public String getTraduccion(String ventana,String panel)
+    public String getTraduccion(String ventana,String panel,int num)
     {
         String t="";
         for(ruta rut:rutas)
         {
             t=t+"importar(\""+rut.ruta+"\");\n";
         }
-        for(ui_ventana bo:ventanas)
+        for(int i=0;i<ventanas.size();i++)
         {
-            t=t+bo.getTraduccion("","");
+            t=t+ventanas.get(i).getTraduccion("","",i);
             
         }
         
