@@ -7,28 +7,25 @@ package execute;
 
 
 import codigo_gdato.item;
-import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
 import errors.mng_error;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import proyecto1.Reconize;
 import proyecto1.var;
 import ts.Simbolo;
-import uk.co.caprica.vlcj.binding.LibVlc;
-import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 /**
  *
  * @author Pamela Palacios
  */
-public class ui_imagen extends JPanel implements ui{
+public class ui_imagen extends JLabel implements ui{
     public Hashtable tabla;
     @Override
     public void getDatos(LinkedList<item> it) {
@@ -78,31 +75,15 @@ public class ui_imagen extends JPanel implements ui{
     {
         try
         {
-            /*media.cargar(this,videos,Integer.valueOf(getValor("ANCHO")),Integer.valueOf(getValor("ALTO")),
-                Integer.valueOf(getValor("X")),Integer.valueOf(getValor("Y")),
-                Reconize.getDireccion(getValor("RUTA")),Boolean.valueOf(getValor("AUTO_REPRODUCCION")));*/
             Integer ancho=Integer.valueOf(getValor("ANCHO"));
             Integer alto=Integer.valueOf(getValor("ALTO"));
             Integer x=Integer.valueOf(getValor("X"));
             Integer y=Integer.valueOf(getValor("Y"));
-            String file=Reconize.getDireccion(getValor("RUTA"));
-            Canvas c= new Canvas();
-            c.setBackground(Color.BLACK);
-            c.setSize(ancho, alto);
-            c.setPreferredSize(new Dimension(ancho,alto));
-            //JPanel video=new JPanel();
-            this.setLayout(null);
-            this.setBounds(x,y,ancho, alto);
-            this.setPreferredSize(new Dimension(ancho, alto));
-            this.add(c);
-            NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(),"C:\\Program Files\\VideoLAN\\VLC");
-            Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(),LibVlc.class);
-            MediaPlayerFactory mpf= new MediaPlayerFactory();
-            EmbeddedMediaPlayer emp=mpf.newEmbeddedMediaPlayer();
-            emp.setVideoSurface(mpf.newVideoSurface(c));  
-        //String file=Reconize.getDireccion("C:\\Users\\Pamela Palacios\\Desktop\\pilita.mp4");
-            emp.prepareMedia(file);
-            videos.add(emp);
+            String ruta=Reconize.getDireccion(getValor("RUTA"));
+            BufferedImage myPicture = ImageIO.read(new File(ruta));
+            Image scaledInstance = myPicture.getScaledInstance(ancho, alto, Image.SCALE_DEFAULT);           
+            this.setIcon(new ImageIcon(scaledInstance));
+            this.setBounds(x, y, ancho, alto);
             this.setVisible(true);
         }catch(Exception exc)
         {
