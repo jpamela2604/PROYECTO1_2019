@@ -19,7 +19,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import proyecto1.Reconize;
-import static proyecto1.Reconize.getContenido;
+import static proyecto1.Manager_Archivo.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;

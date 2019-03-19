@@ -7,13 +7,9 @@ package execute;
 
 import codigo_fs.Array;
 import codigo_fs.sent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.JTextArea;
 import proyecto1.ExtremeEditor;
-import proyecto1.Reconize;
+import proyecto1.Manager_Archivo;
 
 /**
  *
@@ -35,49 +31,21 @@ public class Ejecucion {
     {
         
         String ruta=ExtremeEditor.ru+"\\"+ventana+".gdato";
-        contenido=trueContent(ruta,contenido);        
-        FileWriter fw;
-        try
-        {   
-            fw= new FileWriter(ruta);
-            fw.write(contenido);
-            fw.close();        
-                //JOptionPane.showMessageDialog(null, "Guardado Exitosamente ");
-         }
-        catch(IOException io)
-        {
-                  //l3.setText("Error al abrir el fichero");
-                 //JOptionPane.showMessageDialog(null, "Error al guardar ");
-        }        
+        contenido=trueContent(ruta,contenido);       
+        Manager_Archivo.escribir(ruta,contenido);
+            
     }
     public String trueContent(String ruta,String contenido)
     {
         String valor="<lista>\n"+contenido+"\n</lista>";
-        String leido=Reconize.getContenido(ruta,false);
+        String leido=Manager_Archivo.getContenido(ruta,false);
         if(!leido.equals(""))
         {
             valor=leido.replace("</lista>","\n"+ contenido+"\n</lista>");
         }
         
         return valor;
-    }
-    String leer(String ruta)
-    {
-        String w="";
-        try {
-            Scanner input = new Scanner(new File("/ruta/filename.txt"));
-            while (input.hasNextLine()) {
-                String line = input.nextLine();
-                //System.out.println(line);
-                w=w+"\n";
-            }
-            input.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return w;
-    }
-    
+    }    
     
      public ui_ventana CrearVentana(String color,Integer alto,Integer ancho,String id)
     {

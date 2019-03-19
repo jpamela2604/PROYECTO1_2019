@@ -15,7 +15,7 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.LinkedList;
 import proyecto1.Reconize;
-import static proyecto1.Reconize.getContenido;
+import static proyecto1.Manager_Archivo.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -113,6 +113,4 @@ public class s_nativaGxml implements sent {
         return null;
     }
 }
-
-
 

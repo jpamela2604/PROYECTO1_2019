@@ -15,11 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -394,25 +390,14 @@ public class ExtremeEditor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_item_guardarActionPerformed
     void guardar()
-    {   
-            FileWriter fw;
-            try
-            {   
-                int indice=files.getSelectedIndex();
-                
-                fw= new FileWriter(arrayPanel[indice].ruta);
-                fw.write(arrayPanel[indice].texto.getText());
-                fw.close();        
-                //JOptionPane.showMessageDialog(null, "Guardado Exitosamente ");
-            }
-            catch(IOException io)
-            {
-                  //l3.setText("Error al abrir el fichero");
-                 //JOptionPane.showMessageDialog(null, "Error al guardar ");
-                 
-            }
-            
- 
+    { 
+        int indice=files.getSelectedIndex();
+        if(Manager_Archivo.escribir(arrayPanel[indice].ruta, arrayPanel[indice].texto.getText()))
+        {
+        }else
+        {
+            //JOptionPane.showMessageDialog(null, "Error al guardar ");
+        }  
     }
     private void Item_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Item_abrirActionPerformed
         // TODO add your handling code here:
@@ -429,6 +414,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         Ventana.setDialogTitle("Abrir Archivo");   
 	Ventana.showOpenDialog(this);
         Abrir = Ventana.getSelectedFile();
+        
         try
         {
         abrir(Ventana.getSelectedFile().toString(),getnombre(Ventana.getSelectedFile().toString()));
@@ -440,28 +426,14 @@ public class ExtremeEditor extends javax.swing.JFrame {
     }
     public  void abrir(String ruta,String nombre)
     { 
-        String Text;
-        String contenido="";
-        File Abrir= new File(ruta);
-        if(!Abrir.isDirectory())
+        String contenido=Manager_Archivo.getContenido(ruta, false);
+        if(contenido.equals(""))
         {
-            try{
-            
-                int indice=files.getSelectedIndex();
-                FileReader Fichero= new FileReader(Abrir);
-                BufferedReader leer= new BufferedReader(Fichero);
-                while((Text=leer.readLine())!=null)
-                {
-                    contenido=contenido+Text+ "\n";
-                }
-                leer.close();
-                AgregarTab(ruta,contenido,nombre,TipoFile(ruta));  
-                
-            }
-            catch(IOException ioe)
-            {
-		JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
-            }
+            JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
+        }else
+        {
+            int indice=files.getSelectedIndex();
+            AgregarTab(ruta,contenido,nombre,TipoFile(ruta));              
         }
     }
     
@@ -481,7 +453,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
             Ventana.setDialogTitle("Guardar Archivo");   
             Ventana.showSaveDialog(this);
             Abrir = Ventana.getSelectedFile();
-            AgregarTab(Ventana.getSelectedFile().toString(),Reconize.getContenido(arrayPanel[files.getSelectedIndex()].ruta,true),getnombre(Ventana.getSelectedFile().toString()),TipoFile(Ventana.getSelectedFile().toString()));
+            AgregarTab(Ventana.getSelectedFile().toString(),Manager_Archivo.getContenido(arrayPanel[files.getSelectedIndex()].ruta,true),getnombre(Ventana.getSelectedFile().toString()),TipoFile(Ventana.getSelectedFile().toString()));
             //abrir(Ventana.getSelectedFile().toString(),getnombre(Ventana.getSelectedFile().toString()));
             guardar();
         }else
@@ -531,26 +503,12 @@ public class ExtremeEditor extends javax.swing.JFrame {
     }
     boolean CrearArchivo(String ruta,String extension)
     {
-        File fileToSave = new File(ruta+extension);
-        if (fileToSave.exists()) {
+        if (Manager_Archivo.ExisteFile(ruta+extension)) {
             JOptionPane.showMessageDialog(null, "Ya existe el archivo");
             return false;
         }else{
-               
-            FileWriter fw;
-            try
-            {     
-                fw= new FileWriter( fileToSave);                 
-                fw.write("");
-                fw.close(); 
-                return true;
-            }
-            catch(IOException io)
-            {
-                  //l3.setText("Error al abrir el fichero");
-                 JOptionPane.showMessageDialog(null, "Error al guardar el Archivo");
-                  return false;
-            }
+            return Manager_Archivo.escribir(ruta+extension, "");
+            
         }
         
     }
@@ -569,24 +527,15 @@ public class ExtremeEditor extends javax.swing.JFrame {
     
     static boolean extVal(String ruta,String extension)
     {
-        StringTokenizer split= new StringTokenizer(ruta,".");
-        String[] lista = new String[split.countTokens()];
-        int c = 0;
-        while (split.hasMoreTokens()) 
-        {
-            lista[c] = split.nextToken();
-            c ++ ;
-        }  
-        String e=extension.substring(1,extension.length());
-        return lista.length>1&&e.equals(lista[lista.length-1]);
+        return Manager_Archivo.getFileExtension(ruta).toUpperCase().equals(extension);
     }
     
     static Pestania.Tipo TipoFile(String ruta)
     {
-        if(extVal(ruta,var.ext_fs))
+        if(extVal(ruta,"FS"))
         {
             return Pestania.Tipo.FS;
-        }else if(extVal(ruta,var.ext_gdato))
+        }else if(extVal(ruta,"GDATO"))
         {
             return Pestania.Tipo.GDATO;
         }

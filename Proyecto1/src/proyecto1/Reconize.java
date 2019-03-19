@@ -14,15 +14,14 @@ import g_fs.lexico_fs;
 import g_fs.sintactico_fs;
 import g_gxml.lexico_g;
 import g_gxml.sintactico_g;
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import static proyecto1.Manager_Archivo.getContenido;
 import ts.mng_ts;
 
 /**
@@ -58,7 +57,7 @@ public class Reconize {
             String con=getContenido(ruta,false);
             if(con!=null&&!con.equals(""))
             {
-                lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
+                lexico_g le = new lexico_g( new StringReader(con));            
                 sintactico_g sintactico=new sintactico_g(le);
                 sintactico.parse();            
                 raiz =sintactico.raiz;
@@ -118,7 +117,7 @@ public class Reconize {
             Ejecucion ej=new Ejecucion(this.a,deTodo);
             if(con!=null&&!con.equals(""))
             {
-                lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(con)));            
+                lexico_fs le = new lexico_fs(new StringReader(con));            
                 sintactico_fs sintactico=new sintactico_fs(le);
                 sintactico.parse();            
                 raiz =sintactico.raiz;
@@ -149,7 +148,7 @@ public class Reconize {
         }
         
         
-    }
+    }/*
     public static String getContenido(String ruta,Boolean bandera)
     {
         String Text;
@@ -172,7 +171,7 @@ public class Reconize {
         }
         return contenido;
     }
-    
+    */
     public static String getDireccion(String relativa)
     {
         if(relativa.contains("C:\\"))

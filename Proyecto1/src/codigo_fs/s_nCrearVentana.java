@@ -39,7 +39,7 @@ public class s_nCrearVentana implements sent {
         Simbolo rr=new Simbolo(var.tipo_error,null);
         if(parametros.size()!=4)
         {
-            e.AddError("El metodo CrearVentana debe tener 3 parametros", linea, columna, archivo, "SEMANTICO");
+            e.AddError("El metodo CrearVentana debe tener 4  parametros", linea, columna, archivo, "SEMANTICO");
             return rr;
         }
         Simbolo actual=ts.actual;

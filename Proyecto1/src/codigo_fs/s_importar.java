@@ -18,8 +18,8 @@ import java.io.File;
 import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.Stack;
+import proyecto1.Manager_Archivo;
 import proyecto1.Reconize;
-import static proyecto1.Reconize.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -90,7 +90,7 @@ public class s_importar implements sent{
             {
                 
                 etiqueta root=null;
-                String con=getContenido(ruta,false);
+                String con=Manager_Archivo.getContenido(ruta,false);
                 if(con!=null&&!con.equals(""))
                 {
                     lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
@@ -153,7 +153,7 @@ public class s_importar implements sent{
         LinkedList<sent> raiz = null;        
         try
         {
-            String con=getContenido(ruta,false);
+            String con=Manager_Archivo.getContenido(ruta,false);
             if(con!=null&&!con.equals(""))
             {
                 lexico_fs le = new lexico_fs(new BufferedReader( new StringReader(con)));                     
