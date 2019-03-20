@@ -42,7 +42,7 @@ public class ui_cajaTexto extends JTextField implements ui{
      @Override
      public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_cajatexto,this));
         }
@@ -131,7 +131,7 @@ public class ui_cajaTexto extends JTextField implements ui{
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
         this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
         this.setVisible(false);
@@ -150,7 +150,7 @@ public class ui_cajaTexto extends JTextField implements ui{
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,var.max_caja,false));
         this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,var.min_caja,false));
         this.setVisible(false);

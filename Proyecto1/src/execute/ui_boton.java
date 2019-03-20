@@ -23,7 +23,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 public class ui_boton extends JButton implements ui{
     public Hashtable tabla;
     String accion;
-    Boolean IsEnviar;
+    public Boolean IsEnviar;
     public sent referencia;
     String id_texto;
     @Override
@@ -33,13 +33,13 @@ public class ui_boton extends JButton implements ui{
     @Override
     public void getByTag(String tag,LinkedList<Simbolo>valores)
     {
-        if(tag.equals("BOTON")&&!IsEnviar)
+        if(tag.equals("BOTON")/*&&!this.IsEnviar*/)
         {
             valores.add(new Simbolo(var.tipo_boton,this));
-        }else if(tag.equals("ENVIAR")&&IsEnviar)
+        }else if(tag.equals("ENVIAR")&&this.IsEnviar)
         {
             valores.add(new Simbolo(var.tipo_boton,this));
-        }else if(tag.equals("TEXTO")&&!id_texto.equals(""))
+        }else if(tag.equals("TEXTO"))
         {
             valores.add(new Simbolo(var.tipo_cadena,((Simbolo)tabla.get("VALOR")).valor.toString()));
         }
@@ -47,7 +47,7 @@ public class ui_boton extends JButton implements ui{
     @Override
     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_boton,this));
         }else if(nombre.equals(id_texto))
@@ -87,10 +87,11 @@ public class ui_boton extends JButton implements ui{
     {
         // CrearBoton(Fuente, Tamaño, Color, X, Y,Referencia, valor, Alto, Ancho)
          //AGREGAR ON CLICK,AGREGAR NOMBRE,SI ES ENVIAR
+        //this.IsEnviar=false;
         String name=((Simbolo)tabla.get("NOMBRE")).valor.toString();
         String nombre=name+num+"_"+panel;
         String ref=((Simbolo)tabla.get("REFERENCIA")).valor.toString();
-        String name_referencia=ref.equals("")?"nulo":"referencia_"+nombre+"()";
+        String name_referencia=(ref.equals("")&&accion.equals(""))?"nulo":"referencia_"+nombre+"()";
         
         String t="var "+nombre+ " = "+panel+ ".CrearBoton(\""+((Simbolo)tabla.get("FUENTE")).valor.toString()+"\","
                 +((Simbolo)tabla.get("TAM")).valor.toString()+",\""+
@@ -104,7 +105,7 @@ public class ui_boton extends JButton implements ui{
                 ((Simbolo)tabla.get("ANCHO")).valor.toString()+
         ");\n";
         t=t+nombre+".nombre=\""+name+"\";\n";
-        String funcion=accion;
+        String funcion="";
         
         if(this.IsEnviar)
         {
@@ -112,16 +113,17 @@ public class ui_boton extends JButton implements ui{
             funcion="generica_"+nombre+"()";
             t=t+"funcion "+funcion+ "{\n";
             t=t+"   "+ventana+".crearArrayDesdeArchivo();\n";
-            t=t+(!accion.equals("")?"   "+accion+";\n":"");
+            //t=t+(!accion.equals("")?"   "+accion+";\n":"");
             t=t+"}\n";
         }
         
         t=t+(funcion.equals("")?"":nombre+".alclic("+funcion+");\n");         
         
-        if(!ref.equals(""))
+        if(!name_referencia.equals("nulo"))
         {
             t=t+"funcion "+name_referencia+ "{\n";
-            t=t+"   "+ref+".alcargar();\n";
+            t=t+(!accion.equals("")?"   "+accion+";\n":"");
+            t=t+(ref.equals("")?"":"     "+ref+".alcargar()  ;\n");            
             t=t+"}\n";
         }
         return t;
@@ -132,10 +134,10 @@ public class ui_boton extends JButton implements ui{
             Boolean IsEnviar,String valor,String id_texto)
     {
         this.id_texto=id_texto;
-        this.IsEnviar=IsEnviar;
+        this.IsEnviar=  IsEnviar;
         this.accion=accion;
         this.tabla=new Hashtable();
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
@@ -150,7 +152,7 @@ public class ui_boton extends JButton implements ui{
     public ui_boton(String fuente,int tam,String color,int x,int y,sent ref,String valor,
             int alto,int ancho)
     {
-        
+        this.IsEnviar=false;
         id_texto="";
         accion="";
         referencia=ref;

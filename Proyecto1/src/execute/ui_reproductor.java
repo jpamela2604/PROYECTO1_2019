@@ -34,9 +34,10 @@ public class ui_reproductor extends JPanel implements ui{
             valores.add(new Simbolo(var.tipo_reproductor,this));
         }
     }
+    @Override
     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_reproductor,this));
         }

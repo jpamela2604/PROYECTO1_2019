@@ -8,6 +8,7 @@ package codigo_fs;
 import codigo_gdato.item;
 import errors.mng_error;
 import execute.Ejecucion;
+import execute.ui_desplegable;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -92,6 +93,32 @@ public class s_accArray implements sent{
                 e.AddError("No existe atributo llamado "+this.id, linea, columna, archivo, "SEMANTICO");
             }            
             
+        }else if(ts.actual.tipo.indice==var.desplegable)
+        {
+            ui_desplegable obj=(ui_desplegable) ts.actual.valor;
+            if(obj.tabla.containsKey(this.id))
+            {
+                Simbolo miv= (Simbolo) obj.tabla.get(this.id);
+                if(miv.tipo.indice!=var.arreglo)
+                {
+                    e.AddError("el atributo "+id+" deberia ser de tipo arreglo, no "+miv.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+                }else
+                {
+                    Array ar=(Array) miv.valor;
+                    Integer posi=Integer.valueOf(pos.valor.toString());
+                    if(posi>=ar.valores.size()||posi<0)
+                    {
+                        e.AddError("Indice fuera de los limites", linea, columna, archivo, "EJECUCION");
+                        return respuesta;
+                    }else
+                    {
+                        return ar.valores.get(posi);
+                    } 
+                }
+            }else
+            {
+                e.AddError(var.t_contenedor+" no tiene un atributo llamado "+id, linea, columna, archivo, "SEMANTICO");
+            }
         }else
         {
             e.AddError("No hay arreglo que se pueda indexar", linea, columna, archivo, "EJECUCION");

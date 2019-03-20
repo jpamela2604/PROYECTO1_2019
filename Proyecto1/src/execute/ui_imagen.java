@@ -42,7 +42,7 @@ public class ui_imagen extends JLabel implements ui{
     @Override
      public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_imagen,this));
         }
@@ -98,7 +98,7 @@ public class ui_imagen extends JLabel implements ui{
     {
         this.tabla=new Hashtable();
         this.tabla.put("RUTA", new Simbolo(var.tipo_cadena,ruta,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));

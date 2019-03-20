@@ -70,7 +70,7 @@ public class ui_desplegable extends JComboBox implements ui{
             {
                 valores.add(si);
             }
-        }else if(tag.equals("DATOS"))
+        }else if(tag.equals("LISTADATOS"))
         {
             Array lista=(Array) ((Simbolo)this.tabla.get("LISTA")).valor;
             valores.add(new Simbolo(var.tipo_arreglo,lista));
@@ -83,7 +83,7 @@ public class ui_desplegable extends JComboBox implements ui{
      @Override
      public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_desplegable,this));
         }
@@ -187,7 +187,7 @@ public class ui_desplegable extends JComboBox implements ui{
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuenteDef,false));
         this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
@@ -203,7 +203,7 @@ public class ui_desplegable extends JComboBox implements ui{
     {
         this.tabla=new Hashtable();
         this.tabla.put("LISTA", new Simbolo(var.tipo_arreglo,lista,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));

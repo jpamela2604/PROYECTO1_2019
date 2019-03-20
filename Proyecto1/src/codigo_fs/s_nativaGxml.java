@@ -5,17 +5,12 @@
  */
 package codigo_fs;
 
-import codigo_gxml.etiqueta;
+
 import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_gxml;
-import g_gxml.lexico_g;
-import g_gxml.sintactico_g;
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.util.LinkedList;
 import proyecto1.Reconize;
-import static proyecto1.Manager_Archivo.getContenido;
 import proyecto1.var;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -65,7 +60,7 @@ public class s_nativaGxml implements sent {
                         //ejecuta la accion
                         String anterior=var.archivo;
                         var.archivo=a.valor.toString();
-                        ui_gxml miarc= gramaticaGxml(Reconize.getDireccion(a.valor.toString()),e);
+                        ui_gxml miarc= nat(Reconize.getDireccion(a.valor.toString()),ts,e,ej);
                         var.archivo=anterior;
                         if(miarc!=null)
                         {
@@ -77,40 +72,23 @@ public class s_nativaGxml implements sent {
         return rr;
     }
     
-    
-    public ui_gxml gramaticaGxml(String ruta, mng_error e)
+    public ui_gxml nat(String ruta,mng_ts ts, mng_error e, Ejecucion ej)
     {
-        etiqueta raiz = null;        
-        try
+        //primero lo traduzo gxml a un fs
+        String sss=Reconize.gramaticaGxml(e, ruta, "auxiliar.fs");
+        if(!sss.equals(""))
         {
-            String con=getContenido(ruta,false);
-            if(con!=null&&!con.equals(""))
+            ui_gxml deTodo=new ui_gxml();
+            Ejecucion ejecuta=new Ejecucion(ej.a,deTodo);
+            if(Reconize.gramaticaFS("auxiliar.fs", ts, e, ejecuta))
             {
-                lexico_g le = new lexico_g(new BufferedReader( new StringReader(con)));            
-                sintactico_g sintactico=new sintactico_g(le);
-                sintactico.parse();            
-                raiz =sintactico.raiz;
-                e.Adding(le.e);
-                e.Adding(sintactico.e);
-                if(raiz!=null)
-                {
-                     raiz.Comprobar(e);
-                     if(e.errores.isEmpty())
-                     {
-                        ui_gxml migxml=(ui_gxml) raiz.GetGxmlObject();
-                        return migxml;
-
-                     }
-                }
+                return deTodo;
             }
-                
-            
-        }catch(Exception ex){
-
-                //System.out.println("ex: "+ex.getMessage());
-                //e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
+        // el fs lo ejecuto
+        
         return null;
     }
+   
 }
 

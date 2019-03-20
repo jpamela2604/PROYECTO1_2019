@@ -44,7 +44,7 @@ public class ui_contenedor extends JPanel implements ui{
     @Override
     public void getById(String id,LinkedList<Simbolo>valores)
     {
-        if(id.equals(getValor("ID")))
+        if(id.equals(getValor("ID").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_contenedor,this));
         }
@@ -151,10 +151,10 @@ public class ui_contenedor extends JPanel implements ui{
                 ((Simbolo)tabla.get("X")).valor.toString()+","+
                 ((Simbolo)tabla.get("Y")).valor.toString()+
                 ");\n";
-        c=c+nombre+".id=\""+name+"\";\n";
+        c=c+nombre+".id=\""+name+"\";\n\n";
         for(int i=0;i<this.componentes.size();i++)
         {
-            c=c+this.componentes.get(i).getTraduccion(ventana, nombre,i);
+            c=c+this.componentes.get(i).getTraduccion(ventana, nombre,i)+"\n";
         }
         return c;
         
@@ -169,7 +169,7 @@ public class ui_contenedor extends JPanel implements ui{
         componentes=new LinkedList();
         this.tabla=new Hashtable();
         this.tabla.put("BORDE", new Simbolo(var.tipo_booleano,borde,false));
-        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
+        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id.toUpperCase().trim(),false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("ALTO", new Simbolo(var.tipo_entero,alto,false));
@@ -200,114 +200,8 @@ public class ui_contenedor extends JPanel implements ui{
             u.getDatos(it);
         }
     }
-    public LinkedList<item> getValores()
-    {
-        LinkedList<item> valores=new LinkedList();
-        
-        /*
-        
-        
-        for(ui_desplegable t:combobox)
-        {
-            String nombre=((Simbolo)t.tabla.get("NOMBRE")).valor.toString();
-            Array lista=(Array) ((Simbolo)t.tabla.get("LISTA")).valor;
-            Simbolo v=lista.valores.get(t.getSelectedIndex());
-            String valor="";
-            if(v!=null)
-            {
-                if(v.tipo.indice==var.booleano)
-                {
-                    if(Boolean.valueOf(v.valor.toString()))
-                    {
-                        valor="verdadero";
-                    }else
-                    {
-                        valor="falso";
-                    }
-                }else if(v.tipo.indice==var.nulo)
-                {
-                    valor="nulo";
-                }
-                else
-                {
-                    valor=v.valor.toString();
-                }
-                
-                if(!(v.tipo.indice==var.entero||v.tipo.indice==var.decimal))
-                {
-                    valor="\""+valor+"\"";
-                }
-            }
-            valores.add(new item(nombre,valor,0,0,""));
-        }*/
-        return valores;
-    }
+   
     
-    public LinkedList<Simbolo> getByTag(String tag)
-    {
-        LinkedList<Simbolo> elemntos=new LinkedList();  
-        /*
-        switch(tag.toUpperCase())
-        {
-            case "TEXTO":
-            {
-                for(ui_texto con:this.textos)
-                {
-                    elemntos.add(new Simbolo(var.tipo_texto,con));
-                }
-            }break;
-            case "CONTROLADOR":
-            {
-                for(ui_areaTexto con:this.areas)
-                {
-                    elemntos.add(new Simbolo(var.tipo_areatexto,con));
-                }
-                for(ui_cajaTexto con:this.cajas)
-                {
-                    elemntos.add(new Simbolo(var.tipo_cajatexto,con));
-                }
-                for(ui_desplegable con:this.combobox)
-                {
-                    elemntos.add(new Simbolo(var.tipo_desplegable,con));
-                }
-                for(ui_ControlNumerico con:this.spinners)
-                {
-                    elemntos.add(new Simbolo(var.tipo_controlnum,con));
-                }
-            }break;
-            case "MULTIMEDIA":
-            {
-                for(ui_reproductor con:this.musica)
-                {
-                    elemntos.add(new Simbolo(var.tipo_reproductor,con));
-                }
-                for(ui_video con:this.videos)
-                {
-                    elemntos.add(new Simbolo(var.tipo_video,con));
-                }
-                for(ui_imagen con:this.imagenes)
-                {
-                    elemntos.add(new Simbolo(var.tipo_imagen,con));
-                }
-            }break;
-            case "BOTON":
-            {
-                for(ui_boton con:this.botones)
-                {
-                    elemntos.add(new Simbolo(var.tipo_boton,con));
-                }
-            }break;
-            case "ENVIAR":
-            {
-                for(ui_boton con:this.botones)
-                {
-                    elemntos.add(new Simbolo(var.tipo_boton,con));
-                }
-            }break;
-            
-        }
-        */
-        return elemntos;
-    }
+    
     
 }

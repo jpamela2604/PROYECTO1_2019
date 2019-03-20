@@ -42,14 +42,24 @@ public class Reconize {
         var.archivo=ruta;
         if(Pestania.Tipo.FS==t)
         {
-            gramaticaFS(ruta);
+            mng_ts ts =new mng_ts(e);
+            ui_gxml deTodo=new ui_gxml();
+            Ejecucion ej=new Ejecucion(this.a,deTodo);
+            gramaticaFS(ruta,ts,this.e,ej);
+            deTodo.iniciar(deTodo.principal,ts, e, ej);
         }else
         {
-            gramaticaGxml(ruta);
+            String ruta2=ruta.replace(".gxml", "");
+            ruta2=ruta2+".fs";
+            String ruu=gramaticaGxml(this.e,ruta,ruta2);
+            if(!ruu.equals(""))
+            {
+                a.setText("Archivo traducido en la ruta "+ruu);
+            }
         }
     }
     
-    public ui_gxml gramaticaGxml(String ruta)
+    public static String gramaticaGxml(mng_error e,String ruta,String destino)
     {
         etiqueta raiz = null;        
         try
@@ -67,13 +77,13 @@ public class Reconize {
             if(raiz!=null)
             {
                  raiz.Comprobar(e);
-                 if(this.e.errores.isEmpty())
+                 if(e.errores.isEmpty())
                  {
                     ui_gxml archivo=(ui_gxml) raiz.GetGxmlObject();
-                    String ruta2=ruta.replace(".gxml", "");
-                    ruta2=ruta2+".fs";
-                    GuardarDatos(ruta2,archivo.getTraduccion("","",0));
-                    a.setText("Archivo traducido en la ruta "+ruta2);
+                   
+                    GuardarDatos(destino,archivo.getTraduccion("","",0));
+                    return destino;
+                    
                     // System.out.println(archivo.getTraduccion());
                  }
             }else
@@ -85,7 +95,7 @@ public class Reconize {
                 System.out.println("ex: "+ex.getMessage());
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
-        return null;
+        return "";
     }
     
     public static void GuardarDatos(String ruta,String contenido)
@@ -106,15 +116,13 @@ public class Reconize {
         }        
     }
     
-    public void gramaticaFS(String ruta)
+    public static Boolean gramaticaFS(String ruta, mng_ts ts,mng_error e,Ejecucion ej)
     {
+        
         LinkedList<sent> raiz = null;        
         try
         {
             String con=getContenido(ruta,false);
-            mng_ts ts=new mng_ts(e);
-            ui_gxml deTodo=new ui_gxml();
-            Ejecucion ej=new Ejecucion(this.a,deTodo);
             if(con!=null&&!con.equals(""))
             {
                 lexico_fs le = new lexico_fs(new StringReader(con));            
@@ -135,8 +143,9 @@ public class Reconize {
                 {
                     s.ejecutar(ts, e, ej);
                 }
-                deTodo.iniciar(deTodo.principal,ts, e, ej);
+                
                 ts.imports.pop();
+                return true;
             }else
             {
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
@@ -146,8 +155,7 @@ public class Reconize {
                 System.out.println("ex: "+ex.getMessage());
                 e.AddError("entrada incorrecta", 0, 0, var.archivo, "EJECUCION");
         }
-        
-        
+        return false;
     }/*
     public static String getContenido(String ruta,Boolean bandera)
     {

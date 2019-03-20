@@ -6,6 +6,7 @@
 package codigo_fs;
 
 import codigo_gxml.etiqueta;
+import codigo_gxml.ruta;
 import errors.mng_error;
 import execute.Ejecucion;
 import execute.ui_gxml;
@@ -45,7 +46,7 @@ public class s_importar implements sent{
      }
     @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
-        
+        ej.deTodo.rutas.add(new ruta(path,linea,columna,archivo));
         Simbolo  s=(Simbolo) this.ruta.ejecutar(ts, e, ej);
         if(s.tipo.indice==var.error)
         {
@@ -59,6 +60,7 @@ public class s_importar implements sent{
         if(!path.equals("")&&IsValida((Stack) ts.imports.clone()))
         {           
             ts.imports.push(path);
+            
             String anterior=var.archivo;
             var.archivo=path;
             gramaticaFS(path, e);

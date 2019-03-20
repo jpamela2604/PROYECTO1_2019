@@ -37,7 +37,7 @@ public class ui_texto extends JLabel implements ui{
      @Override
      public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_texto,this));
         }
@@ -149,7 +149,7 @@ public class ui_texto extends JLabel implements ui{
     {
         this.tabla=new Hashtable();
         this.tabla.put("VALOR", new Simbolo(var.tipo_cadena,valor,false));   
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase(),false));
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,fuente,false));

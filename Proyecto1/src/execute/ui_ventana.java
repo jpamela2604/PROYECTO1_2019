@@ -48,7 +48,7 @@ public class ui_ventana extends JFrame implements ui{
     @Override
     public void getById(String id,LinkedList<Simbolo>valores)
     {
-        if(id.equals(getValor("ID")))
+        if(id.equals(getValor("ID").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_ventana,this));
         }
@@ -174,7 +174,7 @@ public class ui_ventana extends JFrame implements ui{
         this.fin=fin;
         this.tabla=new Hashtable();
         this.contenedores=new LinkedList();
-        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
+        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id.toUpperCase(),false));
         //this.id=id;
         //this.tipo=tipo;
         this.tabla.put("TIPO", new Simbolo(var.tipo_cadena,tipo,false));
@@ -193,7 +193,7 @@ public class ui_ventana extends JFrame implements ui{
         this.tabla=new Hashtable();
         this.contenedores=new LinkedList();
         //this.id="";
-        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id,false));
+        this.tabla.put("ID", new Simbolo(var.tipo_cadena,id.toUpperCase(),false));
         //this.tipo="SECUNDARIA";
         this.tabla.put("TIPO", new Simbolo(var.tipo_cadena,"SECUNDARIA",false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,color,false));

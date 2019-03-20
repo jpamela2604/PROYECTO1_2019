@@ -7,6 +7,7 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import execute.ui_ventana;
 import java.util.LinkedList;
 import proyecto1.var;
 import ts.Simbolo;
@@ -80,9 +81,11 @@ public class s_nCrearVentana implements sent {
         {
             if(ts.actual==null)
             {
-                return new Simbolo(var.tipo_ventana,ej.CrearVentana(t.valor.toString()
+                ui_ventana win=ej.CrearVentana(t.valor.toString()
                         ,Integer.valueOf(l.valor.toString()),Integer.valueOf(n.valor.toString())
-                ,id.valor.toString().toUpperCase().trim()));
+                ,id.valor.toString().toUpperCase().trim());
+                ej.deTodo.ventanas.add(win);
+                return new Simbolo(var.tipo_ventana,win);
             }else
             {
                 e.AddError("No se puede agregar una ventana a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");

@@ -66,7 +66,7 @@ public class s_imprimir implements sent{
                 ej.Imprimir(s.valor.toString());
             }else
             {
-                ej.Imprimir("OBJETO FS");
+                ej.Imprimir("OBJETO FS ("+s.tipo.nombre+")");
             }
         }
         return null;

@@ -49,6 +49,7 @@ public class s_nEventoClic implements sent {
         }else if(ts.actual.tipo.indice==var.boton)
         {
              ui_boton v=(ui_boton) ts.actual.valor;
+             v.IsEnviar=true;
              ActionListener[] ac=v.getActionListeners();
              if(ac.length>0)
              {

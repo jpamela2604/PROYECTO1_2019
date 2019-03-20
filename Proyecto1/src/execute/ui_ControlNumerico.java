@@ -47,7 +47,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
     @Override
     public void getByNombre(String ventana,String nombre,LinkedList<Simbolo>valores)
     {
-        if(nombre.equals(getValor("NOMBRE")))
+        if(nombre.equals(getValor("NOMBRE").trim().toUpperCase()))
         {
             valores.add(new Simbolo(var.tipo_controlnum,this));
         }
@@ -160,7 +160,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
         this.tabla.put("NEGRITA", new Simbolo(var.tipo_booleano,negrilla,false));
         this.tabla.put("CURSIVA", new Simbolo(var.tipo_booleano,cursiva,false));
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_cadena,defecto,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase().trim(),false));
         this.tabla.put("MAXIMO", new Simbolo(var.tipo_entero,maximo,false));
         this.tabla.put("MINIMO", new Simbolo(var.tipo_entero,minimo,false));
         this.setVisible(false);
@@ -179,7 +179,7 @@ public class ui_ControlNumerico extends JSpinner implements ui{
         this.tabla.put("X", new Simbolo(var.tipo_entero,x,false));
         this.tabla.put("Y", new Simbolo(var.tipo_entero,y,false));
         this.tabla.put("DEFECTO", new Simbolo(var.tipo_entero,defecto,false));
-        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre,false));
+        this.tabla.put("NOMBRE", new Simbolo(var.tipo_cadena,nombre.toUpperCase(),false));
         this.tabla.put("FUENTE", new Simbolo(var.tipo_cadena,var.fuente,false));
         this.tabla.put("TAM", new Simbolo(var.tipo_entero,var.tamletra,false));
         this.tabla.put("COLOR", new Simbolo(var.tipo_cadena,var.colorDef,false));
