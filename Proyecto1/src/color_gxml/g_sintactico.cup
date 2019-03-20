@@ -1,0 +1,26 @@
+package color_gxml;
+
+import java.io.*;
+import java_cup.runtime.*;
+import java.util.LinkedList;
+parser code
+{:
+:}
+action code
+{:
+      
+:}
+
+terminal menor ,reservada
+;
+nonterminal String S,L;
+start with S;
+S ::=L
+;
+
+L ::= L menor
+    |L reservada
+    |menor
+    |reservada
+    ;
+

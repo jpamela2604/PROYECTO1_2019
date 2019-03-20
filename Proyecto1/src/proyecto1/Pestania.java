@@ -5,8 +5,8 @@
  */
 package proyecto1;
 
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rtextarea.RTextScrollPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -14,10 +14,11 @@ import org.fife.ui.rtextarea.RTextScrollPane;
  */
 public class Pestania {
     public String ruta;
-    public RSyntaxTextArea texto;
-    public RTextScrollPane scroll;
+    public JTextPane texto;
+    //public RSyntaxTextArea texto;
+    public JScrollPane scroll;
     public Tipo tipo;
-    public Pestania(Tipo tipo,String ruta,RSyntaxTextArea texto,RTextScrollPane scroll)
+    public Pestania(Tipo tipo,String ruta/*,RSyntaxTextArea texto,*/,JScrollPane scroll,JTextPane texto)
     {
         this.ruta=ruta;
         this.texto=texto;

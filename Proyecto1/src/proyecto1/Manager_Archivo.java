@@ -42,6 +42,7 @@ public class Manager_Archivo {
     
     public static Boolean escribir(String ruta,String contenido)
     {
+        contenido=contenido.replace("\r", "");
         FileWriter fw;
         try
         {   

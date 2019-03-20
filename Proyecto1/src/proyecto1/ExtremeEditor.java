@@ -5,22 +5,26 @@
  */
 package proyecto1;
 
+import color_fs.f_lexico;
+import color_fs.f_sintactico;
+import color_gxml.g_lexico;
+import color_gxml.g_sintactico;
 import errors.mng_error;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.StringReader;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -28,11 +32,6 @@ import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Utilities;
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rtextarea.RTextScrollPane;
-import org.fife.ui.rtextarea.SearchContext;
-import org.fife.ui.rtextarea.SearchEngine;
-
 /**
  *
  * @author Pamela Palacios
@@ -59,12 +58,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         files.setUI(new CustomTabbedPaneUI());
         lbColumna.setText("Columna: "+var.columnaGlobal);
         lbLinea.setText("Fila: "+var.filaGlobal);
-        this.TextoBuscar.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            Buscar(true,"No hay coincidencias siguientes");
-         }
-      });      
+           
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,10 +83,6 @@ public class ExtremeEditor extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         lbLinea = new javax.swing.JLabel();
         lbColumna = new javax.swing.JLabel();
-        TextoBuscar = new javax.swing.JTextField();
-        btnBuscarNext = new javax.swing.JButton();
-        btnBuscarPrevious = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         Item_abrir = new javax.swing.JMenuItem();
@@ -207,30 +197,6 @@ public class ExtremeEditor extends javax.swing.JFrame {
 
         lbColumna.setText("jLabel1");
 
-        btnBuscarNext.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        btnBuscarNext.setText("Siguiente");
-        btnBuscarNext.setMaximumSize(new java.awt.Dimension(73, 19));
-        btnBuscarNext.setMinimumSize(new java.awt.Dimension(73, 19));
-        btnBuscarNext.setPreferredSize(new java.awt.Dimension(73, 19));
-        btnBuscarNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarNextActionPerformed(evt);
-            }
-        });
-
-        btnBuscarPrevious.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        btnBuscarPrevious.setText("Anterior");
-        btnBuscarPrevious.setMaximumSize(new java.awt.Dimension(73, 19));
-        btnBuscarPrevious.setMinimumSize(new java.awt.Dimension(73, 19));
-        btnBuscarPrevious.setPreferredSize(new java.awt.Dimension(73, 19));
-        btnBuscarPrevious.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarPreviousActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Buscar:");
-
         jMenu2.setText("Archivo");
         jMenu2.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -324,15 +290,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
                         .addComponent(lbLinea)
                         .addGap(52, 52, 52)
                         .addComponent(lbColumna)
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarNext, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
+                        .addGap(566, 566, 566))
                     .addComponent(jScrollPane1)
                     .addComponent(files, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE))
                 .addContainerGap(79, Short.MAX_VALUE))
@@ -352,11 +310,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbLinea)
-                            .addComponent(lbColumna)
-                            .addComponent(TextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
+                            .addComponent(lbColumna))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -364,16 +318,6 @@ public class ExtremeEditor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNextActionPerformed
-        // TODO add your handling code here:
-        Buscar(true,"No hay coincidencias siguientes");
-    }//GEN-LAST:event_btnBuscarNextActionPerformed
-
-    private void btnBuscarPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPreviousActionPerformed
-        // TODO add your handling code here:
-        Buscar(false,"No hay coincidencias anteriores");
-    }//GEN-LAST:event_btnBuscarPreviousActionPerformed
 
     private void jMenu2AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jMenu2AncestorMoved
         // TODO add your handling code here:
@@ -389,9 +333,53 @@ public class ExtremeEditor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay un archivo abierto para guardar");
         }
     }//GEN-LAST:event_item_guardarActionPerformed
+    public void add_color_gxml(JTextPane pan,String contenido)
+    {
+        
+            g_lexico lex=new g_lexico(new StringReader(contenido));
+            lex.colorear.insertar(contenido);
+            pan.setDocument(lex.colorear.caja2.getDocument());
+            g_sintactico sint=new g_sintactico(lex);
+            
+            try
+            {
+                sint.parse();
+                
+                
+            }catch(Exception exc)
+            {
+                //System.out.println("error: "+exc.getMessage());
+            }
+    }
+     public void add_color_fs(JTextPane pan,String contenido)
+    {
+        
+            f_lexico lex=new f_lexico(new StringReader(contenido));
+            lex.colorear.insertar(contenido);
+            pan.setDocument(lex.colorear.caja2.getDocument());
+            f_sintactico sint=new f_sintactico(lex);
+            
+            try
+            {
+                sint.parse();
+                
+                
+            }catch(Exception exc)
+            {
+                //System.out.println("error: "+exc.getMessage());
+            }
+    }
     void guardar()
     { 
         int indice=files.getSelectedIndex();
+        Pestania pe=this.arrayPanel[indice];
+             if(pe.tipo==Pestania.Tipo.GXML)
+            {
+                add_color_gxml(pe.texto,pe.texto.getText());
+            }else if(pe.tipo==Pestania.Tipo.FS)
+            {
+                add_color_fs(pe.texto,pe.texto.getText());
+            }
         if(Manager_Archivo.escribir(arrayPanel[indice].ruta, arrayPanel[indice].texto.getText()))
         {
         }else
@@ -445,6 +433,14 @@ public class ExtremeEditor extends javax.swing.JFrame {
     {
          if(files.getComponentCount()>0)
         {
+            Pestania pe=this.arrayPanel[files.getSelectedIndex()];
+             if(pe.tipo==Pestania.Tipo.GXML)
+            {
+                add_color_gxml(pe.texto,pe.texto.getText());
+            }else if(pe.tipo==Pestania.Tipo.FS)
+            {
+                add_color_fs(pe.texto,pe.texto.getText());
+            }
             File Abrir;
             JFileChooser Ventana = new JFileChooser(System.getProperty(ru));
             Ventana.setCurrentDirectory(new File(ru));
@@ -543,7 +539,8 @@ public class ExtremeEditor extends javax.swing.JFrame {
     }
     void AgregarTab(String ruta,String texto,String nombre,Pestania.Tipo tipo)
     { 
-        RSyntaxTextArea textArea = new RSyntaxTextArea(); 
+        JTextPane textArea=new JTextPane();
+        //RSyntaxTextArea textArea = new RSyntaxTextArea(); 
         
         /*inicio para saber donde se esta situado*/
         textArea.addCaretListener(new CaretListener() {
@@ -554,17 +551,26 @@ public class ExtremeEditor extends javax.swing.JFrame {
           }});    
         /*fin*/      
         
-        RTextScrollPane sp = new RTextScrollPane(textArea); // agregar el scroll mi textarea
-       // sp.setAutoscrolls(true);
+        JScrollPane sp = new JScrollPane(textArea); // agregar el scroll mi textarea
+        TextLineNumber tln = new TextLineNumber(textArea);
+        sp.setRowHeaderView( tln );
+        sp.setAutoscrolls(true);
         
-        sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         //guardar la pestania
-        Pestania n = new Pestania(tipo,ruta,textArea,sp); 
+        Pestania n = new Pestania(tipo,ruta,sp,textArea); 
         arrayPanel[cuentaArrayPanel]=n;        
         files.addTab(nombre+"    ", sp);
         files.setSelectedIndex(cuentaArrayPanel);
         cuentaArrayPanel++;
         textArea.setText(texto);
+        if(tipo==Pestania.Tipo.GXML)
+        {
+            add_color_gxml(textArea,texto);
+        }else if(tipo==Pestania.Tipo.FS)
+        {
+            add_color_fs(textArea,texto);
+        }
         
     }
      public static int getFila(int pos, JTextComponent editor) {
@@ -633,6 +639,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(files.getComponentCount()>0)
         {
+            
             guardar();
         }else
         {
@@ -681,27 +688,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRunActionPerformed
     public void Buscar(Boolean Adelante,String mensaje)
     {
-        if(files.getComponentCount()>0)
-        {
-            SearchContext context = new SearchContext();
-            String text = this.TextoBuscar.getText();
-            if (text.length() == 0) {
-               return;
-            }
-            context.setSearchFor(text);
-            context.setMatchCase(false);
-            context.setRegularExpression(false);
-            context.setSearchForward(Adelante);
-            context.setWholeWord(false);
-
-            boolean found = SearchEngine.find(arrayPanel[files.getSelectedIndex()].texto, context);
-            if (!found) {
-               JOptionPane.showMessageDialog(this, mensaje);
-            }
-        }else
-        {
-            JOptionPane.showMessageDialog(this, "No hay ningun archivo abierto");
-        }
+        
     }
     /**
      * @param args the command line arguments
@@ -741,10 +728,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CambiarRuta;
     private javax.swing.JMenuItem Item_abrir;
-    private javax.swing.JTextField TextoBuscar;
     private javax.swing.JButton btnAbrir;
-    private javax.swing.JButton btnBuscarNext;
-    private javax.swing.JButton btnBuscarPrevious;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarComo;
     private javax.swing.JButton btnNuevo;
@@ -756,7 +740,6 @@ public class ExtremeEditor extends javax.swing.JFrame {
     private javax.swing.JMenuItem item_guardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

@@ -100,7 +100,7 @@ public class Reconize {
     
     public static void GuardarDatos(String ruta,String contenido)
     {
-              
+        contenido=contenido.replace("\r", "");      
         FileWriter fw;
         try
         {   

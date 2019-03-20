@@ -28,10 +28,15 @@ public class Array {
         {
             NodoTipo s=valores.get(0).tipo;
             
-            for(int i=1;i<this.valores.size()-1;i++)
+            for(int i=1;i<this.valores.size();i++)
             {
                 NodoTipo ss=valores.get(i).tipo;
-                if(!(ss.indice==s.indice&&ss.nombre.equals(s.nombre)))
+                if((s.indice==var.entero&&ss.indice==var.decimal)||
+                    (s.indice==var.decimal&&ss.indice==var.entero)    )
+                {
+                    s=var.tipo_decimal;
+                }
+                else if(!(ss.indice==s.indice&&ss.nombre.equals(s.nombre)))
                 {
                     return m;
                 }
