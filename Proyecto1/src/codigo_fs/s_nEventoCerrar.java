@@ -39,6 +39,7 @@ public class s_nEventoCerrar  implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null)
         {
             e.AddError("No hay objeto al cual agregar evento", linea, columna, archivo, "SEMANTICO");
@@ -61,6 +62,10 @@ public class s_nEventoCerrar  implements sent {
                 });
                 return new Simbolo(var.tipo_vacio,null);
             }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR:  al cerrar", linea, columna, archivo, "SEMANTICO");
+        }
         return rr;
     }
 }

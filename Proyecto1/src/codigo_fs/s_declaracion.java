@@ -39,6 +39,7 @@ public class s_declaracion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         if(valor!=null)
         {
             Simbolo val=(Simbolo) valor.ejecutar(ts, e, ej);
@@ -55,6 +56,10 @@ public class s_declaracion implements sent{
         }else
         {
             ts.AgregarSimbolo(new Simbolo(id,var.tipo_indefinido,Simbolo.variable,null), IsGlobal, linea, columna, archivo);
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR:  declaracion", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

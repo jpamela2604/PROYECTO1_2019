@@ -39,6 +39,8 @@ public class s_nCrearContenedor implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try
+        {
         if(ts.actual==null||ts.actual.tipo.indice==var.ventana)
         {
             if(parametros.size()!=6)
@@ -112,6 +114,9 @@ public class s_nCrearContenedor implements sent {
         }else
         {
                 e.AddError("No se puede agregar un contenedor a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: CREAR CONTENEDOR ", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

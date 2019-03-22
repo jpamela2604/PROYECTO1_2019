@@ -46,4 +46,15 @@ public class Array {
         
         return m;
     }
+    
+    
+    public Array clone()
+    {
+         LinkedList<Simbolo>va=new LinkedList();
+         for(Simbolo s:valores)
+         {
+             va.add(new Simbolo(s.tipo,s.valor));
+         }
+         return new Array(va);
+    }
 }

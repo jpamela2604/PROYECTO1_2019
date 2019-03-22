@@ -43,6 +43,7 @@ public class s_nEventoClic implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null)
         {
             e.AddError("No hay objeto al cual agregar evento", linea, columna, archivo, "SEMANTICO");
@@ -107,6 +108,9 @@ public class s_nEventoClic implements sent {
         else 
         {
             e.AddError("No se le puede agregar un evento cerrar a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  al clic", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

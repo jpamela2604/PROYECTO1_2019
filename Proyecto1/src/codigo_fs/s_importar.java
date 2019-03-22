@@ -46,6 +46,7 @@ public class s_importar implements sent{
      }
     @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         ej.deTodo.rutas.add(new ruta(path,linea,columna,archivo));
         Simbolo  s=(Simbolo) this.ruta.ejecutar(ts, e, ej);
         if(s.tipo.indice==var.error)
@@ -78,6 +79,9 @@ public class s_importar implements sent{
         {
             this.raiz=null;
             e.AddError("ya se importo el archivo \""+path+"\"", linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: IMPORTAR ", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

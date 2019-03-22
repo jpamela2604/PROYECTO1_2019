@@ -37,6 +37,7 @@ public class s_bloque implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         ts.cambiarAmbito(false);
         for(sent s:sentencias)
         {
@@ -48,6 +49,10 @@ public class s_bloque implements sent {
             }
         }
         ts.regresarAmbito(false);
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: bloque ", linea, columna, archivo, "SEMANTICO");
+        }
         return null;
     }
 }

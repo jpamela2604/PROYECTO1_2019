@@ -39,6 +39,8 @@ public class o_objeto implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try
+        {
         Hashtable vv=new Hashtable();
         for(o_objetoValor s:this.valores)
         {
@@ -68,7 +70,10 @@ public class o_objeto implements sent{
             }
         }
         respuesta=new Simbolo(var.tipo_objeto,new Objeto(vv));
-        
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: OBJETO", linea, columna, archivo, "SEMANTICO");
+        }
         return respuesta;
     }
 }

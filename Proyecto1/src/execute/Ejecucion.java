@@ -25,7 +25,7 @@ public class Ejecucion {
     }
     public void Imprimir(String valor)
     {
-        this.a.setText(a.getText()+valor+"\n");
+        this.a.setText(a.getText()+">> "+valor+"\n");
     }
     public void GuardarDatos(String ventana,String contenido)
     {

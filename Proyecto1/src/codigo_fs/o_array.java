@@ -38,6 +38,8 @@ public class o_array implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try
+        {
         LinkedList<Simbolo> val=new LinkedList();
         for(sent s:valores)
         {
@@ -57,6 +59,10 @@ public class o_array implements sent{
         }
         Array ar=new Array(val);
         respuesta=new Simbolo(var.tipo_arreglo,ar);
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: ARREGLO", linea, columna, archivo, "SEMANTICO");
+        }
         return respuesta;
     }
 }

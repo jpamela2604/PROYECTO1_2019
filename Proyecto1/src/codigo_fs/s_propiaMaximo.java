@@ -35,6 +35,7 @@ public class s_propiaMaximo implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual!=null)
         {
             if(ts.actual.tipo.indice!=var.arreglo)
@@ -83,6 +84,9 @@ public class s_propiaMaximo implements sent {
         }else
         {
             e.AddError("No hay arreglo en el cual aplicar la funcion maximo", linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  maximo", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

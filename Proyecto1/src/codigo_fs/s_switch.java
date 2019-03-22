@@ -41,6 +41,7 @@ public class s_switch implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         Simbolo v=(Simbolo) valor.ejecutar(ts, e, ej);
         if(v.tipo.indice>3)
         {
@@ -120,6 +121,9 @@ public class s_switch implements sent{
                     }
                 }*/
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  selecciona", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

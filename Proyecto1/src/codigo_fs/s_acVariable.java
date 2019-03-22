@@ -48,6 +48,7 @@ public class s_acVariable implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null)
         {
             Simbolo r=ts.buscarSimbolo(new Simbolo(id,null,Simbolo.variable,null), linea, columna, archivo);
@@ -178,6 +179,10 @@ public class s_acVariable implements sent{
         }else
         {
             e.AddError("No se puede acceder a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: VARIABLE ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

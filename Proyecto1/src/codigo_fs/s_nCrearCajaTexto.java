@@ -39,6 +39,7 @@ public class s_nCrearCajaTexto implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null||ts.actual.tipo.indice==var.contenedor)
         {
             if(parametros.size()!=11)
@@ -150,6 +151,10 @@ public class s_nCrearCajaTexto implements sent {
         }else
         {
                 e.AddError("No se puede agregar una caja de texto a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR:  crear caja", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

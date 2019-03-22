@@ -36,6 +36,7 @@ public class oa_negativo implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         Simbolo o1=(Simbolo) op1.ejecutar(ts, e, ej);
         if(o1.tipo.indice==var.error)
         {
@@ -55,6 +56,10 @@ public class oa_negativo implements sent{
         }else
         {
             e.AddError("Tipos incompatibles: tratar de volver negativo un valor de tipo "+o1.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: NEGATIVO ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

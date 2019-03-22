@@ -49,6 +49,7 @@ public class s_propiaArrayFromFile implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual!=null&&params.isEmpty())
         {
             if(ts.actual.tipo.indice==var.ventana)
@@ -117,6 +118,9 @@ public class s_propiaArrayFromFile implements sent {
         }else
         {
              e.AddError("el metodo no puede ser aplicado a ningun elemento", linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: arraydesdearchivo ", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

@@ -35,6 +35,7 @@ public class s_propiaMinimo implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual!=null)
         {
             if(ts.actual.tipo.indice!=var.arreglo)
@@ -83,6 +84,9 @@ public class s_propiaMinimo implements sent {
         }else
         {
             e.AddError("No hay arreglo en el cual aplicar la funcion minimo", linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: minimo ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

@@ -38,7 +38,9 @@ public class s_nCrearDesplegable implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null||ts.actual.tipo.indice==var.contenedor)
         {
             if(parametros.size()!=7)
@@ -121,6 +123,9 @@ public class s_nCrearDesplegable implements sent {
         }else
         {
                 e.AddError("No se puede agregar un desplegable a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  crear desplegable", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

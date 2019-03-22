@@ -37,6 +37,7 @@ public class s_funcionalMap implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual!=null)
         {
             if(ts.actual.tipo.indice!=var.arreglo)
@@ -64,6 +65,9 @@ public class s_funcionalMap implements sent {
         }else
         {
             e.AddError("No hay arreglo al que se le pueda aplicar la funcion \"MAP\"", linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  Map", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

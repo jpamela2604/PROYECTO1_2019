@@ -6,7 +6,10 @@
 package codigo_fs;
 
     
+import codigo_gdato.item;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import ts.Simbolo;
 
 /**
  *
@@ -17,6 +20,12 @@ public class Objeto {
     public Objeto(Hashtable items)
     {
         this.items=items;
+    }
+    
+    public Objeto clone()
+    {
+         
+         return new Objeto((Hashtable) this.items.clone());
     }
     
 }

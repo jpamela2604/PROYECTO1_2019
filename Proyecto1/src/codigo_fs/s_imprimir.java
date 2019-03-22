@@ -35,6 +35,7 @@ public class s_imprimir implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         Simbolo s=(Simbolo) valor.ejecutar(ts, e, ej);
         if(s.tipo.indice!=var.error)
         {
@@ -68,6 +69,9 @@ public class s_imprimir implements sent{
             {
                 ej.Imprimir("OBJETO FS ("+s.tipo.nombre+")");
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  IMPRIMIR", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

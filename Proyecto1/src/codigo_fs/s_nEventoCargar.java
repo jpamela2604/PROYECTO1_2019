@@ -39,6 +39,7 @@ public class s_nEventoCargar  implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(llamada==null)
         {
             //va a empezar desde aqui
@@ -89,7 +90,10 @@ public class s_nEventoCargar  implements sent {
             }
         }
        //Simbolo t=(Simbolo) parametros.get(0).ejecutar(ts, e, ej);       
-        
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: evento AlCargar ", linea, columna, archivo, "SEMANTICO");
+        }
         return rr;
     }
 }

@@ -33,12 +33,18 @@ public class s_detener implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try
+        {
         if(ts.displayBreaks.isEmpty())
         {
             e.AddError("Break fuera de switch", linea, columna, archivo, "SEMANTICO");
         }else
         {
             return new Simbolo(var.tipo_detener,null);
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR:  DETENER", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

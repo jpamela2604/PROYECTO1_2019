@@ -34,6 +34,7 @@ public class s_accesos implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo r=new Simbolo(var.tipo_error,null);
+        try{
         for(sent s:accesos)
         {
             if(s instanceof s_nEventoCargar)
@@ -53,6 +54,10 @@ public class s_accesos implements sent{
         if(IsSent)
         {
             return null;
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR:  accesos", 0, 0, "", "SEMANTICO");
         }
         return r;
     }

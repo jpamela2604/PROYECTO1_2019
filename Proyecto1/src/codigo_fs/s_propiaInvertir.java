@@ -35,6 +35,9 @@ public class s_propiaInvertir implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
+            /*String palabra=ej.a.getText();
+            System.out.println("a "+palabra);*/
         if(ts.actual!=null)
         {
             if(ts.actual.tipo.indice!=var.arreglo)
@@ -53,6 +56,9 @@ public class s_propiaInvertir implements sent {
                  a.valores=valores;
                  respuesta=ts.actual;
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: invertir ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

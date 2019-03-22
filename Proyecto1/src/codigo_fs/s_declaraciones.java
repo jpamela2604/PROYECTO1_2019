@@ -30,7 +30,7 @@ public class s_declaraciones implements sent{
      }
      @Override
     public Object cargar(mng_ts ts, mng_error e, Ejecucion ej) {
-        if(IsGlobal)
+        /*if(IsGlobal)
         {
             for(sent s:declas)
             {
@@ -38,21 +38,21 @@ public class s_declaraciones implements sent{
                 de.IsGlobal=this.IsGlobal;
                 s.ejecutar(ts, e, ej);
             }
-        }
+        }*/
         return null;
     }
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        if(!IsGlobal)
-        {
+        //if(!IsGlobal)
+        //{
             for(sent s:declas)
             {
                 s_declaracion de=(s_declaracion)s;
                 de.IsGlobal=this.IsGlobal;
                 s.ejecutar(ts, e, ej);
             }
-        }
+        //}
         return null;
     }
 }

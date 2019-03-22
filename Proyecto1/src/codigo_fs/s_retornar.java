@@ -35,6 +35,7 @@ public class s_retornar implements sent {
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         if(ts.displayReturns.isEmpty())
         {
             e.AddError("Retorno fuera de metodo", linea, columna, archivo, "SEMANTICO");
@@ -45,6 +46,9 @@ public class s_retornar implements sent {
             {
                 return s;
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: retornar ", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

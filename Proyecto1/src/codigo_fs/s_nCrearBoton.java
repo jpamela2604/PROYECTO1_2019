@@ -41,6 +41,7 @@ public class s_nCrearBoton implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null||ts.actual.tipo.indice==var.contenedor)
         {
             if(parametros.size()!=9)
@@ -152,6 +153,9 @@ public class s_nCrearBoton implements sent {
         }else
         {
                 e.AddError("No se puede agregar un boton a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  crearboton", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

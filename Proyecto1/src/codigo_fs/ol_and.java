@@ -38,6 +38,7 @@ public class ol_and implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         Simbolo o1=(Simbolo)op1.ejecutar(ts,e,ej);
         Simbolo o2=(Simbolo)op2.ejecutar(ts,e,ej);  
         if(o1.tipo.indice==var.error||o2.tipo.indice==var.error)
@@ -54,6 +55,10 @@ public class ol_and implements sent{
         }else
         {
             e.AddError("Tipos incompatibles: "+o1.tipo.nombre+" && "+o2.tipo.nombre, linea, columna, archivo, "SEMANTICO");            
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: AND ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

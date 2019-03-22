@@ -40,6 +40,7 @@ public class o_ternario implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         Simbolo c=(Simbolo)cond.ejecutar(ts, e, ej);
         
         if(c.tipo.indice==var.error)
@@ -58,6 +59,9 @@ public class o_ternario implements sent{
             {
                 return (Simbolo)val2.ejecutar(ts, e, ej);
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: TERNARIO", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

@@ -7,6 +7,7 @@ package codigo_fs;
 
 import errors.mng_error;
 import execute.Ejecucion;
+import proyecto1.var;
 import ts.NodoTipo;
 import ts.Simbolo;
 import ts.mng_ts;
@@ -38,6 +39,7 @@ public class o_valorPuntual implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         if(tipo!=null)
         {
             return new Simbolo(tipo,valor);
@@ -46,10 +48,24 @@ public class o_valorPuntual implements sent{
             s_accesos a=(s_accesos) this.valor;
             Simbolo r=(Simbolo)a.ejecutar(ts, e, ej);
             if(r!=null)
-            {
+            {                
                 r=new Simbolo(r.tipo,r.valor);
+                if(r.tipo.indice==var.objeto)
+                {
+                    Objeto o=(Objeto) r.valor;
+                    r.valor=o.clone();
+                }else if(r.tipo.indice==var.arreglo)
+                {
+                    Array arrr=(Array)r.valor;
+                    r.valor=arrr.clone();
+                }
             }
             return r;
         }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: VALOR", linea, columna, archivo, "SEMANTICO");
+        }
+        return new Simbolo(var.tipo_error,null);
     }
 }

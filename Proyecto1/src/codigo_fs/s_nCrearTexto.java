@@ -39,6 +39,7 @@ public class s_nCrearTexto implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ts.actual==null||ts.actual.tipo.indice==var.contenedor)
         {
             if(parametros.size()!=8)
@@ -127,6 +128,9 @@ public class s_nCrearTexto implements sent {
         }else
         {
                 e.AddError("No se puede agregar una texto a un elemento de tipo "+ts.actual.tipo.nombre, linea, columna, archivo, "SEMANTICO");
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR: creartexto ", linea, columna, archivo, "SEMANTICO");
         }
         return rr;
     }

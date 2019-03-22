@@ -31,6 +31,7 @@ public class s_if implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         Boolean bandera=false;
         for(s_bloque s:bloques)
         {
@@ -64,7 +65,10 @@ public class s_if implements sent{
                     return retorno;
                 }
             }
-        }            
+        }  }catch(Exception exce)
+        {
+            e.AddError("ERROR: IF ", 0, 0, "", "SEMANTICO");
+        }          
         return null;
     }
 }

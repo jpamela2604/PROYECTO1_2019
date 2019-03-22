@@ -90,6 +90,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
         item_guardacomo = new javax.swing.JMenuItem();
         CambiarRuta = new javax.swing.JMenuItem();
         getRuta = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -249,6 +250,15 @@ public class ExtremeEditor extends javax.swing.JFrame {
         });
         jMenu2.add(getRuta);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("color");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Tabs");
@@ -372,14 +382,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     void guardar()
     { 
         int indice=files.getSelectedIndex();
-        Pestania pe=this.arrayPanel[indice];
-             if(pe.tipo==Pestania.Tipo.GXML)
-            {
-                add_color_gxml(pe.texto,pe.texto.getText());
-            }else if(pe.tipo==Pestania.Tipo.FS)
-            {
-                add_color_fs(pe.texto,pe.texto.getText());
-            }
+       
         if(Manager_Archivo.escribir(arrayPanel[indice].ruta, arrayPanel[indice].texto.getText()))
         {
         }else
@@ -433,14 +436,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     {
          if(files.getComponentCount()>0)
         {
-            Pestania pe=this.arrayPanel[files.getSelectedIndex()];
-             if(pe.tipo==Pestania.Tipo.GXML)
-            {
-                add_color_gxml(pe.texto,pe.texto.getText());
-            }else if(pe.tipo==Pestania.Tipo.FS)
-            {
-                add_color_fs(pe.texto,pe.texto.getText());
-            }
+
             File Abrir;
             JFileChooser Ventana = new JFileChooser(System.getProperty(ru));
             Ventana.setCurrentDirectory(new File(ru));
@@ -686,6 +682,21 @@ public class ExtremeEditor extends javax.swing.JFrame {
             jButton1.setBackground(new Color(255, 246, 221));
         }
     }//GEN-LAST:event_btnRunActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        if(files.getComponentCount()>0)
+        {
+            Pestania pe=this.arrayPanel[files.getSelectedIndex()];
+             if(pe.tipo==Pestania.Tipo.GXML)
+            {
+                add_color_gxml(pe.texto,pe.texto.getText());
+            }else if(pe.tipo==Pestania.Tipo.FS)
+            {
+                add_color_fs(pe.texto,pe.texto.getText());
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
     public void Buscar(Boolean Adelante,String mensaje)
     {
         
@@ -746,6 +757,7 @@ public class ExtremeEditor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

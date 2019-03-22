@@ -37,7 +37,9 @@ public class s_llamada implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         if("CREARVENTANA".equals(this.nombre))
         {
             return new s_nCrearVentana(parametros,linea,columna,archivo).ejecutar(ts, e, ej);
@@ -114,7 +116,11 @@ public class s_llamada implements sent{
                     e.AddError("El metodo "+nombre+" esta definido con "+m.parametros.size()+" parametros", linea, columna, archivo, "SEMANTICO");
                 }
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  LLAMADA", linea, columna, archivo, "SEMANTICO");
         }
+      
         return respuesta;
     }
 }

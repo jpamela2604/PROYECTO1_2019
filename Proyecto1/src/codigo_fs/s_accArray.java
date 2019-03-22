@@ -40,6 +40,7 @@ public class s_accArray implements sent{
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try{
         Simbolo pos=(Simbolo) valor.ejecutar(ts, e, ej);
         if(pos.tipo.indice==var.error)
         {
@@ -123,7 +124,10 @@ public class s_accArray implements sent{
         {
             e.AddError("No hay arreglo que se pueda indexar", linea, columna, archivo, "EJECUCION");
         }
-            
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: ACCESO ARREGLO ", linea, columna, archivo, "SEMANTICO");
+        }    
         return respuesta;
     }
 }

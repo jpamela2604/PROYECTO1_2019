@@ -47,7 +47,7 @@ public class Reconize {
             Ejecucion ej=new Ejecucion(this.a,deTodo);
             gramaticaFS(ruta,ts,this.e,ej);
             deTodo.iniciar(deTodo.principal,ts, e, ej);
-        }else
+        }else if(Pestania.Tipo.GXML==t)
         {
             String ruta2=ruta.replace(".gxml", "");
             ruta2=ruta2+".fs";
@@ -55,6 +55,9 @@ public class Reconize {
             if(!ruu.equals(""))
             {
                 a.setText("Archivo traducido en la ruta "+ruu);
+            }else
+            {
+                a.setText("no se pudo traducir el archivo");
             }
         }
     }

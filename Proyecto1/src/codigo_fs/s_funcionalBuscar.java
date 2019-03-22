@@ -36,6 +36,8 @@ public class s_funcionalBuscar implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo respuesta=new Simbolo(var.tipo_error,null);
+        try
+        {
         if(ts.actual!=null)
         {
             if(ts.actual.tipo.indice!=var.arreglo)
@@ -63,6 +65,10 @@ public class s_funcionalBuscar implements sent {
         }else
         {
             e.AddError("No hay arreglo al que se le pueda aplicar la funcion \"BUSCAR\"", linea, columna, archivo, "SEMANTICO");
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: funcion Buscar ", linea, columna, archivo, "SEMANTICO");
         }
         return respuesta;
     }

@@ -40,6 +40,7 @@ public class s_nativaGxml implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
         if(ruta.size()!=1)
             {
                 e.AddError("el metodo solo tiene un parametro", linea, columna, archivo, "SEMANTICO");
@@ -69,6 +70,10 @@ public class s_nativaGxml implements sent {
                     }
                 }
             }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: leergxml", linea, columna, archivo, "SEMANTICO");
+        }
         return rr;
     }
     

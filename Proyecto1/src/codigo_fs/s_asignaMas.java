@@ -35,9 +35,14 @@ public class s_asignaMas implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         oa_suma d=new oa_suma(new o_valorPuntual(null,acceso,linea,columna, archivo),valor,linea,columna, archivo);
         s_asignacion a=new s_asignacion(acceso,d,linea,columna, archivo);
         a.ejecutar(ts, e, ej);
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: =+ ", linea, columna, archivo, "SEMANTICO");
+        }
         return null;
     }
 }

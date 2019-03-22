@@ -37,8 +37,11 @@ public class oa_decremento implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
-        Simbolo s=(Simbolo) acceso.ejecutar(ts, e, ej);
+        
         Simbolo h=new Simbolo(var.tipo_error,null);
+        try
+        {
+            Simbolo s=(Simbolo) acceso.ejecutar(ts, e, ej);
         if(s.tipo.indice==var.error)
         {
         }else if(s.tipo.indice==var.entero)
@@ -58,6 +61,10 @@ public class oa_decremento implements sent{
         if(this.noRetorna)
         {
             return null;
+        }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: DECREMENTO ", linea, columna, archivo, "SEMANTICO");
         }
         return h;
     }

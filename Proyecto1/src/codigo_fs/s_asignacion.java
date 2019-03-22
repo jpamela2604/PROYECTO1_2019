@@ -37,6 +37,7 @@ public class s_asignacion implements sent{
 
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
+        try{
         Simbolo s=(Simbolo) acceso.ejecutar(ts, e, ej);
         if(s.tipo.indice!=var.error)
         {
@@ -58,6 +59,9 @@ public class s_asignacion implements sent{
                     }
                 }
             }
+        }}catch(Exception exce)
+        {
+            e.AddError("ERROR:  ASIGNACION", linea, columna, archivo, "SEMANTICO");
         }
         return null;
     }

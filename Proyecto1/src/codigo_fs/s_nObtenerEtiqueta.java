@@ -38,6 +38,7 @@ public class s_nObtenerEtiqueta implements sent {
     @Override
     public Object ejecutar(mng_ts ts, mng_error e, Ejecucion ej) {
         Simbolo rr=new Simbolo(var.tipo_error,null);
+        try{
     if(ts.actual==null)
     {
         e.AddError("No hay elemento sobre el cual aplicar el metodo obtenerPorEtiqueta", linea, columna, archivo, "SEMANTICO");
@@ -73,6 +74,10 @@ public class s_nObtenerEtiqueta implements sent {
 
                 }
             }
+        }catch(Exception exce)
+        {
+            e.AddError("ERROR: obtener por etiqueta ", linea, columna, archivo, "SEMANTICO");
+        }
         return rr;
     }
 }
